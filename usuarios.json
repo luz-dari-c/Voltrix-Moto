@@ -1,0 +1,25 @@
+[
+  {
+    "primerNombre": "shar",
+    "segundoNombre": "lok",
+    "primerApellido": "ma",
+    "segundoApellido": "ia",
+    "cedula": "3456234242",
+    "telefono": "313213133",
+    "email": "shar@gmail.com",
+    "password": "password",
+    "direccion": "hola3",
+    "motosCompradas": []
+  },
+  {
+    "primerNombre": "bebe",
+    "segundoNombre": "sita",
+    "primerApellido": "ua",
+    "segundoApellido": "bebe",
+    "cedula": "312313131",
+    "telefono": "12345678",
+    "email": "imsharlok@gmail.com",
+    "password": "Aharlok16",
+    "motosCompradas": []
+  }
+]
