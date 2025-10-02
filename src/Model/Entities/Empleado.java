@@ -109,7 +109,21 @@ public class Empleado {
     }
     
     
-    
+@Override
+public String toString() {
+    return "Empleado{" +
+            "idEmpleado='" + idEmpleado + '\'' +
+            ", primerNombre='" + primerNombre + '\'' +
+            ", segundoNombre='" + segundoNombre + '\'' +
+            ", primerApellido='" + primerApellido + '\'' +
+            ", segundoApellido='" + segundoApellido + '\'' +
+            ", edad='" + edad + '\'' +
+            ", identificacion='" + identificacion + '\'' +
+            ", correo='" + correo + '\'' +
+            ", telefono='" + telefono + '\'' +
+            '}';
+}
+
     
     
 }
