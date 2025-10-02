@@ -21,5 +21,16 @@
     "email": "imsharlok@gmail.com",
     "password": "Aharlok16",
     "motosCompradas": []
+  },
+  {
+    "primerNombre": "d",
+    "segundoNombre": "d",
+    "primerApellido": "d",
+    "segundoApellido": "d",
+    "cedula": "342424244",
+    "telefono": "2413123123",
+    "email": "caca@gmail.com",
+    "password": "papa123",
+    "motosCompradas": []
   }
 ]

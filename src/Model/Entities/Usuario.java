@@ -119,8 +119,28 @@ public class Usuario {
     }
 
     public String getNombreCompleto() {
-        return primerNombre + " " + (segundoNombre != null ? segundoNombre + " " : "") + 
-               primerApellido + " " + (segundoApellido != null ? segundoApellido : "");
+        StringBuilder nombreCompleto = new StringBuilder(primerNombre);
+        
+        if (segundoNombre != null && !segundoNombre.trim().isEmpty()) {
+            nombreCompleto.append(" ").append(segundoNombre);
+        }
+        
+        nombreCompleto.append(" ").append(primerApellido);
+        
+        if (segundoApellido != null && !segundoApellido.trim().isEmpty()) {
+            nombreCompleto.append(" ").append(segundoApellido);
+        }
+        
+        return nombreCompleto.toString();
+    }
+
+    public boolean validarCamposObligatorios() {
+        return primerNombre != null && !primerNombre.trim().isEmpty() &&
+               primerApellido != null && !primerApellido.trim().isEmpty() &&
+               cedula != null && !cedula.trim().isEmpty() &&
+               telefono != null && !telefono.trim().isEmpty() &&
+               email != null && !email.trim().isEmpty() &&
+               password != null && !password.trim().isEmpty();
     }
 
     @Override

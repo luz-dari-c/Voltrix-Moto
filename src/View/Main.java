@@ -27,6 +27,8 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         init();
     }
+    
+    
 
     private void init() {
         layout = new MigLayout("fill, insets 0");
@@ -133,6 +135,12 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
+        
+        // Código temporal para verificar el directorio de trabajo
+System.out.println("=== INFORMACIÓN DEL SISTEMA ===");
+System.out.println("Directorio de trabajo: " + System.getProperty("user.dir"));
+System.out.println("Separador de archivos: " + System.getProperty("file.separator"));
+System.out.println("=== FIN INFORMACIÓN SISTEMA ===\n");
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

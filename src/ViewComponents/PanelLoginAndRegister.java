@@ -1,10 +1,10 @@
 package ViewComponents;
 
+import Controller.UsuarioController;
+import Model.Entities.Usuario;
 import ViewResourses.Button;
 import ViewResourses.MyPasswordField;
 import ViewResourses.MyTextField;
-import DAO.UsuarioDAO;
-import Model.Entities.Usuario;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -18,7 +18,9 @@ import net.miginfocom.swing.MigLayout;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 
-    private UsuarioDAO usuarioDAO;
+    private UsuarioController usuarioController;
+    
+    
     
     // Campos para registro
     private MyTextField txtPrimerNombre;
@@ -37,7 +39,8 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 
     public PanelLoginAndRegister() {
         initComponents();
-        usuarioDAO = new UsuarioDAO();
+        
+        usuarioController = new UsuarioController();
         initRegister();
         initLogin();
         login.setVisible(false);
@@ -52,7 +55,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         label.setForeground(new Color(7, 164, 121));
         register.add(label);
         
-        // Primera fila de nombres - Mismo tamaño para todos (70%)
+        // Primera fila de nombres
         txtPrimerNombre = new MyTextField();
         txtPrimerNombre.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/user.png")));
         txtPrimerNombre.setHint("First Name*");
@@ -62,7 +65,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         txtSegundoNombre.setHint("Second Name");
         register.add(txtSegundoNombre, "w 70%");
         
-        // Segunda fila de apellidos - Mismo tamaño para todos (70%)
+        // Segunda fila de apellidos
         txtPrimerApellido = new MyTextField();
         txtPrimerApellido.setHint("First Last Name*");
         register.add(txtPrimerApellido, "w 70%");
@@ -71,7 +74,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         txtSegundoApellido.setHint("Second Last Name");
         register.add(txtSegundoApellido, "w 70%");
         
-        // Campos obligatorios - Mismo tamaño para todos (70%)
+        // Campos obligatorios
         txtCedula = new MyTextField();
         txtCedula.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/id.png")));
         txtCedula.setHint("ID Number*");
@@ -92,13 +95,13 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         txtPassRegister.setHint("Password*");
         register.add(txtPassRegister, "w 70%");
         
-        // Campo opcional - Mismo tamaño (70%)
+        // Campo opcional
         txtDireccion = new MyTextField();
         txtDireccion.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/location.png")));
         txtDireccion.setHint("Address (Optional)");
         register.add(txtDireccion, "w 70%");
         
-        // Botón SIGN UP con más espacio arriba (añadido 10px de separación)
+        // Botón SIGN UP
         Button cmdRegister = new Button();
         cmdRegister.setBackground(new Color(7, 164, 121));
         cmdRegister.setForeground(new Color(250, 250, 250));
@@ -120,7 +123,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         label.setForeground(new Color(7, 164, 121));
         login.add(label);
         
-        // Campos login - Mismo tamaño (70%)
+        // Campos login
         txtEmailLogin = new MyTextField();
         txtEmailLogin.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/mail.png")));
         txtEmailLogin.setHint("Email");
@@ -152,95 +155,103 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     }
 
     private void registrarUsuario() {
-        // Obtener valores de los campos
-        String primerNombre = txtPrimerNombre.getText().trim();
-        String segundoNombre = txtSegundoNombre.getText().trim();
-        String primerApellido = txtPrimerApellido.getText().trim();
-        String segundoApellido = txtSegundoApellido.getText().trim();
-        String cedula = txtCedula.getText().trim();
-        String telefono = txtTelefono.getText().trim();
-        String email = txtEmailRegister.getText().trim();
-        String password = new String(txtPassRegister.getPassword()).trim();
-        String direccion = txtDireccion.getText().trim();
-        
-        // Validaciones
-        if (primerNombre.isEmpty() || primerApellido.isEmpty() || cedula.isEmpty() || 
-            telefono.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill all required fields (*)", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if (!email.contains("@")) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if (password.length() < 6) {
-            JOptionPane.showMessageDialog(this, "Password must be at least 6 characters", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if (!cedula.matches("\\d+")) {
-            JOptionPane.showMessageDialog(this, "ID number must contain only numbers", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if (!telefono.matches("\\d+")) {
-            JOptionPane.showMessageDialog(this, "Phone number must contain only numbers", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        // Crear nuevo usuario
-        Usuario nuevoUsuario = new Usuario(
-            primerNombre, 
-            segundoNombre.isEmpty() ? null : segundoNombre,
-            primerApellido,
-            segundoApellido.isEmpty() ? null : segundoApellido,
-            cedula,
-            telefono,
-            email,
-            password,
-            direccion.isEmpty() ? null : direccion
-        );
-        
-        // Registrar usuario
-        if (usuarioDAO.registrarUsuario(nuevoUsuario)) {
-            JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            limpiarCamposRegistro();
-        } else {
-            if (usuarioDAO.existeEmail(email)) {
-                JOptionPane.showMessageDialog(this, "Email already exists", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "ID number already exists", "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            // Obtener valores de los campos
+            String primerNombre = txtPrimerNombre.getText().trim();
+            String segundoNombre = txtSegundoNombre.getText().trim();
+            String primerApellido = txtPrimerApellido.getText().trim();
+            String segundoApellido = txtSegundoApellido.getText().trim();
+            String cedula = txtCedula.getText().trim();
+            String telefono = txtTelefono.getText().trim();
+            String email = txtEmailRegister.getText().trim().toLowerCase();
+            String password = new String(txtPassRegister.getPassword());
+            String direccion = txtDireccion.getText().trim();
+
+            // Validaciones en la vista
+            if (primerNombre.isEmpty() || primerApellido.isEmpty() || cedula.isEmpty() || 
+                telefono.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                mostrarError("Please fill all required fields (*)");
+                return;
             }
+
+            if (!email.contains("@")) {
+                mostrarError("Please enter a valid email");
+                return;
+            }
+
+            if (password.length() < 6) {
+                mostrarError("Password must be at least 6 characters");
+                return;
+            }
+
+            if (!cedula.matches("\\d+")) {
+                mostrarError("ID number must contain only numbers");
+                return;
+            }
+
+            if (!telefono.matches("\\d+")) {
+                mostrarError("Phone number must contain only numbers");
+                return;
+            }
+
+            // Crear nuevo usuario
+            Usuario nuevoUsuario = new Usuario(
+                primerNombre, 
+                segundoNombre.isEmpty() ? null : segundoNombre,
+                primerApellido,
+                segundoApellido.isEmpty() ? null : segundoApellido,
+                cedula,
+                telefono,
+                email,
+                password,
+                direccion.isEmpty() ? null : direccion
+            );
+
+            // Registrar usuario a través del controlador
+            if (usuarioController.registrarUsuario(nuevoUsuario)) {
+                mostrarExito("Registration successful!");
+                limpiarCamposRegistro();
+            } else {
+                if (usuarioController.existeEmail(email)) {
+                    mostrarError("Email already exists");
+                } else {
+                    mostrarError("ID number already exists");
+                }
+            }
+        } catch (Exception e) {
+            mostrarError("Error during registration: " + e.getMessage());
         }
     }
+    
+    
 
     private void iniciarSesion() {
-        String email = txtEmailLogin.getText().trim();
-        String password = new String(txtPassLogin.getPassword()).trim();
-        
-        // Validaciones básicas
-        if (email.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill all fields", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        // Intentar login
-        Usuario usuario = usuarioDAO.login(email, password);
-        
-        if (usuario != null) {
-            JOptionPane.showMessageDialog(this, "Welcome " + usuario.getNombreCompleto() + "!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
-            limpiarCamposLogin();
-            
-            // Aquí puedes abrir la ventana principal de la aplicación
-            // MainApp mainApp = new MainApp(usuario);
-            // mainApp.setVisible(true);
-            // Window window = SwingUtilities.getWindowAncestor(this);
-            // window.dispose();
-            
-        } else {
-            JOptionPane.showMessageDialog(this, "Invalid email or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        try {
+            String email = txtEmailLogin.getText().trim().toLowerCase();
+            String password = new String(txtPassLogin.getPassword());
+
+            // Validaciones básicas
+            if (email.isEmpty() || password.isEmpty()) {
+                mostrarError("Please fill all fields");
+                return;
+            }
+
+            // Intentar login a través del controlador
+            Usuario usuario = usuarioController.login(email, password);
+
+            if (usuario != null) {
+                mostrarExito("Welcome " + usuario.getNombreCompleto() + "!");
+                limpiarCamposLogin();
+                
+                // Aquí puedes abrir la ventana principal de la aplicación
+                // new MainApp(usuario).setVisible(true);
+                // SwingUtilities.getWindowAncestor(this).dispose();
+                
+            } else {
+                mostrarError("Invalid email or password");
+            }
+        } catch (Exception e) {
+            mostrarError("Error during login: " + e.getMessage());
         }
     }
 
@@ -261,17 +272,24 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         txtPassLogin.setText("");
     }
 
+    private void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void mostrarExito(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Success", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     public void showRegister(boolean show) {
         if (show) {
             register.setVisible(true);
             login.setVisible(false);
-            limpiarCamposRegistro();
         } else {
             register.setVisible(false);
             login.setVisible(true);
-            limpiarCamposLogin();
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
