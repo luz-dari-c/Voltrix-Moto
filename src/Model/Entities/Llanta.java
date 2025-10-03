@@ -10,8 +10,8 @@ public class Llanta {
     private MedidaLlanta medida;
     private TipoLlanta tipo;
 
-    public Llanta(int idLlanta, MedidaLlanta medida, TipoLlanta tipo) {
-        this.idLlanta = idLlanta;
+    public Llanta(MedidaLlanta medida, TipoLlanta tipo) {
+        this.idLlanta = 0;
         this.medida = medida;
         this.tipo = tipo;
     }

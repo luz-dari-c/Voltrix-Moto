@@ -10,8 +10,8 @@ public class Motor {
     private int cilindrada;
     private int potencia;
 
-    public Motor(int idMotor, TipoMotor tipo, int cilindrada, int potencia) {
-        this.idMotor = idMotor;
+    public Motor(TipoMotor tipo, int cilindrada, int potencia) {
+        this.idMotor = 0;
         this.tipo = tipo;
         this.cilindrada = cilindrada;
         this.potencia = potencia;

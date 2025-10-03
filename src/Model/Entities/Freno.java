@@ -10,8 +10,8 @@ public class Freno {
     private TipoFreno tipo;
     private UbicacionFreno ubicacion;
 
-    public Freno(int idFreno, TipoFreno tipo, UbicacionFreno ubicacion) {
-        this.idFreno = idFreno;
+    public Freno( TipoFreno tipo, UbicacionFreno ubicacion) {
+        this.idFreno = 0;
         this.tipo = tipo;
         this.ubicacion = ubicacion;
     }

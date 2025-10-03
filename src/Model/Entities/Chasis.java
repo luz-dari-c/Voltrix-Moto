@@ -10,8 +10,8 @@ public class Chasis {
     private MaterialChasis material;
     private TipoChasis tipo;
 
-    public Chasis(int idChasis, MaterialChasis material, TipoChasis tipo) {
-        this.idChasis = idChasis;
+    public Chasis( MaterialChasis material, TipoChasis tipo) {
+        this.idChasis = 0;
         this.material = material;
         this.tipo = tipo;
     }

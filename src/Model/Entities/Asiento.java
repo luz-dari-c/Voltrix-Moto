@@ -4,22 +4,22 @@ package Model.Entities;
 import Model.Constants.CapacidadAsiento;
 
 public class Asiento {
-    private int id;
+    private int idAsiento;
     private String material;
     private CapacidadAsiento capacidad; 
     
-    public Asiento(int id, String material, CapacidadAsiento capacidad) {
-        this.id = id;
+    public Asiento( String material, CapacidadAsiento capacidad) {
+        this.idAsiento = 0;
         this.material = material;
         this.capacidad = capacidad;
     }
 
-    public int getId() {
-        return id;
+    public int getIdAsiento() {
+        return idAsiento;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdAsiento(int idAsiento) {
+        this.idAsiento = idAsiento;
     }
 
     public String getMaterial() {

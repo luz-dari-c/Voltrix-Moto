@@ -1,13 +1,21 @@
-
 package Model.Entities;
 
+import Model.Constants.TipoColorMoto;
+import Model.Constants.TipoMoto;
+import java.time.LocalDate;
 
-public class Vehiculo {
-    private int idVehiculo;
+public class Moto {
+
+    private int idMoto;
     private String marca;
     private String modelo;
-    private int año;
+    private LocalDate fechaLanzamiento;
     private double precio;
+
+    private TipoMoto tipoMoto;
+    private TipoColorMoto tipoColorMoto;
+    private boolean tieneParrilla;
+    private boolean tieneMaletero;
 
     private Motor motor;
     private Chasis chasis;
@@ -16,14 +24,17 @@ public class Vehiculo {
     private Freno frenoDelantero;
     private Freno frenoTrasero;
     private Asiento asiento;
+    private Transmision transmision;
 
-    public Vehiculo(int idVehiculo, String marca, String modelo, int año, double precio,
-                    Motor motor, Chasis chasis, Llanta llantaDelantera, Llanta llantaTrasera,
-                    Freno frenoDelantero, Freno frenoTrasero, Asiento asiento) {
-        this.idVehiculo = idVehiculo;
+    public Moto(String marca, String modelo, LocalDate fechaLanzamiento, double precio,
+            Motor motor, Chasis chasis, Llanta llantaDelantera, Llanta llantaTrasera,
+            Freno frenoDelantero, Freno frenoTrasero, Asiento asiento, Transmision transmision,
+            TipoMoto tipoMoto, TipoColorMoto tipoColorMoto,
+            boolean tieneParrilla, boolean tieneMaletero) {
+        this.idMoto = 0;
         this.marca = marca;
         this.modelo = modelo;
-        this.año = año;
+        this.fechaLanzamiento = fechaLanzamiento;
         this.precio = precio;
         this.motor = motor;
         this.chasis = chasis;
@@ -32,14 +43,19 @@ public class Vehiculo {
         this.frenoDelantero = frenoDelantero;
         this.frenoTrasero = frenoTrasero;
         this.asiento = asiento;
+        this.transmision = transmision;
+        this.tipoMoto = tipoMoto;
+        this.tipoColorMoto = tipoColorMoto;
+        this.tieneParrilla = tieneParrilla;
+        this.tieneMaletero = tieneMaletero;
     }
 
-    public int getIdVehiculo() {
-        return idVehiculo;
+    public int getIdMoto() {
+        return idMoto;
     }
 
-    public void setIdVehiculo(int idVehiculo) {
-        this.idVehiculo = idVehiculo;
+    public void setIdMoto(int idMoto) {
+        this.idMoto = idMoto;
     }
 
     public String getMarca() {
@@ -58,12 +74,12 @@ public class Vehiculo {
         this.modelo = modelo;
     }
 
-    public int getAño() {
-        return año;
+    public LocalDate getFechaLanzamiento() {
+        return fechaLanzamiento;
     }
 
-    public void setAño(int anio) {
-        this.año = anio;
+    public void setFechaLanzamiento(LocalDate fechaLanzamiento) {
+        this.fechaLanzamiento = fechaLanzamiento;
     }
 
     public double getPrecio() {
@@ -72,6 +88,38 @@ public class Vehiculo {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public TipoMoto getTipoMoto() {
+        return tipoMoto;
+    }
+
+    public void setTipoMoto(TipoMoto tipoMoto) {
+        this.tipoMoto = tipoMoto;
+    }
+
+    public TipoColorMoto getTipoColorMoto() {
+        return tipoColorMoto;
+    }
+
+    public void setTipoColorMoto(TipoColorMoto tipoColorMoto) {
+        this.tipoColorMoto = tipoColorMoto;
+    }
+
+    public boolean isTieneParrilla() {
+        return tieneParrilla;
+    }
+
+    public void setTieneParrilla(boolean tieneParrilla) {
+        this.tieneParrilla = tieneParrilla;
+    }
+
+    public boolean isTieneMaletero() {
+        return tieneMaletero;
+    }
+
+    public void setTieneMaletero(boolean tieneMaletero) {
+        this.tieneMaletero = tieneMaletero;
     }
 
     public Motor getMotor() {
@@ -129,4 +177,15 @@ public class Vehiculo {
     public void setAsiento(Asiento asiento) {
         this.asiento = asiento;
     }
+
+    public Transmision getTransmision() {
+        return transmision;
+
+    }
+
+    public void setTransmision(Transmision transmision) {
+        this.transmision = transmision;
+
+    }
+
 }
