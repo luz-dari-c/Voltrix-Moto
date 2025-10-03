@@ -1,0 +1,106 @@
+[
+  {
+    "idMoto": 1,
+    "marca": "Yamaha",
+    "modelo": "R1",
+    "fechaLanzamiento": "2023-05-10",
+    "precio": 12000.0,
+    "tipoMoto": "DEPORTIVA",
+    "tipoColorMoto": "ROJO",
+    "tieneParrilla": true,
+    "tieneMaletero": false,
+    "motor": {
+      "idMotor": 1,
+      "tipo": "CUATRO_TIEMPOS",
+      "cilindrada": 1000,
+      "potencia": 200
+    },
+    "chasis": {
+      "idChasis": 1,
+      "material": "ALUMINIO",
+      "tipo": "TUBULAR"
+    },
+    "llantaDelantera": {
+      "idLlanta": 1,
+      "medida": "R16_100_80",
+      "tipo": "DELANTERA"
+    },
+    "llantaTrasera": {
+      "idLlanta": 1,
+      "medida": "R16_100_80",
+      "tipo": "TRASERA"
+    },
+    "frenoDelantero": {
+      "idFreno": 1,
+      "tipo": "DISCO",
+      "ubicacion": "DELANTERO"
+    },
+    "frenoTrasero": {
+      "idFreno": 1,
+      "tipo": "DISCO",
+      "ubicacion": "DELANTERO"
+    },
+    "asiento": {
+      "idAsiento": 1,
+      "material": "aa",
+      "capacidad": "MONOPLAZA"
+    },
+    "transmision": {
+      "idTransmision": 1,
+      "tipoTransmision": "MANUAL",
+      "velocidades": "SEIS"
+    }
+  },
+  {
+    "idMoto": 2,
+    "marca": "Yamaha",
+    "modelo": "R1",
+    "fechaLanzamiento": "2023-05-10",
+    "precio": 12000.0,
+    "tipoMoto": "DEPORTIVA",
+    "tipoColorMoto": "ROJO",
+    "tieneParrilla": true,
+    "tieneMaletero": false,
+    "motor": {
+      "idMotor": 2,
+      "tipo": "CUATRO_TIEMPOS",
+      "cilindrada": 1000,
+      "potencia": 200
+    },
+    "chasis": {
+      "idChasis": 2,
+      "material": "ALUMINIO",
+      "tipo": "TUBULAR"
+    },
+    "llantaDelantera": {
+      "idLlanta": 2,
+      "medida": "R16_100_80",
+      "tipo": "DELANTERA"
+    },
+    "llantaTrasera": {
+      "idLlanta": 2,
+      "medida": "R16_100_80",
+      "tipo": "TRASERA"
+    },
+    "frenoDelantero": {
+      "idFreno": 2,
+      "tipo": "DISCO",
+      "ubicacion": "DELANTERO"
+    },
+    "frenoTrasero": {
+      "idFreno": 2,
+      "tipo": "DISCO",
+      "ubicacion": "DELANTERO"
+    },
+    "asiento": {
+      "idAsiento": 2,
+      "material": "aa",
+      "capacidad": "MONOPLAZA"
+    },
+    "transmision": {
+      "idTransmision": 2,
+      "tipoTransmision": "MANUAL",
+      "velocidades": "SEIS"
+    }
+  }
+]
