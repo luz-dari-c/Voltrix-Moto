@@ -1,3 +1,13 @@
 [
- 
+  {
+    "primerNombre": "P",
+    "segundoNombre": "E",
+    "primerApellido": "J",
+    "segundoApellido": "E",
+    "cedula": "3333333332",
+    "telefono": "2222222222",
+    "email": "jujuju@gmail.com",
+    "password": "jujuju",
+    "motosCompradas": []
+  }
 ]

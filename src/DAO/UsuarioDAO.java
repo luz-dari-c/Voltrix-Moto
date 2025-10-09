@@ -16,7 +16,7 @@ import java.util.List;
 
 public class UsuarioDAO {
 
-    private static final String ARCHIVO_JSON = "data/usuarios.json";
+    private static final String ARCHIVO_JSON = "src/Resources/Data/usuarios.json";
     private Gson gson;
     private List<Usuario> usuarios;
 

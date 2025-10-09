@@ -21,6 +21,8 @@ public class EmpleadoDAO {
 
     private static final String RUTA_JSON = "src/Resources/Data/empleados.json";
     private final Gson gson;
+        private static EmpleadoDAO instancia;
+
 
     public EmpleadoDAO() {
         this.gson = new GsonBuilder()
@@ -31,6 +33,13 @@ public class EmpleadoDAO {
         crearDirectoriosSiNoExisten();
     }
 
+      public static synchronized EmpleadoDAO getInstancia() {
+        if (instancia == null) {
+            instancia = new EmpleadoDAO();
+        }
+        return instancia;
+    }
+    
     public boolean registrarEmpleado(Empleado empleado) {
         if (empleado == null) {
             return false;
@@ -197,5 +206,33 @@ public class EmpleadoDAO {
         }
     }
 
+        public String generarNuevoId() {
+    try {
+        List<Empleado> empleados = obtenerEmpleado();
+        
+        if (empleados.isEmpty()) {
+            return "EMP001";
+        }
+        
+        int maxId = 0;
+        for (Empleado emp : empleados) {
+            if (emp.getIdEmpleado() != null && emp.getIdEmpleado().startsWith("EMP")) {
+                try {
+                    String numeroStr = emp.getIdEmpleado().substring(3);
+                    int numero = Integer.parseInt(numeroStr);
+                    if (numero > maxId) {
+                        maxId = numero;
+                    }
+                } catch (NumberFormatException e) {
+                }
+            }
+        }
+        
+        return String.format("EMP%03d", maxId + 1);
+        
+    } catch (Exception e) {
+        return "EMP" + (System.currentTimeMillis() % 1000);
+    }
+}
     
 }

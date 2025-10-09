@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "primerNombre": "MANO",
+    "segundoNombre": "KILO",
+    "primerApellido": "IEUDE",
+    "segundoApellido": "JNUDNE",
+    "cedula": "00000000000",
+    "telefono": "888888888",
+    "email": "mano@gmail.com",
+    "password": "mano123",
+    "motosCompradas": []
+  }
+]

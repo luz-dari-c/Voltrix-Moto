@@ -86,5 +86,16 @@
     "email": "smag@gmail.com",
     "password": "smag123",
     "motosCompradas": []
+  },
+  {
+    "primerNombre": "Luz",
+    "segundoNombre": "Dari",
+    "primerApellido": "Crespo",
+    "segundoApellido": "Gomez",
+    "cedula": "123744040404",
+    "telefono": "3205329182",
+    "email": "luzdasdradsaas@gmail.com",
+    "password": "123456789",
+    "motosCompradas": []
   }
 ]
