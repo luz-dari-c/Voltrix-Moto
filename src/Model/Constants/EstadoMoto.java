@@ -5,7 +5,7 @@
 package Model.Constants;
 
 
-public enum EstadoVehiculo {
+public enum EstadoMoto {
     AGOTADO,
     DISPONIBLE,
     RESERVADO

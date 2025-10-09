@@ -5,13 +5,13 @@ import java.math.BigDecimal;
 
 public class ItemCarrito {
 
-    private Vehiculo vehiculo;
+    private Moto vehiculo;
     private String id;
     private int cantidad;
     private BigDecimal precioUnitario;
     private BigDecimal subtotal;
 
-    public ItemCarrito(Vehiculo vehiculo, String id, int cantidad, BigDecimal precioUnitario, BigDecimal subtotal) {
+    public ItemCarrito(Moto vehiculo, String id, int cantidad, BigDecimal precioUnitario, BigDecimal subtotal) {
         this.vehiculo = vehiculo;
         this.id = id;
         this.cantidad = cantidad;
@@ -19,11 +19,11 @@ public class ItemCarrito {
         this.subtotal = subtotal;
     }
 
-    public Vehiculo getVehiculo() {
+    public Moto getVehiculo() {
         return vehiculo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
+    public void setVehiculo(Moto vehiculo) {
         this.vehiculo = vehiculo;
     }
 
