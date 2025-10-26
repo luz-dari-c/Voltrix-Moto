@@ -24,6 +24,7 @@ public class MotoDAO {
 
     private static final String RUTA_JSON = "src/Resources/Data/motos.json";
     private final Gson gson;
+    private static MotoDAO instancia;
 
     public MotoDAO() {
         this.gson = new GsonBuilder()
@@ -32,6 +33,13 @@ public class MotoDAO {
                 .create();
 
         crearDirectoriosSiNoExisten();
+    }
+
+    public static synchronized MotoDAO getInstancia() {
+        if (instancia == null) {
+            instancia = new MotoDAO();
+        }
+        return instancia;
     }
 
     public List<Moto> cargarTodas() {
@@ -70,11 +78,20 @@ public class MotoDAO {
 
         List<Moto> motos = cargarTodas();
 
+        boolean existe = motos.stream().anyMatch(m -> m.getPlaca().equalsIgnoreCase(moto.getPlaca()));
+        if (existe) {
+            System.err.println("⚠️ Ya existe una moto con la placa: " + moto.getPlaca());
+            return false;
+        }
+
         if (moto.getIdMoto() == 0) {
             moto.setIdMoto(motos.size() + 1);
         }
 
-        // Generar IDs de las partes (si no tienen)
+        if (moto.getEstado() == null) {
+            moto.setEstado(EstadoMoto.DISPONIBLE);
+        }
+
         PartesMoto partes = moto.getPartesMoto();
         if (partes != null) {
 
@@ -114,6 +131,7 @@ public class MotoDAO {
         motos.add(moto);
         guardarTodas(motos);
         return true;
+
     }
 
     public boolean eliminarMoto(int idMoto) {
@@ -143,7 +161,8 @@ public class MotoDAO {
             MaterialAsiento nuevoMaterialAsiento,
             CapacidadAsiento nuevaCapacidadAsiento,
             TipoTransmision nuevoTipoTransmision,
-            TipoVelocidades nuevasVelocidades
+            TipoVelocidades nuevasVelocidades,
+            EstadoMoto nuevoEstado
     ) {
         List<Moto> motos = cargarTodas();
         boolean encontrado = false;
@@ -174,6 +193,9 @@ public class MotoDAO {
 
                 if (nuevoMaletero != null) {
                     moto.setTieneMaletero(nuevoMaletero);
+                }
+                if (nuevoEstado != null) {
+                    moto.setEstado(nuevoEstado);
                 }
 
                 PartesMoto partes = moto.getPartesMoto();

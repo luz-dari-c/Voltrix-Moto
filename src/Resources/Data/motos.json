@@ -1,185 +1,200 @@
 [
   {
     "idMoto": 1,
-    "placa": "BKF-262",
-    "marca": "Suzuki",
-    "modelo": "GN 125",
-    "fechaIngreso": "2024-02-15",
-    "precio": 5800000.0,
-    "tipoMoto": "AVENTURA",
-    "tipoColorMoto": "GRIS",
+    "placa": "ZQZ-397",
+    "marca": "Honda",
+    "modelo": "CB 150R",
+    "fechaIngreso": "2024-05-10",
+    "precio": 8500000.0,
+    "tipoMoto": "NAKED",
+    "tipoColorMoto": "ROJO",
     "tieneParrilla": false,
     "tieneMaletero": false,
     "partesMoto": {
       "llantaDelantera": {
-        "idLlantaDelantera": "LLD-42496",
+        "idLlantaDelantera": "LLD-56245",
         "medida": "R16_100_80",
         "ubicacion": "DELANTERA",
-        "marca": "Kenda",
-        "modelo": "Street",
+        "marca": "Pirelli",
+        "modelo": "Sport",
         "material": "CAUCHO"
       },
       "llantaTrasera": {
-        "idLlantaTrasera": "LLT-98928",
+        "idLlantaTrasera": "LLT-34227",
         "medida": "R17_120_70",
         "ubicacion": "DELANTERA",
-        "marca": "Kenda",
-        "modelo": "Street",
+        "marca": "Pirelli",
+        "modelo": "Sport",
         "material": "CAUCHO"
       },
       "chasis": {
-        "idChasis": "CHS-12884",
+        "idChasis": "CHS-65872",
         "material": "ACERO",
         "tipo": "TUBULAR"
       },
       "motor": {
-        "idMotor": "MTR-18385",
+        "idMotor": "MTR-65319",
         "tipo": "CUATRO_TIEMPOS",
-        "cilindrada": 125,
-        "potencia": 10
+        "cilindrada": 150,
+        "potencia": 12
       },
       "asiento": {
-        "idAsiento": "AST-23261",
-        "material": "TELA",
-        "capacidad": "MONOPLAZA"
+        "idAsiento": "AST-69023",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
       },
       "frenoDelantero": {
-        "idFrenoDelantero": "FRD-94569",
+        "idFrenoDelantero": "FRD-25213",
         "ubicacion": "DELANTERO",
         "marca": "Nissin",
         "modelo": "FD-100",
         "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-78690",
+        "ubicacion": "TRASERO",
+        "marca": "Nissin",
+        "modelo": "FT-200",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-80024",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
       }
-    }
+    },
+    "estado": "DISPONIBLE"
   },
   {
     "idMoto": 2,
-    "placa": "VLT-215",
+    "placa": "WSK-333",
     "marca": "Yamaha",
-    "modelo": "R15 V3",
-    "fechaIngreso": "2023-10-10",
-    "precio": 1.39E7,
+    "modelo": "MT-03",
+    "fechaIngreso": "2023-11-20",
+    "precio": 1.62E7,
     "tipoMoto": "DEPORTIVA",
-    "tipoColorMoto": "AZUL",
+    "tipoColorMoto": "NEGRO",
     "tieneParrilla": false,
     "tieneMaletero": false,
     "partesMoto": {
       "llantaDelantera": {
-        "idLlantaDelantera": "LLD-64241",
+        "idLlantaDelantera": "LLD-95451",
         "medida": "R16_100_80",
         "ubicacion": "DELANTERA",
         "marca": "Michelin",
         "modelo": "Pilot",
-        "material": "COMPUESTO"
+        "material": "CAUCHO"
       },
       "llantaTrasera": {
-        "idLlantaTrasera": "LLT-34503",
+        "idLlantaTrasera": "LLT-64323",
         "medida": "R17_120_70",
         "ubicacion": "DELANTERA",
         "marca": "Michelin",
         "modelo": "Pilot",
-        "material": "COMPUESTO"
+        "material": "CAUCHO"
       },
       "chasis": {
-        "idChasis": "CHS-43368",
+        "idChasis": "CHS-75871",
         "material": "ALUMINIO",
         "tipo": "PERIMETRAL"
       },
       "motor": {
-        "idMotor": "MTR-82424",
+        "idMotor": "MTR-36507",
         "tipo": "CUATRO_TIEMPOS",
         "cilindrada": 200,
         "potencia": 18
       },
       "asiento": {
-        "idAsiento": "AST-72172",
+        "idAsiento": "AST-99475",
+        "material": "CUERO",
+        "capacidad": "MONOPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-85723",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-300",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-80999",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-400",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-92997",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 3,
+    "placa": "ZHB-291",
+    "marca": "Suzuki",
+    "modelo": "Address 125",
+    "fechaIngreso": "2025-03-05",
+    "precio": 7900000.0,
+    "tipoMoto": "SCOOTER",
+    "tipoColorMoto": "AZUL",
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-38936",
+        "medida": "R17_180_55",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "ScootSmart",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-15995",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "ScootSmart",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-70154",
+        "material": "ACERO",
+        "tipo": "MULTITUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-92916",
+        "tipo": "DOS_TIEMPOS",
+        "cilindrada": 125,
+        "potencia": 10
+      },
+      "asiento": {
+        "idAsiento": "AST-76607",
         "material": "CUERO",
         "capacidad": "BIPLAZA"
       },
       "frenoDelantero": {
-        "idFrenoDelantero": "FRD-55971",
+        "idFrenoDelantero": "FRD-72037",
         "ubicacion": "DELANTERO",
         "marca": "ByBre",
-        "modelo": "FD-200",
+        "modelo": "FD-150",
         "material": "CARBONO"
       },
       "frenoTrasero": {
-        "idFrenoTrasero": "FRT-71439",
+        "idFrenoTrasero": "FRT-79036",
         "ubicacion": "TRASERO",
         "marca": "ByBre",
-        "modelo": "FT-300",
+        "modelo": "FT-250",
         "material": "CARBONO"
       },
       "transmision": {
-        "idTransmision": "TRS-98156",
-        "tipoTransmision": "MANUAL",
-        "velocidades": "SEIS"
+        "idTransmision": "TRS-49693",
+        "tipoTransmision": "AUTOMATICA",
+        "velocidades": "CUATRO"
       }
-    }
-  },
-  {
-    "idMoto": 3,
-    "placa": "HGB-351",
-    "marca": "AKT",
-    "modelo": "NKD 125",
-    "fechaIngreso": "2021-03-15",
-    "precio": 6200000.0,
-    "tipoMoto": "CHOPPER",
-    "tipoColorMoto": "NEGRO",
-    "tieneParrilla": true,
-    "tieneMaletero": true,
-    "partesMoto": {
-      "llantaDelantera": {
-        "idLlantaDelantera": "LLD-70905",
-        "medida": "R16_100_80",
-        "ubicacion": "DELANTERA",
-        "marca": "Kenda",
-        "modelo": "Street",
-        "material": "CAUCHO"
-      },
-      "llantaTrasera": {
-        "idLlantaTrasera": "LLT-24511",
-        "medida": "R17_120_70",
-        "ubicacion": "DELANTERA",
-        "marca": "Kenda",
-        "modelo": "Street",
-        "material": "CAUCHO"
-      },
-      "chasis": {
-        "idChasis": "CHS-96905",
-        "material": "ACERO",
-        "tipo": "PERIMETRAL"
-      },
-      "motor": {
-        "idMotor": "MTR-75736",
-        "tipo": "CUATRO_TIEMPOS",
-        "cilindrada": 125,
-        "potencia": 11
-      },
-      "asiento": {
-        "idAsiento": "AST-81670",
-        "material": "TELA",
-        "capacidad": "BIPLAZA"
-      },
-      "frenoDelantero": {
-        "idFrenoDelantero": "FRD-43734",
-        "ubicacion": "DELANTERO",
-        "marca": "Bosch",
-        "modelo": "FD300",
-        "material": "ACERO"
-      },
-      "frenoTrasero": {
-        "idFrenoTrasero": "FRT-70551",
-        "ubicacion": "TRASERO",
-        "marca": "Bosch",
-        "modelo": "FT400",
-        "material": "ACERO"
-      },
-      "transmision": {
-        "idTransmision": "TRS-66374",
-        "tipoTransmision": "MANUAL",
-        "velocidades": "CINCO"
-      }
-    }
+    },
+    "estado": "DISPONIBLE"
   }
 ]

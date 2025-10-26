@@ -1,5 +1,6 @@
 package Model.Entities;
 
+import Model.Constants.EstadoMoto;
 import Model.Constants.TipoColorMoto;
 import Model.Constants.TipoMoto;
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ public class Moto {
     private String placa;
     private String marca;
     private String modelo;
-    private LocalDate fechaIngreso; 
+    private LocalDate fechaIngreso;
     private double precio;
 
     private TipoMoto tipoMoto;
@@ -20,6 +21,7 @@ public class Moto {
     private boolean tieneMaletero;
 
     private PartesMoto partesMoto;
+    private EstadoMoto estado;
 
     public Moto(String marca, String modelo, LocalDate fechaIngreso, double precio,
                 PartesMoto partesMoto, TipoMoto tipoMoto, TipoColorMoto tipoColorMoto,
@@ -29,13 +31,14 @@ public class Moto {
         this.placa = Utilidades.GeneradorDePlaca.generarPlaca();
         this.marca = marca;
         this.modelo = modelo;
-        this.fechaIngreso = fechaIngreso; 
+        this.fechaIngreso = fechaIngreso;
         this.precio = precio;
         this.partesMoto = partesMoto;
         this.tipoMoto = tipoMoto;
         this.tipoColorMoto = tipoColorMoto;
         this.tieneParrilla = tieneParrilla;
         this.tieneMaletero = tieneMaletero;
+        this.estado = EstadoMoto.DISPONIBLE; 
     }
 
     public int getIdMoto() {
@@ -70,7 +73,6 @@ public class Moto {
         this.modelo = modelo;
     }
 
-    // ✅ Getters y setters actualizados para fechaIngreso
     public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
@@ -125,5 +127,13 @@ public class Moto {
 
     public void setPartesMoto(PartesMoto partesMoto) {
         this.partesMoto = partesMoto;
+    }
+
+    public EstadoMoto getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoMoto estado) { 
+        this.estado = estado;
     }
 }
