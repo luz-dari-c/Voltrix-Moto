@@ -3,25 +3,26 @@ package Model.Entities;
 
 import Model.Constants.TipoTransmision;
 import Model.Constants.TipoVelocidades;
+import Utilidades.GeneradorDeIdPartes;
 
 
 public class Transmision {
     
-    private int idTransmision;
+    private String idTransmision;
     private TipoTransmision tipoTransmision;
     private TipoVelocidades velocidades;
 
     public Transmision(TipoTransmision tipoTransmision, TipoVelocidades velocidades) {
-        this.idTransmision = 0;
+        this.idTransmision = GeneradorDeIdPartes.generarId("TRS");
         this.tipoTransmision = tipoTransmision;
         this.velocidades = velocidades;
     }
 
-    public int getIdTransmision() {
+    public String getIdTransmision() {
         return idTransmision;
     }
 
-    public void setIdTransmision(int idTransmision) {
+    public void setIdTransmision(String idTransmision) {
         this.idTransmision = idTransmision;
     }
 

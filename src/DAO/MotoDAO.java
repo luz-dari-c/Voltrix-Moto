@@ -1,15 +1,10 @@
 package DAO;
 
-import Model.Constants.CapacidadAsiento;
-import Model.Constants.MaterialChasis;
-import Model.Constants.TipoChasis;
-import Model.Constants.TipoMotor;
-import Model.Constants.TipoTransmision;
-import Model.Constants.TipoVelocidades;
-import Model.Entities.Freno;
+import Model.Constants.*;
 import Model.Entities.Moto;
-import Model.Entities.Llanta;
+import Model.Entities.PartesMoto;
 import Utilidades.LocalDateAdapter;
+import Utilidades.GeneradorDeIdPartes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -37,7 +32,6 @@ public class MotoDAO {
                 .create();
 
         crearDirectoriosSiNoExisten();
-
     }
 
     public List<Moto> cargarTodas() {
@@ -58,10 +52,10 @@ public class MotoDAO {
         }
 
         try (Reader reader = new FileReader(RUTA_JSON)) {
-            Type tipoListaVisita = new TypeToken<ArrayList<Moto>>() {
+            Type tipoListaMoto = new TypeToken<ArrayList<Moto>>() {
             }.getType();
-            List<Moto> visitas = gson.fromJson(reader, tipoListaVisita);
-            return visitas != null ? visitas : new ArrayList<>();
+            List<Moto> motos = gson.fromJson(reader, tipoListaMoto);
+            return motos != null ? motos : new ArrayList<>();
         } catch (JsonSyntaxException | IOException e) {
             System.err.println("Error al leer archivo JSON: " + e.getMessage());
             guardarTodas(new ArrayList<>());
@@ -77,46 +71,44 @@ public class MotoDAO {
         List<Moto> motos = cargarTodas();
 
         if (moto.getIdMoto() == 0) {
-            int nuevoId = obtenerProximoIdMoto(motos);
-            moto.setIdMoto(nuevoId);
+            moto.setIdMoto(motos.size() + 1);
         }
 
-        if (moto.getMotor() != null && moto.getMotor().getIdMotor() == 0) {
-            int nuevoIdMotor = obtenerProximoIdMotor(motos);
-            moto.getMotor().setIdMotor(nuevoIdMotor);
-        }
+        // Generar IDs de las partes (si no tienen)
+        PartesMoto partes = moto.getPartesMoto();
+        if (partes != null) {
 
-        if (moto.getFrenoDelantero() != null && moto.getFrenoDelantero().getIdFreno() == 0) {
-            int nuevoIdFreno = obtenerProximoIdFreno(motos);
-            moto.getFrenoDelantero().setIdFreno(nuevoIdFreno);
-        }
-        if (moto.getFrenoTrasero() != null && moto.getFrenoTrasero().getIdFreno() == 0) {
-            int nuevoIdFreno = obtenerProximoIdFreno(motos);
-            moto.getFrenoTrasero().setIdFreno(nuevoIdFreno);
-        }
+            if (partes.getMotor() != null && partes.getMotor().getIdMotor() == null) {
+                partes.getMotor().setIdMotor(GeneradorDeIdPartes.generarId("MTR"));
+            }
 
-        if (moto.getLlantaDelantera() != null && moto.getLlantaDelantera().getIdLlanta() == 0) {
-            int nuevoIdLlanta = obtenerProximoIdLlanta(motos);
-            moto.getLlantaDelantera().setIdLlanta(nuevoIdLlanta);
-        }
-        if (moto.getLlantaTrasera() != null && moto.getLlantaTrasera().getIdLlanta() == 0) {
-            int nuevoIdLlanta = obtenerProximoIdLlanta(motos);
-            moto.getLlantaTrasera().setIdLlanta(nuevoIdLlanta);
-        }
+            if (partes.getChasis() != null && partes.getChasis().getIdChasis() == null) {
+                partes.getChasis().setIdChasis(GeneradorDeIdPartes.generarId("CHS"));
+            }
 
-        if (moto.getChasis() != null && moto.getChasis().getIdChasis() == 0) {
-            int nuevoIdChasis = obtenerProximoIdChasis(motos);
-            moto.getChasis().setIdChasis(nuevoIdChasis);
-        }
+            if (partes.getAsiento() != null && partes.getAsiento().getIdAsiento() == null) {
+                partes.getAsiento().setIdAsiento(GeneradorDeIdPartes.generarId("AST"));
+            }
 
-        if (moto.getAsiento() != null && moto.getAsiento().getIdAsiento() == 0) {
-            int nuevoIdAsiento = obtenerProximoIdAsiento(motos);
-            moto.getAsiento().setIdAsiento(nuevoIdAsiento);
-        }
+            if (partes.getFrenoDelantero() != null && partes.getFrenoDelantero().getIdFrenoDelantero() == null) {
+                partes.getFrenoDelantero().setIdFrenoDelantero(GeneradorDeIdPartes.generarId("FRD"));
+            }
 
-        if (moto.getTransmision() != null && moto.getTransmision().getIdTransmision() == 0) {
-            int nuevoIdTransmision = obtenerProximoIdTransmision(motos);
-            moto.getTransmision().setIdTransmision(nuevoIdTransmision);
+            if (partes.getFrenoTrasero() != null && partes.getFrenoTrasero().getIdFrenoTrasero() == null) {
+                partes.getFrenoTrasero().setIdFrenoTrasero(GeneradorDeIdPartes.generarId("FRT"));
+            }
+
+            if (partes.getLlantaDelantera() != null && partes.getLlantaDelantera().getIdLlantaDelantera() == null) {
+                partes.getLlantaDelantera().setIdLlantaDelantera(GeneradorDeIdPartes.generarId("LLD"));
+            }
+
+            if (partes.getLlantaTrasera() != null && partes.getLlantaTrasera().getIdLlantaTrasera() == null) {
+                partes.getLlantaTrasera().setIdLlantaTrasera(GeneradorDeIdPartes.generarId("LLT"));
+            }
+
+            if (partes.getTransmision() != null && partes.getTransmision().getIdTransmision() == null) {
+                partes.getTransmision().setIdTransmision(GeneradorDeIdPartes.generarId("TRS"));
+            }
         }
 
         motos.add(moto);
@@ -124,77 +116,14 @@ public class MotoDAO {
         return true;
     }
 
-    private int obtenerProximoIdMoto(List<Moto> motos) {
-        return motos.stream()
-                .mapToInt(Moto::getIdMoto)
-                .max()
-                .orElse(0) + 1;
-    }
-
-    private int obtenerProximoIdMotor(List<Moto> motos) {
-        return motos.stream()
-                .filter(m -> m.getMotor() != null)
-                .map(Moto::getMotor)
-                .mapToInt(m -> m.getIdMotor())
-                .max()
-                .orElse(0) + 1;
-    }
-
-    private int obtenerProximoIdFreno(List<Moto> motos) {
-        return motos.stream()
-                .flatMap(m -> java.util.stream.Stream.of(m.getFrenoDelantero(), m.getFrenoTrasero()))
-                .filter(f -> f != null)
-                .mapToInt(Freno::getIdFreno)
-                .max()
-                .orElse(0) + 1;
-    }
-
-    private int obtenerProximoIdLlanta(List<Moto> motos) {
-        return motos.stream()
-                .flatMap(m -> java.util.stream.Stream.of(m.getLlantaDelantera(), m.getLlantaTrasera()))
-                .filter(l -> l != null)
-                .mapToInt(Llanta::getIdLlanta)
-                .max()
-                .orElse(0) + 1;
-    }
-
-    private int obtenerProximoIdChasis(List<Moto> motos) {
-        return motos.stream()
-                .filter(m -> m.getChasis() != null)
-                .map(Moto::getChasis)
-                .mapToInt(c -> c.getIdChasis())
-                .max()
-                .orElse(0) + 1;
-    }
-
-    private int obtenerProximoIdAsiento(List<Moto> motos) {
-        return motos.stream()
-                .filter(m -> m.getAsiento() != null)
-                .map(Moto::getAsiento)
-                .mapToInt(a -> a.getIdAsiento())
-                .max()
-                .orElse(0) + 1;
-    }
-
-    private int obtenerProximoIdTransmision(List<Moto> motos) {
-        return motos.stream()
-                .filter(m -> m.getTransmision() != null)
-                .map(Moto::getTransmision)
-                .mapToInt(t -> t.getIdTransmision())
-                .max()
-                .orElse(0) + 1;
-    }
-
     public boolean eliminarMoto(int idMoto) {
         List<Moto> motos = cargarTodas();
-
         boolean eliminado = motos.removeIf(m -> m.getIdMoto() == idMoto);
 
         if (eliminado) {
             guardarTodas(motos);
             return true;
         }
-
         return false;
     }
 
@@ -202,7 +131,7 @@ public class MotoDAO {
             int idMoto,
             String nuevaMarca,
             String nuevoModelo,
-            LocalDate nuevaFechaLanzamiento,
+            LocalDate nuevaFechaIngreso,
             Double nuevoPrecio,
             Boolean nuevaParrilla,
             Boolean nuevoMaletero,
@@ -211,7 +140,7 @@ public class MotoDAO {
             Integer nuevaPotencia,
             MaterialChasis nuevoMaterialChasis,
             TipoChasis nuevoTipoChasis,
-            String nuevoMaterialAsiento,
+            MaterialAsiento nuevoMaterialAsiento,
             CapacidadAsiento nuevaCapacidadAsiento,
             TipoTransmision nuevoTipoTransmision,
             TipoVelocidades nuevasVelocidades
@@ -221,64 +150,77 @@ public class MotoDAO {
 
         for (Moto moto : motos) {
             if (moto.getIdMoto() == idMoto) {
-
                 encontrado = true;
 
-                if (nuevaMarca != null) {
+                if (nuevaMarca != null && !nuevaMarca.trim().isEmpty()) {
                     moto.setMarca(nuevaMarca);
                 }
-                if (nuevoModelo != null) {
+
+                if (nuevoModelo != null && !nuevoModelo.trim().isEmpty()) {
                     moto.setModelo(nuevoModelo);
                 }
-                if (nuevaFechaLanzamiento != null) {
-                    moto.setFechaLanzamiento(nuevaFechaLanzamiento);
+
+                if (nuevaFechaIngreso != null) {
+                    moto.setFechaIngreso(nuevaFechaIngreso);
                 }
-                if (nuevoPrecio != null) {
+
+                if (nuevoPrecio != null && nuevoPrecio > 0) {
                     moto.setPrecio(nuevoPrecio);
                 }
+
                 if (nuevaParrilla != null) {
                     moto.setTieneParrilla(nuevaParrilla);
                 }
+
                 if (nuevoMaletero != null) {
                     moto.setTieneMaletero(nuevoMaletero);
                 }
 
-                if (moto.getMotor() != null) {
-                    if (nuevoTipoMotor != null) {
-                        moto.getMotor().setTipo(nuevoTipoMotor);
-                    }
-                    if (nuevaCilindrada != null) {
-                        moto.getMotor().setCilindrada(nuevaCilindrada);
-                    }
-                    if (nuevaPotencia != null) {
-                        moto.getMotor().setPotencia(nuevaPotencia);
-                    }
-                }
+                PartesMoto partes = moto.getPartesMoto();
+                if (partes != null) {
 
-                if (moto.getChasis() != null) {
-                    if (nuevoMaterialChasis != null) {
-                        moto.getChasis().setMaterial(nuevoMaterialChasis);
-                    }
-                    if (nuevoTipoChasis != null) {
-                        moto.getChasis().setTipo(nuevoTipoChasis);
-                    }
-                }
+                    if (partes.getMotor() != null) {
+                        if (nuevoTipoMotor != null) {
+                            partes.getMotor().setTipo(nuevoTipoMotor);
+                        }
 
-                if (moto.getAsiento() != null) {
-                    if (nuevoMaterialAsiento != null) {
-                        moto.getAsiento().setMaterial(nuevoMaterialAsiento);
-                    }
-                    if (nuevaCapacidadAsiento != null) {
-                        moto.getAsiento().setCapacidad(nuevaCapacidadAsiento);
-                    }
-                }
+                        if (nuevaCilindrada != null && nuevaCilindrada > 0) {
+                            partes.getMotor().setCilindrada(nuevaCilindrada);
+                        }
 
-                if (moto.getTransmision() != null) {
-                    if (nuevoTipoTransmision != null) {
-                        moto.getTransmision().setTipoTransmision(nuevoTipoTransmision);
+                        if (nuevaPotencia != null && nuevaPotencia > 0) {
+                            partes.getMotor().setPotencia(nuevaPotencia);
+                        }
                     }
-                    if (nuevasVelocidades != null) {
-                        moto.getTransmision().setVelocidades(nuevasVelocidades);
+
+                    if (partes.getChasis() != null) {
+                        if (nuevoMaterialChasis != null) {
+                            partes.getChasis().setMaterial(nuevoMaterialChasis);
+                        }
+
+                        if (nuevoTipoChasis != null) {
+                            partes.getChasis().setTipo(nuevoTipoChasis);
+                        }
+                    }
+
+                    if (partes.getAsiento() != null) {
+                        if (nuevoMaterialAsiento != null) {
+                            partes.getAsiento().setMaterial(nuevoMaterialAsiento);
+                        }
+
+                        if (nuevaCapacidadAsiento != null) {
+                            partes.getAsiento().setCapacidad(nuevaCapacidadAsiento);
+                        }
+                    }
+
+                    if (partes.getTransmision() != null) {
+                        if (nuevoTipoTransmision != null) {
+                            partes.getTransmision().setTipoTransmision(nuevoTipoTransmision);
+                        }
+
+                        if (nuevasVelocidades != null) {
+                            partes.getTransmision().setVelocidades(nuevasVelocidades);
+                        }
                     }
                 }
 
@@ -287,7 +229,7 @@ public class MotoDAO {
         }
 
         if (!encontrado) {
-            System.err.println("Moto con id " + idMoto + " no encontrada.");
+            System.err.println("Moto con ID " + idMoto + " no encontrada.");
             return false;
         }
 

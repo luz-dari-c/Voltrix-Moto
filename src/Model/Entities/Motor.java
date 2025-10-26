@@ -2,26 +2,27 @@
 package Model.Entities;
 
 import Model.Constants.TipoMotor;
+import Utilidades.GeneradorDeIdPartes;
 
 
 public class Motor {
-    private int idMotor;
+    private String idMotor;
     private TipoMotor tipo;
     private int cilindrada;
     private int potencia;
 
     public Motor(TipoMotor tipo, int cilindrada, int potencia) {
-        this.idMotor = 0;
+        this.idMotor = GeneradorDeIdPartes.generarId("MTR");
         this.tipo = tipo;
         this.cilindrada = cilindrada;
         this.potencia = potencia;
     }
 
-    public int getIdMotor() {
+    public String getIdMotor() {
         return idMotor;
     }
 
-    public void setIdMotor(int idMotor) {
+    public void setIdMotor(String idMotor) {
         this.idMotor = idMotor;
     }
 

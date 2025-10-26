@@ -1,35 +1,20 @@
-
 package Model.Entities;
 
-import Model.Constants.TipoFreno;
 import Model.Constants.UbicacionFreno;
-
+import Model.Constants.MaterialFreno;
 
 public class Freno {
-    private int idFreno;
-    private TipoFreno tipo;
+
     private UbicacionFreno ubicacion;
+    private String marca;
+    private String modelo;
+    private MaterialFreno material;
 
-    public Freno( TipoFreno tipo, UbicacionFreno ubicacion) {
-        this.idFreno = 0;
-        this.tipo = tipo;
+    public Freno(UbicacionFreno ubicacion, String marca, String modelo, MaterialFreno material) {
         this.ubicacion = ubicacion;
-    }
-
-    public int getIdFreno() {
-        return idFreno;
-    }
-
-    public void setIdFreno(int idFreno) {
-        this.idFreno = idFreno;
-    }
-
-    public TipoFreno getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoFreno tipo) {
-        this.tipo = tipo;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.material = material;
     }
 
     public UbicacionFreno getUbicacion() {
@@ -39,4 +24,30 @@ public class Freno {
     public void setUbicacion(UbicacionFreno ubicacion) {
         this.ubicacion = ubicacion;
     }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public MaterialFreno getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(MaterialFreno material) {
+        this.material = material;
+    }
+
+ 
 }

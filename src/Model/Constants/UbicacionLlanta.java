@@ -1,7 +1,9 @@
 
 package Model.Constants;
 
-public enum TipoLlanta {
+
+public enum UbicacionLlanta {
     DELANTERA,
     TRASERA
+    
 }

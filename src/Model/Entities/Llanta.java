@@ -1,27 +1,23 @@
-
 package Model.Entities;
 
 import Model.Constants.MedidaLlanta;
-import Model.Constants.TipoLlanta;
-
+import Model.Constants.UbicacionLlanta;
+import Model.Constants.MaterialLlanta;
 
 public class Llanta {
-    private int idLlanta;
+
     private MedidaLlanta medida;
-    private TipoLlanta tipo;
+    private UbicacionLlanta ubicacion;
+    private String marca;
+    private String modelo;
+    private MaterialLlanta material;
 
-    public Llanta(MedidaLlanta medida, TipoLlanta tipo) {
-        this.idLlanta = 0;
+    public Llanta(MedidaLlanta medida, UbicacionLlanta ubicacion, String marca, String modelo, MaterialLlanta material) {
         this.medida = medida;
-        this.tipo = tipo;
-    }
-
-    public int getIdLlanta() {
-        return idLlanta;
-    }
-
-    public void setIdLlanta(int idLlanta) {
-        this.idLlanta = idLlanta;
+        this.ubicacion = ubicacion;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.material = material;
     }
 
     public MedidaLlanta getMedida() {
@@ -32,11 +28,36 @@ public class Llanta {
         this.medida = medida;
     }
 
-    public TipoLlanta getTipo() {
-        return tipo;
+    public UbicacionLlanta getUbicacion() {
+        return ubicacion;
     }
 
-    public void setTipo(TipoLlanta tipo) {
-        this.tipo = tipo;
+    public void setUbicacion(UbicacionLlanta ubicacion) {
+        this.ubicacion = ubicacion;
     }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public MaterialLlanta getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(MaterialLlanta material) {
+        this.material = material;
+    }
+
 }

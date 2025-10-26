@@ -1,106 +1,185 @@
 [
   {
     "idMoto": 1,
-    "marca": "Yamaha",
-    "modelo": "R1",
-    "fechaLanzamiento": "2023-05-10",
-    "precio": 12000.0,
-    "tipoMoto": "DEPORTIVA",
-    "tipoColorMoto": "ROJO",
-    "tieneParrilla": true,
+    "placa": "BKF-262",
+    "marca": "Suzuki",
+    "modelo": "GN 125",
+    "fechaIngreso": "2024-02-15",
+    "precio": 5800000.0,
+    "tipoMoto": "AVENTURA",
+    "tipoColorMoto": "GRIS",
+    "tieneParrilla": false,
     "tieneMaletero": false,
-    "motor": {
-      "idMotor": 1,
-      "tipo": "CUATRO_TIEMPOS",
-      "cilindrada": 1000,
-      "potencia": 200
-    },
-    "chasis": {
-      "idChasis": 1,
-      "material": "ALUMINIO",
-      "tipo": "TUBULAR"
-    },
-    "llantaDelantera": {
-      "idLlanta": 1,
-      "medida": "R16_100_80",
-      "tipo": "DELANTERA"
-    },
-    "llantaTrasera": {
-      "idLlanta": 1,
-      "medida": "R16_100_80",
-      "tipo": "TRASERA"
-    },
-    "frenoDelantero": {
-      "idFreno": 1,
-      "tipo": "DISCO",
-      "ubicacion": "DELANTERO"
-    },
-    "frenoTrasero": {
-      "idFreno": 1,
-      "tipo": "DISCO",
-      "ubicacion": "DELANTERO"
-    },
-    "asiento": {
-      "idAsiento": 1,
-      "material": "aa",
-      "capacidad": "MONOPLAZA"
-    },
-    "transmision": {
-      "idTransmision": 1,
-      "tipoTransmision": "MANUAL",
-      "velocidades": "SEIS"
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-42496",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Kenda",
+        "modelo": "Street",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-98928",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Kenda",
+        "modelo": "Street",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-12884",
+        "material": "ACERO",
+        "tipo": "TUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-18385",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 125,
+        "potencia": 10
+      },
+      "asiento": {
+        "idAsiento": "AST-23261",
+        "material": "TELA",
+        "capacidad": "MONOPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-94569",
+        "ubicacion": "DELANTERO",
+        "marca": "Nissin",
+        "modelo": "FD-100",
+        "material": "ACERO"
+      }
     }
   },
   {
     "idMoto": 2,
+    "placa": "VLT-215",
     "marca": "Yamaha",
-    "modelo": "R1",
-    "fechaLanzamiento": "2023-05-10",
-    "precio": 12000.0,
+    "modelo": "R15 V3",
+    "fechaIngreso": "2023-10-10",
+    "precio": 1.39E7,
     "tipoMoto": "DEPORTIVA",
-    "tipoColorMoto": "ROJO",
-    "tieneParrilla": true,
+    "tipoColorMoto": "AZUL",
+    "tieneParrilla": false,
     "tieneMaletero": false,
-    "motor": {
-      "idMotor": 2,
-      "tipo": "CUATRO_TIEMPOS",
-      "cilindrada": 1000,
-      "potencia": 200
-    },
-    "chasis": {
-      "idChasis": 2,
-      "material": "ALUMINIO",
-      "tipo": "TUBULAR"
-    },
-    "llantaDelantera": {
-      "idLlanta": 2,
-      "medida": "R16_100_80",
-      "tipo": "DELANTERA"
-    },
-    "llantaTrasera": {
-      "idLlanta": 2,
-      "medida": "R16_100_80",
-      "tipo": "TRASERA"
-    },
-    "frenoDelantero": {
-      "idFreno": 2,
-      "tipo": "DISCO",
-      "ubicacion": "DELANTERO"
-    },
-    "frenoTrasero": {
-      "idFreno": 2,
-      "tipo": "DISCO",
-      "ubicacion": "DELANTERO"
-    },
-    "asiento": {
-      "idAsiento": 2,
-      "material": "aa",
-      "capacidad": "MONOPLAZA"
-    },
-    "transmision": {
-      "idTransmision": 2,
-      "tipoTransmision": "MANUAL",
-      "velocidades": "SEIS"
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-64241",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Michelin",
+        "modelo": "Pilot",
+        "material": "COMPUESTO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-34503",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Michelin",
+        "modelo": "Pilot",
+        "material": "COMPUESTO"
+      },
+      "chasis": {
+        "idChasis": "CHS-43368",
+        "material": "ALUMINIO",
+        "tipo": "PERIMETRAL"
+      },
+      "motor": {
+        "idMotor": "MTR-82424",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 200,
+        "potencia": 18
+      },
+      "asiento": {
+        "idAsiento": "AST-72172",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-55971",
+        "ubicacion": "DELANTERO",
+        "marca": "ByBre",
+        "modelo": "FD-200",
+        "material": "CARBONO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-71439",
+        "ubicacion": "TRASERO",
+        "marca": "ByBre",
+        "modelo": "FT-300",
+        "material": "CARBONO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-98156",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    }
+  },
+  {
+    "idMoto": 3,
+    "placa": "HGB-351",
+    "marca": "AKT",
+    "modelo": "NKD 125",
+    "fechaIngreso": "2021-03-15",
+    "precio": 6200000.0,
+    "tipoMoto": "CHOPPER",
+    "tipoColorMoto": "NEGRO",
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-70905",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Kenda",
+        "modelo": "Street",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-24511",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Kenda",
+        "modelo": "Street",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-96905",
+        "material": "ACERO",
+        "tipo": "PERIMETRAL"
+      },
+      "motor": {
+        "idMotor": "MTR-75736",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 125,
+        "potencia": 11
+      },
+      "asiento": {
+        "idAsiento": "AST-81670",
+        "material": "TELA",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-43734",
+        "ubicacion": "DELANTERO",
+        "marca": "Bosch",
+        "modelo": "FD300",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-70551",
+        "ubicacion": "TRASERO",
+        "marca": "Bosch",
+        "modelo": "FT400",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-66374",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
+      }
     }
   }
 ]
