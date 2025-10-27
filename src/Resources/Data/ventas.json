@@ -1,2 +1,129 @@
 [
+  {
+    "idVenta": "1",
+    "usuario": {
+      "primerNombre": "Luz",
+      "segundoNombre": "Dari",
+      "primerApellido": "Crespo",
+      "segundoApellido": "Gomez",
+      "cedula": "1237440696",
+      "email": "luzdaricrespo@gmail.com",
+      "password": "luz123",
+      "motosCompradas": []
+    },
+    "fechaVenta": "2025-10-27",
+    "itemsVendidos": [
+      {
+        "vehiculo": {
+          "idMoto": 101,
+          "placa": "MID-314",
+          "marca": "Yamaha",
+          "modelo": "FZ-25",
+          "fechaIngreso": "2025-10-27",
+          "precio": 1.25E7,
+          "tipoMoto": "DEPORTIVA",
+          "tipoColorMoto": "NEGRO",
+          "tieneParrilla": true,
+          "tieneMaletero": false,
+          "estado": "DISPONIBLE"
+        },
+        "id": "1",
+        "cantidad": 1,
+        "precioUnitario": 12500000,
+        "subtotal": 12500000
+      }
+    ],
+    "total": 12500000,
+    "estado": "COMPLETADA"
+  },
+  {
+    "idVenta": "2",
+    "usuario": {
+      "primerNombre": "Luz",
+      "segundoNombre": "Dari",
+      "primerApellido": "Crespo",
+      "segundoApellido": "Gomez",
+      "cedula": "1237440696",
+      "email": "luzdaricrespo@gmail.com",
+      "password": "luz123",
+      "motosCompradas": []
+    },
+    "fechaVenta": "2025-10-27",
+    "itemsVendidos": [
+      {
+        "vehiculo": {
+          "idMoto": 1,
+          "placa": "DNB-743",
+          "marca": "Yamaha",
+          "modelo": "FZ-25",
+          "fechaIngreso": "2025-10-27",
+          "precio": 1.25E7,
+          "tipoMoto": "DEPORTIVA",
+          "tipoColorMoto": "NEGRO",
+          "tieneParrilla": true,
+          "tieneMaletero": false,
+          "partesMoto": {
+            "llantaDelantera": {
+              "idLlantaDelantera": "LLD-81379",
+              "medida": "R17_120_70",
+              "ubicacion": "DELANTERA",
+              "marca": "Voltrix",
+              "modelo": "Mkt",
+              "material": "ALEACION"
+            },
+            "llantaTrasera": {
+              "idLlantaTrasera": "LLT-54805",
+              "medida": "R17_120_70",
+              "ubicacion": "DELANTERA",
+              "marca": "Voltrix",
+              "modelo": "Mkt",
+              "material": "ALEACION"
+            },
+            "chasis": {
+              "idChasis": "CHS-74295",
+              "material": "ACERO",
+              "tipo": "TUBULAR"
+            },
+            "motor": {
+              "idMotor": "MTR-99913",
+              "tipo": "CUATRO_TIEMPOS",
+              "cilindrada": 250,
+              "potencia": 22
+            },
+            "asiento": {
+              "idAsiento": "AST-23503",
+              "material": "CUERO",
+              "capacidad": "BIPLAZA"
+            },
+            "frenoDelantero": {
+              "idFrenoDelantero": "FRD-54430",
+              "ubicacion": "DELANTERO",
+              "marca": "FAORD",
+              "modelo": "Liopmn",
+              "material": "CERAMICO"
+            },
+            "frenoTrasero": {
+              "idFrenoTrasero": "FRT-80693",
+              "ubicacion": "TRASERO",
+              "marca": "FAORD",
+              "modelo": "Liopm",
+              "material": "ACERO"
+            },
+            "transmision": {
+              "idTransmision": "TRS-71904",
+              "tipoTransmision": "AUTOMATICA",
+              "velocidades": "SEIS"
+            }
+          },
+          "estado": "DISPONIBLE"
+        },
+        "id": "ITEM-1",
+        "cantidad": 1,
+        "precioUnitario": 12500000,
+        "subtotal": 12500000
+      }
+    ],
+    "total": 12500000,
+    "estado": "COMPLETADA"
+  }
 ]

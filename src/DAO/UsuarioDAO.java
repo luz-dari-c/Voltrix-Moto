@@ -153,4 +153,15 @@ public class UsuarioDAO {
     public List<Usuario> obtenerTodos() {
         return new ArrayList<>(usuarios);
     }
+    
+    public Usuario buscarPorCorreo(String correo) {
+    List<Usuario> usuarios = cargarUsuarios(); 
+    for (Usuario u : usuarios) {
+        if (u.getEmail().equalsIgnoreCase(correo)) {
+            return u;
+        }
+    }
+    return null;
+}
+
 }
