@@ -1,0 +1,22 @@
+[
+  {
+    "primerNombre": "Sharlok",
+    "segundoNombre": "Maia",
+    "primerApellido": "Alcazar",
+    "segundoApellido": "Gutierrez",
+    "cedula": "12345678",
+    "email": "shar@gmail.com",
+    "password": "sharlokk",
+    "motosCompradas": []
+  },
+  {
+    "primerNombre": "Maria",
+    "segundoNombre": "Camila",
+    "primerApellido": "Muñoz",
+    "segundoApellido": "Guerrero",
+    "cedula": "30111121331",
+    "email": "mari@gmail.com",
+    "password": "maria123",
+    "motosCompradas": []
+  }
+]

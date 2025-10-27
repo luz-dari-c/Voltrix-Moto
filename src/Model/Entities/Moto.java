@@ -1,5 +1,6 @@
 package Model.Entities;
 
+import Model.Constants.EstadoMoto;
 import Model.Constants.TipoColorMoto;
 import Model.Constants.TipoMoto;
 import java.time.LocalDate;
@@ -7,47 +8,37 @@ import java.time.LocalDate;
 public class Moto {
 
     private int idMoto;
+    private String placa;
     private String marca;
     private String modelo;
-    private LocalDate fechaLanzamiento;
+    private LocalDate fechaIngreso;
     private double precio;
 
     private TipoMoto tipoMoto;
     private TipoColorMoto tipoColorMoto;
+
     private boolean tieneParrilla;
     private boolean tieneMaletero;
 
-    private Motor motor;
-    private Chasis chasis;
-    private Llanta llantaDelantera;
-    private Llanta llantaTrasera;
-    private Freno frenoDelantero;
-    private Freno frenoTrasero;
-    private Asiento asiento;
-    private Transmision transmision;
+    private PartesMoto partesMoto;
+    private EstadoMoto estado;
 
-    public Moto(String marca, String modelo, LocalDate fechaLanzamiento, double precio,
-            Motor motor, Chasis chasis, Llanta llantaDelantera, Llanta llantaTrasera,
-            Freno frenoDelantero, Freno frenoTrasero, Asiento asiento, Transmision transmision,
-            TipoMoto tipoMoto, TipoColorMoto tipoColorMoto,
-            boolean tieneParrilla, boolean tieneMaletero) {
+    public Moto(String marca, String modelo, LocalDate fechaIngreso, double precio,
+                PartesMoto partesMoto, TipoMoto tipoMoto, TipoColorMoto tipoColorMoto,
+                boolean tieneParrilla, boolean tieneMaletero) {
+
         this.idMoto = 0;
+        this.placa = Utilidades.GeneradorDePlaca.generarPlaca();
         this.marca = marca;
         this.modelo = modelo;
-        this.fechaLanzamiento = fechaLanzamiento;
+        this.fechaIngreso = fechaIngreso;
         this.precio = precio;
-        this.motor = motor;
-        this.chasis = chasis;
-        this.llantaDelantera = llantaDelantera;
-        this.llantaTrasera = llantaTrasera;
-        this.frenoDelantero = frenoDelantero;
-        this.frenoTrasero = frenoTrasero;
-        this.asiento = asiento;
-        this.transmision = transmision;
+        this.partesMoto = partesMoto;
         this.tipoMoto = tipoMoto;
         this.tipoColorMoto = tipoColorMoto;
         this.tieneParrilla = tieneParrilla;
         this.tieneMaletero = tieneMaletero;
+        this.estado = EstadoMoto.DISPONIBLE; 
     }
 
     public int getIdMoto() {
@@ -56,6 +47,14 @@ public class Moto {
 
     public void setIdMoto(int idMoto) {
         this.idMoto = idMoto;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
     public String getMarca() {
@@ -74,12 +73,12 @@ public class Moto {
         this.modelo = modelo;
     }
 
-    public LocalDate getFechaLanzamiento() {
-        return fechaLanzamiento;
+    public LocalDate getFechaIngreso() {
+        return fechaIngreso;
     }
 
-    public void setFechaLanzamiento(LocalDate fechaLanzamiento) {
-        this.fechaLanzamiento = fechaLanzamiento;
+    public void setFechaIngreso(LocalDate fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
     }
 
     public double getPrecio() {
@@ -122,70 +121,19 @@ public class Moto {
         this.tieneMaletero = tieneMaletero;
     }
 
-    public Motor getMotor() {
-        return motor;
+    public PartesMoto getPartesMoto() {
+        return partesMoto;
     }
 
-    public void setMotor(Motor motor) {
-        this.motor = motor;
+    public void setPartesMoto(PartesMoto partesMoto) {
+        this.partesMoto = partesMoto;
     }
 
-    public Chasis getChasis() {
-        return chasis;
+    public EstadoMoto getEstado() {
+        return estado;
     }
 
-    public void setChasis(Chasis chasis) {
-        this.chasis = chasis;
+    public void setEstado(EstadoMoto estado) { 
+        this.estado = estado;
     }
-
-    public Llanta getLlantaDelantera() {
-        return llantaDelantera;
-    }
-
-    public void setLlantaDelantera(Llanta llantaDelantera) {
-        this.llantaDelantera = llantaDelantera;
-    }
-
-    public Llanta getLlantaTrasera() {
-        return llantaTrasera;
-    }
-
-    public void setLlantaTrasera(Llanta llantaTrasera) {
-        this.llantaTrasera = llantaTrasera;
-    }
-
-    public Freno getFrenoDelantero() {
-        return frenoDelantero;
-    }
-
-    public void setFrenoDelantero(Freno frenoDelantero) {
-        this.frenoDelantero = frenoDelantero;
-    }
-
-    public Freno getFrenoTrasero() {
-        return frenoTrasero;
-    }
-
-    public void setFrenoTrasero(Freno frenoTrasero) {
-        this.frenoTrasero = frenoTrasero;
-    }
-
-    public Asiento getAsiento() {
-        return asiento;
-    }
-
-    public void setAsiento(Asiento asiento) {
-        this.asiento = asiento;
-    }
-
-    public Transmision getTransmision() {
-        return transmision;
-
-    }
-
-    public void setTransmision(Transmision transmision) {
-        this.transmision = transmision;
-
-    }
-
 }

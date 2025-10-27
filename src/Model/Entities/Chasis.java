@@ -3,24 +3,25 @@ package Model.Entities;
 
 import Model.Constants.MaterialChasis;
 import Model.Constants.TipoChasis;
+import Utilidades.GeneradorDeIdPartes;
 
 
 public class Chasis {
-    private int idChasis;
+    private String idChasis;
     private MaterialChasis material;
     private TipoChasis tipo;
 
     public Chasis( MaterialChasis material, TipoChasis tipo) {
-        this.idChasis = 0;
+        this.idChasis = GeneradorDeIdPartes.generarId("CHS");
         this.material = material;
         this.tipo = tipo;
     }
 
-    public int getIdChasis() {
+    public String getIdChasis() {
         return idChasis;
     }
 
-    public void setIdChasis(int idChasis) {
+    public void setIdChasis(String idChasis) {
         this.idChasis = idChasis;
     }
 

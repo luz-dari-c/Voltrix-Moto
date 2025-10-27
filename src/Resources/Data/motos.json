@@ -1,106 +1,200 @@
 [
   {
     "idMoto": 1,
-    "marca": "Yamaha",
-    "modelo": "R1",
-    "fechaLanzamiento": "2023-05-10",
-    "precio": 12000.0,
-    "tipoMoto": "DEPORTIVA",
+    "placa": "ZQZ-397",
+    "marca": "Honda",
+    "modelo": "CB 150R",
+    "fechaIngreso": "2024-05-10",
+    "precio": 8500000.0,
+    "tipoMoto": "NAKED",
     "tipoColorMoto": "ROJO",
-    "tieneParrilla": true,
+    "tieneParrilla": false,
     "tieneMaletero": false,
-    "motor": {
-      "idMotor": 1,
-      "tipo": "CUATRO_TIEMPOS",
-      "cilindrada": 1000,
-      "potencia": 200
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-56245",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Sport",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-34227",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Sport",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-65872",
+        "material": "ACERO",
+        "tipo": "TUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-65319",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 150,
+        "potencia": 12
+      },
+      "asiento": {
+        "idAsiento": "AST-69023",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-25213",
+        "ubicacion": "DELANTERO",
+        "marca": "Nissin",
+        "modelo": "FD-100",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-78690",
+        "ubicacion": "TRASERO",
+        "marca": "Nissin",
+        "modelo": "FT-200",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-80024",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
+      }
     },
-    "chasis": {
-      "idChasis": 1,
-      "material": "ALUMINIO",
-      "tipo": "TUBULAR"
-    },
-    "llantaDelantera": {
-      "idLlanta": 1,
-      "medida": "R16_100_80",
-      "tipo": "DELANTERA"
-    },
-    "llantaTrasera": {
-      "idLlanta": 1,
-      "medida": "R16_100_80",
-      "tipo": "TRASERA"
-    },
-    "frenoDelantero": {
-      "idFreno": 1,
-      "tipo": "DISCO",
-      "ubicacion": "DELANTERO"
-    },
-    "frenoTrasero": {
-      "idFreno": 1,
-      "tipo": "DISCO",
-      "ubicacion": "DELANTERO"
-    },
-    "asiento": {
-      "idAsiento": 1,
-      "material": "aa",
-      "capacidad": "MONOPLAZA"
-    },
-    "transmision": {
-      "idTransmision": 1,
-      "tipoTransmision": "MANUAL",
-      "velocidades": "SEIS"
-    }
+    "estado": "DISPONIBLE"
   },
   {
     "idMoto": 2,
+    "placa": "WSK-333",
     "marca": "Yamaha",
-    "modelo": "R1",
-    "fechaLanzamiento": "2023-05-10",
-    "precio": 12000.0,
+    "modelo": "MT-03",
+    "fechaIngreso": "2023-11-20",
+    "precio": 1.62E7,
     "tipoMoto": "DEPORTIVA",
-    "tipoColorMoto": "ROJO",
-    "tieneParrilla": true,
+    "tipoColorMoto": "NEGRO",
+    "tieneParrilla": false,
     "tieneMaletero": false,
-    "motor": {
-      "idMotor": 2,
-      "tipo": "CUATRO_TIEMPOS",
-      "cilindrada": 1000,
-      "potencia": 200
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-95451",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Michelin",
+        "modelo": "Pilot",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-64323",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Michelin",
+        "modelo": "Pilot",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-75871",
+        "material": "ALUMINIO",
+        "tipo": "PERIMETRAL"
+      },
+      "motor": {
+        "idMotor": "MTR-36507",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 200,
+        "potencia": 18
+      },
+      "asiento": {
+        "idAsiento": "AST-99475",
+        "material": "CUERO",
+        "capacidad": "MONOPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-85723",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-300",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-80999",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-400",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-92997",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
     },
-    "chasis": {
-      "idChasis": 2,
-      "material": "ALUMINIO",
-      "tipo": "TUBULAR"
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 3,
+    "placa": "ZHB-291",
+    "marca": "Suzuki",
+    "modelo": "Address 125",
+    "fechaIngreso": "2025-03-05",
+    "precio": 7900000.0,
+    "tipoMoto": "SCOOTER",
+    "tipoColorMoto": "AZUL",
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-38936",
+        "medida": "R17_180_55",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "ScootSmart",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-15995",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "ScootSmart",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-70154",
+        "material": "ACERO",
+        "tipo": "MULTITUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-92916",
+        "tipo": "DOS_TIEMPOS",
+        "cilindrada": 125,
+        "potencia": 10
+      },
+      "asiento": {
+        "idAsiento": "AST-76607",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-72037",
+        "ubicacion": "DELANTERO",
+        "marca": "ByBre",
+        "modelo": "FD-150",
+        "material": "CARBONO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-79036",
+        "ubicacion": "TRASERO",
+        "marca": "ByBre",
+        "modelo": "FT-250",
+        "material": "CARBONO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-49693",
+        "tipoTransmision": "AUTOMATICA",
+        "velocidades": "CUATRO"
+      }
     },
-    "llantaDelantera": {
-      "idLlanta": 2,
-      "medida": "R16_100_80",
-      "tipo": "DELANTERA"
-    },
-    "llantaTrasera": {
-      "idLlanta": 2,
-      "medida": "R16_100_80",
-      "tipo": "TRASERA"
-    },
-    "frenoDelantero": {
-      "idFreno": 2,
-      "tipo": "DISCO",
-      "ubicacion": "DELANTERO"
-    },
-    "frenoTrasero": {
-      "idFreno": 2,
-      "tipo": "DISCO",
-      "ubicacion": "DELANTERO"
-    },
-    "asiento": {
-      "idAsiento": 2,
-      "material": "aa",
-      "capacidad": "MONOPLAZA"
-    },
-    "transmision": {
-      "idTransmision": 2,
-      "tipoTransmision": "MANUAL",
-      "velocidades": "SEIS"
-    }
+    "estado": "DISPONIBLE"
   }
 ]

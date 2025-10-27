@@ -3,85 +3,98 @@ package Controller;
 import Model.Entities.Usuario;
 import DAO.UsuarioDAO;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UsuarioController {
+
     private UsuarioDAO usuarioDAO;
 
     public UsuarioController() {
-        // Usar Singleton en lugar de new
-         System.out.println("🆕 Creando nuevo UsuarioController");
         this.usuarioDAO = UsuarioDAO.getInstance();
-        System.out.println("UsuarioDAO obtenido (Singleton)");
     }
 
-     public boolean registrarUsuario(Usuario usuario) {
-        System.out.println("\n🎯 CONTROLADOR: Iniciando registro de usuario");
-        System.out.println("Usuario recibido: " + (usuario != null ? usuario.getEmail() : "NULL"));
+    // --- REGISTRO ---
+    public String registrarUsuario(Usuario usuario) {
+        String validacion = validarCamposRegistro(usuario);
         
-        if (usuario == null) {
-            System.out.println("❌ Usuario es NULL");
-            return false;
+        if (!validacion.equals("OK")) {
+            return validacion;
         }
-
-        if (!usuario.validarCamposObligatorios()) {
-            System.out.println("❌ Campos obligatorios no válidos");
-            return false;
-        }
-
-        System.out.println("✅ Validaciones básicas pasadas");
 
         boolean resultado = usuarioDAO.registrarUsuario(usuario);
-        System.out.println("Resultado del registro en DAO: " + resultado);
-        return resultado;
+        return resultado ? "OK" : "Error: Correo o Cédula ya existente.";
     }
+    
+    private String validarCamposRegistro(Usuario usuario) {
+        if (usuario == null) return "Error interno: Objeto de usuario nulo.";
 
-     public Usuario login(String email, String password) {
-        System.out.println("\n🎯 CONTROLADOR: Iniciando login");
-        System.out.println("Email: " + email);
+        if (usuario.getPrimerNombre() == null || usuario.getPrimerNombre().trim().isEmpty()) 
+            return "Error: El campo Primer Nombre está vacío.";
+        if (usuario.getPrimerApellido() == null || usuario.getPrimerApellido().trim().isEmpty()) 
+            return "Error: El campo Primer Apellido está vacío.";
+        if (usuario.getCedula() == null || usuario.getCedula().trim().isEmpty()) 
+            return "Error: El campo Cédula está vacío.";
+        if (!validarCedula(usuario.getCedula())) 
+            return "Error: La Cédula debe contener solo números y tener un mínimo de 5 dígitos.";
+        if (usuario.getEmail() == null || usuario.getEmail().trim().isEmpty()) 
+            return "Error: El campo Email está vacío.";
+        if (!validarEmail(usuario.getEmail())) 
+            return "Error: El formato del Email es inválido (ej: usuario@dominio.com).";
+        if (usuario.getPassword() == null || usuario.getPassword().trim().isEmpty()) 
+            return "Error: El campo Contraseña está vacío.";
+        if (!validarPassword(usuario.getPassword())) 
+            return "Error: La Contraseña debe tener un mínimo de 6 caracteres.";
         
-        if (email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty()) {
-            System.out.println("❌ Credenciales vacías");
-            return null;
+        if (usuarioDAO.existeEmail(usuario.getEmail()) || usuarioDAO.existeCedula(usuario.getCedula())) {
+            return "Error: Correo o Cédula ya existente."; 
         }
         
-        Usuario resultado = usuarioDAO.login(email.trim(), password.trim());
-        System.out.println("Resultado del login: " + (resultado != null ? "ÉXITO" : "FALLO"));
-        return resultado;
+        return "OK"; 
     }
-
-    public boolean existeEmail(String email) {
-        return email != null && usuarioDAO.existeEmail(email.trim());
-    }
-
-    public boolean existeCedula(String cedula) {
-        return cedula != null && usuarioDAO.existeCedula(cedula.trim());
-    }
-
-    public List<Usuario> obtenerTodosLosUsuarios() {
-        return usuarioDAO.obtenerTodos();
-    }
-
-    public boolean actualizarUsuario(Usuario usuario) {
-        if (usuario == null) {
-            return false;
+    
+    // --- LOGIN ---
+    public String login(String email, String password) {
+        System.out.println("CONTROLADOR DEBUG: Iniciando login con credenciales limpias.");
+        
+        if (email == null || email.isEmpty()) {
+            return "Error: El campo Email está vacío.";
         }
-        return usuarioDAO.actualizarUsuario(usuario);
+        if (password == null || password.isEmpty()) {
+            return "Error: El campo Contraseña está vacío.";
+        }
+        
+        String emailLimpio = email.toLowerCase(); 
+        String passwordLimpia = password;
+
+        Usuario resultado = usuarioDAO.login(emailLimpio, passwordLimpia);
+        
+        System.out.println("CONTROLADOR DEBUG: Resultado del login: " + (resultado != null ? "ÉXITO" : "FALLO"));
+
+        if (resultado != null) {
+            return "OK";
+        } else {
+            return "Error: Credenciales incorrectas (Email o Contraseña no coinciden).";
+        }
+    }
+    
+    // Método para obtener el objeto Usuario después de saber que el login es 'OK'
+    public Usuario getUsuarioLogeado(String email, String password) {
+        String emailLimpio = email.trim().toLowerCase();
+        String passwordLimpia = password.trim();
+        return usuarioDAO.login(emailLimpio, passwordLimpia);
     }
 
-    // --- Validaciones específicas del controlador ---
+    // --- Métodos de validación privados ---
     private boolean validarEmail(String email) {
-        return email != null && email.contains("@") && email.length() >= 5;
+        Pattern pattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$");
+        Matcher matcher = pattern.matcher(email.trim());
+        return matcher.matches();
     }
-
     private boolean validarCedula(String cedula) {
-        return cedula != null && cedula.matches("\\d+") && cedula.length() >= 6;
+        return cedula.trim().matches("\\d+") && cedula.trim().length() >= 5;
     }
-
-    private boolean validarTelefono(String telefono) {
-        return telefono != null && telefono.matches("\\d+") && telefono.length() >= 7;
-    }
-
     private boolean validarPassword(String password) {
-        return password != null && password.length() >= 6;
+        return password.trim().length() >= 6;
     }
 }
