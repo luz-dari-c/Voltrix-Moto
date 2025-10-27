@@ -19,9 +19,9 @@ import java.util.List;
 
 public class UsuarioDAO {
 
-    private static final String RUTA_RECURSO_CLASSPATH = "/Resources/data/usuarios.json"; 
+    private static final String RUTA_RECURSO_CLASSPATH =  "src/Resources/Data/usuarios.json";
     private static final String DIR_PERSISTENCIA = "Resources" + File.separator + "data";
-    private static final String RUTA_PERSISTENCIA = DIR_PERSISTENCIA + File.separator + "usuarios.json";
+    private static final String RUTA_PERSISTENCIA = "src/Resources/Data/usuarios.json";
 
     private Gson gson;
     private List<Usuario> usuarios;
