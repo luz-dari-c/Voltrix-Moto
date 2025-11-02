@@ -46,6 +46,9 @@ public class EmpleadoDAO {
         }
 
         empleadosLista.add(empleado);
+        guardarTodos(empleadosLista);
+
+        
         return true;
     }
 

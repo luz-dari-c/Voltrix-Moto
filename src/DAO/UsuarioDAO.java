@@ -19,9 +19,13 @@ import java.util.List;
 
 public class UsuarioDAO {
 
+<<<<<<< HEAD
     private static final String RUTA_RECURSO_CLASSPATH = "src/Resources/Data/usuarios.json"; 
+=======
+    private static final String RUTA_RECURSO_CLASSPATH =  "src/Resources/Data/usuarios.json";
+>>>>>>> feature/login
     private static final String DIR_PERSISTENCIA = "Resources" + File.separator + "data";
-    private static final String RUTA_PERSISTENCIA = DIR_PERSISTENCIA + File.separator + "usuarios.json";
+    private static final String RUTA_PERSISTENCIA = "src/Resources/Data/usuarios.json";
 
     private Gson gson;
     private List<Usuario> usuarios;
@@ -153,4 +157,15 @@ public class UsuarioDAO {
     public List<Usuario> obtenerTodos() {
         return new ArrayList<>(usuarios);
     }
+    
+    public Usuario buscarPorCorreo(String correo) {
+    List<Usuario> usuarios = cargarUsuarios(); 
+    for (Usuario u : usuarios) {
+        if (u.getEmail().equalsIgnoreCase(correo)) {
+            return u;
+        }
+    }
+    return null;
+}
+
 }
