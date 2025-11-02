@@ -30,16 +30,21 @@ public class Store extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jPanel12 = new VisualHelpers.RoundedPanel(20)
         ;
         jPanel13 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
+        btnVerMas4 = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
         jPanel14 = new VisualHelpers.RoundedPanel(20)
         ;
         jPanel16 = new javax.swing.JPanel();
@@ -47,49 +52,49 @@ public class Store extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
         jPanel18 = new VisualHelpers.RoundedPanel(20)
         ;
         jPanel20 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
+        btnVerMas2 = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
         jPanel22 = new VisualHelpers.RoundedPanel(20)
         ;
         jPanel24 = new javax.swing.JPanel();
         jPanel25 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
+        btnVerMas3 = new javax.swing.JButton();
+        jLabel27 = new javax.swing.JLabel();
         jPanel26 = new VisualHelpers.RoundedPanel(20)
         ;
         jPanel28 = new javax.swing.JPanel();
         jPanel29 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
+        btnVerMas6 = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
         jPanel30 = new VisualHelpers.RoundedPanel(20)
         ;
         jPanel32 = new javax.swing.JPanel();
         jPanel33 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        jLabel54 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
+        btnVerMas5 = new javax.swing.JButton();
+        jLabel28 = new javax.swing.JLabel();
         jPanel38 = new VisualHelpers.RoundedPanel(20)
         ;
         jPanel40 = new javax.swing.JPanel();
@@ -105,11 +110,11 @@ public class Store extends javax.swing.JFrame {
         jPanel44 = new javax.swing.JPanel();
         jPanel45 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
+        btnVerMas1 = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,19 +122,35 @@ public class Store extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1140, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-refresh-38.png"))); // NOI18N
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 40, 40));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 1140, 50));
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Diseño sin título (6) (1).png"))); // NOI18N
+        jLabel14.setText("jLabel13");
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 50, 60));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-back-30.png"))); // NOI18N
+        jLabel15.setText("Volver a la pagina anterior");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, 180, 60));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-settings-38.png"))); // NOI18N
+        jLabel17.setText("jLabel13");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 40, 60));
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-activity-history-38.png"))); // NOI18N
+        jLabel18.setText("jLabel13");
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 40, 60));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 1140, 60));
 
         jPanel12.setBackground(new java.awt.Color(0, 0, 0));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -147,23 +168,8 @@ public class Store extends javax.swing.JFrame {
 
         jPanel12.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 250, 260));
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setForeground(new java.awt.Color(0, 0, 0));
-        jButton8.setText("Ver más");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        jPanel12.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/motovelde-removebg-preview (1)_1.png"))); // NOI18N
         jPanel12.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 260, 170));
-
-        jLabel48.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel48.setText("Tipo de motor:");
-        jPanel12.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jLabel49.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel49.setForeground(new java.awt.Color(255, 255, 255));
@@ -174,6 +180,29 @@ public class Store extends javax.swing.JFrame {
         jLabel50.setForeground(new java.awt.Color(255, 255, 255));
         jLabel50.setText("Modelo:");
         jPanel12.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+
+        btnVerMas4.setBackground(new java.awt.Color(0, 153, 255));
+        btnVerMas4.setForeground(new java.awt.Color(0, 0, 0));
+        btnVerMas4.setText("Ver más");
+        btnVerMas4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVerMas4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVerMas4MouseExited(evt);
+            }
+        });
+        btnVerMas4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerMas4ActionPerformed(evt);
+            }
+        });
+        jPanel12.add(btnVerMas4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
+
+        jLabel26.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Precio:");
+        jPanel12.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jPanel1.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 350, 250, 300));
 
@@ -193,7 +222,7 @@ public class Store extends javax.swing.JFrame {
 
         jPanel14.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 250, 260));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setBackground(new java.awt.Color(0, 153, 255));
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Ver más");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -206,11 +235,6 @@ public class Store extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/2020-Yamaha-BWS-125a-removebg-preview (1).png"))); // NOI18N
         jPanel14.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 200, 150));
 
-        jLabel39.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel39.setText("Tipo de motor:");
-        jPanel14.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
-
         jLabel40.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(255, 255, 255));
         jLabel40.setText("Año:");
@@ -220,6 +244,11 @@ public class Store extends javax.swing.JFrame {
         jLabel41.setForeground(new java.awt.Color(255, 255, 255));
         jLabel41.setText("Modelo:");
         jPanel14.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+
+        jLabel23.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setText("Precio:");
+        jPanel14.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jPanel1.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 250, 300));
 
@@ -239,23 +268,8 @@ public class Store extends javax.swing.JFrame {
 
         jPanel18.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 250, 260));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Ver más");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel18.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/2025-Kawasaki-Ninja-ZX-6R-ABS-KRT-Edition3-removebg-preview (1)_1.png"))); // NOI18N
         jPanel18.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 240, 160));
-
-        jLabel45.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel45.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel45.setText("Tipo de motor:");
-        jPanel18.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jLabel46.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
@@ -266,6 +280,29 @@ public class Store extends javax.swing.JFrame {
         jLabel47.setForeground(new java.awt.Color(255, 255, 255));
         jLabel47.setText("Modelo:");
         jPanel18.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+
+        btnVerMas2.setBackground(new java.awt.Color(0, 153, 255));
+        btnVerMas2.setForeground(new java.awt.Color(0, 0, 0));
+        btnVerMas2.setText("Ver más");
+        btnVerMas2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVerMas2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVerMas2MouseExited(evt);
+            }
+        });
+        btnVerMas2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerMas2ActionPerformed(evt);
+            }
+        });
+        jPanel18.add(btnVerMas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
+
+        jLabel25.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("Precio:");
+        jPanel18.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jPanel1.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 30, 250, 300));
 
@@ -285,23 +322,8 @@ public class Store extends javax.swing.JFrame {
 
         jPanel22.add(jPanel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 250, 260));
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setForeground(new java.awt.Color(0, 0, 0));
-        jButton7.setText("Ver más");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel22.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
-
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/moto (1).png"))); // NOI18N
         jPanel22.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 200, 110));
-
-        jLabel51.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel51.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel51.setText("Tipo de motor:");
-        jPanel22.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jLabel52.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel52.setForeground(new java.awt.Color(255, 255, 255));
@@ -312,6 +334,29 @@ public class Store extends javax.swing.JFrame {
         jLabel53.setForeground(new java.awt.Color(255, 255, 255));
         jLabel53.setText("Modelo:");
         jPanel22.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+
+        btnVerMas3.setBackground(new java.awt.Color(0, 153, 255));
+        btnVerMas3.setForeground(new java.awt.Color(0, 0, 0));
+        btnVerMas3.setText("Ver más");
+        btnVerMas3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVerMas3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVerMas3MouseExited(evt);
+            }
+        });
+        btnVerMas3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerMas3ActionPerformed(evt);
+            }
+        });
+        jPanel22.add(btnVerMas3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
+
+        jLabel27.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("Precio:");
+        jPanel22.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jPanel1.add(jPanel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 250, 300));
 
@@ -331,23 +376,8 @@ public class Store extends javax.swing.JFrame {
 
         jPanel26.add(jPanel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 250, 260));
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setForeground(new java.awt.Color(0, 0, 0));
-        jButton5.setText("Ver más");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel26.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
-
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/motorojita-removebg-preview (1).png"))); // NOI18N
         jPanel26.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 200, 110));
-
-        jLabel57.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel57.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel57.setText("Tipo de motor:");
-        jPanel26.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jLabel58.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel58.setForeground(new java.awt.Color(255, 255, 255));
@@ -358,6 +388,29 @@ public class Store extends javax.swing.JFrame {
         jLabel59.setForeground(new java.awt.Color(255, 255, 255));
         jLabel59.setText("Modelo:");
         jPanel26.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+
+        btnVerMas6.setBackground(new java.awt.Color(0, 153, 255));
+        btnVerMas6.setForeground(new java.awt.Color(0, 0, 0));
+        btnVerMas6.setText("Ver más");
+        btnVerMas6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVerMas6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVerMas6MouseExited(evt);
+            }
+        });
+        btnVerMas6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerMas6ActionPerformed(evt);
+            }
+        });
+        jPanel26.add(btnVerMas6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
+
+        jLabel29.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("Precio:");
+        jPanel26.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jPanel1.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 250, 300));
 
@@ -377,23 +430,8 @@ public class Store extends javax.swing.JFrame {
 
         jPanel30.add(jPanel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 250, 260));
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jButton6.setText("Ver más");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel30.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
-
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/yamaha-yzf-r6-2017-gris-oscuro-mate-45498b (1).png"))); // NOI18N
         jPanel30.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 200, 110));
-
-        jLabel54.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel54.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel54.setText("Tipo de motor:");
-        jPanel30.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jLabel55.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel55.setForeground(new java.awt.Color(255, 255, 255));
@@ -404,6 +442,29 @@ public class Store extends javax.swing.JFrame {
         jLabel56.setForeground(new java.awt.Color(255, 255, 255));
         jLabel56.setText("Modelo:");
         jPanel30.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+
+        btnVerMas5.setBackground(new java.awt.Color(0, 153, 255));
+        btnVerMas5.setForeground(new java.awt.Color(0, 0, 0));
+        btnVerMas5.setText("Ver más");
+        btnVerMas5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVerMas5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVerMas5MouseExited(evt);
+            }
+        });
+        btnVerMas5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerMas5ActionPerformed(evt);
+            }
+        });
+        jPanel30.add(btnVerMas5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
+
+        jLabel28.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Precio:");
+        jPanel30.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jPanel1.add(jPanel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 250, 300));
 
@@ -423,7 +484,7 @@ public class Store extends javax.swing.JFrame {
 
         jPanel38.add(jPanel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 250, 260));
 
-        btnVerMas.setBackground(new java.awt.Color(255, 255, 255));
+        btnVerMas.setBackground(new java.awt.Color(0, 153, 255));
         btnVerMas.setForeground(new java.awt.Color(0, 0, 0));
         btnVerMas.setText("Ver más");
         btnVerMas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -448,7 +509,7 @@ public class Store extends javax.swing.JFrame {
 
         jLabel22.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Tipo de motor:");
+        jLabel22.setText("Precio:");
         jPanel38.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/motoo (1)_1.png"))); // NOI18N
@@ -477,23 +538,8 @@ public class Store extends javax.swing.JFrame {
 
         jPanel42.add(jPanel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 250, 260));
 
-        jButton9.setBackground(new java.awt.Color(204, 204, 204));
-        jButton9.setForeground(new java.awt.Color(0, 0, 0));
-        jButton9.setText("Ver más");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-        jPanel42.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
-
-        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/2020-Yamaha-BWS-125a-removebg-preview (1).png"))); // NOI18N
-        jPanel42.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 230, 160));
-
-        jLabel42.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel42.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel42.setText("Tipo de motor:");
-        jPanel42.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/web-ares-new-1024x1024-removebg-preview (1).png"))); // NOI18N
+        jPanel42.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 230, 160));
 
         jLabel43.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(255, 255, 255));
@@ -505,6 +551,29 @@ public class Store extends javax.swing.JFrame {
         jLabel44.setText("Modelo:");
         jPanel42.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
 
+        btnVerMas1.setBackground(new java.awt.Color(0, 153, 255));
+        btnVerMas1.setForeground(new java.awt.Color(0, 0, 0));
+        btnVerMas1.setText("Ver más");
+        btnVerMas1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVerMas1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVerMas1MouseExited(evt);
+            }
+        });
+        btnVerMas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerMas1ActionPerformed(evt);
+            }
+        });
+        jPanel42.add(btnVerMas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setText("Precio:");
+        jPanel42.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
+
         jPanel1.add(jPanel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 250, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -515,9 +584,7 @@ public class Store extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -531,30 +598,6 @@ public class Store extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerMasActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
-
     private void btnVerMasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMasMouseEntered
        btnVerMas.setBackground(new java.awt.Color(230, 230, 230));
 
@@ -566,6 +609,82 @@ public class Store extends javax.swing.JFrame {
         btnVerMas.setBackground(Color.WHITE);
         btnVerMas.setForeground(Color.BLACK);
     }//GEN-LAST:event_btnVerMasMouseExited
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void btnVerMas1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMas1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas1MouseEntered
+
+    private void btnVerMas1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMas1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas1MouseExited
+
+    private void btnVerMas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMas1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas1ActionPerformed
+
+    private void btnVerMas2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMas2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas2MouseEntered
+
+    private void btnVerMas2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMas2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas2MouseExited
+
+    private void btnVerMas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMas2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas2ActionPerformed
+
+    private void btnVerMas3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMas3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas3MouseEntered
+
+    private void btnVerMas3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMas3MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas3MouseExited
+
+    private void btnVerMas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMas3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas3ActionPerformed
+
+    private void btnVerMas4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMas4MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas4MouseEntered
+
+    private void btnVerMas4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMas4MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas4MouseExited
+
+    private void btnVerMas4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMas4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas4ActionPerformed
+
+    private void btnVerMas5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMas5MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas5MouseEntered
+
+    private void btnVerMas5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMas5MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas5MouseExited
+
+    private void btnVerMas5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMas5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas5ActionPerformed
+
+    private void btnVerMas6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMas6MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas6MouseEntered
+
+    private void btnVerMas6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMas6MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas6MouseExited
+
+    private void btnVerMas6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMas6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMas6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -604,47 +723,52 @@ public class Store extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVerMas;
+    private javax.swing.JButton btnVerMas1;
+    private javax.swing.JButton btnVerMas2;
+    private javax.swing.JButton btnVerMas3;
+    private javax.swing.JButton btnVerMas4;
+    private javax.swing.JButton btnVerMas5;
+    private javax.swing.JButton btnVerMas6;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;

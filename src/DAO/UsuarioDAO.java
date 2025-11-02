@@ -19,7 +19,7 @@ import java.util.List;
 
 public class UsuarioDAO {
 
-    private static final String RUTA_RECURSO_CLASSPATH = "/Resources/data/usuarios.json"; 
+    private static final String RUTA_RECURSO_CLASSPATH = "src/Resources/Data/usuarios.json"; 
     private static final String DIR_PERSISTENCIA = "Resources" + File.separator + "data";
     private static final String RUTA_PERSISTENCIA = DIR_PERSISTENCIA + File.separator + "usuarios.json";
 
@@ -101,13 +101,13 @@ public class UsuarioDAO {
     }
 
     public Usuario login(String email, String password) {
-        // email y password ya llegan trimmados y en minúsculas (email) desde el Controller
+       
         String emailLimpio = email; 
         String passwordLimpia = password;
 
         for (Usuario usuario : usuarios) {
             
-            // 🔴 INICIO DEBUG EXTENSO
+           
             String dbEmail = (usuario.getEmail() != null) ? usuario.getEmail().trim().toLowerCase() : "NULL";
             String dbPassword = (usuario.getPassword() != null) ? usuario.getPassword().trim() : "NULL";
             
@@ -132,12 +132,12 @@ public class UsuarioDAO {
                  System.out.println("   PASSWORD: No se compara por fallo en EMAIL.");
             }
             System.out.println("----------------------------------------------------------------------");
-            // 🔴 FIN DEBUG EXTENSO
+          
         }
         return null;
     }
     
-    // Resto de métodos (existeEmail, existeCedula, etc.) se mantienen igual.
+  
     public boolean existeEmail(String email) {
         if (email == null || email.trim().isEmpty()) return false;
         return usuarios.stream()

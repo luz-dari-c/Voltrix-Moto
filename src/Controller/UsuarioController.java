@@ -14,7 +14,7 @@ public class UsuarioController {
         this.usuarioDAO = UsuarioDAO.getInstance();
     }
 
-    // --- REGISTRO ---
+    
     public String registrarUsuario(Usuario usuario) {
         String validacion = validarCamposRegistro(usuario);
         
@@ -53,7 +53,7 @@ public class UsuarioController {
         return "OK"; 
     }
     
-    // --- LOGIN ---
+    
     public String login(String email, String password) {
         System.out.println("CONTROLADOR DEBUG: Iniciando login con credenciales limpias.");
         
@@ -78,14 +78,14 @@ public class UsuarioController {
         }
     }
     
-    // Método para obtener el objeto Usuario después de saber que el login es 'OK'
+    
     public Usuario getUsuarioLogeado(String email, String password) {
         String emailLimpio = email.trim().toLowerCase();
         String passwordLimpia = password.trim();
         return usuarioDAO.login(emailLimpio, passwordLimpia);
     }
 
-    // --- Métodos de validación privados ---
+    
     private boolean validarEmail(String email) {
         Pattern pattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$");
         Matcher matcher = pattern.matcher(email.trim());
