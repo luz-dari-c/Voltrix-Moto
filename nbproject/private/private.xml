@@ -3,11 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS/OneDrive/Documentos/NetBeansProjects/VoltrixMoto/src/Resources/Data/carritos.json</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Documentos/NetBeansProjects/VoltrixMoto/src/Resources/Data/motos.json</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Documentos/NetBeansProjects/VoltrixMoto/src/Resources/Data/ventas.json</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Documentos/NetBeansProjects/VoltrixMoto/src/Resources/Data/items.json</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Documentos/NetBeansProjects/VoltrixMoto/src/voltrixmoto/VoltrixMoto.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/Model/Entities/Usuario.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/Images/icons8-password-24.png</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/Controller/ItemCarritoController.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/DAO/ItemCarritoDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/DAO/CarritoDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/DAO/VentaDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/DAO/ClienteDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/Resources/Data/usuarios.json</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/VisualHelpers/textoSombra.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/Controller/UsuarioController.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/Validator/Validation.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/Resources/Data/clientes.json</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/View/Store.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/Model/Entities/Carrito.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/Resources/Data/empleados.json</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/View/Registro.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/Model/Entities/Empleado.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/VisualHelpers/RoundedPanel.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/Resources/Data/ventas.json</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/View/Java.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/DAO/UsuarioDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/Voltrix-Moto/src/DAO/EmpleadoDAO.java</file>
         </group>
     </open-files>
 </project-private>
