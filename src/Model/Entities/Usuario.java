@@ -1,27 +1,19 @@
 package Model.Entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Usuario {
-
     private String primerNombre;
     private String segundoNombre;
     private String primerApellido;
     private String segundoApellido;
     private String cedula;
-    // Eliminados: telefono y direccion
     private String email;
     private String password;
-    private List<String> motosCompradas;
 
     public Usuario() {
-        this.motosCompradas = new ArrayList<>();
     }
 
-   
     public Usuario(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
-            String cedula, String email, String password) {
+                  String cedula, String email, String password) {
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
@@ -29,10 +21,9 @@ public class Usuario {
         this.cedula = cedula;
         this.email = email;
         this.password = password;
-        this.motosCompradas = new ArrayList<>();
     }
 
-   
+    // Getters y Setters
     public String getPrimerNombre() { return primerNombre; }
     public void setPrimerNombre(String primerNombre) { this.primerNombre = primerNombre; }
     public String getSegundoNombre() { return segundoNombre; }
@@ -47,6 +38,4 @@ public class Usuario {
     public void setEmail(String email) { this.email = email; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
-    public List<String> getMotosCompradas() { return motosCompradas; }
-    public void setMotosCompradas(List<String> motosCompradas) { this.motosCompradas = motosCompradas; }
 }
