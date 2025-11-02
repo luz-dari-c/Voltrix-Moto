@@ -4,22 +4,16 @@
  */
 package View;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author gameV
  */
 public class Carrito extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Carrito
-     */
+    
     public Carrito() {
         initComponents();
-        PanelCompra.setVisible(false);
-        DatosPago.setVisible(false);
-
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -31,40 +25,10 @@ public class Carrito extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pagos = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        ModeloPut = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        AñoPut = new javax.swing.JLabel();
-        fotoCarro = new javax.swing.JLabel();
-        motor = new javax.swing.JLabel();
-        MotorPut = new javax.swing.JLabel();
-        PrecioPut = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        ColorPut = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        CiliPut = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        PanelCompra = new javax.swing.JPanel();
-        FinalizarCompra = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        rbEfectivo = new javax.swing.JRadioButton();
-        rbCredito = new javax.swing.JRadioButton();
-        rbDebito = new javax.swing.JRadioButton();
-        DatosPago = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,225 +37,55 @@ public class Carrito extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-back-34.png"))); // NOI18N
-        jLabel1.setText("Regresar");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jLabel1.setText("MOTOS QUE HAZ AGREGADO AL CARRITO");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jScrollPane1.setBackground(new java.awt.Color(246, 246, 246));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setForeground(new java.awt.Color(246, 246, 246));
 
-        ModeloPut.setBackground(new java.awt.Color(255, 255, 255));
-        ModeloPut.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        ModeloPut.setForeground(new java.awt.Color(255, 255, 255));
-        ModeloPut.setText("Modelo:");
-        jPanel2.add(ModeloPut, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 180, 40));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Modelo", "Marca", "Año lanzamiento", "Tipo motor", "Cilindraje", "Color Selecionado", "Precio"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Modelo:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, 40));
-
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Año:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, 40));
-
-        AñoPut.setBackground(new java.awt.Color(255, 255, 255));
-        AñoPut.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        AñoPut.setForeground(new java.awt.Color(255, 255, 255));
-        AñoPut.setText("Año");
-        jPanel2.add(AñoPut, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 180, 40));
-
-        fotoCarro.setText("jLabel2");
-        jPanel2.add(fotoCarro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 200, 190));
-
-        motor.setBackground(new java.awt.Color(255, 255, 255));
-        motor.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        motor.setForeground(new java.awt.Color(255, 255, 255));
-        motor.setText("Tipo Motor:");
-        jPanel2.add(motor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, 40));
-
-        MotorPut.setBackground(new java.awt.Color(255, 255, 255));
-        MotorPut.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        MotorPut.setForeground(new java.awt.Color(255, 255, 255));
-        MotorPut.setText("Motor");
-        jPanel2.add(MotorPut, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 180, 40));
-
-        PrecioPut.setBackground(new java.awt.Color(255, 255, 255));
-        PrecioPut.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        PrecioPut.setForeground(new java.awt.Color(255, 255, 255));
-        PrecioPut.setText("Precio");
-        jPanel2.add(PrecioPut, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 180, 40));
-
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Precio:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, 40));
-
-        ColorPut.setBackground(new java.awt.Color(255, 255, 255));
-        ColorPut.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        ColorPut.setForeground(new java.awt.Color(255, 255, 255));
-        ColorPut.setText("Color");
-        jPanel2.add(ColorPut, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 180, 40));
-
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Color seleccionado:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, -1, 40));
-
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Cilindraje:");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, 40));
-
-        CiliPut.setBackground(new java.awt.Color(255, 255, 255));
-        CiliPut.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        CiliPut.setForeground(new java.awt.Color(255, 255, 255));
-        CiliPut.setText("Cilindraje");
-        jPanel2.add(CiliPut, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 180, 40));
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Ir a pagar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 597, 110, 40));
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+        }
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 470, 660));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 1070, 640));
 
-        PanelCompra.setBackground(new java.awt.Color(0, 153, 255));
-        PanelCompra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        FinalizarCompra.setBackground(new java.awt.Color(255, 255, 255));
-        FinalizarCompra.setForeground(new java.awt.Color(0, 0, 0));
-        FinalizarCompra.setText("Finalizar el pago");
-        FinalizarCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FinalizarCompraActionPerformed(evt);
-            }
-        });
-        PanelCompra.add(FinalizarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, -1, 40));
-
-        jLabel5.setForeground(new java.awt.Color(102, 0, 0));
-        jLabel5.setText("Cancelar");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        PanelCompra.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 580, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jLabel9.setText("Elije tu metodo de pago:");
-        PanelCompra.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
-
-        pagos.add(rbEfectivo);
-        rbEfectivo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        rbEfectivo.setText("PayPal");
-        rbEfectivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbEfectivoActionPerformed(evt);
-            }
-        });
-        PanelCompra.add(rbEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, 30));
-
-        pagos.add(rbCredito);
-        rbCredito.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        rbCredito.setText("Tarjeta de credito");
-        rbCredito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCreditoActionPerformed(evt);
-            }
-        });
-        PanelCompra.add(rbCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, 30));
-
-        pagos.add(rbDebito);
-        rbDebito.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        rbDebito.setText("Tarjeta de debito");
-        rbDebito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbDebitoActionPerformed(evt);
-            }
-        });
-        PanelCompra.add(rbDebito, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, 30));
-
-        DatosPago.setBackground(new java.awt.Color(0, 153, 204));
-        DatosPago.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel10.setText("Nombre del propietario de la tarjeta:");
-        DatosPago.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        jLabel12.setText("Numero de la tarjeta:");
-        DatosPago.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
-
-        jTextField1.setBackground(new java.awt.Color(0, 102, 153));
-        DatosPago.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 4, 190, -1));
-
-        jTextField2.setBackground(new java.awt.Color(0, 102, 153));
-        DatosPago.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 260, 30));
-
-        jLabel13.setText("CVV");
-        DatosPago.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
-
-        jLabel11.setText("Fecha:");
-        DatosPago.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
-
-        jTextField3.setBackground(new java.awt.Color(0, 102, 153));
-        DatosPago.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 66, 340, 30));
-
-        jTextField4.setBackground(new java.awt.Color(0, 102, 153));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        DatosPago.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 340, 30));
-
-        PanelCompra.add(DatosPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 410, 260));
-
-        jPanel1.add(PanelCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 500, 610));
-
-        jLabel2.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("ADQUIERE TU MOTO ¡YA!");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
+        jLabel2.setText("TOTAL:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 700, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 720));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 750));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PanelCompra.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
-        JOptionPane.showMessageDialog(this, "Compra simulada realizada con éxito!");
-        pagos.clearSelection();
-        PanelCompra.setVisible(false);
-    }//GEN-LAST:event_FinalizarCompraActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void rbCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCreditoActionPerformed
-        DatosPago.setVisible(true);
-    }//GEN-LAST:event_rbCreditoActionPerformed
-
-    private void rbDebitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDebitoActionPerformed
-        DatosPago.setVisible(true);
-    }//GEN-LAST:event_rbDebitoActionPerformed
-
-    private void rbEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEfectivoActionPerformed
-        DatosPago.setVisible(true);
-    }//GEN-LAST:event_rbEfectivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,40 +123,10 @@ public class Carrito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel AñoPut;
-    private javax.swing.JLabel CiliPut;
-    private javax.swing.JLabel ColorPut;
-    private javax.swing.JPanel DatosPago;
-    private javax.swing.JButton FinalizarCompra;
-    private javax.swing.JLabel ModeloPut;
-    private javax.swing.JLabel MotorPut;
-    private javax.swing.JPanel PanelCompra;
-    private javax.swing.JLabel PrecioPut;
-    private javax.swing.JLabel fotoCarro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JLabel motor;
-    private javax.swing.ButtonGroup pagos;
-    private javax.swing.JRadioButton rbCredito;
-    private javax.swing.JRadioButton rbDebito;
-    private javax.swing.JRadioButton rbEfectivo;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

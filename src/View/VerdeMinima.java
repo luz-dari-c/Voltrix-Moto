@@ -8,12 +8,12 @@ package View;
  *
  * @author gameV
  */
-public class LittleNegra extends javax.swing.JFrame {
+public class VerdeMinima extends javax.swing.JFrame {
 
     /**
-     * Creates new form LittleNegra
+     * Creates new form VerdeMinima
      */
-    public LittleNegra() {
+    public VerdeMinima() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -63,8 +63,8 @@ public class LittleNegra extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        MotoFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/moto (2).png"))); // NOI18N
-        jPanel1.add(MotoFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 720, 440));
+        MotoFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/motovelde-removebg-preview.png"))); // NOI18N
+        jPanel1.add(MotoFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 720, 420));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -155,7 +155,7 @@ public class LittleNegra extends javax.swing.JFrame {
         jLabel10.setText("Precio");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
 
-        jPanel3.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel3.setBackground(new java.awt.Color(0, 0, 102));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -170,8 +170,7 @@ public class LittleNegra extends javax.swing.JFrame {
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 60, 30, 30));
 
-        jPanel4.setBackground(new java.awt.Color(0, 102, 0));
-        jPanel4.setForeground(new java.awt.Color(0, 102, 0));
+        jPanel4.setBackground(new java.awt.Color(0, 204, 51));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -205,6 +204,7 @@ public class LittleNegra extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Comprar");
+        jButton1.setBorder(null);
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 140, 120, 40));
 
         jPanel6.setBackground(new java.awt.Color(0, 0, 0));
@@ -226,7 +226,7 @@ public class LittleNegra extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel11.setText("Conoce más acerca de nuestros modelos.");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/unnamed-removebg-preview (1).png"))); // NOI18N
         jLabel12.setText("jLabel12");
@@ -269,20 +269,20 @@ public class LittleNegra extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LittleNegra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerdeMinima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LittleNegra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerdeMinima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LittleNegra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerdeMinima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LittleNegra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerdeMinima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LittleNegra().setVisible(true);
+                new VerdeMinima().setVisible(true);
             }
         });
     }

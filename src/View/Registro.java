@@ -343,15 +343,15 @@ public class Registro extends javax.swing.JFrame {
                 cedula, email, password
         );
 
-        // 3. Llamar al Controller
+       
         String resultadoRegistro = usuarioController.registrarUsuario(nuevoUsuario);
 
-        // 4. Manejar la respuesta
+        
         if (resultadoRegistro.equals("OK")) {
             JOptionPane.showMessageDialog(this, "Registro exitoso. ¡Bienvenido!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
 
-            // Abrir el JFrame del login
+            
             Java loginFrame = new Java();
             loginFrame.setVisible(true);
             
