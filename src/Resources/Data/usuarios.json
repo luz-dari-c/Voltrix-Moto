@@ -6,7 +6,24 @@
     "segundoApellido": "Gutierrez",
     "cedula": "12345678",
     "email": "shar@gmail.com",
-    "password": "sharlokk",
-    "motosCompradas": []
+    "password": "sharlokk"
+  },
+  {
+    "primerNombre": "Luz",
+    "segundoNombre": "Dari",
+    "primerApellido": "Crespo",
+    "segundoApellido": "Gomez",
+    "cedula": "1237440696",
+    "email": "luzdaricrespo@gmail.com",
+    "password": "luz123"
+  },
+  {
+    "primerNombre": "Nicolle",
+    "segundoNombre": "Andrea",
+    "primerApellido": "Lopez",
+    "segundoApellido": "Rivera",
+    "cedula": "1023456789",
+    "email": "lisamaryshelley16@gmail.com",
+    "password": "Sharlok16"
   }
 ]

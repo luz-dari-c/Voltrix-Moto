@@ -517,7 +517,7 @@
       "transmision": {
         "idTransmision": "TRS-BSE8",
         "tipoTransmision": "AUTOMATICA",
-        "velocidades": "CUATRO"
+        "velocidades": "SEIS"
       }
     },
     "estado": "DISPONIBLE"

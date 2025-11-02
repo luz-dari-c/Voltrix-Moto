@@ -1,0 +1,292 @@
+[
+  {
+    "vehiculo": {
+      "idMoto": 2,
+      "marca": "Voltrix",
+      "modelo": "Thunder",
+      "fechaLanzamiento": "2025-02-15",
+      "precio": 5200000.0,
+      "tipoMoto": "DEPORTIVA",
+      "tipoColorMoto": "NEGRO",
+      "tieneParrilla": false,
+      "tieneMaletero": true,
+      "motor": {
+        "idMotor": 0,
+        "tipo": "DOS_TIEMPOS",
+        "cilindrada": 150,
+        "potencia": 10
+      },
+      "chasis": {
+        "idChasis": 0,
+        "material": "ALUMINIO",
+        "tipo": "MULTITUBULAR"
+      },
+      "llantaDelantera": {
+        "idLlanta": 0,
+        "medida": "R16_100_80",
+        "tipo": "DELANTERA"
+      },
+      "llantaTrasera": {
+        "idLlanta": 0,
+        "medida": "R16_100_80",
+        "tipo": "DELANTERA"
+      },
+      "frenoDelantero": {
+        "idFreno": 0,
+        "tipo": "DISCO",
+        "ubicacion": "DELANTERO"
+      },
+      "frenoTrasero": {
+        "idFreno": 0,
+        "tipo": "DISCO",
+        "ubicacion": "TRASERO"
+      },
+      "asiento": {
+        "idAsiento": 0,
+        "material": "Cuero sintético",
+        "capacidad": "MONOPLAZA"
+      },
+      "transmision": {
+        "idTransmision": 0,
+        "tipoTransmision": "AUTOMATICA",
+        "velocidades": "CINCO"
+      }
+    },
+    "id": "2",
+    "cantidad": 2,
+    "precioUnitario": 5200000.0,
+    "subtotal": 10400000.0
+  },
+  {
+    "vehiculo": {
+      "idMoto": 1,
+      "marca": "Voltrix",
+      "modelo": "NeoX",
+      "fechaLanzamiento": "2024-05-01",
+      "precio": 4800000.0,
+      "tipoMoto": "SCOOTER",
+      "tipoColorMoto": "ROJO",
+      "tieneParrilla": true,
+      "tieneMaletero": false,
+      "motor": {
+        "idMotor": 0,
+        "tipo": "DOS_TIEMPOS",
+        "cilindrada": 150,
+        "potencia": 10
+      },
+      "chasis": {
+        "idChasis": 0,
+        "material": "ALUMINIO",
+        "tipo": "MULTITUBULAR"
+      },
+      "llantaDelantera": {
+        "idLlanta": 0,
+        "medida": "R16_100_80",
+        "tipo": "DELANTERA"
+      },
+      "llantaTrasera": {
+        "idLlanta": 0,
+        "medida": "R16_100_80",
+        "tipo": "DELANTERA"
+      },
+      "frenoDelantero": {
+        "idFreno": 0,
+        "tipo": "DISCO",
+        "ubicacion": "DELANTERO"
+      },
+      "frenoTrasero": {
+        "idFreno": 0,
+        "tipo": "DISCO",
+        "ubicacion": "TRASERO"
+      },
+      "asiento": {
+        "idAsiento": 0,
+        "material": "Cuero sintético",
+        "capacidad": "MONOPLAZA"
+      },
+      "transmision": {
+        "idTransmision": 0,
+        "tipoTransmision": "AUTOMATICA",
+        "velocidades": "CINCO"
+      }
+    },
+    "id": "3",
+    "cantidad": 1,
+    "precioUnitario": 4800000.0,
+    "subtotal": 4800000.0
+  },
+  {
+    "vehiculo": {
+      "idMoto": 2,
+      "marca": "Voltrix",
+      "modelo": "Thunder",
+      "fechaLanzamiento": "2025-02-15",
+      "precio": 5200000.0,
+      "tipoMoto": "DEPORTIVA",
+      "tipoColorMoto": "NEGRO",
+      "tieneParrilla": false,
+      "tieneMaletero": true,
+      "motor": {
+        "idMotor": 0,
+        "tipo": "DOS_TIEMPOS",
+        "cilindrada": 150,
+        "potencia": 10
+      },
+      "chasis": {
+        "idChasis": 0,
+        "material": "ALUMINIO",
+        "tipo": "MULTITUBULAR"
+      },
+      "llantaDelantera": {
+        "idLlanta": 0,
+        "medida": "R16_100_80",
+        "tipo": "DELANTERA"
+      },
+      "llantaTrasera": {
+        "idLlanta": 0,
+        "medida": "R16_100_80",
+        "tipo": "DELANTERA"
+      },
+      "frenoDelantero": {
+        "idFreno": 0,
+        "tipo": "DISCO",
+        "ubicacion": "DELANTERO"
+      },
+      "frenoTrasero": {
+        "idFreno": 0,
+        "tipo": "DISCO",
+        "ubicacion": "TRASERO"
+      },
+      "asiento": {
+        "idAsiento": 0,
+        "material": "Cuero sintético",
+        "capacidad": "MONOPLAZA"
+      },
+      "transmision": {
+        "idTransmision": 0,
+        "tipoTransmision": "AUTOMATICA",
+        "velocidades": "CINCO"
+      }
+    },
+    "id": "4",
+    "cantidad": 2,
+    "precioUnitario": 5200000.0,
+    "subtotal": 10400000.0
+  },
+  {
+    "vehiculo": {
+      "idMoto": 1,
+      "marca": "Voltrix",
+      "modelo": "NeoX",
+      "fechaLanzamiento": "2024-05-01",
+      "precio": 4800000.0,
+      "tipoMoto": "SCOOTER",
+      "tipoColorMoto": "ROJO",
+      "tieneParrilla": true,
+      "tieneMaletero": false,
+      "motor": {
+        "idMotor": 0,
+        "tipo": "DOS_TIEMPOS",
+        "cilindrada": 150,
+        "potencia": 10
+      },
+      "chasis": {
+        "idChasis": 0,
+        "material": "ALUMINIO",
+        "tipo": "MULTITUBULAR"
+      },
+      "llantaDelantera": {
+        "idLlanta": 0,
+        "medida": "R16_100_80",
+        "tipo": "DELANTERA"
+      },
+      "llantaTrasera": {
+        "idLlanta": 0,
+        "medida": "R16_100_80",
+        "tipo": "DELANTERA"
+      },
+      "frenoDelantero": {
+        "idFreno": 0,
+        "tipo": "DISCO",
+        "ubicacion": "DELANTERO"
+      },
+      "frenoTrasero": {
+        "idFreno": 0,
+        "tipo": "DISCO",
+        "ubicacion": "TRASERO"
+      },
+      "asiento": {
+        "idAsiento": 0,
+        "material": "Cuero sintético",
+        "capacidad": "MONOPLAZA"
+      },
+      "transmision": {
+        "idTransmision": 0,
+        "tipoTransmision": "AUTOMATICA",
+        "velocidades": "CINCO"
+      }
+    },
+    "id": "5",
+    "cantidad": 1,
+    "precioUnitario": 4800000.0,
+    "subtotal": 4800000.0
+  },
+  {
+    "vehiculo": {
+      "idMoto": 2,
+      "marca": "Voltrix",
+      "modelo": "Thunder",
+      "fechaLanzamiento": "2025-02-15",
+      "precio": 5200000.0,
+      "tipoMoto": "DEPORTIVA",
+      "tipoColorMoto": "NEGRO",
+      "tieneParrilla": false,
+      "tieneMaletero": true,
+      "motor": {
+        "idMotor": 0,
+        "tipo": "DOS_TIEMPOS",
+        "cilindrada": 150,
+        "potencia": 10
+      },
+      "chasis": {
+        "idChasis": 0,
+        "material": "ALUMINIO",
+        "tipo": "MULTITUBULAR"
+      },
+      "llantaDelantera": {
+        "idLlanta": 0,
+        "medida": "R16_100_80",
+        "tipo": "DELANTERA"
+      },
+      "llantaTrasera": {
+        "idLlanta": 0,
+        "medida": "R16_100_80",
+        "tipo": "DELANTERA"
+      },
+      "frenoDelantero": {
+        "idFreno": 0,
+        "tipo": "DISCO",
+        "ubicacion": "DELANTERO"
+      },
+      "frenoTrasero": {
+        "idFreno": 0,
+        "tipo": "DISCO",
+        "ubicacion": "TRASERO"
+      },
+      "asiento": {
+        "idAsiento": 0,
+        "material": "Cuero sintético",
+        "capacidad": "MONOPLAZA"
+      },
+      "transmision": {
+        "idTransmision": 0,
+        "tipoTransmision": "AUTOMATICA",
+        "velocidades": "CINCO"
+      }
+    },
+    "id": "6",
+    "cantidad": 2,
+    "precioUnitario": 5200000.0,
+    "subtotal": 10400000.0
+  }
+]

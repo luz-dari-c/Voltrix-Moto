@@ -6,23 +6,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAO {
-
-    private static final String RUTA_RECURSO_CLASSPATH = "/Resources/data/usuarios.json"; 
-    private static final String DIR_PERSISTENCIA = "Resources" + File.separator + "data";
-    private static final String RUTA_PERSISTENCIA = DIR_PERSISTENCIA + File.separator + "usuarios.json";
-
+    private static final String RUTA_PERSISTENCIA = "src/Resources/Data/usuarios.json";
     private Gson gson;
     private List<Usuario> usuarios;
     private static UsuarioDAO instancia;
@@ -41,103 +31,59 @@ public class UsuarioDAO {
 
     private List<Usuario> cargarUsuarios() {
         List<Usuario> usuariosCargados = new ArrayList<>();
-        File archivoPersistencia = new File(RUTA_PERSISTENCIA);
+        File archivo = new File(RUTA_PERSISTENCIA);
 
-        if (archivoPersistencia.exists() && archivoPersistencia.length() > 0) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(archivoPersistencia))) {
-                usuariosCargados = leerJSON(reader);
-                System.out.println("DAO DEBUG: Carga exitosa desde RUTA DE PERSISTENCIA. Usuarios: " + usuariosCargados.size());
-                if (!usuariosCargados.isEmpty()) {
-                     return usuariosCargados;
+        if (archivo.exists() && archivo.length() > 0) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+                Type listType = new TypeToken<List<Usuario>>() {}.getType();
+                usuariosCargados = gson.fromJson(reader, listType);
+                if (usuariosCargados == null) {
+                    usuariosCargados = new ArrayList<>();
                 }
             } catch (IOException | JsonSyntaxException e) {
-                System.err.println("DAO ERROR: Fallo al leer desde persistencia. " + e.getMessage());
+                System.err.println("Error al cargar usuarios: " + e.getMessage());
+                usuariosCargados = new ArrayList<>();
             }
         }
-
-        try (InputStream is = getClass().getResourceAsStream(RUTA_RECURSO_CLASSPATH)) {
-            if (is != null) {
-                try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-                    usuariosCargados = leerJSON(reader);
-                }
-                System.out.println("DAO DEBUG: Carga exitosa desde CLASSPATH. Usuarios: " + usuariosCargados.size());
-            }
-        } catch (IOException | JsonSyntaxException e) {
-            System.err.println("DAO ERROR: Error al leer el archivo JSON desde Classpath: " + e.getMessage());
-        }
-        
-        if (usuariosCargados.isEmpty()) {
-            usuariosCargados = new ArrayList<>();
-        }
-
-        new File(DIR_PERSISTENCIA).mkdirs(); 
-        System.out.println("DAO DEBUG: Carga finalizada. Total: " + usuariosCargados.size());
         return usuariosCargados;
     }
-    
-    private List<Usuario> leerJSON(BufferedReader reader) throws JsonSyntaxException {
-        Type listType = new TypeToken<List<Usuario>>() {}.getType();
-        List<Usuario> lista = gson.fromJson(reader, listType);
-        return lista != null ? lista : new ArrayList<>();
-    }
 
-    private synchronized void guardarUsuarios(List<Usuario> lista) {
+    private synchronized void guardarUsuarios() {
         File archivo = new File(RUTA_PERSISTENCIA);
+        // Crear directorios si no existen
+        archivo.getParentFile().mkdirs();
+        
         try (FileWriter writer = new FileWriter(archivo)) {
-            gson.toJson(lista, writer);
-            System.out.println("DAO DEBUG: Usuarios guardados en JSON. Ruta: " + archivo.getAbsolutePath());
+            gson.toJson(usuarios, writer);
         } catch (IOException e) {
-            System.err.println("DAO ERROR: Error al escribir el archivo JSON: " + e.getMessage());
+            System.err.println("Error al guardar usuarios: " + e.getMessage());
         }
     }
-    
+
     public synchronized boolean registrarUsuario(Usuario usuario) {
         if (existeEmail(usuario.getEmail()) || existeCedula(usuario.getCedula())) {
             return false;
         }
         usuarios.add(usuario);
-        guardarUsuarios(this.usuarios);
+        guardarUsuarios();
         return true;
     }
 
     public Usuario login(String email, String password) {
-        // email y password ya llegan trimmados y en minúsculas (email) desde el Controller
-        String emailLimpio = email; 
-        String passwordLimpia = password;
+        String emailLimpio = email.trim().toLowerCase();
+        String passwordLimpia = password.trim();
 
         for (Usuario usuario : usuarios) {
+            String dbEmail = usuario.getEmail() != null ? usuario.getEmail().trim().toLowerCase() : "";
+            String dbPassword = usuario.getPassword() != null ? usuario.getPassword().trim() : "";
             
-            // 🔴 INICIO DEBUG EXTENSO
-            String dbEmail = (usuario.getEmail() != null) ? usuario.getEmail().trim().toLowerCase() : "NULL";
-            String dbPassword = (usuario.getPassword() != null) ? usuario.getPassword().trim() : "NULL";
-            
-            boolean emailMatch = dbEmail.equals(emailLimpio);
-            boolean passwordMatch = dbPassword.equals(passwordLimpia);
-            
-            System.out.println("----------------------------------------------------------------------");
-            System.out.println("DAO DEBUG LOGIN: Comparando usuario: " + usuario.getPrimerNombre());
-            System.out.println("   EMAIL (DB):  '" + dbEmail + "' | Longitud: " + dbEmail.length());
-            System.out.println("   EMAIL (USER):'" + emailLimpio + "' | Longitud: " + emailLimpio.length());
-            System.out.println("   EMAIL MATCH: " + emailMatch);
-
-            if (emailMatch) {
-                System.out.println("   PASSWORD (DB):  '" + dbPassword + "' | Longitud: " + dbPassword.length());
-                System.out.println("   PASSWORD (USER):'" + passwordLimpia + "' | Longitud: " + passwordLimpia.length());
-                System.out.println("   PASSWORD MATCH: " + passwordMatch);
-                if (passwordMatch) {
-                    System.out.println("DAO DEBUG LOGIN: ¡COINCIDENCIA ENCONTRADA!");
-                    return usuario; 
-                }
-            } else {
-                 System.out.println("   PASSWORD: No se compara por fallo en EMAIL.");
+            if (dbEmail.equals(emailLimpio) && dbPassword.equals(passwordLimpia)) {
+                return usuario;
             }
-            System.out.println("----------------------------------------------------------------------");
-            // 🔴 FIN DEBUG EXTENSO
         }
         return null;
     }
-    
-    // Resto de métodos (existeEmail, existeCedula, etc.) se mantienen igual.
+
     public boolean existeEmail(String email) {
         if (email == null || email.trim().isEmpty()) return false;
         return usuarios.stream()
@@ -149,7 +95,25 @@ public class UsuarioDAO {
         return usuarios.stream()
                 .anyMatch(usuario -> cedula.trim().equals(usuario.getCedula()));
     }
-    
+
+    public Usuario buscarPorCorreo(String correo) {
+        String correoLimpio = correo.trim().toLowerCase();
+        return usuarios.stream()
+                .filter(usuario -> usuario.getEmail().trim().equalsIgnoreCase(correoLimpio))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public synchronized boolean actualizarContrasena(String email, String nuevaContrasena) {
+        Usuario usuario = buscarPorCorreo(email);
+        if (usuario != null) {
+            usuario.setPassword(nuevaContrasena);
+            guardarUsuarios();
+            return true;
+        }
+        return false;
+    }
+
     public List<Usuario> obtenerTodos() {
         return new ArrayList<>(usuarios);
     }
