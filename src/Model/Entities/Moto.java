@@ -16,7 +16,7 @@ public class Moto {
 
     private TipoMoto tipoMoto;
     private TipoColorMoto tipoColorMoto;
-
+    private int cilindraje;
     private boolean tieneParrilla;
     private boolean tieneMaletero;
 
@@ -24,8 +24,8 @@ public class Moto {
     private EstadoMoto estado;
 
     public Moto(String marca, String modelo, LocalDate fechaIngreso, double precio,
-                PartesMoto partesMoto, TipoMoto tipoMoto, TipoColorMoto tipoColorMoto,
-                boolean tieneParrilla, boolean tieneMaletero) {
+            PartesMoto partesMoto, TipoMoto tipoMoto, TipoColorMoto tipoColorMoto, int cilindraje,
+            boolean tieneParrilla, boolean tieneMaletero) {
 
         this.idMoto = 0;
         this.placa = Utilidades.GeneradorDePlaca.generarPlaca();
@@ -36,9 +36,10 @@ public class Moto {
         this.partesMoto = partesMoto;
         this.tipoMoto = tipoMoto;
         this.tipoColorMoto = tipoColorMoto;
+        this.cilindraje = cilindraje;
         this.tieneParrilla = tieneParrilla;
         this.tieneMaletero = tieneMaletero;
-        this.estado = EstadoMoto.DISPONIBLE; 
+        this.estado = EstadoMoto.DISPONIBLE;
     }
 
     public int getIdMoto() {
@@ -105,6 +106,14 @@ public class Moto {
         this.tipoColorMoto = tipoColorMoto;
     }
 
+    public int getCilindraje() {
+        return cilindraje;
+    }
+
+    public void setCilindraje(int cilindraje) {
+        this.cilindraje = cilindraje;
+    }
+
     public boolean isTieneParrilla() {
         return tieneParrilla;
     }
@@ -133,7 +142,7 @@ public class Moto {
         return estado;
     }
 
-    public void setEstado(EstadoMoto estado) { 
+    public void setEstado(EstadoMoto estado) {
         this.estado = estado;
     }
 }

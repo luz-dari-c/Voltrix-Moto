@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class GeneradorDePlaca{
+public class GeneradorDePlaca {
 
     private static final String LETRAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final Random random = new Random();
@@ -29,10 +29,10 @@ public class GeneradorDePlaca{
             }
 
             placa = sb.toString();
-        } while (placasGeneradas.contains(placa)); 
+
+        } while (placasGeneradas.contains(placa) || placa.startsWith("BSE"));
 
         placasGeneradas.add(placa);
-
         return placa;
     }
 

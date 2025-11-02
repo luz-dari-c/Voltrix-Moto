@@ -1,8 +1,16 @@
 package DAO;
 
 import Model.Constants.*;
+import Model.Entities.Asiento;
+import Model.Entities.Chasis;
+import Model.Entities.FrenoDelantero;
+import Model.Entities.FrenoTrasero;
+import Model.Entities.LlantaDelantera;
+import Model.Entities.LlantaTrasera;
 import Model.Entities.Moto;
+import Model.Entities.Motor;
 import Model.Entities.PartesMoto;
+import Model.Entities.Transmision;
 import Utilidades.LocalDateAdapter;
 import Utilidades.GeneradorDeIdPartes;
 import com.google.gson.Gson;
@@ -80,8 +88,18 @@ public class MotoDAO {
 
         boolean existe = motos.stream().anyMatch(m -> m.getPlaca().equalsIgnoreCase(moto.getPlaca()));
         if (existe) {
-            System.err.println("⚠️ Ya existe una moto con la placa: " + moto.getPlaca());
+            System.err.println(" Ya existe una moto con la placa: " + moto.getPlaca());
             return false;
+        }
+
+        if (moto.getPlaca().startsWith("BSE-")) {
+            boolean yaExisteBase = motos.stream()
+                    .anyMatch(m -> m.getPlaca().startsWith("BSE-") && m.getTipoMoto() == moto.getTipoMoto());
+
+            if (yaExisteBase) {
+                System.err.println(" Ya existe una moto base para el tipo " + moto.getTipoMoto());
+                return false;
+            }
         }
 
         if (moto.getIdMoto() == 0) {
@@ -136,13 +154,19 @@ public class MotoDAO {
 
     public boolean eliminarMoto(int idMoto) {
         List<Moto> motos = cargarTodas();
-        boolean eliminado = motos.removeIf(m -> m.getIdMoto() == idMoto);
+        Moto moto = motos.stream()
+                .filter(m -> m.getIdMoto() == idMoto)
+                .findFirst()
+                .orElse(null);
 
-        if (eliminado) {
-            guardarTodas(motos);
-            return true;
+        if (moto == null) {
+            System.err.println("Moto con ID " + idMoto + " no encontrada.");
+            return false;
         }
-        return false;
+
+        motos.remove(moto);
+        guardarTodas(motos);
+        return true;
     }
 
     public boolean actualizarMoto(
@@ -271,4 +295,114 @@ public class MotoDAO {
         File archivo = new File(RUTA_JSON);
         archivo.getParentFile().mkdirs();
     }
+
+    public boolean duplicarMotoPorTipo(
+            TipoMoto tipoMoto,
+            TipoColorMoto nuevoColor,
+            String nuevaMarca
+    ) {
+        List<Moto> motos = cargarTodas();
+
+        Moto base = motos.stream()
+                .filter(m -> m.getTipoMoto() == tipoMoto && m.getPlaca().startsWith("BSE-"))
+                .findFirst()
+                .orElse(null);
+
+        if (base == null) {
+            System.err.println("No existe una moto base para el tipo: " + tipoMoto);
+            return false;
+        }
+
+        PartesMoto p = base.getPartesMoto();
+
+        PartesMoto partesClonadas = new PartesMoto(
+                (p.getLlantaDelantera() != null)
+                ? new LlantaDelantera(
+                        p.getLlantaDelantera().getMedida(),
+                        p.getLlantaDelantera().getMarca(),
+                        p.getLlantaDelantera().getModelo(),
+                        p.getLlantaDelantera().getMaterial()
+                )
+                : null,
+                (p.getLlantaTrasera() != null)
+                ? new LlantaTrasera(
+                        p.getLlantaTrasera().getMedida(),
+                        p.getLlantaTrasera().getMarca(),
+                        p.getLlantaTrasera().getModelo(),
+                        p.getLlantaTrasera().getMaterial()
+                )
+                : null,
+                (p.getChasis() != null)
+                ? new Chasis(
+                        p.getChasis().getMaterial(),
+                        p.getChasis().getTipo()
+                )
+                : null,
+                (p.getMotor() != null)
+                ? new Motor(
+                        p.getMotor().getTipo(),
+                        p.getMotor().getCilindrada(),
+                        p.getMotor().getPotencia()
+                )
+                : null,
+                (p.getAsiento() != null)
+                ? new Asiento(
+                        p.getAsiento().getMaterial(),
+                        p.getAsiento().getCapacidad()
+                )
+                : null,
+                (p.getFrenoDelantero() != null)
+                ? new FrenoDelantero(
+                        p.getFrenoDelantero().getMarca(),
+                        p.getFrenoDelantero().getModelo(),
+                        p.getFrenoDelantero().getMaterial()
+                )
+                : null,
+                (p.getFrenoTrasero() != null)
+                ? new FrenoTrasero(
+                        p.getFrenoTrasero().getMarca(),
+                        p.getFrenoTrasero().getModelo(),
+                        p.getFrenoTrasero().getMaterial()
+                )
+                : null,
+                (p.getTransmision() != null)
+                ? new Transmision(
+                        p.getTransmision().getTipoTransmision(),
+                        p.getTransmision().getVelocidades()
+                )
+                : null
+        );
+
+        Moto nuevaMoto = new Moto(
+                (nuevaMarca != null && !nuevaMarca.isBlank()) ? nuevaMarca : base.getMarca(),
+                base.getModelo(),
+                LocalDate.now(),
+                base.getPrecio(),
+                partesClonadas,
+                base.getTipoMoto(),
+                (nuevoColor != null) ? nuevoColor : base.getTipoColorMoto(),
+                base.getCilindraje(),
+                base.isTieneParrilla(),
+                base.isTieneMaletero()
+        );
+
+        nuevaMoto.setPlaca(Utilidades.GeneradorDePlaca.generarPlaca());
+
+        return guardarMoto(nuevaMoto);
+    }
+
+    public List<Moto> obtenerMotosPorTipoYDisponibles(TipoMoto tipoMoto) {
+        List<Moto> motos = cargarTodas();
+
+        List<Moto> filtradas = new ArrayList<>();
+
+        for (Moto moto : motos) {
+            if (moto.getTipoMoto() == tipoMoto && moto.getEstado() == EstadoMoto.DISPONIBLE) {
+                filtradas.add(moto);
+            }
+        }
+
+        return filtradas;
+    }
+
 }

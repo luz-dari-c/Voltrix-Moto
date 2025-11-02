@@ -12,20 +12,21 @@ public class PartesMoto {
     private FrenoTrasero frenoTrasero;
     private Transmision transmision;
 
-    public PartesMoto(LlantaDelantera llantaDelantera, LlantaTrasera llantaTrasera,
-                      Chasis chasis, Motor motor, Asiento asiento, FrenoDelantero frenoDelantero) {
+    public PartesMoto(LlantaDelantera llantaDelantera,
+            LlantaTrasera llantaTrasera,
+            Chasis chasis,
+            Motor motor,
+            Asiento asiento,
+            FrenoDelantero frenoDelantero,
+            FrenoTrasero frenoTrasero,
+            Transmision transmision) {
+
         this.llantaDelantera = llantaDelantera;
         this.llantaTrasera = llantaTrasera;
         this.chasis = chasis;
         this.motor = motor;
         this.asiento = asiento;
         this.frenoDelantero = frenoDelantero;
-    }
-
-    public PartesMoto(LlantaDelantera llantaDelantera, LlantaTrasera llantaTrasera,
-                      Chasis chasis, Motor motor, Asiento asiento, FrenoDelantero frenoDelantero,
-                      FrenoTrasero frenoTrasero, Transmision transmision) {
-        this(llantaDelantera, llantaTrasera, chasis, motor, asiento, frenoDelantero);
         this.frenoTrasero = frenoTrasero;
         this.transmision = transmision;
     }
