@@ -192,6 +192,8 @@ public class Java extends javax.swing.JFrame {
         if (resultadoLogin.equals("OK")) {
             Usuario usuarioLogeado = usuarioController.getUsuarioLogeado(email, password);
             JOptionPane.showMessageDialog(this, "¡Bienvenido, " + usuarioLogeado.getPrimerNombre() + "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            Store st = new Store();
+            st.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, resultadoLogin, "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
         }
