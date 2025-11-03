@@ -17,7 +17,7 @@ import javax.swing.Timer;
  */
 public class Verificación extends javax.swing.JFrame {
 
-     private final UsuarioController usuarioController;
+    private final UsuarioController usuarioController;
     private Timer timer;
     private int tiempoRestante;
     private static final int TIEMPO_ESPERA = 120; // 2 minutos
@@ -169,23 +169,6 @@ public class Verificación extends javax.swing.JFrame {
         int minutos = tiempoRestante / 60;
         int segundos = tiempoRestante % 60;
         contador.setText(String.format("%02d:%02d", minutos, segundos));
-    }
-
-    // Métodos de los eventos (generados por NetBeans)
-    private void enviarCodigoActionPerformed(java.awt.event.ActionEvent evt) {
-        String email = jTextField1.getText().trim();
-        String resultado = usuarioController.enviarCodigoRecuperacion(email);
-
-        if (resultado.equals("OK")) {
-            JOptionPane.showMessageDialog(this,
-                    "Código de verificación enviado a su correo electrónico.",
-                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            iniciarTemporizador();
-            limpiarCamposCodigo();
-            PanelNewPass.setVisible(false);
-        } else {
-            JOptionPane.showMessageDialog(this, resultado, "Error", JOptionPane.ERROR_MESSAGE);
-        }
     }
 
     /**
@@ -350,6 +333,11 @@ public class Verificación extends javax.swing.JFrame {
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 310, -1));
 
         enviarCodigo.setText("Enviar codigo");
+        enviarCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarCodigoActionPerformed(evt);
+            }
+        });
         jPanel1.add(enviarCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 520));
@@ -387,6 +375,22 @@ public class Verificación extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, resultado, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void enviarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarCodigoActionPerformed
+        String email = jTextField1.getText().trim();
+        String resultado = usuarioController.enviarCodigoRecuperacion(email);
+
+        if (resultado.equals("OK")) {
+            JOptionPane.showMessageDialog(this,
+                    "Código de verificación enviado a su correo electrónico.",
+                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            iniciarTemporizador();
+            limpiarCamposCodigo();
+            PanelNewPass.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(this, resultado, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_enviarCodigoActionPerformed
 
     /**
      * @param args the command line arguments

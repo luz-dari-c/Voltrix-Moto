@@ -227,10 +227,6 @@ public class Pago extends javax.swing.JFrame {
         DatosPago.setVisible(true);
     }//GEN-LAST:event_rbDebitoActionPerformed
 
-    private void rbEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEfectivoActionPerformed
-        DatosPago.setVisible(true);
-    }//GEN-LAST:event_rbEfectivoActionPerformed
-
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         int opcion = JOptionPane.showConfirmDialog(
                 null,
@@ -250,6 +246,10 @@ public class Pago extends javax.swing.JFrame {
             System.out.println("El usuario decidió continuar con la compra.");
         }
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void rbEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEfectivoActionPerformed
+        DatosPago.setVisible(true);
+    }//GEN-LAST:event_rbEfectivoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -342,4 +342,34 @@ public class UsuarioController {
             campo.setForeground(new Color(255, 193, 7)); // Amarillo/naranja
         }
     }
+
+    // Agrega estos métodos al UsuarioController:
+    public boolean validarEmailExistente(String email) {
+        return usuarioDAO.existeEmail(email);
+    }
+
+    public String actualizarContrasena(String email, String nuevaContrasena, String confirmacionContrasena) {
+        // Validaciones básicas
+        if (nuevaContrasena == null || nuevaContrasena.trim().isEmpty()
+                || confirmacionContrasena == null || confirmacionContrasena.trim().isEmpty()) {
+            return "Ambos campos de contraseña son obligatorios.";
+        }
+
+        if (!nuevaContrasena.equals(confirmacionContrasena)) {
+            return "Las contraseñas no coinciden.";
+        }
+
+        // Validar fortaleza de contraseña
+        String errorContrasena = validarContrasena(nuevaContrasena);
+        if (errorContrasena != null) {
+            return errorContrasena;
+        }
+
+        // Actualizar en la base de datos
+        if (usuarioDAO.actualizarContrasena(email, nuevaContrasena)) {
+            return "OK";
+        } else {
+            return "Error al actualizar la contraseña. Contacte al administrador.";
+        }
+    }
 }
