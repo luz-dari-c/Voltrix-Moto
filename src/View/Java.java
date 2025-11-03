@@ -9,6 +9,7 @@ import Model.Entities.Usuario;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 /**
@@ -37,7 +38,7 @@ public class Java extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jTextField1 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
@@ -72,20 +73,20 @@ public class Java extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 350, 20));
 
-        jTextField1.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(null);
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtEmail.setBackground(new java.awt.Color(0, 0, 0));
+        txtEmail.setForeground(new java.awt.Color(255, 255, 255));
+        txtEmail.setBorder(null);
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField1FocusLost(evt);
+                txtEmailFocusLost(evt);
             }
         });
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 350, 40));
+        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 350, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-password-24.png"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 50, 40));
@@ -140,6 +141,7 @@ public class Java extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, -1, 20));
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("¿No tienes una cuenta?");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, -1, -1));
 
@@ -151,7 +153,7 @@ public class Java extends javax.swing.JFrame {
                 jLabel11MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, -1, 30));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, 80, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 590, 690));
 
@@ -179,12 +181,12 @@ public class Java extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         //boton ya creado. agrega el codigo justamente necesario aqui
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String email = jTextField1.getText().trim();
+        String email = txtEmail.getText().trim();
         String password = new String(jPasswordField1.getPassword()).trim();
 
         String resultadoLogin = usuarioController.login(email, password);
@@ -214,20 +216,30 @@ public class Java extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel11MouseClicked
 
-    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
-        String error = usuarioController.validarEmail(jTextField1.getText());
-        if (error != null) {
-            jTextField1.setToolTipText(error);
-            jTextField1.setBorder(BorderFactory.createLineBorder(Color.RED));
-        } else {
-            jTextField1.setToolTipText(null);
-            jTextField1.setBorder(UIManager.getBorder("TextField.border"));
-        }
-    }//GEN-LAST:event_jTextField1FocusLost
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        String email = txtEmail.getText().trim();
 
-    private void mostrarMensaje(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje, "Información", JOptionPane.INFORMATION_MESSAGE);
-    }
+        
+        if (!email.isEmpty()) {
+
+         
+            if (!email.endsWith("@gmail.com")
+                    && !email.endsWith("@hotmail.com")
+                    && !email.endsWith("@outlook.com")
+                    && !email.endsWith("@unicolombo.edu.co")) {
+
+                JOptionPane.showMessageDialog(null,
+                        "Por favor ingresa un correo válido (@gmail.com, @hotmail.com, @outlook.com o @unicolombo.edu.co)",
+                        "Correo inválido",
+                        JOptionPane.WARNING_MESSAGE);
+
+               
+                SwingUtilities.invokeLater(() -> txtEmail.requestFocusInWindow());
+            }
+        }
+    }//GEN-LAST:event_txtEmailFocusLost
+
+
 
     /**
      * @param args the command line arguments
@@ -282,6 +294,6 @@ public class Java extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtEmail;
     // End of variables declaration//GEN-END:variables
 }
