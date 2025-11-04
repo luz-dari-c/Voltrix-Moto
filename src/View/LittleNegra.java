@@ -4,11 +4,25 @@
  */
 package View;
 
+import Controller.MotoController;
+import Model.Constants.TipoColorMoto;
+import static Model.Constants.TipoColorMoto.BLANCO;
+import static Model.Constants.TipoColorMoto.NEGRO;
+import static Model.Constants.TipoColorMoto.ROJO;
+import static Model.Constants.TipoColorMoto.VERDE;
+import Model.Constants.TipoMoto;
+import Model.Entities.Moto;
+import java.util.List;
+import java.util.Map;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author gameV
  */
 public class LittleNegra extends javax.swing.JFrame {
+
+    private Moto motoActual;
 
     /**
      * Creates new form LittleNegra
@@ -16,6 +30,118 @@ public class LittleNegra extends javax.swing.JFrame {
     public LittleNegra() {
         initComponents();
         this.setLocationRelativeTo(null);
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.CHOPPER);
+        Map<TipoColorMoto, Integer> conteo = controller.contarPorColor(TipoMoto.CHOPPER);
+
+        if (!motos.isEmpty()) {
+            Moto moto = motos.get(0);
+            motoActual = moto;
+
+            TipoColorMoto color = moto.getTipoColorMoto();
+
+            txtModelo.setText(moto.getModelo());
+            marcatxt.setText(moto.getMarca());
+            tipoTxt.setText(moto.getTipoMoto().toString());
+            precioTxt.setText("$" + moto.getPrecio());
+            estadotxt.setText(moto.getEstado().toString());
+            CilindrajeTxt1.setText(moto.getPartesMoto().getMotor().getCilindrada() + " cc");
+            Motortxt.setText(moto.getPartesMoto().getMotor().getTipo().toString());
+            String añoIngreso = String.valueOf(moto.getFechaIngreso().getYear());
+            txtAño1.setText(añoIngreso);
+
+            String ruta = switch (color) {
+                case ROJO ->
+                    "/Images/Chopper-roja.png";
+                case NEGRO ->
+                    "/Images/moto (2).png";
+                case BLANCO ->
+                    "/Images/Chopper-blanca.png";
+                case VERDE ->
+                    "/Images/Chopper-verde.png";
+                default ->
+                    "";
+            };
+
+            MotoFoto.setIcon(new ImageIcon(getClass().getResource(ruta)));
+
+            int cantidadColor = conteo.getOrDefault(color, 0);
+            jLabel14.setText("Disponibles color " + color + ": " + cantidadColor);
+        } else {
+            txtModelo.setText("No hay motos disponibles de ese tipo.");
+        }
+
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cambiarColorMoto(TipoColorMoto.ROJO);
+            }
+        });
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cambiarColorMoto(TipoColorMoto.VERDE);
+            }
+        });
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cambiarColorMoto(TipoColorMoto.BLANCO);
+            }
+        });
+        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cambiarColorMoto(TipoColorMoto.NEGRO);
+            }
+        });
+    }
+
+    private void cambiarColorMoto(TipoColorMoto colorSeleccionado) {
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.CHOPPER);
+        Map<TipoColorMoto, Integer> conteo = controller.contarPorColor(TipoMoto.CHOPPER);
+
+        List<Moto> motosDelColor = motos.stream()
+                .filter(m -> m.getTipoColorMoto() == colorSeleccionado)
+                .toList();
+
+        if (motosDelColor.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No hay motos disponibles de color " + colorSeleccionado + ".",
+                    "Sin disponibilidad",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        Moto moto = motosDelColor.get(0);
+        motoActual = moto;
+
+        txtModelo.setText(moto.getModelo());
+        marcatxt.setText(moto.getMarca());
+        tipoTxt.setText(moto.getTipoMoto().toString());
+        precioTxt.setText("$" + moto.getPrecio());
+        estadotxt.setText(moto.getEstado().toString());
+        CilindrajeTxt1.setText(moto.getPartesMoto().getMotor().getCilindrada() + " cc");
+        Motortxt.setText(moto.getPartesMoto().getMotor().getTipo().toString());
+        String añoIngreso = String.valueOf(moto.getFechaIngreso().getYear());
+        txtAño1.setText(añoIngreso);
+
+        String ruta = switch (colorSeleccionado) {
+            case ROJO ->
+                "/Images/Chopper-roja.png";
+            case NEGRO ->
+                "/Images/moto (2).png";
+            case BLANCO ->
+                "/Images/Chopper-blanca.png";
+            case VERDE ->
+                "/Images/Chopper-verde.png";
+            default ->
+                "";
+        };
+
+        MotoFoto.setIcon(new ImageIcon(getClass().getResource(ruta)));
+
+        int cantidadColor = conteo.getOrDefault(colorSeleccionado, 0);
+        jLabel14.setText("Disponibles color " + colorSeleccionado + ": " + cantidadColor);
     }
 
     /**
@@ -270,7 +396,7 @@ public class LittleNegra extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Carrito crt = new Carrito();
+        Carrito crt = new Carrito();
         this.dispose();
         crt.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

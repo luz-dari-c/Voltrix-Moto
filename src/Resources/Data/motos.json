@@ -3,9 +3,9 @@
     "idMoto": 1,
     "placa": "BSE-DEPORTIVA",
     "marca": "Yamaha",
-    "modelo": "R6 Base",
+    "modelo": "R6 Sport",
     "fechaIngreso": "2024-01-01",
-    "precio": 0.0,
+    "precio": 1.9E7,
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "NEGRO",
     "cilindraje": 200,
@@ -22,7 +22,7 @@
       },
       "llantaTrasera": {
         "idLlantaTrasera": "LLT-BSE1",
-        "medida": "R17_120_70",
+        "medida": "R16_100_80",
         "ubicacion": "TRASERA",
         "marca": "Michelin",
         "modelo": "Pilot",
@@ -70,9 +70,9 @@
     "idMoto": 2,
     "placa": "BSE-NAKED",
     "marca": "Honda",
-    "modelo": "CB Base",
+    "modelo": "CB150F",
     "fechaIngreso": "2024-01-01",
-    "precio": 0.0,
+    "precio": 1.1E7,
     "tipoMoto": "NAKED",
     "tipoColorMoto": "NEGRO",
     "cilindraje": 150,
@@ -134,12 +134,12 @@
   },
   {
     "idMoto": 3,
-    "placa": "BSE-CRUCERO",
+    "placa": "BSE-SEMIAUTOMATICA",
     "marca": "Harley-Davidson",
-    "modelo": "Low Rider Base",
+    "modelo": "Low Rider",
     "fechaIngreso": "2024-01-01",
-    "precio": 0.0,
-    "tipoMoto": "CRUCERO",
+    "precio": 1.49E8,
+    "tipoMoto": "SEMIAUTOMATICA",
     "tipoColorMoto": "NEGRO",
     "cilindraje": 1200,
     "tieneParrilla": true,
@@ -198,13 +198,13 @@
   },
   {
     "idMoto": 4,
-    "placa": "BSE-TURISMO",
+    "placa": "BSE-SEMIDEPORTIVA",
     "marca": "BMW",
-    "modelo": "R1250RT Base",
+    "modelo": "R1250RT",
     "fechaIngreso": "2024-01-01",
-    "precio": 0.0,
-    "tipoMoto": "TURISMO",
-    "tipoColorMoto": "GRIS",
+    "precio": 1.6E8,
+    "tipoMoto": "SEMIDEPORTIVA",
+    "tipoColorMoto": "NEGRO",
     "cilindraje": 1250,
     "tieneParrilla": true,
     "tieneMaletero": true,
@@ -264,13 +264,13 @@
   },
   {
     "idMoto": 5,
-    "placa": "BSE-AVENTURA",
+    "placa": "BSE-BOXER",
     "marca": "KTM",
-    "modelo": "890 Adventure Base",
+    "modelo": "890 Adventure",
     "fechaIngreso": "2024-01-01",
-    "precio": 0.0,
-    "tipoMoto": "AVENTURA",
-    "tipoColorMoto": "NARANJA",
+    "precio": 8.1E7,
+    "tipoMoto": "BOXER",
+    "tipoColorMoto": "NEGRO",
     "cilindraje": 890,
     "tieneParrilla": true,
     "tieneMaletero": false,
@@ -329,94 +329,95 @@
   },
   {
     "idMoto": 6,
-    "placa": "BSE-ENDURO",
-    "marca": "Kawasaki",
-    "modelo": "KX450 Base",
+    "placa": "BSE-CHOPPER",
+    "marca": "Indian",
+    "modelo": "Chief",
     "fechaIngreso": "2024-01-01",
-    "precio": 0.0,
-    "tipoMoto": "ENDURO",
-    "tipoColorMoto": "VERDE",
-    "cilindraje": 450,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "precio": 1.2E8,
+    "tipoMoto": "CHOPPER",
+    "tipoColorMoto": "NEGRO",
+    "cilindraje": 1600,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-BSE6",
         "ubicacion": "DELANTERA",
         "marca": "Dunlop",
-        "modelo": "Geomax",
+        "modelo": "Elite",
         "material": "CAUCHO"
       },
       "llantaTrasera": {
         "idLlantaTrasera": "LLT-BSE6",
         "ubicacion": "TRASERA",
         "marca": "Dunlop",
-        "modelo": "Geomax",
+        "modelo": "Elite",
         "material": "CAUCHO"
       },
       "chasis": {
         "idChasis": "CHS-BSE6",
-        "material": "ALUMINIO",
-        "tipo": "PERIMETRAL"
+        "material": "ACERO"
       },
       "motor": {
         "idMotor": "MTR-BSE6",
         "tipo": "CUATRO_TIEMPOS",
-        "cilindrada": 450,
-        "potencia": 55
+        "cilindrada": 1600,
+        "potencia": 100
       },
       "asiento": {
         "idAsiento": "AST-BSE6",
         "material": "CUERO",
-        "capacidad": "MONOPLAZA"
+        "capacidad": "BIPLAZA"
       },
       "frenoDelantero": {
         "idFrenoDelantero": "FRD-BSE6",
         "ubicacion": "DELANTERO",
-        "marca": "Nissin",
-        "modelo": "FD-End",
+        "marca": "Indian",
+        "modelo": "FD-Chop",
         "material": "ACERO"
       },
       "frenoTrasero": {
         "idFrenoTrasero": "FRT-BSE6",
         "ubicacion": "TRASERO",
-        "marca": "Nissin",
-        "modelo": "FT-End",
+        "marca": "Indian",
+        "modelo": "FT-Chop",
         "material": "ACERO"
       },
       "transmision": {
         "idTransmision": "TRS-BSE6",
         "tipoTransmision": "MANUAL",
-        "velocidades": "CINCO"
+        "velocidades": "SEIS"
       }
     },
     "estado": "DISPONIBLE"
   },
   {
     "idMoto": 7,
-    "placa": "BSE-MOTOCROSS",
-    "marca": "Honda",
-    "modelo": "CRF250R Base",
+    "placa": "BSE-SUPERSPORT",
+    "marca": "Kawasaki",
+    "modelo": "Ninja ZX-10R",
     "fechaIngreso": "2024-01-01",
-    "precio": 0.0,
-    "tipoMoto": "MOTOCROSS",
-    "tipoColorMoto": "ROJO",
-    "cilindraje": 250,
+    "precio": 1.25E8,
+    "tipoMoto": "SUPERSPORT",
+    "tipoColorMoto": "NEGRO",
+    "cilindraje": 998,
     "tieneParrilla": false,
     "tieneMaletero": false,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-BSE7",
+        "medida": "R17_120_70",
         "ubicacion": "DELANTERA",
         "marca": "Bridgestone",
-        "modelo": "Battlecross",
+        "modelo": "Battlax Racing",
         "material": "CAUCHO"
       },
       "llantaTrasera": {
         "idLlantaTrasera": "LLT-BSE7",
+        "medida": "R17_180_55",
         "ubicacion": "TRASERA",
         "marca": "Bridgestone",
-        "modelo": "Battlecross",
+        "modelo": "Battlax Racing",
         "material": "CAUCHO"
       },
       "chasis": {
@@ -427,8 +428,8 @@
       "motor": {
         "idMotor": "MTR-BSE7",
         "tipo": "CUATRO_TIEMPOS",
-        "cilindrada": 250,
-        "potencia": 40
+        "cilindrada": 998,
+        "potencia": 203
       },
       "asiento": {
         "idAsiento": "AST-BSE7",
@@ -438,21 +439,21 @@
       "frenoDelantero": {
         "idFrenoDelantero": "FRD-BSE7",
         "ubicacion": "DELANTERO",
-        "marca": "Nissin",
-        "modelo": "FD-MX",
+        "marca": "Brembo",
+        "modelo": "FD-SSport",
         "material": "ACERO"
       },
       "frenoTrasero": {
         "idFrenoTrasero": "FRT-BSE7",
         "ubicacion": "TRASERO",
-        "marca": "Nissin",
-        "modelo": "FT-MX",
+        "marca": "Brembo",
+        "modelo": "FT-SSport",
         "material": "ACERO"
       },
       "transmision": {
         "idTransmision": "TRS-BSE7",
         "tipoTransmision": "MANUAL",
-        "velocidades": "CINCO"
+        "velocidades": "SEIS"
       }
     },
     "estado": "DISPONIBLE"
@@ -460,40 +461,42 @@
   {
     "idMoto": 8,
     "placa": "BSE-SCOOTER",
-    "marca": "Suzuki",
-    "modelo": "Address 125 Base",
+    "marca": "Yamaha",
+    "modelo": "NMAX 155",
     "fechaIngreso": "2024-01-01",
-    "precio": 0.0,
+    "precio": 1.45E7,
     "tipoMoto": "SCOOTER",
-    "tipoColorMoto": "AZUL",
-    "cilindraje": 125,
+    "tipoColorMoto": "NEGRO",
+    "cilindraje": 155,
     "tieneParrilla": false,
     "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-BSE8",
+        "medida": "R16_100_80",
         "ubicacion": "DELANTERA",
-        "marca": "Dunlop",
-        "modelo": "ScootSmart",
+        "marca": "IRC",
+        "modelo": "Tires",
         "material": "CAUCHO"
       },
       "llantaTrasera": {
         "idLlantaTrasera": "LLT-BSE8",
+        "medida": "R16_100_80",
         "ubicacion": "TRASERA",
-        "marca": "Dunlop",
-        "modelo": "ScootSmart",
+        "marca": "IRC",
+        "modelo": "Tires",
         "material": "CAUCHO"
       },
       "chasis": {
         "idChasis": "CHS-BSE8",
         "material": "ACERO",
-        "tipo": "MULTITUBULAR"
+        "tipo": "TUBULAR"
       },
       "motor": {
         "idMotor": "MTR-BSE8",
-        "tipo": "DOS_TIEMPOS",
-        "cilindrada": 125,
-        "potencia": 10
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 155,
+        "potencia": 15
       },
       "asiento": {
         "idAsiento": "AST-BSE8",
@@ -503,83 +506,340 @@
       "frenoDelantero": {
         "idFrenoDelantero": "FRD-BSE8",
         "ubicacion": "DELANTERO",
-        "marca": "ByBre",
+        "marca": "Yamaha",
         "modelo": "FD-Scoot",
-        "material": "CARBONO"
+        "material": "ACERO"
       },
       "frenoTrasero": {
         "idFrenoTrasero": "FRT-BSE8",
         "ubicacion": "TRASERO",
-        "marca": "ByBre",
+        "marca": "Yamaha",
         "modelo": "FT-Scoot",
-        "material": "CARBONO"
+        "material": "ACERO"
       },
       "transmision": {
         "idTransmision": "TRS-BSE8",
         "tipoTransmision": "AUTOMATICA",
-        "velocidades": "SEIS"
+        "velocidades": "UNA"
       }
     },
     "estado": "DISPONIBLE"
   },
   {
     "idMoto": 9,
-    "placa": "BSE-CHOPPER",
-    "marca": "Indian",
-    "modelo": "Chief Base",
-    "fechaIngreso": "2024-01-01",
-    "precio": 0.0,
-    "tipoMoto": "CHOPPER",
-    "tipoColorMoto": "NEGRO",
-    "cilindraje": 1600,
+    "placa": "XQW-713",
+    "marca": "Harley-Davidson",
+    "modelo": "Low Rider",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.49E8,
+    "tipoMoto": "SEMIAUTOMATICA",
+    "tipoColorMoto": "ROJO",
+    "cilindraje": 1200,
     "tieneParrilla": true,
     "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
-        "idLlantaDelantera": "LLD-BSE9",
+        "idLlantaDelantera": "LLD-16683",
         "ubicacion": "DELANTERA",
         "marca": "Dunlop",
-        "modelo": "Elite",
+        "modelo": "Cruise",
         "material": "CAUCHO"
       },
       "llantaTrasera": {
-        "idLlantaTrasera": "LLT-BSE9",
-        "ubicacion": "TRASERA",
+        "idLlantaTrasera": "LLT-28527",
+        "ubicacion": "DELANTERA",
         "marca": "Dunlop",
-        "modelo": "Elite",
+        "modelo": "Cruise",
         "material": "CAUCHO"
       },
       "chasis": {
-        "idChasis": "CHS-BSE9",
+        "idChasis": "CHS-37652",
         "material": "ACERO"
       },
       "motor": {
-        "idMotor": "MTR-BSE9",
+        "idMotor": "MTR-42682",
         "tipo": "CUATRO_TIEMPOS",
-        "cilindrada": 1600,
-        "potencia": 100
+        "cilindrada": 1200,
+        "potencia": 90
       },
       "asiento": {
-        "idAsiento": "AST-BSE9",
+        "idAsiento": "AST-17139",
         "material": "CUERO",
         "capacidad": "BIPLAZA"
       },
       "frenoDelantero": {
-        "idFrenoDelantero": "FRD-BSE9",
+        "idFrenoDelantero": "FRD-35534",
         "ubicacion": "DELANTERO",
-        "marca": "Indian",
-        "modelo": "FD-Chop",
+        "marca": "Harley",
+        "modelo": "FD-Cruise",
         "material": "ACERO"
       },
       "frenoTrasero": {
-        "idFrenoTrasero": "FRT-BSE9",
+        "idFrenoTrasero": "FRT-54512",
         "ubicacion": "TRASERO",
-        "marca": "Indian",
-        "modelo": "FT-Chop",
+        "marca": "Harley",
+        "modelo": "FT-Cruise",
         "material": "ACERO"
       },
       "transmision": {
-        "idTransmision": "TRS-BSE9",
+        "idTransmision": "TRS-76256",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 10,
+    "placa": "QDR-810",
+    "marca": "Harley-Davidson",
+    "modelo": "Low Rider",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.49E8,
+    "tipoMoto": "SEMIAUTOMATICA",
+    "tipoColorMoto": "BLANCO",
+    "cilindraje": 1200,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-94045",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Cruise",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-33539",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Cruise",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-85182",
+        "material": "ACERO"
+      },
+      "motor": {
+        "idMotor": "MTR-53766",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 1200,
+        "potencia": 90
+      },
+      "asiento": {
+        "idAsiento": "AST-58457",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-79866",
+        "ubicacion": "DELANTERO",
+        "marca": "Harley",
+        "modelo": "FD-Cruise",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-73647",
+        "ubicacion": "TRASERO",
+        "marca": "Harley",
+        "modelo": "FT-Cruise",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-95196",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 11,
+    "placa": "EGW-807",
+    "marca": "Harley-Davidson",
+    "modelo": "Low Rider",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.49E8,
+    "tipoMoto": "SEMIAUTOMATICA",
+    "tipoColorMoto": "NEGRO",
+    "cilindraje": 1200,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-96793",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Cruise",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-49579",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Cruise",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-23603",
+        "material": "ACERO"
+      },
+      "motor": {
+        "idMotor": "MTR-89673",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 1200,
+        "potencia": 90
+      },
+      "asiento": {
+        "idAsiento": "AST-71998",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-41797",
+        "ubicacion": "DELANTERO",
+        "marca": "Harley",
+        "modelo": "FD-Cruise",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-75271",
+        "ubicacion": "TRASERO",
+        "marca": "Harley",
+        "modelo": "FT-Cruise",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-83444",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 12,
+    "placa": "KOM-902",
+    "marca": "Harley-Davidson",
+    "modelo": "Low Rider",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.49E8,
+    "tipoMoto": "SEMIAUTOMATICA",
+    "tipoColorMoto": "VERDE",
+    "cilindraje": 1200,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-57518",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Cruise",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-88089",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Cruise",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-92843",
+        "material": "ACERO"
+      },
+      "motor": {
+        "idMotor": "MTR-59198",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 1200,
+        "potencia": 90
+      },
+      "asiento": {
+        "idAsiento": "AST-61928",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-92870",
+        "ubicacion": "DELANTERO",
+        "marca": "Harley",
+        "modelo": "FD-Cruise",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-66642",
+        "ubicacion": "TRASERO",
+        "marca": "Harley",
+        "modelo": "FT-Cruise",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-67263",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 13,
+    "placa": "XXU-057",
+    "marca": "KTM",
+    "modelo": "890 Adventure",
+    "fechaIngreso": "2025-11-03",
+    "precio": 8.1E7,
+    "tipoMoto": "BOXER",
+    "tipoColorMoto": "ROJO",
+    "cilindraje": 890,
+    "tieneParrilla": true,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-74942",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Scorpion",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-75164",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Scorpion",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-15266",
+        "material": "ACERO",
+        "tipo": "MULTITUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-25131",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 890,
+        "potencia": 105
+      },
+      "asiento": {
+        "idAsiento": "AST-53424",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-76511",
+        "ubicacion": "DELANTERO",
+        "marca": "ByBre",
+        "modelo": "FD-Adv",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-94636",
+        "ubicacion": "TRASERO",
+        "marca": "ByBre",
+        "modelo": "FT-Adv",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-70017",
         "tipoTransmision": "MANUAL",
         "velocidades": "SEIS"
       }
@@ -587,66 +847,1784 @@
     "estado": "DISPONIBLE"
   },
   {
-    "idMoto": 10,
-    "placa": "BSE-ELECTRICA",
-    "marca": "Zero",
-    "modelo": "SR/F Base",
-    "fechaIngreso": "2024-01-01",
-    "precio": 0.0,
-    "tipoMoto": "ELECTRICA",
+    "idMoto": 14,
+    "placa": "DAH-738",
+    "marca": "KTM",
+    "modelo": "890 Adventure",
+    "fechaIngreso": "2025-11-03",
+    "precio": 8.1E7,
+    "tipoMoto": "BOXER",
     "tipoColorMoto": "BLANCO",
-    "cilindraje": 0,
-    "tieneParrilla": false,
+    "cilindraje": 890,
+    "tieneParrilla": true,
     "tieneMaletero": false,
     "partesMoto": {
       "llantaDelantera": {
-        "idLlantaDelantera": "LLD-BSE10",
-        "medida": "R17_120_70",
+        "idLlantaDelantera": "LLD-10250",
         "ubicacion": "DELANTERA",
         "marca": "Pirelli",
-        "modelo": "Diablo",
+        "modelo": "Scorpion",
         "material": "CAUCHO"
       },
       "llantaTrasera": {
-        "idLlantaTrasera": "LLT-BSE10",
-        "medida": "R17_180_55",
-        "ubicacion": "TRASERA",
+        "idLlantaTrasera": "LLT-82570",
+        "ubicacion": "DELANTERA",
         "marca": "Pirelli",
-        "modelo": "Diablo",
+        "modelo": "Scorpion",
         "material": "CAUCHO"
       },
       "chasis": {
-        "idChasis": "CHS-BSE10",
-        "material": "ALUMINIO",
-        "tipo": "PERIMETRAL"
+        "idChasis": "CHS-32645",
+        "material": "ACERO",
+        "tipo": "MULTITUBULAR"
       },
       "motor": {
-        "idMotor": "MTR-BSE10",
-        "cilindrada": 0,
-        "potencia": 110
+        "idMotor": "MTR-68176",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 890,
+        "potencia": 105
       },
       "asiento": {
-        "idAsiento": "AST-BSE10",
+        "idAsiento": "AST-81075",
         "material": "CUERO",
         "capacidad": "BIPLAZA"
       },
       "frenoDelantero": {
-        "idFrenoDelantero": "FRD-BSE10",
+        "idFrenoDelantero": "FRD-94813",
         "ubicacion": "DELANTERO",
-        "marca": "Brembo",
-        "modelo": "FD-Elec",
+        "marca": "ByBre",
+        "modelo": "FD-Adv",
         "material": "ACERO"
       },
       "frenoTrasero": {
-        "idFrenoTrasero": "FRT-BSE10",
+        "idFrenoTrasero": "FRT-72131",
         "ubicacion": "TRASERO",
-        "marca": "Brembo",
-        "modelo": "FT-Elec",
+        "marca": "ByBre",
+        "modelo": "FT-Adv",
         "material": "ACERO"
       },
       "transmision": {
-        "idTransmision": "TRS-BSE10",
-        "tipoTransmision": "AUTOMATICA"
+        "idTransmision": "TRS-49846",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 15,
+    "placa": "ACR-336",
+    "marca": "KTM",
+    "modelo": "890 Adventure",
+    "fechaIngreso": "2025-11-03",
+    "precio": 8.1E7,
+    "tipoMoto": "BOXER",
+    "tipoColorMoto": "NEGRO",
+    "cilindraje": 890,
+    "tieneParrilla": true,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-42646",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Scorpion",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-51733",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Scorpion",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-71507",
+        "material": "ACERO",
+        "tipo": "MULTITUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-21687",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 890,
+        "potencia": 105
+      },
+      "asiento": {
+        "idAsiento": "AST-70830",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-82695",
+        "ubicacion": "DELANTERO",
+        "marca": "ByBre",
+        "modelo": "FD-Adv",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-10455",
+        "ubicacion": "TRASERO",
+        "marca": "ByBre",
+        "modelo": "FT-Adv",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-97190",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 16,
+    "placa": "DDK-843",
+    "marca": "KTM",
+    "modelo": "890 Adventure",
+    "fechaIngreso": "2025-11-03",
+    "precio": 8.1E7,
+    "tipoMoto": "BOXER",
+    "tipoColorMoto": "VERDE",
+    "cilindraje": 890,
+    "tieneParrilla": true,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-90651",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Scorpion",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-42729",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Scorpion",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-42446",
+        "material": "ACERO",
+        "tipo": "MULTITUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-31251",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 890,
+        "potencia": 105
+      },
+      "asiento": {
+        "idAsiento": "AST-61617",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-24476",
+        "ubicacion": "DELANTERO",
+        "marca": "ByBre",
+        "modelo": "FD-Adv",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-64347",
+        "ubicacion": "TRASERO",
+        "marca": "ByBre",
+        "modelo": "FT-Adv",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-16241",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 17,
+    "placa": "NVD-103",
+    "marca": "Indian",
+    "modelo": "Chief",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.2E8,
+    "tipoMoto": "CHOPPER",
+    "tipoColorMoto": "ROJO",
+    "cilindraje": 1600,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-45711",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Elite",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-36121",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Elite",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-48583",
+        "material": "ACERO"
+      },
+      "motor": {
+        "idMotor": "MTR-21635",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 1600,
+        "potencia": 100
+      },
+      "asiento": {
+        "idAsiento": "AST-41325",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-64119",
+        "ubicacion": "DELANTERO",
+        "marca": "Indian",
+        "modelo": "FD-Chop",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-77505",
+        "ubicacion": "TRASERO",
+        "marca": "Indian",
+        "modelo": "FT-Chop",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-54066",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 18,
+    "placa": "PGY-289",
+    "marca": "Indian",
+    "modelo": "Chief",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.2E8,
+    "tipoMoto": "CHOPPER",
+    "tipoColorMoto": "BLANCO",
+    "cilindraje": 1600,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-81646",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Elite",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-20326",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Elite",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-58884",
+        "material": "ACERO"
+      },
+      "motor": {
+        "idMotor": "MTR-55037",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 1600,
+        "potencia": 100
+      },
+      "asiento": {
+        "idAsiento": "AST-26149",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-40156",
+        "ubicacion": "DELANTERO",
+        "marca": "Indian",
+        "modelo": "FD-Chop",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-88322",
+        "ubicacion": "TRASERO",
+        "marca": "Indian",
+        "modelo": "FT-Chop",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-57166",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 19,
+    "placa": "DBM-805",
+    "marca": "Indian",
+    "modelo": "Chief",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.2E8,
+    "tipoMoto": "CHOPPER",
+    "tipoColorMoto": "NEGRO",
+    "cilindraje": 1600,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-69236",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Elite",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-80778",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Elite",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-67180",
+        "material": "ACERO"
+      },
+      "motor": {
+        "idMotor": "MTR-42357",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 1600,
+        "potencia": 100
+      },
+      "asiento": {
+        "idAsiento": "AST-85152",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-51306",
+        "ubicacion": "DELANTERO",
+        "marca": "Indian",
+        "modelo": "FD-Chop",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-70643",
+        "ubicacion": "TRASERO",
+        "marca": "Indian",
+        "modelo": "FT-Chop",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-23715",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 20,
+    "placa": "GND-009",
+    "marca": "Indian",
+    "modelo": "Chief",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.2E8,
+    "tipoMoto": "CHOPPER",
+    "tipoColorMoto": "VERDE",
+    "cilindraje": 1600,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-90704",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Elite",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-77015",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Elite",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-33305",
+        "material": "ACERO"
+      },
+      "motor": {
+        "idMotor": "MTR-20117",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 1600,
+        "potencia": 100
+      },
+      "asiento": {
+        "idAsiento": "AST-58180",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-44104",
+        "ubicacion": "DELANTERO",
+        "marca": "Indian",
+        "modelo": "FD-Chop",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-92225",
+        "ubicacion": "TRASERO",
+        "marca": "Indian",
+        "modelo": "FT-Chop",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-48123",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 21,
+    "placa": "YSJ-783",
+    "marca": "Yamaha",
+    "modelo": "R6 Sport",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.9E7,
+    "tipoMoto": "DEPORTIVA",
+    "tipoColorMoto": "ROJO",
+    "cilindraje": 200,
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-15267",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Michelin",
+        "modelo": "Pilot",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-59834",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Michelin",
+        "modelo": "Pilot",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-30357",
+        "material": "ALUMINIO",
+        "tipo": "PERIMETRAL"
+      },
+      "motor": {
+        "idMotor": "MTR-47700",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 200,
+        "potencia": 18
+      },
+      "asiento": {
+        "idAsiento": "AST-51612",
+        "material": "CUERO",
+        "capacidad": "MONOPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-36809",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-Race",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-68517",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-Race",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-36744",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 22,
+    "placa": "UDX-040",
+    "marca": "Yamaha",
+    "modelo": "R6 Sport",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.9E7,
+    "tipoMoto": "DEPORTIVA",
+    "tipoColorMoto": "BLANCO",
+    "cilindraje": 200,
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-70014",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Michelin",
+        "modelo": "Pilot",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-41563",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Michelin",
+        "modelo": "Pilot",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-96189",
+        "material": "ALUMINIO",
+        "tipo": "PERIMETRAL"
+      },
+      "motor": {
+        "idMotor": "MTR-65538",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 200,
+        "potencia": 18
+      },
+      "asiento": {
+        "idAsiento": "AST-37507",
+        "material": "CUERO",
+        "capacidad": "MONOPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-56986",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-Race",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-43344",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-Race",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-18359",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 23,
+    "placa": "TER-297",
+    "marca": "Yamaha",
+    "modelo": "R6 Sport",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.9E7,
+    "tipoMoto": "DEPORTIVA",
+    "tipoColorMoto": "NEGRO",
+    "cilindraje": 200,
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-74615",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Michelin",
+        "modelo": "Pilot",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-74604",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Michelin",
+        "modelo": "Pilot",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-11617",
+        "material": "ALUMINIO",
+        "tipo": "PERIMETRAL"
+      },
+      "motor": {
+        "idMotor": "MTR-74279",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 200,
+        "potencia": 18
+      },
+      "asiento": {
+        "idAsiento": "AST-35735",
+        "material": "CUERO",
+        "capacidad": "MONOPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-77841",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-Race",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-71424",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-Race",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-69087",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 24,
+    "placa": "XRI-853",
+    "marca": "Yamaha",
+    "modelo": "R6 Sport",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.9E7,
+    "tipoMoto": "DEPORTIVA",
+    "tipoColorMoto": "VERDE",
+    "cilindraje": 200,
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-27188",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Michelin",
+        "modelo": "Pilot",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-61192",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "Michelin",
+        "modelo": "Pilot",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-58705",
+        "material": "ALUMINIO",
+        "tipo": "PERIMETRAL"
+      },
+      "motor": {
+        "idMotor": "MTR-79113",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 200,
+        "potencia": 18
+      },
+      "asiento": {
+        "idAsiento": "AST-89702",
+        "material": "CUERO",
+        "capacidad": "MONOPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-20301",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-Race",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-38392",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-Race",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-92737",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 25,
+    "placa": "NJG-178",
+    "marca": "Honda",
+    "modelo": "CB150F",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.1E7,
+    "tipoMoto": "NAKED",
+    "tipoColorMoto": "ROJO",
+    "cilindraje": 150,
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-12605",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Street",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-26979",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Street",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-78401",
+        "material": "ACERO",
+        "tipo": "TUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-39332",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 150,
+        "potencia": 14
+      },
+      "asiento": {
+        "idAsiento": "AST-74739",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-65210",
+        "ubicacion": "DELANTERO",
+        "marca": "Nissin",
+        "modelo": "FD-Street",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-67116",
+        "ubicacion": "TRASERO",
+        "marca": "Nissin",
+        "modelo": "FT-Street",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-83815",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 26,
+    "placa": "EIF-439",
+    "marca": "Honda",
+    "modelo": "CB150F",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.1E7,
+    "tipoMoto": "NAKED",
+    "tipoColorMoto": "BLANCO",
+    "cilindraje": 150,
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-11006",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Street",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-64093",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Street",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-51717",
+        "material": "ACERO",
+        "tipo": "TUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-61649",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 150,
+        "potencia": 14
+      },
+      "asiento": {
+        "idAsiento": "AST-60945",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-11116",
+        "ubicacion": "DELANTERO",
+        "marca": "Nissin",
+        "modelo": "FD-Street",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-97393",
+        "ubicacion": "TRASERO",
+        "marca": "Nissin",
+        "modelo": "FT-Street",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-38054",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 27,
+    "placa": "JQK-696",
+    "marca": "Honda",
+    "modelo": "CB150F",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.1E7,
+    "tipoMoto": "NAKED",
+    "tipoColorMoto": "NEGRO",
+    "cilindraje": 150,
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-75874",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Street",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-68177",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Street",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-55701",
+        "material": "ACERO",
+        "tipo": "TUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-83762",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 150,
+        "potencia": 14
+      },
+      "asiento": {
+        "idAsiento": "AST-41238",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-34832",
+        "ubicacion": "DELANTERO",
+        "marca": "Nissin",
+        "modelo": "FD-Street",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-93361",
+        "ubicacion": "TRASERO",
+        "marca": "Nissin",
+        "modelo": "FT-Street",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-64702",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 28,
+    "placa": "ONU-480",
+    "marca": "Honda",
+    "modelo": "CB150F",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.1E7,
+    "tipoMoto": "NAKED",
+    "tipoColorMoto": "VERDE",
+    "cilindraje": 150,
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-49129",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Street",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-70319",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Pirelli",
+        "modelo": "Street",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-88346",
+        "material": "ACERO",
+        "tipo": "TUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-55441",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 150,
+        "potencia": 14
+      },
+      "asiento": {
+        "idAsiento": "AST-71034",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-88176",
+        "ubicacion": "DELANTERO",
+        "marca": "Nissin",
+        "modelo": "FD-Street",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-42709",
+        "ubicacion": "TRASERO",
+        "marca": "Nissin",
+        "modelo": "FT-Street",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-15318",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 29,
+    "placa": "QGB-207",
+    "marca": "Yamaha",
+    "modelo": "NMAX 155",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.45E7,
+    "tipoMoto": "SCOOTER",
+    "tipoColorMoto": "ROJO",
+    "cilindraje": 155,
+    "tieneParrilla": false,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-42482",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "IRC",
+        "modelo": "Tires",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-21624",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "IRC",
+        "modelo": "Tires",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-41358",
+        "material": "ACERO",
+        "tipo": "TUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-30438",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 155,
+        "potencia": 15
+      },
+      "asiento": {
+        "idAsiento": "AST-32965",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-92461",
+        "ubicacion": "DELANTERO",
+        "marca": "Yamaha",
+        "modelo": "FD-Scoot",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-69240",
+        "ubicacion": "TRASERO",
+        "marca": "Yamaha",
+        "modelo": "FT-Scoot",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-29266",
+        "tipoTransmision": "AUTOMATICA",
+        "velocidades": "UNA"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 30,
+    "placa": "HZE-697",
+    "marca": "Yamaha",
+    "modelo": "NMAX 155",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.45E7,
+    "tipoMoto": "SCOOTER",
+    "tipoColorMoto": "BLANCO",
+    "cilindraje": 155,
+    "tieneParrilla": false,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-23857",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "IRC",
+        "modelo": "Tires",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-30880",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "IRC",
+        "modelo": "Tires",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-75632",
+        "material": "ACERO",
+        "tipo": "TUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-47664",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 155,
+        "potencia": 15
+      },
+      "asiento": {
+        "idAsiento": "AST-85731",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-81940",
+        "ubicacion": "DELANTERO",
+        "marca": "Yamaha",
+        "modelo": "FD-Scoot",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-24410",
+        "ubicacion": "TRASERO",
+        "marca": "Yamaha",
+        "modelo": "FT-Scoot",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-19311",
+        "tipoTransmision": "AUTOMATICA",
+        "velocidades": "UNA"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 31,
+    "placa": "ZVE-387",
+    "marca": "Yamaha",
+    "modelo": "NMAX 155",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.45E7,
+    "tipoMoto": "SCOOTER",
+    "tipoColorMoto": "NEGRO",
+    "cilindraje": 155,
+    "tieneParrilla": false,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-78074",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "IRC",
+        "modelo": "Tires",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-35355",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "IRC",
+        "modelo": "Tires",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-59581",
+        "material": "ACERO",
+        "tipo": "TUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-17944",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 155,
+        "potencia": 15
+      },
+      "asiento": {
+        "idAsiento": "AST-80499",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-92556",
+        "ubicacion": "DELANTERO",
+        "marca": "Yamaha",
+        "modelo": "FD-Scoot",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-73226",
+        "ubicacion": "TRASERO",
+        "marca": "Yamaha",
+        "modelo": "FT-Scoot",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-19347",
+        "tipoTransmision": "AUTOMATICA",
+        "velocidades": "UNA"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 32,
+    "placa": "ABZ-269",
+    "marca": "Yamaha",
+    "modelo": "NMAX 155",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.45E7,
+    "tipoMoto": "SCOOTER",
+    "tipoColorMoto": "VERDE",
+    "cilindraje": 155,
+    "tieneParrilla": false,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-72115",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "IRC",
+        "modelo": "Tires",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-73922",
+        "medida": "R16_100_80",
+        "ubicacion": "DELANTERA",
+        "marca": "IRC",
+        "modelo": "Tires",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-45111",
+        "material": "ACERO",
+        "tipo": "TUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-40963",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 155,
+        "potencia": 15
+      },
+      "asiento": {
+        "idAsiento": "AST-25011",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-41044",
+        "ubicacion": "DELANTERO",
+        "marca": "Yamaha",
+        "modelo": "FD-Scoot",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-89723",
+        "ubicacion": "TRASERO",
+        "marca": "Yamaha",
+        "modelo": "FT-Scoot",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-92431",
+        "tipoTransmision": "AUTOMATICA",
+        "velocidades": "UNA"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 33,
+    "placa": "XQB-676",
+    "marca": "BMW",
+    "modelo": "R1250RT",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.6E8,
+    "tipoMoto": "SEMIDEPORTIVA",
+    "tipoColorMoto": "ROJO",
+    "cilindraje": 1250,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-71221",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Metzeler",
+        "modelo": "Tourance",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-71948",
+        "medida": "R17_180_55",
+        "ubicacion": "DELANTERA",
+        "marca": "Metzeler",
+        "modelo": "Tourance",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-34306",
+        "material": "ACERO"
+      },
+      "motor": {
+        "idMotor": "MTR-30590",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 1250,
+        "potencia": 136
+      },
+      "asiento": {
+        "idAsiento": "AST-68389",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-80119",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-Tour",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-26319",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-Tour",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-20382",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 34,
+    "placa": "QBF-884",
+    "marca": "BMW",
+    "modelo": "R1250RT",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.6E8,
+    "tipoMoto": "SEMIDEPORTIVA",
+    "tipoColorMoto": "BLANCO",
+    "cilindraje": 1250,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-13915",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Metzeler",
+        "modelo": "Tourance",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-35336",
+        "medida": "R17_180_55",
+        "ubicacion": "DELANTERA",
+        "marca": "Metzeler",
+        "modelo": "Tourance",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-81697",
+        "material": "ACERO"
+      },
+      "motor": {
+        "idMotor": "MTR-81937",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 1250,
+        "potencia": 136
+      },
+      "asiento": {
+        "idAsiento": "AST-60989",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-83337",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-Tour",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-56046",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-Tour",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-83269",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 35,
+    "placa": "ZCQ-166",
+    "marca": "BMW",
+    "modelo": "R1250RT",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.6E8,
+    "tipoMoto": "SEMIDEPORTIVA",
+    "tipoColorMoto": "NEGRO",
+    "cilindraje": 1250,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-71442",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Metzeler",
+        "modelo": "Tourance",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-37679",
+        "medida": "R17_180_55",
+        "ubicacion": "DELANTERA",
+        "marca": "Metzeler",
+        "modelo": "Tourance",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-40765",
+        "material": "ACERO"
+      },
+      "motor": {
+        "idMotor": "MTR-99535",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 1250,
+        "potencia": 136
+      },
+      "asiento": {
+        "idAsiento": "AST-61761",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-12696",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-Tour",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-32688",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-Tour",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-54691",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 36,
+    "placa": "AHT-318",
+    "marca": "BMW",
+    "modelo": "R1250RT",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.6E8,
+    "tipoMoto": "SEMIDEPORTIVA",
+    "tipoColorMoto": "VERDE",
+    "cilindraje": 1250,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-43527",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Metzeler",
+        "modelo": "Tourance",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-41508",
+        "medida": "R17_180_55",
+        "ubicacion": "DELANTERA",
+        "marca": "Metzeler",
+        "modelo": "Tourance",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-88590",
+        "material": "ACERO"
+      },
+      "motor": {
+        "idMotor": "MTR-75026",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 1250,
+        "potencia": 136
+      },
+      "asiento": {
+        "idAsiento": "AST-80407",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-33133",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-Tour",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-30878",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-Tour",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-69664",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 37,
+    "placa": "JGB-144",
+    "marca": "Kawasaki",
+    "modelo": "Ninja ZX-10R",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.25E8,
+    "tipoMoto": "SUPERSPORT",
+    "tipoColorMoto": "ROJO",
+    "cilindraje": 998,
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-70635",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Bridgestone",
+        "modelo": "Battlax Racing",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-26133",
+        "medida": "R17_180_55",
+        "ubicacion": "DELANTERA",
+        "marca": "Bridgestone",
+        "modelo": "Battlax Racing",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-58575",
+        "material": "ALUMINIO",
+        "tipo": "PERIMETRAL"
+      },
+      "motor": {
+        "idMotor": "MTR-43072",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 998,
+        "potencia": 203
+      },
+      "asiento": {
+        "idAsiento": "AST-75065",
+        "material": "CUERO",
+        "capacidad": "MONOPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-45099",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-SSport",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-64517",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-SSport",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-95519",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 38,
+    "placa": "MMQ-345",
+    "marca": "Kawasaki",
+    "modelo": "Ninja ZX-10R",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.25E8,
+    "tipoMoto": "SUPERSPORT",
+    "tipoColorMoto": "BLANCO",
+    "cilindraje": 998,
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-35090",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Bridgestone",
+        "modelo": "Battlax Racing",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-80825",
+        "medida": "R17_180_55",
+        "ubicacion": "DELANTERA",
+        "marca": "Bridgestone",
+        "modelo": "Battlax Racing",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-60381",
+        "material": "ALUMINIO",
+        "tipo": "PERIMETRAL"
+      },
+      "motor": {
+        "idMotor": "MTR-96330",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 998,
+        "potencia": 203
+      },
+      "asiento": {
+        "idAsiento": "AST-69860",
+        "material": "CUERO",
+        "capacidad": "MONOPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-44508",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-SSport",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-86754",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-SSport",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-13933",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 39,
+    "placa": "KBC-198",
+    "marca": "Kawasaki",
+    "modelo": "Ninja ZX-10R",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.25E8,
+    "tipoMoto": "SUPERSPORT",
+    "tipoColorMoto": "NEGRO",
+    "cilindraje": 998,
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-74766",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Bridgestone",
+        "modelo": "Battlax Racing",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-65457",
+        "medida": "R17_180_55",
+        "ubicacion": "DELANTERA",
+        "marca": "Bridgestone",
+        "modelo": "Battlax Racing",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-82072",
+        "material": "ALUMINIO",
+        "tipo": "PERIMETRAL"
+      },
+      "motor": {
+        "idMotor": "MTR-29098",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 998,
+        "potencia": 203
+      },
+      "asiento": {
+        "idAsiento": "AST-81235",
+        "material": "CUERO",
+        "capacidad": "MONOPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-63961",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-SSport",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-53446",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-SSport",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-62497",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
+      }
+    },
+    "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 40,
+    "placa": "LKV-900",
+    "marca": "Kawasaki",
+    "modelo": "Ninja ZX-10R",
+    "fechaIngreso": "2025-11-03",
+    "precio": 1.25E8,
+    "tipoMoto": "SUPERSPORT",
+    "tipoColorMoto": "VERDE",
+    "cilindraje": 998,
+    "tieneParrilla": false,
+    "tieneMaletero": false,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-97656",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Bridgestone",
+        "modelo": "Battlax Racing",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-83337",
+        "medida": "R17_180_55",
+        "ubicacion": "DELANTERA",
+        "marca": "Bridgestone",
+        "modelo": "Battlax Racing",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-67681",
+        "material": "ALUMINIO",
+        "tipo": "PERIMETRAL"
+      },
+      "motor": {
+        "idMotor": "MTR-86722",
+        "tipo": "CUATRO_TIEMPOS",
+        "cilindrada": 998,
+        "potencia": 203
+      },
+      "asiento": {
+        "idAsiento": "AST-74104",
+        "material": "CUERO",
+        "capacidad": "MONOPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-75984",
+        "ubicacion": "DELANTERO",
+        "marca": "Brembo",
+        "modelo": "FD-SSport",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-33347",
+        "ubicacion": "TRASERO",
+        "marca": "Brembo",
+        "modelo": "FT-SSport",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-17260",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "SEIS"
       }
     },
     "estado": "DISPONIBLE"

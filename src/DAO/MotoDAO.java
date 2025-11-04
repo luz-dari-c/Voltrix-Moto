@@ -168,7 +168,7 @@ public class MotoDAO {
         guardarTodas(motos);
         return true;
     }
-
+/* 
     public boolean actualizarMoto(
             int idMoto,
             String nuevaMarca,
@@ -281,6 +281,185 @@ public class MotoDAO {
 
         guardarTodas(motos);
         return true;
+    }
+*/
+    public boolean actualizarPorPlacaBase(
+            String placaBase,
+            String nuevoModelo,
+            LocalDate nuevaFechaIngreso,
+            Double nuevoPrecio,
+            Boolean nuevaParrilla,
+            Boolean nuevoMaletero,
+            TipoMotor nuevoTipoMotor,
+            Integer nuevaCilindrada,
+            Integer nuevaPotencia,
+            MaterialChasis nuevoMaterialChasis,
+            TipoChasis nuevoTipoChasis,
+            MaterialAsiento nuevoMaterialAsiento,
+            CapacidadAsiento nuevaCapacidadAsiento,
+            TipoTransmision nuevoTipoTransmision,
+            TipoVelocidades nuevasVelocidades
+    ) {
+        List<Moto> motos = cargarTodas();
+        Moto motoBase = null;
+
+        for (Moto moto : motos) {
+            if (moto.getPlaca().equalsIgnoreCase(placaBase) && moto.getPlaca().startsWith("BSE-")) {
+                motoBase = moto;
+                break;
+            }
+        }
+
+        if (motoBase == null) {
+            System.err.println("No se encontró una moto base con placa: " + placaBase);
+            return false;
+        }
+
+        TipoMoto tipoMotoBase = motoBase.getTipoMoto();
+
+        if (nuevoModelo != null && !nuevoModelo.trim().isEmpty()) {
+            motoBase.setModelo(nuevoModelo);
+        }
+        if (nuevaFechaIngreso != null) {
+            motoBase.setFechaIngreso(nuevaFechaIngreso);
+        }
+        if (nuevoPrecio != null && nuevoPrecio > 0) {
+            motoBase.setPrecio(nuevoPrecio);
+        }
+        if (nuevaParrilla != null) {
+            motoBase.setTieneParrilla(nuevaParrilla);
+        }
+        if (nuevoMaletero != null) {
+            motoBase.setTieneMaletero(nuevoMaletero);
+        }
+        PartesMoto partesBase = motoBase.getPartesMoto();
+        if (partesBase != null) {
+            if (partesBase.getMotor() != null) {
+                if (nuevoTipoMotor != null) {
+                    partesBase.getMotor().setTipo(nuevoTipoMotor);
+                }
+                if (nuevaCilindrada != null) {
+                    partesBase.getMotor().setCilindrada(nuevaCilindrada);
+                }
+                if (nuevaPotencia != null) {
+                    partesBase.getMotor().setPotencia(nuevaPotencia);
+                }
+            }
+            if (partesBase.getChasis() != null) {
+                if (nuevoMaterialChasis != null) {
+                    partesBase.getChasis().setMaterial(nuevoMaterialChasis);
+                }
+                if (nuevoTipoChasis != null) {
+                    partesBase.getChasis().setTipo(nuevoTipoChasis);
+                }
+            }
+            if (partesBase.getAsiento() != null) {
+                if (nuevoMaterialAsiento != null) {
+                    partesBase.getAsiento().setMaterial(nuevoMaterialAsiento);
+                }
+                if (nuevaCapacidadAsiento != null) {
+                    partesBase.getAsiento().setCapacidad(nuevaCapacidadAsiento);
+                }
+            }
+            if (partesBase.getTransmision() != null) {
+                if (nuevoTipoTransmision != null) {
+                    partesBase.getTransmision().setTipoTransmision(nuevoTipoTransmision);
+                }
+                if (nuevasVelocidades != null) {
+                    partesBase.getTransmision().setVelocidades(nuevasVelocidades);
+                }
+            }
+        }
+
+        for (Moto moto : motos) {
+            if (moto.getTipoMoto() == tipoMotoBase
+                    && !moto.getPlaca().startsWith("BSE-")
+                    && moto.getEstado() == EstadoMoto.DISPONIBLE) {
+
+                if (nuevoModelo != null && !nuevoModelo.trim().isEmpty()) {
+                    moto.setModelo(nuevoModelo);
+                }
+                if (nuevaFechaIngreso != null) {
+                    moto.setFechaIngreso(nuevaFechaIngreso);
+                }
+                if (nuevoPrecio != null && nuevoPrecio > 0) {
+                    moto.setPrecio(nuevoPrecio);
+                }
+                if (nuevaParrilla != null) {
+                    moto.setTieneParrilla(nuevaParrilla);
+                }
+                if (nuevoMaletero != null) {
+                    moto.setTieneMaletero(nuevoMaletero);
+                }
+
+                PartesMoto partes = moto.getPartesMoto();
+                if (partes != null) {
+                    if (partes.getMotor() != null) {
+                        if (nuevoTipoMotor != null) {
+                            partes.getMotor().setTipo(nuevoTipoMotor);
+                        }
+                        if (nuevaCilindrada != null) {
+                            partes.getMotor().setCilindrada(nuevaCilindrada);
+                        }
+                        if (nuevaPotencia != null) {
+                            partes.getMotor().setPotencia(nuevaPotencia);
+                        }
+                    }
+                    if (partes.getChasis() != null) {
+                        if (nuevoMaterialChasis != null) {
+                            partes.getChasis().setMaterial(nuevoMaterialChasis);
+                        }
+                        if (nuevoTipoChasis != null) {
+                            partes.getChasis().setTipo(nuevoTipoChasis);
+                        }
+                    }
+                    if (partes.getAsiento() != null) {
+                        if (nuevoMaterialAsiento != null) {
+                            partes.getAsiento().setMaterial(nuevoMaterialAsiento);
+                        }
+                        if (nuevaCapacidadAsiento != null) {
+                            partes.getAsiento().setCapacidad(nuevaCapacidadAsiento);
+                        }
+                    }
+                    if (partes.getTransmision() != null) {
+                        if (nuevoTipoTransmision != null) {
+                            partes.getTransmision().setTipoTransmision(nuevoTipoTransmision);
+                        }
+                        if (nuevasVelocidades != null) {
+                            partes.getTransmision().setVelocidades(nuevasVelocidades);
+                        }
+                    }
+                }
+            }
+        }
+
+        guardarTodas(motos);
+        return true;
+    }
+
+    public boolean actualizarMotoIndividual(
+            int idMoto,
+            String nuevaMarca,
+            TipoColorMoto nuevoColor
+    ) {
+        List<Moto> motos = cargarTodas();
+
+        for (Moto moto : motos) {
+            if (moto.getIdMoto() == idMoto) {
+                if (nuevaMarca != null && !nuevaMarca.trim().isEmpty()) {
+                    moto.setMarca(nuevaMarca);
+                }
+                if (nuevoColor != null) {
+                    moto.setTipoColorMoto(nuevoColor);
+                }
+
+                guardarTodas(motos);
+                return true;
+            }
+        }
+
+        System.err.println("Moto con ID " + idMoto + " no encontrada.");
+        return false;
     }
 
     private void guardarTodas(List<Moto> motos) {
@@ -397,7 +576,9 @@ public class MotoDAO {
         List<Moto> filtradas = new ArrayList<>();
 
         for (Moto moto : motos) {
-            if (moto.getTipoMoto() == tipoMoto && moto.getEstado() == EstadoMoto.DISPONIBLE) {
+            if (moto.getTipoMoto() == tipoMoto
+                    && moto.getEstado() == EstadoMoto.DISPONIBLE
+                    && !moto.getPlaca().startsWith("BSE-")) {
                 filtradas.add(moto);
             }
         }

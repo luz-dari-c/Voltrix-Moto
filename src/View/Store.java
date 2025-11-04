@@ -4,19 +4,187 @@
  */
 package View;
 
+import Controller.MotoController;
+import Model.Constants.TipoMoto;
+import Model.Entities.Moto;
 import java.awt.Color;
+import java.util.List;
 
 /**
  *
  * @author Sharlok
  */
 public class Store extends javax.swing.JFrame {
-    
+
+    private MotoController controller;
+
     public Store() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.controller = new MotoController();
+        mostrarMotoSemiautomatica();
+        mostrarMotoBoxer();
+        mostrarMotoScooter();
+        mostrarMotoSemideportiva();
+        mostrarMotoDeportiva();
+        mostrarMotoSupersport();
+        mostrarMotoChopper();
+        mostrarMotoNaked();
+
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refrescarTodosLosDatos();
+            }
+        });
     }
-    
+
+    private void refrescarTodosLosDatos() {
+        mostrarMotoSemiautomatica();
+        mostrarMotoBoxer();
+        mostrarMotoScooter();
+        mostrarMotoSemideportiva();
+        mostrarMotoDeportiva();
+        mostrarMotoSupersport();
+        mostrarMotoChopper();
+        mostrarMotoNaked();
+    }
+
+    private void mostrarMotoSemiautomatica() {
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SEMIAUTOMATICA);
+
+        if (!motos.isEmpty()) {
+            Moto moto = motos.get(0);
+
+            tipoPut.setText(moto.getTipoMoto().toString());
+            AñoPut.setText(String.valueOf(moto.getFechaIngreso().getYear()));
+            PrecioPut.setText(String.valueOf(moto.getPrecio()));
+
+        } else {
+            tipoPut.setText("No disponible");
+            AñoPut.setText("No disponible");
+            PrecioPut.setText("No disponible");
+        }
+    }
+
+    private void mostrarMotoBoxer() {
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.BOXER);
+
+        if (!motos.isEmpty()) {
+            Moto moto = motos.get(0);
+
+            tipoPut1.setText(moto.getTipoMoto().toString());
+            AñoPut1.setText(String.valueOf(moto.getFechaIngreso().getYear()));
+            PrecioPut1.setText(String.valueOf(moto.getPrecio()));
+
+        } else {
+            tipoPut1.setText("No disponible");
+            AñoPut1.setText("No disponible");
+            PrecioPut1.setText("No disponible");
+        }
+    }
+
+    private void mostrarMotoScooter() {
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SCOOTER);
+
+        if (!motos.isEmpty()) {
+            Moto moto = motos.get(0);
+
+            tipoPut2.setText(moto.getTipoMoto().toString());
+            AñoPut2.setText(String.valueOf(moto.getFechaIngreso().getYear()));
+            PrecioPut2.setText(String.valueOf(moto.getPrecio()));
+
+        } else {
+            tipoPut2.setText("No disponible");
+            AñoPut2.setText("No disponible");
+            PrecioPut2.setText("No disponible");
+        }
+    }
+
+    private void mostrarMotoSemideportiva() {
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SEMIDEPORTIVA);
+
+        if (!motos.isEmpty()) {
+            Moto moto = motos.get(0);
+
+            tipoPut3.setText(moto.getTipoMoto().toString());
+            AñoPut3.setText(String.valueOf(moto.getFechaIngreso().getYear()));
+            PrecioPut3.setText(String.valueOf(moto.getPrecio()));
+
+        } else {
+            tipoPut3.setText("No disponible");
+            AñoPut3.setText("No disponible");
+            PrecioPut3.setText("No disponible");
+        }
+    }
+
+    private void mostrarMotoDeportiva() {
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.DEPORTIVA);
+
+        if (!motos.isEmpty()) {
+            Moto moto = motos.get(0);
+
+            tipoPut4.setText(moto.getTipoMoto().toString());
+            AñoPut4.setText(String.valueOf(moto.getFechaIngreso().getYear()));
+            PrecioPut4.setText(String.valueOf(moto.getPrecio()));
+
+        } else {
+            tipoPut4.setText("No disponible");
+            AñoPut4.setText("No disponible");
+            PrecioPut4.setText("No disponible");
+        }
+    }
+
+    private void mostrarMotoSupersport() {
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SUPERSPORT);
+
+        if (!motos.isEmpty()) {
+            Moto moto = motos.get(0);
+
+            tipoPut5.setText(moto.getTipoMoto().toString());
+            AñoPut5.setText(String.valueOf(moto.getFechaIngreso().getYear()));
+            PrecioPut5.setText(String.valueOf(moto.getPrecio()));
+
+        } else {
+            tipoPut5.setText("No disponible");
+            AñoPut5.setText("No disponible");
+            PrecioPut5.setText("No disponible");
+        }
+    }
+
+    private void mostrarMotoChopper() {
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.CHOPPER);
+
+        if (!motos.isEmpty()) {
+            Moto moto = motos.get(0);
+
+            tipoPut6.setText(moto.getTipoMoto().toString());
+            AñoPut6.setText(String.valueOf(moto.getFechaIngreso().getYear()));
+            PrecioPut6.setText(String.valueOf(moto.getPrecio()));
+
+        } else {
+            tipoPut6.setText("No disponible");
+            AñoPut6.setText("No disponible");
+            PrecioPut6.setText("No disponible");
+        }
+    }
+
+    private void mostrarMotoNaked() {
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.NAKED);
+
+        if (!motos.isEmpty()) {
+            Moto moto = motos.get(0);
+
+            tipoPut7.setText(moto.getTipoMoto().toString());
+            AñoPut7.setText(String.valueOf(moto.getFechaIngreso().getYear()));
+            PrecioPut7.setText(String.valueOf(moto.getPrecio()));
+
+        } else {
+            tipoPut7.setText("No disponible");
+            AñoPut7.setText("No disponible");
+            PrecioPut7.setText("No disponible");
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -158,6 +326,11 @@ public class Store extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-refresh-38.png"))); // NOI18N
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 40, 40));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Diseño sin título (6) (1).png"))); // NOI18N
@@ -875,21 +1048,34 @@ public class Store extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
-Carrito cr = new Carrito();
-this.dispose();
-cr.setVisible(true);
+        Carrito cr = new Carrito();
+        this.dispose();
+        cr.setVisible(true);
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void VerMas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas1ActionPerformed
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SEMIAUTOMATICA);
+
+        if (motos == null || motos.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No hay motos disponibles de tipo SEMIAUTOMÁTICA en este momento.",
+                    "Sin disponibilidad",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
         bwsNegra neg = new bwsNegra();
         neg.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_VerMas1ActionPerformed
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
-      historialCompras hs = new historialCompras();
-      this.dispose();
-      hs.setVisible(true);
+        historialCompras hs = new historialCompras();
+        this.dispose();
+        hs.setVisible(true);
     }//GEN-LAST:event_jLabel18MouseClicked
 
     private void CarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarritoActionPerformed
@@ -913,6 +1099,19 @@ cr.setVisible(true);
     }//GEN-LAST:event_Comprar6ActionPerformed
 
     private void VerMas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas2ActionPerformed
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.BOXER);
+
+        if (motos == null || motos.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No hay motos disponibles de tipo BOXER en este momento.",
+                    "Sin disponibilidad",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
         BoxerVerde bxv = new BoxerVerde();
         this.dispose();
         bxv.setVisible(true);
@@ -923,15 +1122,28 @@ cr.setVisible(true);
     }//GEN-LAST:event_Carrito2ActionPerformed
 
     private void Comprar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar7ActionPerformed
-          Pago pg = new Pago();
+        Pago pg = new Pago();
         this.dispose();
         pg.setVisible(true);
     }//GEN-LAST:event_Comprar7ActionPerformed
 
     private void VerMas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas3ActionPerformed
-       BwsRoja bwr = new BwsRoja();
-       this.dispose();
-       bwr.setVisible(true);
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SCOOTER);
+
+        if (motos == null || motos.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No hay motos disponibles de tipo SCOOTER en este momento.",
+                    "Sin disponibilidad",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        BwsRoja bwr = new BwsRoja();
+        this.dispose();
+        bwr.setVisible(true);
     }//GEN-LAST:event_VerMas3ActionPerformed
 
     private void Carrito3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carrito3ActionPerformed
@@ -939,12 +1151,25 @@ cr.setVisible(true);
     }//GEN-LAST:event_Carrito3ActionPerformed
 
     private void Comprar8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar8ActionPerformed
-          Pago pg = new Pago();
+        Pago pg = new Pago();
         this.dispose();
         pg.setVisible(true);
     }//GEN-LAST:event_Comprar8ActionPerformed
 
     private void VerMas4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas4ActionPerformed
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SEMIDEPORTIVA);
+
+        if (motos == null || motos.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No hay motos disponibles de tipo SEMIDEPORTIVA en este momento.",
+                    "Sin disponibilidad",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
         KawasakiVerde kwv = new KawasakiVerde();
         this.dispose();
         kwv.setVisible(true);
@@ -955,12 +1180,24 @@ cr.setVisible(true);
     }//GEN-LAST:event_Carrito4ActionPerformed
 
     private void Comprar9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar9ActionPerformed
-          Pago pg = new Pago();
+        Pago pg = new Pago();
         this.dispose();
         pg.setVisible(true);
     }//GEN-LAST:event_Comprar9ActionPerformed
 
     private void VerMas5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas5ActionPerformed
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.DEPORTIVA);
+
+        if (motos == null || motos.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No hay motos disponibles de tipo DEPORTIVA en este momento.",
+                    "Sin disponibilidad",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
         y1Roja y1r = new y1Roja();
         this.dispose();
         y1r.setVisible(true);
@@ -971,15 +1208,28 @@ cr.setVisible(true);
     }//GEN-LAST:event_Carrito5ActionPerformed
 
     private void Comprar10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar10ActionPerformed
-          Pago pg = new Pago();
+        Pago pg = new Pago();
         this.dispose();
         pg.setVisible(true);
     }//GEN-LAST:event_Comprar10ActionPerformed
 
     private void VerMas6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas6ActionPerformed
-       YamahaNegra ymn = new YamahaNegra();
-       this.dispose();
-       ymn.setVisible(true);
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SUPERSPORT);
+
+        if (motos == null || motos.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No hay motos disponibles de tipo SUPERSPORT en este momento.",
+                    "Sin disponibilidad",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        YamahaNegra ymn = new YamahaNegra();
+        this.dispose();
+        ymn.setVisible(true);
     }//GEN-LAST:event_VerMas6ActionPerformed
 
     private void Carrito6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carrito6ActionPerformed
@@ -987,12 +1237,25 @@ cr.setVisible(true);
     }//GEN-LAST:event_Carrito6ActionPerformed
 
     private void Comprar11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar11ActionPerformed
-          Pago pg = new Pago();
+        Pago pg = new Pago();
         this.dispose();
         pg.setVisible(true);
     }//GEN-LAST:event_Comprar11ActionPerformed
 
     private void VerMas7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas7ActionPerformed
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.CHOPPER);
+
+        if (motos == null || motos.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No hay motos disponibles de tipo CHOPPER en este momento.",
+                    "Sin disponibilidad",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
         LittleNegra ltn = new LittleNegra();
         this.dispose();
         ltn.setVisible(true);
@@ -1003,12 +1266,25 @@ cr.setVisible(true);
     }//GEN-LAST:event_Carrito7ActionPerformed
 
     private void Comprar12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar12ActionPerformed
-          Pago pg = new Pago();
+        Pago pg = new Pago();
         this.dispose();
         pg.setVisible(true);
     }//GEN-LAST:event_Comprar12ActionPerformed
 
     private void VerMas8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas8ActionPerformed
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.NAKED);
+
+        if (motos == null || motos.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No hay motos disponibles de tipo NAKED en este momento.",
+                    "Sin disponibilidad",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
         VerdeMinima vdm = new VerdeMinima();
         this.dispose();
         vdm.setVisible(true);
@@ -1019,6 +1295,10 @@ cr.setVisible(true);
         this.dispose();
         jv.setVisible(true);
     }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel13MouseClicked
 
     /**
      * @param args the command line arguments

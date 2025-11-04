@@ -3,53 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/TipoChasis.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/Freno.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/Venta.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/MaterialAsiento.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/Asiento.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Controller/ClienteController.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/voltrixmoto/VoltrixMoto.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Utilidades/GeneradorDeIdPartes.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/Moto.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Utilidades/GeneradorDePlaca.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/EstadoVenta.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/TipoMoto.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Controller/EmpleadoController.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/UbicacionLlanta.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/LlantaDelantera.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/TipoMotor.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/Empleado.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/TipoVelocidades.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/Chasis.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/FrenoDelantero.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/MaterialChasis.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/Motor.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/Factura.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/Llanta.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/Usuario.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Controller/ItemCarritoController.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/LlantaTrasera.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/EstadoMoto.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/EstadoCarrito.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/MaterialLlanta.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/TipoColorMoto.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/DAO/UsuarioDAO.java</file>
             <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Resources/Data/motos.json</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/Cliente.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/Transmision.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Controller/VentaController.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/TipoTransmision.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/MedidaLlanta.java</file>
+            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/EstadoMoto.java</file>
+            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/voltrixmoto/VoltrixMoto.java</file>
             <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/DAO/MotoDAO.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/PartesMoto.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/EstadoCuenta.java</file>
             <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Controller/MotoController.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/CapacidadAsiento.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/UbicacionFreno.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/MaterialFreno.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Entities/FrenoTrasero.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Utilidades/GeneradorDeId.java</file>
+            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/View/Store.java</file>
+            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/TipoMoto.java</file>
+            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/Model/Constants/TipoColorMoto.java</file>
+            <file>file:/C:/Users/nicol/OneDrive/Escritorio/Voltrix-Moto/src/View/bwsNegra.java</file>
         </group>
     </open-files>
 </project-private>

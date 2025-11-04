@@ -4,11 +4,25 @@
  */
 package View;
 
+import Controller.MotoController;
+import Model.Constants.TipoColorMoto;
+import static Model.Constants.TipoColorMoto.BLANCO;
+import static Model.Constants.TipoColorMoto.NEGRO;
+import static Model.Constants.TipoColorMoto.ROJO;
+import static Model.Constants.TipoColorMoto.VERDE;
+import Model.Constants.TipoMoto;
+import Model.Entities.Moto;
+import java.util.List;
+import java.util.Map;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author gameV
  */
 public class bwsNegra extends javax.swing.JFrame {
+
+    private Moto motoActual;
 
     /**
      * Creates new form bwsNegra
@@ -16,6 +30,119 @@ public class bwsNegra extends javax.swing.JFrame {
     public bwsNegra() {
         initComponents();
         this.setLocationRelativeTo(null);
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SEMIAUTOMATICA);
+        Map<TipoColorMoto, Integer> conteo = controller.contarPorColor(TipoMoto.SEMIAUTOMATICA);
+
+        if (!motos.isEmpty()) {
+            Moto moto = motos.get(0);
+            motoActual = moto;
+
+            TipoColorMoto color = moto.getTipoColorMoto();
+
+            txtModelo.setText(moto.getModelo());
+            marcatxt.setText(moto.getMarca());
+            tipoTxt.setText(moto.getTipoMoto().toString());
+            precioTxt.setText("$" + moto.getPrecio());
+            estadotxt.setText(moto.getEstado().toString());
+            CilindrajeTxt1.setText(moto.getPartesMoto().getMotor().getCilindrada() + " cc");
+            Motortxt.setText(moto.getPartesMoto().getMotor().getTipo().toString());
+            String añoIngreso = String.valueOf(moto.getFechaIngreso().getYear());
+            txtAño1.setText(añoIngreso);
+
+            String ruta = switch (color) {
+                case ROJO ->
+                    "/Images/Semiautomatica-roja.png";
+                case NEGRO ->
+                    "/Images/2020-Yamaha-BWS-125a-removebg-preview.png";
+                case BLANCO ->
+                    "/Images/Semiautomatica-blanca.png";
+                case VERDE ->
+                    "/Images/Semiautomatica-verde.png";
+                default ->
+                    "";
+            };
+
+            MotoFoto.setIcon(new ImageIcon(getClass().getResource(ruta)));
+
+            int cantidadColor = conteo.getOrDefault(color, 0);
+            jLabel14.setText("Disponibles color " + color + ": " + cantidadColor);
+        } else {
+            txtModelo.setText("No hay motos disponibles de ese tipo.");
+        }
+
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cambiarColorMoto(TipoColorMoto.ROJO);
+            }
+        });
+        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cambiarColorMoto(TipoColorMoto.VERDE);
+            }
+        });
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cambiarColorMoto(TipoColorMoto.BLANCO);
+            }
+        });
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cambiarColorMoto(TipoColorMoto.NEGRO);
+            }
+        });
+
+    }
+
+    private void cambiarColorMoto(TipoColorMoto colorSeleccionado) {
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SEMIAUTOMATICA);
+        Map<TipoColorMoto, Integer> conteo = controller.contarPorColor(TipoMoto.SEMIAUTOMATICA);
+
+        List<Moto> motosDelColor = motos.stream()
+                .filter(m -> m.getTipoColorMoto() == colorSeleccionado)
+                .toList();
+
+        if (motosDelColor.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No hay motos disponibles de color " + colorSeleccionado + ".",
+                    "Sin disponibilidad",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        Moto moto = motosDelColor.get(0);
+        motoActual = moto;
+
+        txtModelo.setText(moto.getModelo());
+        marcatxt.setText(moto.getMarca());
+        tipoTxt.setText(moto.getTipoMoto().toString());
+        precioTxt.setText("$" + moto.getPrecio());
+        estadotxt.setText(moto.getEstado().toString());
+        CilindrajeTxt1.setText(moto.getPartesMoto().getMotor().getCilindrada() + " cc");
+        Motortxt.setText(moto.getPartesMoto().getMotor().getTipo().toString());
+        String añoIngreso = String.valueOf(moto.getFechaIngreso().getYear());
+        txtAño1.setText(añoIngreso);
+
+        String ruta = switch (colorSeleccionado) {
+            case ROJO ->
+                "/Images/Semiautomatica-roja.png";
+            case NEGRO ->
+                "/Images/2020-Yamaha-BWS-125a-removebg-preview.png";
+            case BLANCO ->
+                "/Images/Semiautomatica-blanca.png";
+            case VERDE ->
+                "/Images/Semiautomatica-verde.png";
+            default ->
+                "";
+        };
+
+        MotoFoto.setIcon(new ImageIcon(getClass().getResource(ruta)));
+
+        int cantidadColor = conteo.getOrDefault(colorSeleccionado, 0);
+        jLabel14.setText("Disponibles color " + colorSeleccionado + ": " + cantidadColor);
     }
 
     /**

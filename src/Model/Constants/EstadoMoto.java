@@ -4,7 +4,7 @@ package Model.Constants;
 
 public enum EstadoMoto {
     DISPONIBLE,
-    RESERVADO,
+    EN_CARRITO,
     VENDIDO
             
     
