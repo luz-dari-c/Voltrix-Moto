@@ -1,482 +1,449 @@
 [
   {
     "id": "1",
-    "idUsuario": "UsuarioDemo",
-    "fechaCreacion": "2025-10-08",
+    "idUsuario": "1237440696",
+    "fechaCreacion": "2025-11-06",
     "items": [
       {
         "vehiculo": {
-          "idMoto": 2,
-          "marca": "Voltrix",
-          "modelo": "Thunder",
-          "fechaLanzamiento": "2025-02-15",
-          "precio": 5200000.0,
-          "tipoMoto": "DEPORTIVA",
+          "idMoto": 41,
+          "placa": "HWK-460",
+          "marca": "KTM",
+          "modelo": "890 Adventure",
+          "fechaIngreso": "2025-11-05",
+          "precio": 8.1E7,
+          "tipoMoto": "BOXER",
+          "tipoColorMoto": "ROJO",
+          "cilindraje": 890,
+          "tieneParrilla": true,
+          "tieneMaletero": false,
+          "partesMoto": {
+            "llantaDelantera": {
+              "idLlantaDelantera": "LLD-70797",
+              "ubicacion": "DELANTERA",
+              "marca": "Pirelli",
+              "modelo": "Scorpion",
+              "material": "CAUCHO"
+            },
+            "llantaTrasera": {
+              "idLlantaTrasera": "LLT-98017",
+              "ubicacion": "DELANTERA",
+              "marca": "Pirelli",
+              "modelo": "Scorpion",
+              "material": "CAUCHO"
+            },
+            "chasis": {
+              "idChasis": "CHS-18386",
+              "material": "ACERO",
+              "tipo": "MULTITUBULAR"
+            },
+            "motor": {
+              "idMotor": "MTR-82747",
+              "tipo": "CUATRO_TIEMPOS",
+              "cilindrada": 890,
+              "potencia": 105
+            },
+            "asiento": {
+              "idAsiento": "AST-19664",
+              "material": "CUERO",
+              "capacidad": "BIPLAZA"
+            },
+            "frenoDelantero": {
+              "idFrenoDelantero": "FRD-96453",
+              "ubicacion": "DELANTERO",
+              "marca": "ByBre",
+              "modelo": "FD-Adv",
+              "material": "ACERO"
+            },
+            "frenoTrasero": {
+              "idFrenoTrasero": "FRT-86108",
+              "ubicacion": "TRASERO",
+              "marca": "ByBre",
+              "modelo": "FT-Adv",
+              "material": "ACERO"
+            },
+            "transmision": {
+              "idTransmision": "TRS-62037",
+              "tipoTransmision": "MANUAL",
+              "velocidades": "SEIS"
+            }
+          },
+          "estado": "EN_CARRITO"
+        },
+        "id": "1",
+        "usuarioId": "1237440696",
+        "cantidad": 1,
+        "precioUnitario": 8.1E+7,
+        "subtotal": 8.1E+7
+      },
+      {
+        "vehiculo": {
+          "idMoto": 39,
+          "placa": "KBC-198",
+          "marca": "Kawasaki",
+          "modelo": "Ninja ZX-10R",
+          "fechaIngreso": "2025-11-03",
+          "precio": 1.25E8,
+          "tipoMoto": "SUPERSPORT",
           "tipoColorMoto": "NEGRO",
+          "cilindraje": 998,
           "tieneParrilla": false,
-          "tieneMaletero": true,
-          "motor": {
-            "idMotor": 0,
-            "tipo": "DOS_TIEMPOS",
-            "cilindrada": 150,
-            "potencia": 10
+          "tieneMaletero": false,
+          "partesMoto": {
+            "llantaDelantera": {
+              "idLlantaDelantera": "LLD-74766",
+              "medida": "R17_120_70",
+              "ubicacion": "DELANTERA",
+              "marca": "Bridgestone",
+              "modelo": "Battlax Racing",
+              "material": "CAUCHO"
+            },
+            "llantaTrasera": {
+              "idLlantaTrasera": "LLT-65457",
+              "medida": "R17_180_55",
+              "ubicacion": "DELANTERA",
+              "marca": "Bridgestone",
+              "modelo": "Battlax Racing",
+              "material": "CAUCHO"
+            },
+            "chasis": {
+              "idChasis": "CHS-82072",
+              "material": "ALUMINIO",
+              "tipo": "PERIMETRAL"
+            },
+            "motor": {
+              "idMotor": "MTR-29098",
+              "tipo": "CUATRO_TIEMPOS",
+              "cilindrada": 998,
+              "potencia": 203
+            },
+            "asiento": {
+              "idAsiento": "AST-81235",
+              "material": "CUERO",
+              "capacidad": "MONOPLAZA"
+            },
+            "frenoDelantero": {
+              "idFrenoDelantero": "FRD-63961",
+              "ubicacion": "DELANTERO",
+              "marca": "Brembo",
+              "modelo": "FD-SSport",
+              "material": "ACERO"
+            },
+            "frenoTrasero": {
+              "idFrenoTrasero": "FRT-53446",
+              "ubicacion": "TRASERO",
+              "marca": "Brembo",
+              "modelo": "FT-SSport",
+              "material": "ACERO"
+            },
+            "transmision": {
+              "idTransmision": "TRS-62497",
+              "tipoTransmision": "MANUAL",
+              "velocidades": "SEIS"
+            }
           },
-          "chasis": {
-            "idChasis": 0,
-            "material": "ALUMINIO",
-            "tipo": "MULTITUBULAR"
-          },
-          "llantaDelantera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "llantaTrasera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "frenoDelantero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "DELANTERO"
-          },
-          "frenoTrasero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "TRASERO"
-          },
-          "asiento": {
-            "idAsiento": 0,
-            "material": "Cuero sintético",
-            "capacidad": "MONOPLAZA"
-          },
-          "transmision": {
-            "idTransmision": 0,
-            "tipoTransmision": "AUTOMATICA",
-            "velocidades": "CINCO"
-          }
+          "estado": "EN_CARRITO"
         },
         "id": "2",
-        "cantidad": 2,
-        "precioUnitario": 5200000.0,
-        "subtotal": 10400000.0
+        "usuarioId": "1237440696",
+        "cantidad": 1,
+        "precioUnitario": 1.25E+8,
+        "subtotal": 1.25E+8
       },
       {
         "vehiculo": {
-          "idMoto": 1,
-          "marca": "Voltrix",
-          "modelo": "NeoX",
-          "fechaLanzamiento": "2024-05-01",
-          "precio": 4800000.0,
-          "tipoMoto": "SCOOTER",
-          "tipoColorMoto": "ROJO",
-          "tieneParrilla": true,
+          "idMoto": 40,
+          "placa": "LKV-900",
+          "marca": "Kawasaki",
+          "modelo": "Ninja ZX-10R",
+          "fechaIngreso": "2025-11-03",
+          "precio": 1.25E8,
+          "tipoMoto": "SUPERSPORT",
+          "tipoColorMoto": "VERDE",
+          "cilindraje": 998,
+          "tieneParrilla": false,
           "tieneMaletero": false,
-          "motor": {
-            "idMotor": 0,
-            "tipo": "DOS_TIEMPOS",
-            "cilindrada": 150,
-            "potencia": 10
+          "partesMoto": {
+            "llantaDelantera": {
+              "idLlantaDelantera": "LLD-97656",
+              "medida": "R17_120_70",
+              "ubicacion": "DELANTERA",
+              "marca": "Bridgestone",
+              "modelo": "Battlax Racing",
+              "material": "CAUCHO"
+            },
+            "llantaTrasera": {
+              "idLlantaTrasera": "LLT-83337",
+              "medida": "R17_180_55",
+              "ubicacion": "DELANTERA",
+              "marca": "Bridgestone",
+              "modelo": "Battlax Racing",
+              "material": "CAUCHO"
+            },
+            "chasis": {
+              "idChasis": "CHS-67681",
+              "material": "ALUMINIO",
+              "tipo": "PERIMETRAL"
+            },
+            "motor": {
+              "idMotor": "MTR-86722",
+              "tipo": "CUATRO_TIEMPOS",
+              "cilindrada": 998,
+              "potencia": 203
+            },
+            "asiento": {
+              "idAsiento": "AST-74104",
+              "material": "CUERO",
+              "capacidad": "MONOPLAZA"
+            },
+            "frenoDelantero": {
+              "idFrenoDelantero": "FRD-75984",
+              "ubicacion": "DELANTERO",
+              "marca": "Brembo",
+              "modelo": "FD-SSport",
+              "material": "ACERO"
+            },
+            "frenoTrasero": {
+              "idFrenoTrasero": "FRT-33347",
+              "ubicacion": "TRASERO",
+              "marca": "Brembo",
+              "modelo": "FT-SSport",
+              "material": "ACERO"
+            },
+            "transmision": {
+              "idTransmision": "TRS-17260",
+              "tipoTransmision": "MANUAL",
+              "velocidades": "SEIS"
+            }
           },
-          "chasis": {
-            "idChasis": 0,
-            "material": "ALUMINIO",
-            "tipo": "MULTITUBULAR"
-          },
-          "llantaDelantera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "llantaTrasera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "frenoDelantero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "DELANTERO"
-          },
-          "frenoTrasero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "TRASERO"
-          },
-          "asiento": {
-            "idAsiento": 0,
-            "material": "Cuero sintético",
-            "capacidad": "MONOPLAZA"
-          },
-          "transmision": {
-            "idTransmision": 0,
-            "tipoTransmision": "AUTOMATICA",
-            "velocidades": "CINCO"
-          }
+          "estado": "EN_CARRITO"
         },
         "id": "3",
+        "usuarioId": "1237440696",
         "cantidad": 1,
-        "precioUnitario": 4800000.0,
-        "subtotal": 4800000.0
+        "precioUnitario": 1.25E+8,
+        "subtotal": 1.25E+8
       },
       {
         "vehiculo": {
-          "idMoto": 2,
-          "marca": "Voltrix",
-          "modelo": "Thunder",
-          "fechaLanzamiento": "2025-02-15",
-          "precio": 5200000.0,
-          "tipoMoto": "DEPORTIVA",
-          "tipoColorMoto": "NEGRO",
+          "idMoto": 38,
+          "placa": "MMQ-345",
+          "marca": "Kawasaki",
+          "modelo": "Ninja ZX-10R",
+          "fechaIngreso": "2025-11-03",
+          "precio": 1.25E8,
+          "tipoMoto": "SUPERSPORT",
+          "tipoColorMoto": "BLANCO",
+          "cilindraje": 998,
           "tieneParrilla": false,
-          "tieneMaletero": true,
-          "motor": {
-            "idMotor": 0,
-            "tipo": "DOS_TIEMPOS",
-            "cilindrada": 150,
-            "potencia": 10
+          "tieneMaletero": false,
+          "partesMoto": {
+            "llantaDelantera": {
+              "idLlantaDelantera": "LLD-35090",
+              "medida": "R17_120_70",
+              "ubicacion": "DELANTERA",
+              "marca": "Bridgestone",
+              "modelo": "Battlax Racing",
+              "material": "CAUCHO"
+            },
+            "llantaTrasera": {
+              "idLlantaTrasera": "LLT-80825",
+              "medida": "R17_180_55",
+              "ubicacion": "DELANTERA",
+              "marca": "Bridgestone",
+              "modelo": "Battlax Racing",
+              "material": "CAUCHO"
+            },
+            "chasis": {
+              "idChasis": "CHS-60381",
+              "material": "ALUMINIO",
+              "tipo": "PERIMETRAL"
+            },
+            "motor": {
+              "idMotor": "MTR-96330",
+              "tipo": "CUATRO_TIEMPOS",
+              "cilindrada": 998,
+              "potencia": 203
+            },
+            "asiento": {
+              "idAsiento": "AST-69860",
+              "material": "CUERO",
+              "capacidad": "MONOPLAZA"
+            },
+            "frenoDelantero": {
+              "idFrenoDelantero": "FRD-44508",
+              "ubicacion": "DELANTERO",
+              "marca": "Brembo",
+              "modelo": "FD-SSport",
+              "material": "ACERO"
+            },
+            "frenoTrasero": {
+              "idFrenoTrasero": "FRT-86754",
+              "ubicacion": "TRASERO",
+              "marca": "Brembo",
+              "modelo": "FT-SSport",
+              "material": "ACERO"
+            },
+            "transmision": {
+              "idTransmision": "TRS-13933",
+              "tipoTransmision": "MANUAL",
+              "velocidades": "SEIS"
+            }
           },
-          "chasis": {
-            "idChasis": 0,
-            "material": "ALUMINIO",
-            "tipo": "MULTITUBULAR"
-          },
-          "llantaDelantera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "llantaTrasera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "frenoDelantero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "DELANTERO"
-          },
-          "frenoTrasero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "TRASERO"
-          },
-          "asiento": {
-            "idAsiento": 0,
-            "material": "Cuero sintético",
-            "capacidad": "MONOPLAZA"
-          },
-          "transmision": {
-            "idTransmision": 0,
-            "tipoTransmision": "AUTOMATICA",
-            "velocidades": "CINCO"
-          }
+          "estado": "EN_CARRITO"
         },
         "id": "4",
-        "cantidad": 2,
-        "precioUnitario": 5200000.0,
-        "subtotal": 10400000.0
-      }
-    ],
-    "total": 25600000.0
-  },
-  {
-    "id": "2",
-    "idUsuario": "UsuarioDemo",
-    "fechaCreacion": "2025-10-08",
-    "items": [
-      {
-        "vehiculo": {
-          "idMoto": 2,
-          "marca": "Voltrix",
-          "modelo": "Thunder",
-          "fechaLanzamiento": "2025-02-15",
-          "precio": 5200000.0,
-          "tipoMoto": "DEPORTIVA",
-          "tipoColorMoto": "NEGRO",
-          "tieneParrilla": false,
-          "tieneMaletero": true,
-          "motor": {
-            "idMotor": 0,
-            "tipo": "DOS_TIEMPOS",
-            "cilindrada": 150,
-            "potencia": 10
-          },
-          "chasis": {
-            "idChasis": 0,
-            "material": "ALUMINIO",
-            "tipo": "MULTITUBULAR"
-          },
-          "llantaDelantera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "llantaTrasera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "frenoDelantero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "DELANTERO"
-          },
-          "frenoTrasero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "TRASERO"
-          },
-          "asiento": {
-            "idAsiento": 0,
-            "material": "Cuero sintético",
-            "capacidad": "MONOPLAZA"
-          },
-          "transmision": {
-            "idTransmision": 0,
-            "tipoTransmision": "AUTOMATICA",
-            "velocidades": "CINCO"
-          }
-        },
-        "id": "2",
-        "cantidad": 2,
-        "precioUnitario": 5200000.0,
-        "subtotal": 10400000.0
-      },
-      {
-        "vehiculo": {
-          "idMoto": 1,
-          "marca": "Voltrix",
-          "modelo": "NeoX",
-          "fechaLanzamiento": "2024-05-01",
-          "precio": 4800000.0,
-          "tipoMoto": "SCOOTER",
-          "tipoColorMoto": "ROJO",
-          "tieneParrilla": true,
-          "tieneMaletero": false,
-          "motor": {
-            "idMotor": 0,
-            "tipo": "DOS_TIEMPOS",
-            "cilindrada": 150,
-            "potencia": 10
-          },
-          "chasis": {
-            "idChasis": 0,
-            "material": "ALUMINIO",
-            "tipo": "MULTITUBULAR"
-          },
-          "llantaDelantera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "llantaTrasera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "frenoDelantero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "DELANTERO"
-          },
-          "frenoTrasero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "TRASERO"
-          },
-          "asiento": {
-            "idAsiento": 0,
-            "material": "Cuero sintético",
-            "capacidad": "MONOPLAZA"
-          },
-          "transmision": {
-            "idTransmision": 0,
-            "tipoTransmision": "AUTOMATICA",
-            "velocidades": "CINCO"
-          }
-        },
-        "id": "3",
+        "usuarioId": "1237440696",
         "cantidad": 1,
-        "precioUnitario": 4800000.0,
-        "subtotal": 4800000.0
+        "precioUnitario": 1.25E+8,
+        "subtotal": 1.25E+8
       },
       {
         "vehiculo": {
-          "idMoto": 2,
-          "marca": "Voltrix",
-          "modelo": "Thunder",
-          "fechaLanzamiento": "2025-02-15",
-          "precio": 5200000.0,
-          "tipoMoto": "DEPORTIVA",
-          "tipoColorMoto": "NEGRO",
-          "tieneParrilla": false,
-          "tieneMaletero": true,
-          "motor": {
-            "idMotor": 0,
-            "tipo": "DOS_TIEMPOS",
-            "cilindrada": 150,
-            "potencia": 10
-          },
-          "chasis": {
-            "idChasis": 0,
-            "material": "ALUMINIO",
-            "tipo": "MULTITUBULAR"
-          },
-          "llantaDelantera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "llantaTrasera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "frenoDelantero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "DELANTERO"
-          },
-          "frenoTrasero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "TRASERO"
-          },
-          "asiento": {
-            "idAsiento": 0,
-            "material": "Cuero sintético",
-            "capacidad": "MONOPLAZA"
-          },
-          "transmision": {
-            "idTransmision": 0,
-            "tipoTransmision": "AUTOMATICA",
-            "velocidades": "CINCO"
-          }
-        },
-        "id": "4",
-        "cantidad": 2,
-        "precioUnitario": 5200000.0,
-        "subtotal": 10400000.0
-      },
-      {
-        "vehiculo": {
-          "idMoto": 1,
-          "marca": "Voltrix",
-          "modelo": "NeoX",
-          "fechaLanzamiento": "2024-05-01",
-          "precio": 4800000.0,
-          "tipoMoto": "SCOOTER",
+          "idMoto": 37,
+          "placa": "JGB-144",
+          "marca": "Kawasaki",
+          "modelo": "Ninja ZX-10R",
+          "fechaIngreso": "2025-11-03",
+          "precio": 1.25E8,
+          "tipoMoto": "SUPERSPORT",
           "tipoColorMoto": "ROJO",
-          "tieneParrilla": true,
+          "cilindraje": 998,
+          "tieneParrilla": false,
           "tieneMaletero": false,
-          "motor": {
-            "idMotor": 0,
-            "tipo": "DOS_TIEMPOS",
-            "cilindrada": 150,
-            "potencia": 10
+          "partesMoto": {
+            "llantaDelantera": {
+              "idLlantaDelantera": "LLD-70635",
+              "medida": "R17_120_70",
+              "ubicacion": "DELANTERA",
+              "marca": "Bridgestone",
+              "modelo": "Battlax Racing",
+              "material": "CAUCHO"
+            },
+            "llantaTrasera": {
+              "idLlantaTrasera": "LLT-26133",
+              "medida": "R17_180_55",
+              "ubicacion": "DELANTERA",
+              "marca": "Bridgestone",
+              "modelo": "Battlax Racing",
+              "material": "CAUCHO"
+            },
+            "chasis": {
+              "idChasis": "CHS-58575",
+              "material": "ALUMINIO",
+              "tipo": "PERIMETRAL"
+            },
+            "motor": {
+              "idMotor": "MTR-43072",
+              "tipo": "CUATRO_TIEMPOS",
+              "cilindrada": 998,
+              "potencia": 203
+            },
+            "asiento": {
+              "idAsiento": "AST-75065",
+              "material": "CUERO",
+              "capacidad": "MONOPLAZA"
+            },
+            "frenoDelantero": {
+              "idFrenoDelantero": "FRD-45099",
+              "ubicacion": "DELANTERO",
+              "marca": "Brembo",
+              "modelo": "FD-SSport",
+              "material": "ACERO"
+            },
+            "frenoTrasero": {
+              "idFrenoTrasero": "FRT-64517",
+              "ubicacion": "TRASERO",
+              "marca": "Brembo",
+              "modelo": "FT-SSport",
+              "material": "ACERO"
+            },
+            "transmision": {
+              "idTransmision": "TRS-95519",
+              "tipoTransmision": "MANUAL",
+              "velocidades": "SEIS"
+            }
           },
-          "chasis": {
-            "idChasis": 0,
-            "material": "ALUMINIO",
-            "tipo": "MULTITUBULAR"
-          },
-          "llantaDelantera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "llantaTrasera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "frenoDelantero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "DELANTERO"
-          },
-          "frenoTrasero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "TRASERO"
-          },
-          "asiento": {
-            "idAsiento": 0,
-            "material": "Cuero sintético",
-            "capacidad": "MONOPLAZA"
-          },
-          "transmision": {
-            "idTransmision": 0,
-            "tipoTransmision": "AUTOMATICA",
-            "velocidades": "CINCO"
-          }
+          "estado": "EN_CARRITO"
         },
         "id": "5",
+        "usuarioId": "1237440696",
         "cantidad": 1,
-        "precioUnitario": 4800000.0,
-        "subtotal": 4800000.0
+        "precioUnitario": 1.25E+8,
+        "subtotal": 1.25E+8
       },
       {
         "vehiculo": {
-          "idMoto": 2,
-          "marca": "Voltrix",
-          "modelo": "Thunder",
-          "fechaLanzamiento": "2025-02-15",
-          "precio": 5200000.0,
-          "tipoMoto": "DEPORTIVA",
-          "tipoColorMoto": "NEGRO",
-          "tieneParrilla": false,
+          "idMoto": 17,
+          "placa": "NVD-103",
+          "marca": "Indian",
+          "modelo": "Chief",
+          "fechaIngreso": "2025-11-03",
+          "precio": 1.2E8,
+          "tipoMoto": "CHOPPER",
+          "tipoColorMoto": "ROJO",
+          "cilindraje": 1600,
+          "tieneParrilla": true,
           "tieneMaletero": true,
-          "motor": {
-            "idMotor": 0,
-            "tipo": "DOS_TIEMPOS",
-            "cilindrada": 150,
-            "potencia": 10
+          "partesMoto": {
+            "llantaDelantera": {
+              "idLlantaDelantera": "LLD-45711",
+              "ubicacion": "DELANTERA",
+              "marca": "Dunlop",
+              "modelo": "Elite",
+              "material": "CAUCHO"
+            },
+            "llantaTrasera": {
+              "idLlantaTrasera": "LLT-36121",
+              "ubicacion": "DELANTERA",
+              "marca": "Dunlop",
+              "modelo": "Elite",
+              "material": "CAUCHO"
+            },
+            "chasis": {
+              "idChasis": "CHS-48583",
+              "material": "ACERO"
+            },
+            "motor": {
+              "idMotor": "MTR-21635",
+              "tipo": "CUATRO_TIEMPOS",
+              "cilindrada": 1600,
+              "potencia": 100
+            },
+            "asiento": {
+              "idAsiento": "AST-41325",
+              "material": "CUERO",
+              "capacidad": "BIPLAZA"
+            },
+            "frenoDelantero": {
+              "idFrenoDelantero": "FRD-64119",
+              "ubicacion": "DELANTERO",
+              "marca": "Indian",
+              "modelo": "FD-Chop",
+              "material": "ACERO"
+            },
+            "frenoTrasero": {
+              "idFrenoTrasero": "FRT-77505",
+              "ubicacion": "TRASERO",
+              "marca": "Indian",
+              "modelo": "FT-Chop",
+              "material": "ACERO"
+            },
+            "transmision": {
+              "idTransmision": "TRS-54066",
+              "tipoTransmision": "MANUAL",
+              "velocidades": "SEIS"
+            }
           },
-          "chasis": {
-            "idChasis": 0,
-            "material": "ALUMINIO",
-            "tipo": "MULTITUBULAR"
-          },
-          "llantaDelantera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "llantaTrasera": {
-            "idLlanta": 0,
-            "medida": "R16_100_80",
-            "tipo": "DELANTERA"
-          },
-          "frenoDelantero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "DELANTERO"
-          },
-          "frenoTrasero": {
-            "idFreno": 0,
-            "tipo": "DISCO",
-            "ubicacion": "TRASERO"
-          },
-          "asiento": {
-            "idAsiento": 0,
-            "material": "Cuero sintético",
-            "capacidad": "MONOPLAZA"
-          },
-          "transmision": {
-            "idTransmision": 0,
-            "tipoTransmision": "AUTOMATICA",
-            "velocidades": "CINCO"
-          }
+          "estado": "DISPONIBLE"
         },
-        "id": "6",
-        "cantidad": 2,
-        "precioUnitario": 5200000.0,
-        "subtotal": 10400000.0
+        "id": "17",
+        "usuarioId": "1237440696",
+        "cantidad": 1,
+        "precioUnitario": 1.2E+8,
+        "subtotal": 1.2E+8
       }
     ],
-    "total": 40800000.0
+    "total": 701000000
   }
 ]

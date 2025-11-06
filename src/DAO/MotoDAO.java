@@ -585,5 +585,40 @@ public class MotoDAO {
 
         return filtradas;
     }
+    
+    public boolean actualizarMoto(Moto motoActualizada) {
+    List<Moto> motos = cargarTodas();
 
+    for (int i = 0; i < motos.size(); i++) {
+        if (motos.get(i).getIdMoto() == motoActualizada.getIdMoto()) {
+            motos.set(i, motoActualizada);
+            guardarTodas(motos);
+            return true;
+        }
+    }
+    System.err.println("No se encontró la moto con ID: " + motoActualizada.getIdMoto());
+    return false;
+}
+    
+      
+    public List<Moto> obtenerMotosDisponibles() {
+        List<Moto> motos = cargarTodas();
+
+        List<Moto> filtradas = new ArrayList<>();
+
+        for (Moto moto : motos) {
+            if (moto.getEstado() == EstadoMoto.DISPONIBLE
+                    && !moto.getPlaca().startsWith("BSE-")) {
+                filtradas.add(moto);
+            }
+
+        }
+        return filtradas;
+    }
+    
+   public int contarMotosDisponibles(){
+       List<Moto> disponibles = obtenerMotosDisponibles();
+       return disponibles.size();
+   }
+    
 }

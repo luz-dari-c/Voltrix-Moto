@@ -23,7 +23,7 @@ public class Usuario {
         this.password = password;
     }
 
-    // Getters y Setters
+    
     public String getPrimerNombre() { return primerNombre; }
     public void setPrimerNombre(String primerNombre) { this.primerNombre = primerNombre; }
     public String getSegundoNombre() { return segundoNombre; }

@@ -1,5 +1,6 @@
 package Model.Entities;
 
+import Model.Constants.EstadoMoto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -85,6 +86,31 @@ public class Carrito {
         }
         this.total = nuevoTotal;
     }
+    
+   public Carrito ontenerSoloEnCarrito(){
+        Carrito carritoParaVenta = new Carrito(this.idUsuario);
+    for (ItemCarrito item : this.items) {
+        if (item.getVehiculo() != null 
+            && item.getVehiculo().getEstado() == EstadoMoto.EN_CARRITO) {
+            carritoParaVenta.agregarItem(item);
+        }
+    }
+    return carritoParaVenta;
+   }
+    
+     public Carrito obtenerSoloDisponibles() {
+    Carrito carritoDisponible = new Carrito(this.idUsuario);
+    for (ItemCarrito item : this.items) {
+        if (item.getVehiculo() != null 
+            && item.getVehiculo().getEstado() == EstadoMoto.DISPONIBLE) {
+            carritoDisponible.agregarItem(item);
+        }
+    }
+    return carritoDisponible;
+}
+     
+     
+     
 
     @Override
     public String toString() {
@@ -96,4 +122,5 @@ public class Carrito {
                 ", items=" + items +
                 '}';
     }
+    
 }

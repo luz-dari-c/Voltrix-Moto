@@ -1,0 +1,10 @@
+[
+  {
+    "idFactura": 1,
+    "idUsuario": "1237440696",
+    "idMoto": 0,
+    "nombreArchivoPDF": "Factura_1.pdf",
+    "rutaPDF": "C:\\Users\\ASUS\\OneDrive\\Documentos\\NetBeansProjects\\VoltrixMoto\\src\\Resources\\Data\\Facturas\\Factura_1.pdf",
+    "fechaFactura": "2025-11-06T15:13:14.1368138"
+  }
+]

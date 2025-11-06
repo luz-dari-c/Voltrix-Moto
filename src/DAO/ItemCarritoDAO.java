@@ -88,19 +88,22 @@ public class ItemCarritoDAO {
         archivo.getParentFile().mkdirs();
     }
 
-   public boolean guardarItem(ItemCarrito item) {
+  public boolean guardarItem(ItemCarrito item) {
     List<ItemCarrito> items = cargarTodos();
 
     int nuevoId = generarNuevoId(items);
     item.setId(String.valueOf(nuevoId));
 
-    BigDecimal subtotal = item.getPrecioUnitario().multiply(new BigDecimal(item.getCantidad()));
-    item.setSubtotal(subtotal);
+    if (item.getPrecioUnitario() != null) {
+        BigDecimal subtotal = item.getPrecioUnitario().multiply(new BigDecimal(item.getCantidad()));
+        item.setSubtotal(subtotal);
+    }
 
     items.add(item);
     guardarTodos(items);
     return true;
 }
+
 
 
     public boolean eliminarItem(String id) {

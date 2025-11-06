@@ -1,19 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
 
 import Controller.MotoController;
 import Model.Constants.TipoMoto;
 import Model.Entities.Moto;
+import Model.Entities.Sesion;
+import Model.Entities.Usuario;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Sharlok
- */
 public class Store extends javax.swing.JFrame {
 
     private MotoController controller;
@@ -206,8 +201,6 @@ public class Store extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         PrecioPut7 = new javax.swing.JLabel();
         AñoPut7 = new javax.swing.JLabel();
-        Carrito7 = new javax.swing.JButton();
-        Comprar12 = new javax.swing.JButton();
         VerMas8 = new javax.swing.JButton();
         tipotxt7 = new javax.swing.JLabel();
         tipoPut7 = new javax.swing.JLabel();
@@ -222,8 +215,6 @@ public class Store extends javax.swing.JFrame {
         VerMas1 = new javax.swing.JButton();
         AñoPut = new javax.swing.JLabel();
         PrecioPut = new javax.swing.JLabel();
-        Carrito = new javax.swing.JButton();
-        Comprar5 = new javax.swing.JButton();
         tipotxt = new javax.swing.JLabel();
         tipoPut = new javax.swing.JLabel();
         KawasakiVerdePanel = new VisualHelpers.RoundedPanel(20)
@@ -236,8 +227,6 @@ public class Store extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         PrecioPut3 = new javax.swing.JLabel();
         AñoPut3 = new javax.swing.JLabel();
-        Carrito3 = new javax.swing.JButton();
-        Comprar8 = new javax.swing.JButton();
         VerMas4 = new javax.swing.JButton();
         tipotxt3 = new javax.swing.JLabel();
         tipoPut3 = new javax.swing.JLabel();
@@ -251,8 +240,6 @@ public class Store extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         PrecioPut6 = new javax.swing.JLabel();
         AñoPut6 = new javax.swing.JLabel();
-        Carrito6 = new javax.swing.JButton();
-        Comprar11 = new javax.swing.JButton();
         VerMas7 = new javax.swing.JButton();
         tipotxt6 = new javax.swing.JLabel();
         tipoPut6 = new javax.swing.JLabel();
@@ -266,8 +253,6 @@ public class Store extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         PrecioPut4 = new javax.swing.JLabel();
         AñoPut4 = new javax.swing.JLabel();
-        Carrito4 = new javax.swing.JButton();
-        Comprar9 = new javax.swing.JButton();
         VerMas5 = new javax.swing.JButton();
         tipotxt4 = new javax.swing.JLabel();
         tipoPut4 = new javax.swing.JLabel();
@@ -281,8 +266,6 @@ public class Store extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         PrecioPut5 = new javax.swing.JLabel();
         AñoPut5 = new javax.swing.JLabel();
-        Carrito5 = new javax.swing.JButton();
-        Comprar10 = new javax.swing.JButton();
         VerMas6 = new javax.swing.JButton();
         tipotxt5 = new javax.swing.JLabel();
         tipoPut5 = new javax.swing.JLabel();
@@ -296,8 +279,6 @@ public class Store extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         PrecioPut1 = new javax.swing.JLabel();
         AñoPut1 = new javax.swing.JLabel();
-        Carrito1 = new javax.swing.JButton();
-        Comprar6 = new javax.swing.JButton();
         VerMas2 = new javax.swing.JButton();
         tipotxt1 = new javax.swing.JLabel();
         tipoPut1 = new javax.swing.JLabel();
@@ -311,8 +292,6 @@ public class Store extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         PrecioPut2 = new javax.swing.JLabel();
         AñoPut2 = new javax.swing.JLabel();
-        Carrito2 = new javax.swing.JButton();
-        Comprar7 = new javax.swing.JButton();
         VerMas3 = new javax.swing.JButton();
         tipotxt2 = new javax.swing.JLabel();
         tipoPut2 = new javax.swing.JLabel();
@@ -406,31 +385,8 @@ public class Store extends javax.swing.JFrame {
         AñoPut7.setText("Año");
         YamahaVerdePanel.add(AñoPut7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 130, -1));
 
-        Carrito7.setBackground(new java.awt.Color(51, 102, 0));
-        Carrito7.setForeground(new java.awt.Color(255, 255, 255));
-        Carrito7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-add-to-cart-25.png"))); // NOI18N
-        Carrito7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Carrito7.setDefaultCapable(false);
-        Carrito7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Carrito7ActionPerformed(evt);
-            }
-        });
-        YamahaVerdePanel.add(Carrito7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 40, 40));
-
-        Comprar12.setBackground(new java.awt.Color(255, 255, 255));
-        Comprar12.setForeground(new java.awt.Color(0, 0, 0));
-        Comprar12.setText("Comprar");
-        Comprar12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Comprar12.setDefaultCapable(false);
-        Comprar12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Comprar12ActionPerformed(evt);
-            }
-        });
-        YamahaVerdePanel.add(Comprar12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-
         VerMas8.setBackground(new java.awt.Color(0, 153, 255));
+        VerMas8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         VerMas8.setForeground(new java.awt.Color(0, 0, 0));
         VerMas8.setText("Ver más");
         VerMas8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -439,7 +395,7 @@ public class Store extends javax.swing.JFrame {
                 VerMas8ActionPerformed(evt);
             }
         });
-        YamahaVerdePanel.add(VerMas8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        YamahaVerdePanel.add(VerMas8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 140, -1));
 
         tipotxt7.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         tipotxt7.setForeground(new java.awt.Color(255, 255, 255));
@@ -482,6 +438,7 @@ public class Store extends javax.swing.JFrame {
         bwsNegraPanel.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         VerMas1.setBackground(new java.awt.Color(0, 153, 255));
+        VerMas1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         VerMas1.setForeground(new java.awt.Color(0, 0, 0));
         VerMas1.setText("Ver más");
         VerMas1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -490,7 +447,7 @@ public class Store extends javax.swing.JFrame {
                 VerMas1ActionPerformed(evt);
             }
         });
-        bwsNegraPanel.add(VerMas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        bwsNegraPanel.add(VerMas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 160, -1));
 
         AñoPut.setForeground(new java.awt.Color(255, 255, 255));
         AñoPut.setText("Año");
@@ -499,30 +456,6 @@ public class Store extends javax.swing.JFrame {
         PrecioPut.setForeground(new java.awt.Color(255, 255, 255));
         PrecioPut.setText("Precio");
         bwsNegraPanel.add(PrecioPut, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 130, -1));
-
-        Carrito.setBackground(new java.awt.Color(51, 102, 0));
-        Carrito.setForeground(new java.awt.Color(255, 255, 255));
-        Carrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-add-to-cart-25.png"))); // NOI18N
-        Carrito.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Carrito.setDefaultCapable(false);
-        Carrito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CarritoActionPerformed(evt);
-            }
-        });
-        bwsNegraPanel.add(Carrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 40, 40));
-
-        Comprar5.setBackground(new java.awt.Color(255, 255, 255));
-        Comprar5.setForeground(new java.awt.Color(0, 0, 0));
-        Comprar5.setText("Comprar");
-        Comprar5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Comprar5.setDefaultCapable(false);
-        Comprar5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Comprar5ActionPerformed(evt);
-            }
-        });
-        bwsNegraPanel.add(Comprar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
 
         tipotxt.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         tipotxt.setForeground(new java.awt.Color(255, 255, 255));
@@ -572,31 +505,8 @@ public class Store extends javax.swing.JFrame {
         AñoPut3.setText("Año");
         KawasakiVerdePanel.add(AñoPut3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 130, -1));
 
-        Carrito3.setBackground(new java.awt.Color(51, 102, 0));
-        Carrito3.setForeground(new java.awt.Color(255, 255, 255));
-        Carrito3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-add-to-cart-25.png"))); // NOI18N
-        Carrito3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Carrito3.setDefaultCapable(false);
-        Carrito3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Carrito3ActionPerformed(evt);
-            }
-        });
-        KawasakiVerdePanel.add(Carrito3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 40, 40));
-
-        Comprar8.setBackground(new java.awt.Color(255, 255, 255));
-        Comprar8.setForeground(new java.awt.Color(0, 0, 0));
-        Comprar8.setText("Comprar");
-        Comprar8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Comprar8.setDefaultCapable(false);
-        Comprar8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Comprar8ActionPerformed(evt);
-            }
-        });
-        KawasakiVerdePanel.add(Comprar8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-
         VerMas4.setBackground(new java.awt.Color(0, 153, 255));
+        VerMas4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         VerMas4.setForeground(new java.awt.Color(0, 0, 0));
         VerMas4.setText("Ver más");
         VerMas4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -605,7 +515,7 @@ public class Store extends javax.swing.JFrame {
                 VerMas4ActionPerformed(evt);
             }
         });
-        KawasakiVerdePanel.add(VerMas4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        KawasakiVerdePanel.add(VerMas4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 150, -1));
 
         tipotxt3.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         tipotxt3.setForeground(new java.awt.Color(255, 255, 255));
@@ -655,31 +565,8 @@ public class Store extends javax.swing.JFrame {
         AñoPut6.setText("Año");
         MotitoNegraPanel.add(AñoPut6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 130, -1));
 
-        Carrito6.setBackground(new java.awt.Color(51, 102, 0));
-        Carrito6.setForeground(new java.awt.Color(255, 255, 255));
-        Carrito6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-add-to-cart-25.png"))); // NOI18N
-        Carrito6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Carrito6.setDefaultCapable(false);
-        Carrito6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Carrito6ActionPerformed(evt);
-            }
-        });
-        MotitoNegraPanel.add(Carrito6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 40, 40));
-
-        Comprar11.setBackground(new java.awt.Color(255, 255, 255));
-        Comprar11.setForeground(new java.awt.Color(0, 0, 0));
-        Comprar11.setText("Comprar");
-        Comprar11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Comprar11.setDefaultCapable(false);
-        Comprar11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Comprar11ActionPerformed(evt);
-            }
-        });
-        MotitoNegraPanel.add(Comprar11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-
         VerMas7.setBackground(new java.awt.Color(0, 153, 255));
+        VerMas7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         VerMas7.setForeground(new java.awt.Color(0, 0, 0));
         VerMas7.setText("Ver más");
         VerMas7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -688,7 +575,7 @@ public class Store extends javax.swing.JFrame {
                 VerMas7ActionPerformed(evt);
             }
         });
-        MotitoNegraPanel.add(VerMas7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        MotitoNegraPanel.add(VerMas7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 150, -1));
 
         tipotxt6.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         tipotxt6.setForeground(new java.awt.Color(255, 255, 255));
@@ -738,31 +625,8 @@ public class Store extends javax.swing.JFrame {
         AñoPut4.setText("Año");
         YamahaRojaPanel.add(AñoPut4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 130, -1));
 
-        Carrito4.setBackground(new java.awt.Color(51, 102, 0));
-        Carrito4.setForeground(new java.awt.Color(255, 255, 255));
-        Carrito4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-add-to-cart-25.png"))); // NOI18N
-        Carrito4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Carrito4.setDefaultCapable(false);
-        Carrito4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Carrito4ActionPerformed(evt);
-            }
-        });
-        YamahaRojaPanel.add(Carrito4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 40, 40));
-
-        Comprar9.setBackground(new java.awt.Color(255, 255, 255));
-        Comprar9.setForeground(new java.awt.Color(0, 0, 0));
-        Comprar9.setText("Comprar");
-        Comprar9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Comprar9.setDefaultCapable(false);
-        Comprar9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Comprar9ActionPerformed(evt);
-            }
-        });
-        YamahaRojaPanel.add(Comprar9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-
         VerMas5.setBackground(new java.awt.Color(0, 153, 255));
+        VerMas5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         VerMas5.setForeground(new java.awt.Color(0, 0, 0));
         VerMas5.setText("Ver más");
         VerMas5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -771,7 +635,7 @@ public class Store extends javax.swing.JFrame {
                 VerMas5ActionPerformed(evt);
             }
         });
-        YamahaRojaPanel.add(VerMas5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        YamahaRojaPanel.add(VerMas5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 150, -1));
 
         tipotxt4.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         tipotxt4.setForeground(new java.awt.Color(255, 255, 255));
@@ -821,31 +685,8 @@ public class Store extends javax.swing.JFrame {
         AñoPut5.setText("Año");
         YamahaNegraPanel.add(AñoPut5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 130, -1));
 
-        Carrito5.setBackground(new java.awt.Color(51, 102, 0));
-        Carrito5.setForeground(new java.awt.Color(255, 255, 255));
-        Carrito5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-add-to-cart-25.png"))); // NOI18N
-        Carrito5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Carrito5.setDefaultCapable(false);
-        Carrito5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Carrito5ActionPerformed(evt);
-            }
-        });
-        YamahaNegraPanel.add(Carrito5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 40, 40));
-
-        Comprar10.setBackground(new java.awt.Color(255, 255, 255));
-        Comprar10.setForeground(new java.awt.Color(0, 0, 0));
-        Comprar10.setText("Comprar");
-        Comprar10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Comprar10.setDefaultCapable(false);
-        Comprar10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Comprar10ActionPerformed(evt);
-            }
-        });
-        YamahaNegraPanel.add(Comprar10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-
         VerMas6.setBackground(new java.awt.Color(0, 153, 255));
+        VerMas6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         VerMas6.setForeground(new java.awt.Color(0, 0, 0));
         VerMas6.setText("Ver más");
         VerMas6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -854,7 +695,7 @@ public class Store extends javax.swing.JFrame {
                 VerMas6ActionPerformed(evt);
             }
         });
-        YamahaNegraPanel.add(VerMas6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        YamahaNegraPanel.add(VerMas6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 150, -1));
 
         tipotxt5.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         tipotxt5.setForeground(new java.awt.Color(255, 255, 255));
@@ -904,31 +745,8 @@ public class Store extends javax.swing.JFrame {
         AñoPut1.setText("Año");
         BoxerVerdePanel.add(AñoPut1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 130, -1));
 
-        Carrito1.setBackground(new java.awt.Color(51, 102, 0));
-        Carrito1.setForeground(new java.awt.Color(255, 255, 255));
-        Carrito1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-add-to-cart-25.png"))); // NOI18N
-        Carrito1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Carrito1.setDefaultCapable(false);
-        Carrito1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Carrito1ActionPerformed(evt);
-            }
-        });
-        BoxerVerdePanel.add(Carrito1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 40, 40));
-
-        Comprar6.setBackground(new java.awt.Color(255, 255, 255));
-        Comprar6.setForeground(new java.awt.Color(0, 0, 0));
-        Comprar6.setText("Comprar");
-        Comprar6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Comprar6.setDefaultCapable(false);
-        Comprar6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Comprar6ActionPerformed(evt);
-            }
-        });
-        BoxerVerdePanel.add(Comprar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-
         VerMas2.setBackground(new java.awt.Color(0, 153, 255));
+        VerMas2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         VerMas2.setForeground(new java.awt.Color(0, 0, 0));
         VerMas2.setText("Ver más");
         VerMas2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -937,7 +755,7 @@ public class Store extends javax.swing.JFrame {
                 VerMas2ActionPerformed(evt);
             }
         });
-        BoxerVerdePanel.add(VerMas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        BoxerVerdePanel.add(VerMas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 150, -1));
 
         tipotxt1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         tipotxt1.setForeground(new java.awt.Color(255, 255, 255));
@@ -987,31 +805,8 @@ public class Store extends javax.swing.JFrame {
         AñoPut2.setText("Año");
         BwsRojaPanel.add(AñoPut2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 130, -1));
 
-        Carrito2.setBackground(new java.awt.Color(51, 102, 0));
-        Carrito2.setForeground(new java.awt.Color(255, 255, 255));
-        Carrito2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-add-to-cart-25.png"))); // NOI18N
-        Carrito2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Carrito2.setDefaultCapable(false);
-        Carrito2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Carrito2ActionPerformed(evt);
-            }
-        });
-        BwsRojaPanel.add(Carrito2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 40, 40));
-
-        Comprar7.setBackground(new java.awt.Color(255, 255, 255));
-        Comprar7.setForeground(new java.awt.Color(0, 0, 0));
-        Comprar7.setText("Comprar");
-        Comprar7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Comprar7.setDefaultCapable(false);
-        Comprar7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Comprar7ActionPerformed(evt);
-            }
-        });
-        BwsRojaPanel.add(Comprar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-
         VerMas3.setBackground(new java.awt.Color(0, 153, 255));
+        VerMas3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         VerMas3.setForeground(new java.awt.Color(0, 0, 0));
         VerMas3.setText("Ver más");
         VerMas3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1020,7 +815,7 @@ public class Store extends javax.swing.JFrame {
                 VerMas3ActionPerformed(evt);
             }
         });
-        BwsRojaPanel.add(VerMas3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        BwsRojaPanel.add(VerMas3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 150, -1));
 
         tipotxt2.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         tipotxt2.setForeground(new java.awt.Color(255, 255, 255));
@@ -1048,9 +843,17 @@ public class Store extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
-        Carrito cr = new Carrito();
-        this.dispose();
-        cr.setVisible(true);
+        Sesion sesion = Sesion.getInstancia();
+        Model.Entities.Carrito carritoActual = sesion.getCarritoActual();
+
+        if (carritoActual != null) {
+            this.dispose();
+            View.Carrito vistaCarrito = new View.Carrito(carritoActual);
+            vistaCarrito.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay carrito asociado al usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void VerMas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas1ActionPerformed
@@ -1073,30 +876,21 @@ public class Store extends javax.swing.JFrame {
     }//GEN-LAST:event_VerMas1ActionPerformed
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
-        historialCompras hs = new historialCompras();
+        Usuario usuarioActual = Sesion.getInstancia().getUsuarioActual();
+    
+    if (usuarioActual != null) {
+        historialCompras historial = new historialCompras(usuarioActual);
+        historial.setVisible(true);
         this.dispose();
-        hs.setVisible(true);
+    } else {
+        JOptionPane.showMessageDialog(this,
+            "No hay usuario logueado",
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+    }
+        
+        
     }//GEN-LAST:event_jLabel18MouseClicked
-
-    private void CarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarritoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CarritoActionPerformed
-
-    private void Comprar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar5ActionPerformed
-        Pago pg = new Pago();
-        this.dispose();
-        pg.setVisible(true);
-    }//GEN-LAST:event_Comprar5ActionPerformed
-
-    private void Carrito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carrito1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Carrito1ActionPerformed
-
-    private void Comprar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar6ActionPerformed
-        Pago pg = new Pago();
-        this.dispose();
-        pg.setVisible(true);
-    }//GEN-LAST:event_Comprar6ActionPerformed
 
     private void VerMas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas2ActionPerformed
         MotoController controller = new MotoController();
@@ -1117,16 +911,6 @@ public class Store extends javax.swing.JFrame {
         bxv.setVisible(true);
     }//GEN-LAST:event_VerMas2ActionPerformed
 
-    private void Carrito2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carrito2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Carrito2ActionPerformed
-
-    private void Comprar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar7ActionPerformed
-        Pago pg = new Pago();
-        this.dispose();
-        pg.setVisible(true);
-    }//GEN-LAST:event_Comprar7ActionPerformed
-
     private void VerMas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas3ActionPerformed
         MotoController controller = new MotoController();
         List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SCOOTER);
@@ -1145,16 +929,6 @@ public class Store extends javax.swing.JFrame {
         this.dispose();
         bwr.setVisible(true);
     }//GEN-LAST:event_VerMas3ActionPerformed
-
-    private void Carrito3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carrito3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Carrito3ActionPerformed
-
-    private void Comprar8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar8ActionPerformed
-        Pago pg = new Pago();
-        this.dispose();
-        pg.setVisible(true);
-    }//GEN-LAST:event_Comprar8ActionPerformed
 
     private void VerMas4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas4ActionPerformed
         MotoController controller = new MotoController();
@@ -1175,16 +949,6 @@ public class Store extends javax.swing.JFrame {
         kwv.setVisible(true);
     }//GEN-LAST:event_VerMas4ActionPerformed
 
-    private void Carrito4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carrito4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Carrito4ActionPerformed
-
-    private void Comprar9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar9ActionPerformed
-        Pago pg = new Pago();
-        this.dispose();
-        pg.setVisible(true);
-    }//GEN-LAST:event_Comprar9ActionPerformed
-
     private void VerMas5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas5ActionPerformed
         MotoController controller = new MotoController();
         List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.DEPORTIVA);
@@ -1202,16 +966,6 @@ public class Store extends javax.swing.JFrame {
         this.dispose();
         y1r.setVisible(true);
     }//GEN-LAST:event_VerMas5ActionPerformed
-
-    private void Carrito5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carrito5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Carrito5ActionPerformed
-
-    private void Comprar10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar10ActionPerformed
-        Pago pg = new Pago();
-        this.dispose();
-        pg.setVisible(true);
-    }//GEN-LAST:event_Comprar10ActionPerformed
 
     private void VerMas6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas6ActionPerformed
         MotoController controller = new MotoController();
@@ -1232,16 +986,6 @@ public class Store extends javax.swing.JFrame {
         ymn.setVisible(true);
     }//GEN-LAST:event_VerMas6ActionPerformed
 
-    private void Carrito6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carrito6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Carrito6ActionPerformed
-
-    private void Comprar11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar11ActionPerformed
-        Pago pg = new Pago();
-        this.dispose();
-        pg.setVisible(true);
-    }//GEN-LAST:event_Comprar11ActionPerformed
-
     private void VerMas7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas7ActionPerformed
         MotoController controller = new MotoController();
         List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.CHOPPER);
@@ -1260,16 +1004,6 @@ public class Store extends javax.swing.JFrame {
         this.dispose();
         ltn.setVisible(true);
     }//GEN-LAST:event_VerMas7ActionPerformed
-
-    private void Carrito7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carrito7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Carrito7ActionPerformed
-
-    private void Comprar12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar12ActionPerformed
-        Pago pg = new Pago();
-        this.dispose();
-        pg.setVisible(true);
-    }//GEN-LAST:event_Comprar12ActionPerformed
 
     private void VerMas8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas8ActionPerformed
         MotoController controller = new MotoController();
@@ -1346,22 +1080,6 @@ public class Store extends javax.swing.JFrame {
     private javax.swing.JLabel AñoPut7;
     private javax.swing.JPanel BoxerVerdePanel;
     private javax.swing.JPanel BwsRojaPanel;
-    private javax.swing.JButton Carrito;
-    private javax.swing.JButton Carrito1;
-    private javax.swing.JButton Carrito2;
-    private javax.swing.JButton Carrito3;
-    private javax.swing.JButton Carrito4;
-    private javax.swing.JButton Carrito5;
-    private javax.swing.JButton Carrito6;
-    private javax.swing.JButton Carrito7;
-    private javax.swing.JButton Comprar10;
-    private javax.swing.JButton Comprar11;
-    private javax.swing.JButton Comprar12;
-    private javax.swing.JButton Comprar5;
-    private javax.swing.JButton Comprar6;
-    private javax.swing.JButton Comprar7;
-    private javax.swing.JButton Comprar8;
-    private javax.swing.JButton Comprar9;
     private javax.swing.JPanel KawasakiVerdePanel;
     private javax.swing.JPanel MotitoNegraPanel;
     private javax.swing.JLabel PrecioPut;

@@ -1,20 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
 
+import Controller.CarritoController;
+import Controller.ItemCarritoController;
 import Controller.MotoController;
+import DAO.CarritoDAO;
+import Model.Constants.EstadoMoto;
 import Model.Constants.TipoColorMoto;
 import static Model.Constants.TipoColorMoto.BLANCO;
 import static Model.Constants.TipoColorMoto.NEGRO;
 import static Model.Constants.TipoColorMoto.ROJO;
 import static Model.Constants.TipoColorMoto.VERDE;
 import Model.Constants.TipoMoto;
+import Model.Entities.ItemCarrito;
 import Model.Entities.Moto;
+import Model.Entities.Sesion;
+import Model.Entities.Usuario;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -177,8 +182,9 @@ public class BoxerVerde extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        BotonComprar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
+        Carrito = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -328,15 +334,15 @@ public class BoxerVerde extends javax.swing.JFrame {
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 30, 30));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Comprar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotonComprar.setBackground(new java.awt.Color(0, 0, 0));
+        BotonComprar.setForeground(new java.awt.Color(255, 255, 255));
+        BotonComprar.setText("Comprar");
+        BotonComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotonComprarActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 140, 120, 40));
+        jPanel2.add(BotonComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 140, 120, 40));
 
         jPanel6.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -352,6 +358,18 @@ public class BoxerVerde extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 30, 30));
+
+        Carrito.setBackground(new java.awt.Color(51, 102, 0));
+        Carrito.setForeground(new java.awt.Color(255, 255, 255));
+        Carrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-add-to-cart-25.png"))); // NOI18N
+        Carrito.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Carrito.setDefaultCapable(false);
+        Carrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CarritoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Carrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 70, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 1010, 200));
 
@@ -383,11 +401,70 @@ public class BoxerVerde extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Carrito crt = new Carrito();
+    private void BotonComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonComprarActionPerformed
+        Pago crt = new Pago(motoActual);
         this.dispose();
         crt.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BotonComprarActionPerformed
+
+    private void CarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarritoActionPerformed
+
+        Moto motoSeleccionada = this.motoActual;
+        Sesion sesion = Sesion.getInstancia();
+        Usuario usuario = sesion.getUsuarioActual();
+        Model.Entities.Carrito carrito = sesion.getCarritoActual();
+        CarritoController carritoController = new CarritoController();
+        ItemCarritoController itemController = new ItemCarritoController();
+        MotoController motoController = new MotoController();
+
+        if (usuario == null) {
+            JOptionPane.showMessageDialog(this, "Debe iniciar sesión para agregar al carrito.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (motoSeleccionada == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una moto antes de agregarla al carrito.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (carrito == null) {
+            carritoController.crearCarrito(usuario.getCedula());
+            carrito = carritoController.listarCarritos().stream()
+                    .filter(c -> c.getIdUsuario().equals(usuario.getCedula()))
+                    .reduce((primero, segundo) -> segundo)
+                    .orElse(null);
+            sesion.setCarritoActual(carrito);
+        }
+
+        BigDecimal precioUnitario = BigDecimal.valueOf(motoSeleccionada.getPrecio());
+        int cantidad = 1;
+
+        ItemCarrito item = new ItemCarrito(
+                motoSeleccionada,
+                usuario.getCedula(),
+                String.valueOf(motoSeleccionada.getIdMoto()),
+                cantidad,
+                precioUnitario,
+                precioUnitario.multiply(BigDecimal.valueOf(cantidad))
+        );
+
+        carrito.agregarItem(item);
+        carrito.recalcularTotal();
+        itemController.agregarItem(motoSeleccionada, cantidad, precioUnitario);
+
+        CarritoDAO.getInstancia().actualizarCarrito(carrito);
+        sesion.setCarritoActual(carrito);
+
+        motoSeleccionada.setEstado(EstadoMoto.EN_CARRITO);
+        motoController.actualizarMoto(motoSeleccionada);
+
+        JOptionPane.showMessageDialog(this, "Moto agregada al carrito correctamente.");
+
+        View.Carrito vistaCarrito = new View.Carrito(carrito);
+        vistaCarrito.setVisible(true);
+        vistaCarrito.toFront();
+
+    }//GEN-LAST:event_CarritoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -425,11 +502,12 @@ public class BoxerVerde extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonComprar;
+    private javax.swing.JButton Carrito;
     private javax.swing.JLabel CilindrajeTxt1;
     private javax.swing.JLabel MotoFoto;
     private javax.swing.JLabel Motortxt;
     private javax.swing.JLabel estadotxt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

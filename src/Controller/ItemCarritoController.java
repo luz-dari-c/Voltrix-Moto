@@ -3,7 +3,10 @@ package Controller;
 import DAO.ItemCarritoDAO;
 import Model.Entities.ItemCarrito;
 import Model.Entities.Moto;
+import Model.Entities.Sesion;
+import Model.Entities.Usuario;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemCarritoController {
@@ -20,9 +23,18 @@ public class ItemCarritoController {
             return false;
         }
 
+        Sesion sesion = Sesion.getInstancia();
+        Usuario usuario = sesion.getUsuarioActual();
+        String usuarioId = usuario != null ? usuario.getCedula() : null;
+
         List<ItemCarrito> items = itemCarritoDAO.cargarTodos();
+
         for (ItemCarrito item : items) {
-            if (item.getVehiculo().getIdMoto() == vehiculo.getIdMoto()) {
+            if (item.getVehiculo() != null
+                    && item.getVehiculo().getIdMoto() == vehiculo.getIdMoto()
+                    && usuarioId != null
+                    && usuarioId.equals(item.getUsuarioId())) {
+
                 int nuevaCantidad = item.getCantidad() + cantidad;
                 itemCarritoDAO.actualizarCantidad(item.getId(), nuevaCantidad);
                 System.out.println("Cantidad actualizada para el vehículo: " + vehiculo.getModelo());
@@ -31,8 +43,21 @@ public class ItemCarritoController {
         }
 
         BigDecimal subtotal = precioUnitario.multiply(new BigDecimal(cantidad));
-        ItemCarrito nuevoItem = new ItemCarrito(vehiculo, null, cantidad, precioUnitario, subtotal);
+
+        ItemCarrito nuevoItem = new ItemCarrito(vehiculo, usuarioId, null, cantidad, precioUnitario, subtotal);
         return itemCarritoDAO.guardarItem(nuevoItem);
+    }
+
+    public List<ItemCarrito> obtenerItemsPorUsuario(String idUsuario) {
+        if (idUsuario == null || idUsuario.isEmpty()) {
+            return new ArrayList<>();
+        }
+        List<ItemCarrito> todos = itemCarritoDAO.cargarTodos();
+        return new ArrayList<>(
+                todos.stream()
+                        .filter(item -> item.getUsuarioId() != null && item.getUsuarioId().equals(idUsuario))
+                        .toList()
+        );
     }
 
     public boolean eliminarItem(String id) {
@@ -75,4 +100,34 @@ public class ItemCarritoController {
         List<ItemCarrito> items = itemCarritoDAO.cargarTodos();
         return itemCarritoDAO.generarNuevoId(items);
     }
+
+    public Moto buscarMotoPorId(int idMoto) {
+        MotoController motoController = new MotoController();
+        return motoController.buscarPorId(idMoto);
+    }
+    
+    
+    
+    public boolean limpiarCarritoPorUsuario(String idUsuario) {
+    if (idUsuario == null || idUsuario.isEmpty()) {
+        System.err.println("ID de usuario inválido al limpiar carrito.");
+        return false;
+    }
+    
+    List<ItemCarrito> itemsUsuario = obtenerItemsPorUsuario(idUsuario);
+    System.out.println("Eliminando " + itemsUsuario.size() + " items del usuario: " + idUsuario);
+    
+    boolean todosEliminados = true;
+    for (ItemCarrito item : itemsUsuario) {
+        boolean eliminado = itemCarritoDAO.eliminarItem(item.getId());
+        if (!eliminado) {
+            System.err.println("Error al eliminar item: " + item.getId());
+            todosEliminados = false;
+        }
+    }
+    
+    System.out.println("Resultado limpieza carrito: " + todosEliminados);
+    return todosEliminados;
+}
+
 }

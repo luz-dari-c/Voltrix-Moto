@@ -84,4 +84,17 @@ public class VentaController {
     public List<Venta> listarVentas() {
         return ventaDAO.cargarTodas();
     }
+    
+    
+     public Venta getUltimaVenta() {
+        List<Venta> ventas = ventaDAO.cargarTodas();
+        if (ventas.isEmpty()) {
+            return null;
+        }
+        return ventas.get(ventas.size() - 1);
+    }
+    
+    
+
+
 }

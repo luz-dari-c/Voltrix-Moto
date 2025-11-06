@@ -1,28 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
 
+import Model.Entities.Carrito;
+
+import Controller.CarritoController;
+import Controller.ItemCarritoController;
 import Controller.UsuarioController;
+import Model.Entities.ItemCarrito;
+import Model.Entities.Sesion;
 import Model.Entities.Usuario;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-/**
- *
- * @author gameV
- */
 public class Java extends javax.swing.JFrame {
 
     private final UsuarioController usuarioController = new UsuarioController();
 
-    /**
-     * Creates new form Java
-     */
     public Java() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -186,21 +182,73 @@ public class Java extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String email = txtEmail.getText().trim();
-        String password = new String(jPasswordField1.getPassword()).trim();
+            String email = txtEmail.getText().trim();
+    String password = new String(jPasswordField1.getPassword()).trim();
 
-        String resultadoLogin = usuarioController.login(email, password);
+    String resultadoLogin = usuarioController.login(email, password);
 
-        if (resultadoLogin.equals("OK")) {
-            Usuario usuarioLogeado = usuarioController.getUsuarioLogeado(email, password);
-            JOptionPane.showMessageDialog(this, "¡Bienvenido, " + usuarioLogeado.getPrimerNombre() + "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
-            Store st = new Store();
-            st.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, resultadoLogin, "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
+    if (resultadoLogin.equals("OK")) {
+        Usuario usuarioLogeado = usuarioController.getUsuarioLogeado(email, password);
+
+        Sesion sesion = Sesion.getInstancia();
+        sesion.setUsuarioActual(usuarioLogeado);
+
+        CarritoController carritoController = new CarritoController();
+        List<Carrito> carritos = carritoController.listarCarritos();
+
+        Carrito carritoUsuario = null;
+
+        for (Carrito c : carritos) {
+            if (c.getIdUsuario().equals(usuarioLogeado.getCedula())) {
+                carritoUsuario = c;
+                break;
+            }
         }
+        if (carritoUsuario == null) {
+            carritoController.crearCarrito(usuarioLogeado.getCedula());
+            carritos = carritoController.listarCarritos();
+            for (Carrito c : carritos) {
+                if (c.getIdUsuario().equals(usuarioLogeado.getCedula())) {
+                    carritoUsuario = c;
+                    break;
+                }
+            }
+        }
+        sesion.setCarritoActual(carritoUsuario);
+
+        if (carritoUsuario != null) {
+            CarritoController carritoControllerRecarga = new CarritoController();
+            Carrito carritoActualizado = carritoControllerRecarga.buscarCarritoPorId(carritoUsuario.getId());
+
+            if (carritoActualizado != null && carritoActualizado.getItems() != null) {
+                sesion.setCarritoActual(carritoActualizado);
+            }
+
+            ItemCarritoController itemController = new ItemCarritoController();
+            List<ItemCarrito> itemsUsuario = itemController.obtenerItemsPorUsuario(usuarioLogeado.getCedula());
+
+            if (itemsUsuario != null && !itemsUsuario.isEmpty()) {
+                carritoActualizado.setItems(itemsUsuario);
+                sesion.setCarritoActual(carritoActualizado);
+                System.out.println("Ítems del carrito cargados para el usuario: " + usuarioLogeado.getPrimerNombre() + " " + usuarioLogeado.getPrimerApellido());
+            } else {
+                System.out.println("El usuario no tiene ítems en su carrito actualmente.");
+            }
+        }
+
+        JOptionPane.showMessageDialog(this, "¡Bienvenido, " + usuarioLogeado.getPrimerNombre() + "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
+        Store st = new Store();
+        st.setVisible(true);
+    } else {
+        JOptionPane.showMessageDialog(this, resultadoLogin, "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
+    }
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
+    
+    
+    
     private void jLabel9AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel9AncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel9AncestorAdded
@@ -219,10 +267,8 @@ public class Java extends javax.swing.JFrame {
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         String email = txtEmail.getText().trim();
 
-        
         if (!email.isEmpty()) {
 
-         
             if (!email.endsWith("@gmail.com")
                     && !email.endsWith("@hotmail.com")
                     && !email.endsWith("@outlook.com")
@@ -233,13 +279,10 @@ public class Java extends javax.swing.JFrame {
                         "Correo inválido",
                         JOptionPane.WARNING_MESSAGE);
 
-               
                 SwingUtilities.invokeLater(() -> txtEmail.requestFocusInWindow());
             }
         }
     }//GEN-LAST:event_txtEmailFocusLost
-
-
 
     /**
      * @param args the command line arguments

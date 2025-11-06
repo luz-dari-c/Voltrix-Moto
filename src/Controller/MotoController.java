@@ -175,4 +175,33 @@ public class MotoController {
 
         return conteo;
     }
+    
+    public boolean disminuirMotoPorColorYTipo(TipoMoto tipo, TipoColorMoto color) {
+    List<Moto> disponibles = motoDAO.obtenerMotosPorTipoYDisponibles(tipo);
+
+    for (Moto moto : disponibles) {
+        if (moto.getTipoColorMoto() == color && moto.getEstado() == EstadoMoto.DISPONIBLE) {
+            moto.setEstado(EstadoMoto.VENDIDO);
+            motoDAO.actualizarMoto(moto);
+            return true;
+        }
+    }
+
+    return false;
+}
+    
+  public boolean actualizarMoto(Moto motoSeleccionada){
+      if (motoSeleccionada==null) {
+          System.out.println("No hay ninguna moto para actualizar (Null)");
+                         
+      } else {
+          motoDAO.actualizarMoto(motoSeleccionada);
+          return true;
+      }
+      
+      return false;
+  } 
+    
+  
+
 }
