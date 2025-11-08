@@ -33,7 +33,7 @@ public class MotoController {
         return motoDAO.eliminarMoto(idMoto);
     }
 
-/*    public boolean actualizarMoto(
+    /*    public boolean actualizarMoto(
             int idMoto,
             String nuevaMarca,
             String nuevoModelo,
@@ -77,8 +77,8 @@ public class MotoController {
                 nuevoEstado
         );
     }
-    */
-     public boolean actualizarPorPlacaBase(
+     */
+    public boolean actualizarPorPlacaBase(
             String placaBase,
             String nuevoModelo,
             LocalDate nuevaFechaIngreso,
@@ -99,7 +99,7 @@ public class MotoController {
             System.err.println("La placa base no puede estar vacía");
             return false;
         }
-        
+
         if (!placaBase.startsWith("BSE-")) {
             System.err.println("La placa debe ser de una moto base (BSE-...)");
             return false;
@@ -124,7 +124,6 @@ public class MotoController {
         );
     }
 
-
     public boolean actualizarMotoIndividual(
             int idMoto,
             String nuevaMarca,
@@ -142,7 +141,6 @@ public class MotoController {
 
         return motoDAO.actualizarMotoIndividual(idMoto, nuevaMarca, nuevoColor);
     }
-
 
     public List<Moto> listarMotos() {
         return motoDAO.cargarTodas();
@@ -175,33 +173,57 @@ public class MotoController {
 
         return conteo;
     }
-    
-    public boolean disminuirMotoPorColorYTipo(TipoMoto tipo, TipoColorMoto color) {
-    List<Moto> disponibles = motoDAO.obtenerMotosPorTipoYDisponibles(tipo);
 
-    for (Moto moto : disponibles) {
-        if (moto.getTipoColorMoto() == color && moto.getEstado() == EstadoMoto.DISPONIBLE) {
-            moto.setEstado(EstadoMoto.VENDIDO);
-            motoDAO.actualizarMoto(moto);
-            return true;
+    public boolean disminuirMotoPorColorYTipo(TipoMoto tipo, TipoColorMoto color) {
+        List<Moto> disponibles = motoDAO.obtenerMotosPorTipoYDisponibles(tipo);
+
+        for (Moto moto : disponibles) {
+            if (moto.getTipoColorMoto() == color && moto.getEstado() == EstadoMoto.DISPONIBLE) {
+                moto.setEstado(EstadoMoto.VENDIDO);
+                motoDAO.actualizarMoto(moto);
+                return true;
+            }
         }
+
+        return false;
     }
 
-    return false;
-}
-    
-  public boolean actualizarMoto(Moto motoSeleccionada){
-      if (motoSeleccionada==null) {
-          System.out.println("No hay ninguna moto para actualizar (Null)");
-                         
-      } else {
-          motoDAO.actualizarMoto(motoSeleccionada);
-          return true;
-      }
-      
-      return false;
-  } 
-    
-  
+    public boolean actualizarMoto(Moto motoSeleccionada) {
+        if (motoSeleccionada == null) {
+            System.out.println("No hay ninguna moto para actualizar (Null)");
 
+        } else {
+            motoDAO.actualizarMoto(motoSeleccionada);
+            return true;
+        }
+
+        return false;
+    }
+
+    public Moto obtenerMotoBase() {
+        return motoDAO.obtenerMotoBase();
+    }
+
+    public Moto obtenerMotoBasePorTipo(TipoMoto tipo) {
+        return motoDAO.obtenerMotoBasePorTipo(tipo);
+    }
+
+    public boolean duplicarMotoPorTipo(
+            TipoMoto tipoMoto,
+            TipoColorMoto nuevoColor,
+            String nuevaMarca,
+            int cantidad
+    ) {
+        if (tipoMoto == null) {
+            System.err.println("El tipo de moto no puede ser nulo.");
+            return false;
+        }
+
+        if (cantidad <= 0) {
+            System.err.println("La cantidad debe ser un número positivo mayor que 0.");
+            return false;
+        }
+
+        return motoDAO.duplicarMotoPorTipo(tipoMoto, nuevoColor, nuevaMarca, cantidad);
+    }
 }

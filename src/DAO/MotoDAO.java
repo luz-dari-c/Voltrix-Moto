@@ -168,7 +168,8 @@ public class MotoDAO {
         guardarTodas(motos);
         return true;
     }
-/* 
+
+    /* 
     public boolean actualizarMoto(
             int idMoto,
             String nuevaMarca,
@@ -282,7 +283,7 @@ public class MotoDAO {
         guardarTodas(motos);
         return true;
     }
-*/
+     */
     public boolean actualizarPorPlacaBase(
             String placaBase,
             String nuevoModelo,
@@ -437,6 +438,119 @@ public class MotoDAO {
         return true;
     }
 
+    public boolean duplicarMotoPorTipo(
+            TipoMoto tipoMoto,
+            TipoColorMoto nuevoColor,
+            String nuevaMarca,
+            int cantidad
+    ) {
+        if (cantidad <= 0) {
+            System.err.println("La cantidad debe ser un número positivo mayor que 0.");
+            return false;
+        }
+
+        List<Moto> motos = cargarTodas();
+
+        Moto base = motos.stream()
+                .filter(m -> m.getTipoMoto() == tipoMoto && m.getPlaca().startsWith("BSE-"))
+                .findFirst()
+                .orElse(null);
+
+        if (base == null) {
+            System.err.println("No existe una moto base para el tipo: " + tipoMoto);
+            return false;
+        }
+
+        boolean todasGuardadas = true;
+
+        for (int i = 0; i < cantidad; i++) {
+
+            PartesMoto p = base.getPartesMoto();
+
+            PartesMoto partesClonadas = new PartesMoto(
+                    (p.getLlantaDelantera() != null)
+                    ? new LlantaDelantera(
+                            p.getLlantaDelantera().getMedida(),
+                            p.getLlantaDelantera().getMarca(),
+                            p.getLlantaDelantera().getModelo(),
+                            p.getLlantaDelantera().getMaterial()
+                    )
+                    : null,
+                    (p.getLlantaTrasera() != null)
+                    ? new LlantaTrasera(
+                            p.getLlantaTrasera().getMedida(),
+                            p.getLlantaTrasera().getMarca(),
+                            p.getLlantaTrasera().getModelo(),
+                            p.getLlantaTrasera().getMaterial()
+                    )
+                    : null,
+                    (p.getChasis() != null)
+                    ? new Chasis(
+                            p.getChasis().getMaterial(),
+                            p.getChasis().getTipo()
+                    )
+                    : null,
+                    (p.getMotor() != null)
+                    ? new Motor(
+                            p.getMotor().getTipo(),
+                            p.getMotor().getCilindrada(),
+                            p.getMotor().getPotencia()
+                    )
+                    : null,
+                    (p.getAsiento() != null)
+                    ? new Asiento(
+                            p.getAsiento().getMaterial(),
+                            p.getAsiento().getCapacidad()
+                    )
+                    : null,
+                    (p.getFrenoDelantero() != null)
+                    ? new FrenoDelantero(
+                            p.getFrenoDelantero().getMarca(),
+                            p.getFrenoDelantero().getModelo(),
+                            p.getFrenoDelantero().getMaterial()
+                    )
+                    : null,
+                    (p.getFrenoTrasero() != null)
+                    ? new FrenoTrasero(
+                            p.getFrenoTrasero().getMarca(),
+                            p.getFrenoTrasero().getModelo(),
+                            p.getFrenoTrasero().getMaterial()
+                    )
+                    : null,
+                    (p.getTransmision() != null)
+                    ? new Transmision(
+                            p.getTransmision().getTipoTransmision(),
+                            p.getTransmision().getVelocidades()
+                    )
+                    : null
+            );
+
+            Moto nuevaMoto = new Moto(
+                    (nuevaMarca != null && !nuevaMarca.isBlank()) ? nuevaMarca : base.getMarca(),
+                    base.getModelo(),
+                    LocalDate.now(),
+                    base.getPrecio(),
+                    partesClonadas,
+                    base.getTipoMoto(),
+                    (nuevoColor != null) ? nuevoColor : base.getTipoColorMoto(),
+                    base.getCilindraje(),
+                    base.isTieneParrilla(),
+                    base.isTieneMaletero()
+            );
+
+            nuevaMoto.setPlaca(Utilidades.GeneradorDePlaca.generarPlaca());
+
+            boolean guardada = guardarMoto(nuevaMoto);
+
+            if (!guardada) {
+                todasGuardadas = false;
+                System.err.println("Error al guardar una de las motos clonadas (" + (i + 1) + ").");
+            }
+        }
+
+        return todasGuardadas;
+    }
+
     public boolean actualizarMotoIndividual(
             int idMoto,
             String nuevaMarca,
@@ -475,101 +589,6 @@ public class MotoDAO {
         archivo.getParentFile().mkdirs();
     }
 
-    public boolean duplicarMotoPorTipo(
-            TipoMoto tipoMoto,
-            TipoColorMoto nuevoColor,
-            String nuevaMarca
-    ) {
-        List<Moto> motos = cargarTodas();
-
-        Moto base = motos.stream()
-                .filter(m -> m.getTipoMoto() == tipoMoto && m.getPlaca().startsWith("BSE-"))
-                .findFirst()
-                .orElse(null);
-
-        if (base == null) {
-            System.err.println("No existe una moto base para el tipo: " + tipoMoto);
-            return false;
-        }
-
-        PartesMoto p = base.getPartesMoto();
-
-        PartesMoto partesClonadas = new PartesMoto(
-                (p.getLlantaDelantera() != null)
-                ? new LlantaDelantera(
-                        p.getLlantaDelantera().getMedida(),
-                        p.getLlantaDelantera().getMarca(),
-                        p.getLlantaDelantera().getModelo(),
-                        p.getLlantaDelantera().getMaterial()
-                )
-                : null,
-                (p.getLlantaTrasera() != null)
-                ? new LlantaTrasera(
-                        p.getLlantaTrasera().getMedida(),
-                        p.getLlantaTrasera().getMarca(),
-                        p.getLlantaTrasera().getModelo(),
-                        p.getLlantaTrasera().getMaterial()
-                )
-                : null,
-                (p.getChasis() != null)
-                ? new Chasis(
-                        p.getChasis().getMaterial(),
-                        p.getChasis().getTipo()
-                )
-                : null,
-                (p.getMotor() != null)
-                ? new Motor(
-                        p.getMotor().getTipo(),
-                        p.getMotor().getCilindrada(),
-                        p.getMotor().getPotencia()
-                )
-                : null,
-                (p.getAsiento() != null)
-                ? new Asiento(
-                        p.getAsiento().getMaterial(),
-                        p.getAsiento().getCapacidad()
-                )
-                : null,
-                (p.getFrenoDelantero() != null)
-                ? new FrenoDelantero(
-                        p.getFrenoDelantero().getMarca(),
-                        p.getFrenoDelantero().getModelo(),
-                        p.getFrenoDelantero().getMaterial()
-                )
-                : null,
-                (p.getFrenoTrasero() != null)
-                ? new FrenoTrasero(
-                        p.getFrenoTrasero().getMarca(),
-                        p.getFrenoTrasero().getModelo(),
-                        p.getFrenoTrasero().getMaterial()
-                )
-                : null,
-                (p.getTransmision() != null)
-                ? new Transmision(
-                        p.getTransmision().getTipoTransmision(),
-                        p.getTransmision().getVelocidades()
-                )
-                : null
-        );
-
-        Moto nuevaMoto = new Moto(
-                (nuevaMarca != null && !nuevaMarca.isBlank()) ? nuevaMarca : base.getMarca(),
-                base.getModelo(),
-                LocalDate.now(),
-                base.getPrecio(),
-                partesClonadas,
-                base.getTipoMoto(),
-                (nuevoColor != null) ? nuevoColor : base.getTipoColorMoto(),
-                base.getCilindraje(),
-                base.isTieneParrilla(),
-                base.isTieneMaletero()
-        );
-
-        nuevaMoto.setPlaca(Utilidades.GeneradorDePlaca.generarPlaca());
-
-        return guardarMoto(nuevaMoto);
-    }
-
     public List<Moto> obtenerMotosPorTipoYDisponibles(TipoMoto tipoMoto) {
         List<Moto> motos = cargarTodas();
 
@@ -585,22 +604,21 @@ public class MotoDAO {
 
         return filtradas;
     }
-    
-    public boolean actualizarMoto(Moto motoActualizada) {
-    List<Moto> motos = cargarTodas();
 
-    for (int i = 0; i < motos.size(); i++) {
-        if (motos.get(i).getIdMoto() == motoActualizada.getIdMoto()) {
-            motos.set(i, motoActualizada);
-            guardarTodas(motos);
-            return true;
+    public boolean actualizarMoto(Moto motoActualizada) {
+        List<Moto> motos = cargarTodas();
+
+        for (int i = 0; i < motos.size(); i++) {
+            if (motos.get(i).getIdMoto() == motoActualizada.getIdMoto()) {
+                motos.set(i, motoActualizada);
+                guardarTodas(motos);
+                return true;
+            }
         }
+        System.err.println("No se encontró la moto con ID: " + motoActualizada.getIdMoto());
+        return false;
     }
-    System.err.println("No se encontró la moto con ID: " + motoActualizada.getIdMoto());
-    return false;
-}
-    
-      
+
     public List<Moto> obtenerMotosDisponibles() {
         List<Moto> motos = cargarTodas();
 
@@ -615,10 +633,30 @@ public class MotoDAO {
         }
         return filtradas;
     }
-    
-   public int contarMotosDisponibles(){
-       List<Moto> disponibles = obtenerMotosDisponibles();
-       return disponibles.size();
-   }
-    
+
+    public int contarMotosDisponibles() {
+        List<Moto> disponibles = obtenerMotosDisponibles();
+        return disponibles.size();
+    }
+
+    public Moto obtenerMotoBase() {
+        List<Moto> motos = cargarTodas();
+        for (Moto moto : motos) {
+            if (moto.getPlaca().startsWith("BSE-")) {
+                return moto;
+            }
+        }
+        return null;
+    }
+
+    public Moto obtenerMotoBasePorTipo(TipoMoto tipo) {
+        List<Moto> motos = cargarTodas(); 
+        for (Moto moto : motos) {
+            if (moto.getPlaca().startsWith("BSE-") && moto.getTipoMoto() == tipo) {
+                return moto;
+            }
+        }
+        return null;
+    }
+
 }

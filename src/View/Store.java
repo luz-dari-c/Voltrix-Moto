@@ -31,6 +31,7 @@ public class Store extends javax.swing.JFrame {
                 refrescarTodosLosDatos();
             }
         });
+
     }
 
     private void refrescarTodosLosDatos() {
@@ -46,14 +47,18 @@ public class Store extends javax.swing.JFrame {
 
     private void mostrarMotoSemiautomatica() {
         List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SEMIAUTOMATICA);
+        Moto moto = null;
 
         if (!motos.isEmpty()) {
-            Moto moto = motos.get(0);
+            moto = motos.get(0);
+        } else {
+            moto = controller.obtenerMotoBasePorTipo(TipoMoto.SEMIAUTOMATICA);
+        }
 
+        if (moto != null) {
             tipoPut.setText(moto.getTipoMoto().toString());
             AñoPut.setText(String.valueOf(moto.getFechaIngreso().getYear()));
             PrecioPut.setText(String.valueOf(moto.getPrecio()));
-
         } else {
             tipoPut.setText("No disponible");
             AñoPut.setText("No disponible");
@@ -63,14 +68,18 @@ public class Store extends javax.swing.JFrame {
 
     private void mostrarMotoBoxer() {
         List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.BOXER);
+        Moto moto = null;
 
         if (!motos.isEmpty()) {
-            Moto moto = motos.get(0);
+            moto = motos.get(0);
+        } else {
+            moto = controller.obtenerMotoBasePorTipo(TipoMoto.BOXER);
+        }
 
+        if (moto != null) {
             tipoPut1.setText(moto.getTipoMoto().toString());
             AñoPut1.setText(String.valueOf(moto.getFechaIngreso().getYear()));
             PrecioPut1.setText(String.valueOf(moto.getPrecio()));
-
         } else {
             tipoPut1.setText("No disponible");
             AñoPut1.setText("No disponible");
@@ -80,14 +89,18 @@ public class Store extends javax.swing.JFrame {
 
     private void mostrarMotoScooter() {
         List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SCOOTER);
+        Moto moto = null;
 
         if (!motos.isEmpty()) {
-            Moto moto = motos.get(0);
+            moto = motos.get(0);
+        } else {
+            moto = controller.obtenerMotoBasePorTipo(TipoMoto.SCOOTER);
+        }
 
+        if (moto != null) {
             tipoPut2.setText(moto.getTipoMoto().toString());
             AñoPut2.setText(String.valueOf(moto.getFechaIngreso().getYear()));
             PrecioPut2.setText(String.valueOf(moto.getPrecio()));
-
         } else {
             tipoPut2.setText("No disponible");
             AñoPut2.setText("No disponible");
@@ -97,14 +110,18 @@ public class Store extends javax.swing.JFrame {
 
     private void mostrarMotoSemideportiva() {
         List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SEMIDEPORTIVA);
+        Moto moto = null;
 
         if (!motos.isEmpty()) {
-            Moto moto = motos.get(0);
+            moto = motos.get(0);
+        } else {
+            moto = controller.obtenerMotoBasePorTipo(TipoMoto.SEMIDEPORTIVA);
+        }
 
+        if (moto != null) {
             tipoPut3.setText(moto.getTipoMoto().toString());
             AñoPut3.setText(String.valueOf(moto.getFechaIngreso().getYear()));
             PrecioPut3.setText(String.valueOf(moto.getPrecio()));
-
         } else {
             tipoPut3.setText("No disponible");
             AñoPut3.setText("No disponible");
@@ -114,14 +131,18 @@ public class Store extends javax.swing.JFrame {
 
     private void mostrarMotoDeportiva() {
         List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.DEPORTIVA);
+        Moto moto = null;
 
         if (!motos.isEmpty()) {
-            Moto moto = motos.get(0);
+            moto = motos.get(0);
+        } else {
+            moto = controller.obtenerMotoBasePorTipo(TipoMoto.DEPORTIVA);
+        }
 
+        if (moto != null) {
             tipoPut4.setText(moto.getTipoMoto().toString());
             AñoPut4.setText(String.valueOf(moto.getFechaIngreso().getYear()));
             PrecioPut4.setText(String.valueOf(moto.getPrecio()));
-
         } else {
             tipoPut4.setText("No disponible");
             AñoPut4.setText("No disponible");
@@ -131,14 +152,18 @@ public class Store extends javax.swing.JFrame {
 
     private void mostrarMotoSupersport() {
         List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SUPERSPORT);
+        Moto moto = null;
 
         if (!motos.isEmpty()) {
-            Moto moto = motos.get(0);
+            moto = motos.get(0);
+        } else {
+            moto = controller.obtenerMotoBasePorTipo(TipoMoto.SUPERSPORT);
+        }
 
+        if (moto != null) {
             tipoPut5.setText(moto.getTipoMoto().toString());
             AñoPut5.setText(String.valueOf(moto.getFechaIngreso().getYear()));
             PrecioPut5.setText(String.valueOf(moto.getPrecio()));
-
         } else {
             tipoPut5.setText("No disponible");
             AñoPut5.setText("No disponible");
@@ -148,14 +173,18 @@ public class Store extends javax.swing.JFrame {
 
     private void mostrarMotoChopper() {
         List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.CHOPPER);
+        Moto moto = null;
 
         if (!motos.isEmpty()) {
-            Moto moto = motos.get(0);
+            moto = motos.get(0);
+        } else {
+            moto = controller.obtenerMotoBasePorTipo(TipoMoto.CHOPPER);
+        }
 
+        if (moto != null) {
             tipoPut6.setText(moto.getTipoMoto().toString());
             AñoPut6.setText(String.valueOf(moto.getFechaIngreso().getYear()));
             PrecioPut6.setText(String.valueOf(moto.getPrecio()));
-
         } else {
             tipoPut6.setText("No disponible");
             AñoPut6.setText("No disponible");
@@ -165,14 +194,18 @@ public class Store extends javax.swing.JFrame {
 
     private void mostrarMotoNaked() {
         List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.NAKED);
+        Moto moto = null;
 
         if (!motos.isEmpty()) {
-            Moto moto = motos.get(0);
+            moto = motos.get(0);
+        } else {
+            moto = controller.obtenerMotoBasePorTipo(TipoMoto.NAKED);
+        }
 
+        if (moto != null) {
             tipoPut7.setText(moto.getTipoMoto().toString());
             AñoPut7.setText(String.valueOf(moto.getFechaIngreso().getYear()));
             PrecioPut7.setText(String.valueOf(moto.getPrecio()));
-
         } else {
             tipoPut7.setText("No disponible");
             AñoPut7.setText("No disponible");
@@ -877,19 +910,19 @@ public class Store extends javax.swing.JFrame {
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
         Usuario usuarioActual = Sesion.getInstancia().getUsuarioActual();
-    
-    if (usuarioActual != null) {
-        historialCompras historial = new historialCompras(usuarioActual);
-        historial.setVisible(true);
-        this.dispose();
-    } else {
-        JOptionPane.showMessageDialog(this,
-            "No hay usuario logueado",
-            "Error",
-            JOptionPane.ERROR_MESSAGE);
-    }
-        
-        
+
+        if (usuarioActual != null) {
+            historialCompras historial = new historialCompras(usuarioActual);
+            historial.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "No hay usuario logueado",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_jLabel18MouseClicked
 
     private void VerMas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMas2ActionPerformed
