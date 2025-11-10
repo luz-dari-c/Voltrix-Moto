@@ -25,9 +25,13 @@ public class Verificación extends javax.swing.JFrame {
 
     public Verificación() {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.usuarioController = new UsuarioController();
         this.tiempoRestante = 0;
         inicializarComponentes();
+        en.setVisible(false);
+        reenviar.setVisible(false);
+        contador.setVisible(false);
     }
 
     private void inicializarComponentes() {
@@ -143,7 +147,7 @@ public class Verificación extends javax.swing.JFrame {
 
     private void iniciarTemporizador() {
         tiempoRestante = TIEMPO_ESPERA;
-        jLabel5.setEnabled(false);
+        reenviar.setEnabled(false);
 
         if (timer != null) {
             timer.stop();
@@ -157,7 +161,7 @@ public class Verificación extends javax.swing.JFrame {
 
                 if (tiempoRestante <= 0) {
                     timer.stop();
-                    jLabel5.setEnabled(true);
+                    reenviar.setEnabled(true);
                     contador.setText("Listo");
                 }
             }
@@ -188,15 +192,14 @@ public class Verificación extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         digitoo5 = new javax.swing.JTextField();
         digitoo1 = new javax.swing.JTextField();
         digitoo2 = new javax.swing.JTextField();
         digitoo3 = new javax.swing.JTextField();
         digitoo4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        reenviar = new javax.swing.JLabel();
+        en = new javax.swing.JLabel();
         contador = new javax.swing.JLabel();
         PanelNewPass = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -205,7 +208,7 @@ public class Verificación extends javax.swing.JFrame {
         ConfirmarContraseñaField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        correoField = new javax.swing.JTextField();
         enviarCodigo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -236,11 +239,7 @@ public class Verificación extends javax.swing.JFrame {
 
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Revisa en todas las bandejas de tu correo");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
-
-        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel3.setText("jLabel3");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
@@ -251,49 +250,44 @@ public class Verificación extends javax.swing.JFrame {
         digitoo5.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 18)); // NOI18N
         digitoo5.setForeground(new java.awt.Color(0, 0, 0));
         digitoo5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        digitoo5.setText("5");
         jPanel1.add(digitoo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, 100, 80));
 
         digitoo1.setBackground(new java.awt.Color(255, 255, 255));
         digitoo1.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 18)); // NOI18N
         digitoo1.setForeground(new java.awt.Color(0, 0, 0));
         digitoo1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        digitoo1.setText("1");
         jPanel1.add(digitoo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 136, 100, 80));
 
         digitoo2.setBackground(new java.awt.Color(255, 255, 255));
         digitoo2.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 18)); // NOI18N
         digitoo2.setForeground(new java.awt.Color(0, 0, 0));
         digitoo2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        digitoo2.setText("2");
         jPanel1.add(digitoo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 100, 80));
 
         digitoo3.setBackground(new java.awt.Color(255, 255, 255));
         digitoo3.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 18)); // NOI18N
         digitoo3.setForeground(new java.awt.Color(0, 0, 0));
         digitoo3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        digitoo3.setText("3");
         jPanel1.add(digitoo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 100, 80));
 
         digitoo4.setBackground(new java.awt.Color(255, 255, 255));
         digitoo4.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 18)); // NOI18N
         digitoo4.setForeground(new java.awt.Color(0, 0, 0));
         digitoo4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        digitoo4.setText("4");
         jPanel1.add(digitoo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 100, 80));
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel5.setText("Reenviar codigo");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        reenviar.setForeground(new java.awt.Color(0, 0, 102));
+        reenviar.setText("Reenviar codigo");
+        reenviar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                reenviarMouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, -1, -1));
+        jPanel1.add(reenviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, -1, -1));
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel6.setText("en:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, -1, -1));
+        en.setForeground(new java.awt.Color(0, 0, 102));
+        en.setText("en:");
+        jPanel1.add(en, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, -1, -1));
 
         contador.setText("contador");
         jPanel1.add(contador, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, -1, -1));
@@ -330,7 +324,7 @@ public class Verificación extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Ingrese su correo:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 310, -1));
+        jPanel1.add(correoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 310, -1));
 
         enviarCodigo.setText("Enviar codigo");
         enviarCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -345,11 +339,11 @@ public class Verificación extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        if (jLabel5.isEnabled()) {
+    private void reenviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reenviarMouseClicked
+        if (reenviar.isEnabled()) {
             enviarCodigoActionPerformed(null);
         }
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_reenviarMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String nuevaContrasena = new String(nuevaContraseñaField.getText());
@@ -377,18 +371,22 @@ public class Verificación extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void enviarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarCodigoActionPerformed
-        String email = jTextField1.getText().trim();
+        String email = correoField.getText().trim();
         String resultado = usuarioController.enviarCodigoRecuperacion(email);
 
         if (resultado.equals("OK")) {
             JOptionPane.showMessageDialog(this,
                     "Código de verificación enviado a su correo electrónico.",
                     "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            correoField.setEnabled(false);
             iniciarTemporizador();
             limpiarCamposCodigo();
+            en.setVisible(true);
+            contador.setVisible(true);
             PanelNewPass.setVisible(false);
+            reenviar.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, resultado, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, resultado, "Error al enviar el correo", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_enviarCodigoActionPerformed
 
@@ -431,19 +429,18 @@ public class Verificación extends javax.swing.JFrame {
     private javax.swing.JTextField ConfirmarContraseñaField;
     private javax.swing.JPanel PanelNewPass;
     private javax.swing.JLabel contador;
+    private javax.swing.JTextField correoField;
     private javax.swing.JTextField digitoo1;
     private javax.swing.JTextField digitoo2;
     private javax.swing.JTextField digitoo3;
     private javax.swing.JTextField digitoo4;
     private javax.swing.JTextField digitoo5;
+    private javax.swing.JLabel en;
     private javax.swing.JButton enviarCodigo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -453,7 +450,7 @@ public class Verificación extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nuevaContraseñaField;
+    private javax.swing.JLabel reenviar;
     // End of variables declaration//GEN-END:variables
 }
