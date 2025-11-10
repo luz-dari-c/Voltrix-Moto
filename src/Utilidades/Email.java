@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class Email {
     private static final String REMITENTE = "imsharlok@gmail.com";
-    private static final String CONTRASENA = "aydondnxwjrjhagz";
+    private static final String CONTRASENA = "njhxtexcgookhslv";
 
     public static boolean enviarCodigo(String destinatario, String codigo) {
         // Validar parámetros
