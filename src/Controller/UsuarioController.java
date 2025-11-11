@@ -15,18 +15,36 @@ import javax.swing.JTextField;
 
 public class UsuarioController {
 
+    // Singleton instance
+    private static UsuarioController instancia;
     private final UsuarioDAO usuarioDAO;
     private String codigoRecuperacion;
     private String emailRecuperacion;
+    private Usuario usuarioLogeado;
 
     // Patrones de validación
     private static final Pattern PATRON_SOLO_LETRAS = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$");
     private static final Pattern PATRON_SOLO_NUMEROS = Pattern.compile("^[0-9]+$");
-    private static final Pattern PATRON_EMAIL = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
+    private static final Pattern PATRON_EMAIL = Pattern.compile("^[A-Za-z0-9+_.-]+@(gmail\\.com|hotmail\\.com|outlook\\.com|unicolombo\\.edu\\.co)$");
     private static final Pattern PATRON_CONTRASENA = Pattern.compile("^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{6,}$");
 
-    public UsuarioController() {
-        this.usuarioDAO = UsuarioDAO.getInstance();
+    // Constructor privado para Singleton
+    private UsuarioController() {
+        this.usuarioDAO = UsuarioDAO.getInstance(); // Inicializar el DAO aquí
+        this.usuarioLogeado = null;
+    }
+
+    // Método Singleton
+    public static synchronized UsuarioController getInstance() {
+        if (instancia == null) {
+            instancia = new UsuarioController();
+        }
+        return instancia;
+    }
+
+    // Método para limpiar la instancia (útil para logout)
+    public static void resetInstance() {
+        instancia = null;
     }
 
     public String registrarUsuario(Usuario usuario) {
@@ -162,20 +180,123 @@ public class UsuarioController {
 
         Usuario usuario = usuarioDAO.login(email, password);
         if (usuario != null) {
+            this.usuarioLogeado = usuario; // Guardar usuario logeado
             return "OK";
         } else {
             return "Credenciales incorrectas. Verifique su email y contraseña.";
         }
     }
 
-    public Usuario getUsuarioLogeado(String email, String password) {
-        return usuarioDAO.login(email, password);
+    public Usuario getUsuarioLogeado() {
+        return this.usuarioLogeado;
     }
 
-    // Métodos para validación en tiempo real (desde los eventos KeyPressed)
+    // Método para forzar un usuario logeado (útil para testing)
+    public void setUsuarioLogeado(Usuario usuario) {
+        this.usuarioLogeado = usuario;
+    }
+
+    // Método para logout
+    public void logout() {
+        this.usuarioLogeado = null;
+        this.codigoRecuperacion = null;
+        this.emailRecuperacion = null;
+    }
+
+    public String actualizarInformacionUsuario(String primerNombre, String segundoNombre,
+            String primerApellido, String segundoApellido,
+            String email) {
+
+        if (usuarioLogeado == null) {
+            return "No hay usuario logeado.";
+        }
+
+        // Validar campos obligatorios
+        List<String> errores = new ArrayList<>();
+
+        // Validar primer nombre
+        if (primerNombre == null || primerNombre.trim().isEmpty()) {
+            errores.add("Primer nombre: Campo obligatorio");
+        } else if (!PATRON_SOLO_LETRAS.matcher(primerNombre.trim()).matches()) {
+            errores.add("Primer nombre: Solo se permiten letras y espacios");
+        } else if (primerNombre.trim().length() < 2) {
+            errores.add("Primer nombre: Debe tener al menos 2 caracteres");
+        }
+
+        // Validar segundo nombre (opcional)
+        if (segundoNombre != null && !segundoNombre.trim().isEmpty()) {
+            if (!PATRON_SOLO_LETRAS.matcher(segundoNombre.trim()).matches()) {
+                errores.add("Segundo nombre: Solo se permiten letras y espacios");
+            } else if (segundoNombre.trim().length() < 2) {
+                errores.add("Segundo nombre: Debe tener al menos 2 caracteres");
+            }
+        }
+
+        // Validar primer apellido
+        if (primerApellido == null || primerApellido.trim().isEmpty()) {
+            errores.add("Primer apellido: Campo obligatorio");
+        } else if (!PATRON_SOLO_LETRAS.matcher(primerApellido.trim()).matches()) {
+            errores.add("Primer apellido: Solo se permiten letras y espacios");
+        } else if (primerApellido.trim().length() < 2) {
+            errores.add("Primer apellido: Debe tener al menos 2 caracteres");
+        }
+
+        // Validar segundo apellido
+        if (segundoApellido == null || segundoApellido.trim().isEmpty()) {
+            errores.add("Segundo apellido: Campo obligatorio");
+        } else if (!PATRON_SOLO_LETRAS.matcher(segundoApellido.trim()).matches()) {
+            errores.add("Segundo apellido: Solo se permiten letras y espacios");
+        } else if (segundoApellido.trim().length() < 2) {
+            errores.add("Segundo apellido: Debe tener al menos 2 caracteres");
+        }
+
+        // Validar email
+        if (email == null || email.trim().isEmpty()) {
+            errores.add("Correo electrónico: Campo obligatorio");
+        } else if (!PATRON_EMAIL.matcher(email.trim()).matches()) {
+            errores.add("Correo electrónico: Formato inválido. Use @gmail.com, @hotmail.com, @outlook.com o @unicolombo.edu.co");
+        }
+
+        // Validar email duplicado (solo si cambió el email)
+        if (!email.trim().equalsIgnoreCase(usuarioLogeado.getEmail())
+                && usuarioDAO.existeEmail(email)) {
+            errores.add("El correo electrónico ya está registrado por otro usuario");
+        }
+
+        if (!errores.isEmpty()) {
+            StringBuilder mensaje = new StringBuilder("Errores de validación:\n\n");
+            for (String error : errores) {
+                mensaje.append("• ").append(error).append("\n");
+            }
+            return mensaje.toString();
+        }
+
+        // Actualizar en la base de datos
+        if (usuarioDAO.actualizarInformacionUsuario(
+                usuarioLogeado.getCedula(),
+                primerNombre.trim(),
+                segundoNombre != null ? segundoNombre.trim() : "",
+                primerApellido.trim(),
+                segundoApellido.trim(),
+                email.trim())) {
+
+            // Actualizar el usuario logeado en memoria
+            usuarioLogeado.setPrimerNombre(primerNombre.trim());
+            usuarioLogeado.setSegundoNombre(segundoNombre != null ? segundoNombre.trim() : "");
+            usuarioLogeado.setPrimerApellido(primerApellido.trim());
+            usuarioLogeado.setSegundoApellido(segundoApellido.trim());
+            usuarioLogeado.setEmail(email.trim());
+
+            return "OK";
+        } else {
+            return "Error al actualizar la información. Contacte al administrador.";
+        }
+    }
+
+    // Mantener todos los demás métodos existentes...
     public String validarCampoTexto(String texto, String nombreCampo) {
         if (texto == null || texto.trim().isEmpty()) {
-            return null; // Campo vacío, no mostrar error hasta que sea obligatorio
+            return null;
         }
 
         if (!PATRON_SOLO_LETRAS.matcher(texto.trim()).matches()) {
@@ -186,12 +307,12 @@ public class UsuarioController {
             return nombreCampo + ": Debe tener al menos 2 caracteres";
         }
 
-        return null; // Sin errores
+        return null;
     }
 
     public String validarCampoNumerico(String texto, String nombreCampo) {
         if (texto == null || texto.trim().isEmpty()) {
-            return null; // Campo vacío, no mostrar error hasta que sea obligatorio
+            return null;
         }
 
         if (!PATRON_SOLO_NUMEROS.matcher(texto.trim()).matches()) {
@@ -202,24 +323,24 @@ public class UsuarioController {
             return nombreCampo + ": Debe tener entre 6 y 15 dígitos";
         }
 
-        return null; // Sin errores
+        return null;
     }
 
     public String validarEmail(String email) {
         if (email == null || email.trim().isEmpty()) {
-            return null; // Campo vacío, no mostrar error hasta que sea obligatorio
+            return null;
         }
 
         if (!PATRON_EMAIL.matcher(email.trim()).matches()) {
-            return "Correo electrónico: Formato de email inválido";
+            return "Correo electrónico: Formato inválido. Use @gmail.com, @hotmail.com, @outlook.com o @unicolombo.edu.co";
         }
 
-        return null; // Sin errores
+        return null;
     }
 
     public String validarContrasena(String contrasena) {
         if (contrasena == null || contrasena.trim().isEmpty()) {
-            return null; // Campo vacío, no mostrar error hasta que sea obligatorio
+            return null;
         }
 
         if (contrasena.trim().length() < 6) {
@@ -230,10 +351,9 @@ public class UsuarioController {
             return "Contraseña: Caracteres no permitidos detectados";
         }
 
-        return null; // Sin errores
+        return null;
     }
 
-    // Método para filtrar entrada en tiempo real (usar en KeyTyped event)
     public boolean permitirCaracterCampoTexto(char caracter) {
         return Character.isLetter(caracter) || Character.isWhitespace(caracter) || caracter == 'á' || caracter == 'é'
                 || caracter == 'í' || caracter == 'ó' || caracter == 'ú' || caracter == 'Á' || caracter == 'É'
@@ -244,34 +364,28 @@ public class UsuarioController {
         return Character.isDigit(caracter);
     }
 
-    // Métodos para recuperación de contraseña
     public String enviarCodigoRecuperacion(String email) {
         if (email == null || email.trim().isEmpty()) {
             return "Por favor, ingrese su correo electrónico.";
         }
 
-        // Validar formato de email
         if (!PATRON_EMAIL.matcher(email.trim()).matches()) {
             return "Formato de email inválido.";
         }
 
-        // Verificar si el email existe
         if (!usuarioDAO.existeEmail(email)) {
             return "El correo ingresado no está registrado.";
         }
 
         try {
-            // Generar código de 5 dígitos
             this.codigoRecuperacion = generarCodigo();
             this.emailRecuperacion = email.trim().toLowerCase();
 
-            // Enviar código por email
             Email.enviarCodigo(email, codigoRecuperacion);
             return "OK";
 
         } catch (Exception e) {
             System.err.println("Error en envío de correo: " + e.getMessage());
-            // Fallback: mostrar código en consola para desarrollo
             System.out.println("CÓDIGO DE VERIFICACIÓN para " + email + ": " + codigoRecuperacion);
             return "OK";
         }
@@ -300,7 +414,6 @@ public class UsuarioController {
         }
 
         if (usuarioDAO.actualizarContrasena(emailRecuperacion, nuevaContrasena)) {
-            // Limpiar datos de recuperación
             codigoRecuperacion = null;
             emailRecuperacion = null;
             return "OK";
@@ -311,7 +424,7 @@ public class UsuarioController {
 
     private String generarCodigo() {
         Random random = new Random();
-        int codigo = 10000 + random.nextInt(90000); // Genera número entre 10000 y 99999
+        int codigo = 10000 + random.nextInt(90000);
         return String.valueOf(codigo);
     }
 
@@ -320,16 +433,14 @@ public class UsuarioController {
         this.emailRecuperacion = null;
     }
 
-    // En el UsuarioController, modifica los métodos de validación en tiempo real:
     public class ValidacionHelper {
 
-        private static final Color COLOR_ERROR = new Color(220, 53, 69); // Rojo suave
-        private static final Color COLOR_EXITO = new Color(40, 167, 69); // Verde suave
+        private static final Color COLOR_ERROR = new Color(220, 53, 69);
+        private static final Color COLOR_EXITO = new Color(40, 167, 69);
 
         public static void mostrarError(JTextField campo, String mensaje) {
             campo.setToolTipText(mensaje);
             campo.setForeground(COLOR_ERROR);
-            // Cambiar el color del texto en lugar del borde
         }
 
         public static void mostrarExito(JTextField campo) {
@@ -339,17 +450,37 @@ public class UsuarioController {
 
         public static void mostrarAdvertencia(JTextField campo, String mensaje) {
             campo.setToolTipText(mensaje);
-            campo.setForeground(new Color(255, 193, 7)); // Amarillo/naranja
+            campo.setForeground(new Color(255, 193, 7));
         }
     }
 
-    // Agrega estos métodos al UsuarioController:
     public boolean validarEmailExistente(String email) {
         return usuarioDAO.existeEmail(email);
     }
 
+    public String actualizarCorreo(String email, String nuevoEmail) {
+        if (nuevoEmail == null || nuevoEmail.trim().isEmpty()) {
+            return "Ambos campos son obligatorios";
+        }
+
+        if (validarEmailExistente(email)) {
+            return "Para actualizar se debe ingresar un correo distinto";
+        }
+
+        String errorCorreo = validarEmail(nuevoEmail);
+
+        if (errorCorreo != null) {
+            return errorCorreo;
+        }
+
+        if (usuarioDAO.actualizarContrasena(email, nuevoEmail)) {
+            return "ok";
+        } else {
+            return "Error al actualizar el correo. Contacte con el administrador.";
+        }
+    }
+
     public String actualizarContrasena(String email, String nuevaContrasena, String confirmacionContrasena) {
-        // Validaciones básicas
         if (nuevaContrasena == null || nuevaContrasena.trim().isEmpty()
                 || confirmacionContrasena == null || confirmacionContrasena.trim().isEmpty()) {
             return "Ambos campos de contraseña son obligatorios.";
@@ -359,13 +490,11 @@ public class UsuarioController {
             return "Las contraseñas no coinciden.";
         }
 
-        // Validar fortaleza de contraseña
         String errorContrasena = validarContrasena(nuevaContrasena);
         if (errorContrasena != null) {
             return errorContrasena;
         }
 
-        // Actualizar en la base de datos
         if (usuarioDAO.actualizarContrasena(email, nuevaContrasena)) {
             return "OK";
         } else {

@@ -17,7 +17,7 @@ import javax.swing.Timer;
  */
 public class Verificación extends javax.swing.JFrame {
 
-    private final UsuarioController usuarioController;
+    UsuarioController usuarioController = UsuarioController.getInstance();
     private Timer timer;
     private int tiempoRestante;
     private static final int TIEMPO_ESPERA = 120; // 2 minutos
@@ -25,7 +25,7 @@ public class Verificación extends javax.swing.JFrame {
 
     public Verificación() {
         initComponents();
-        this.usuarioController = new UsuarioController();
+
         this.tiempoRestante = 0;
         inicializarComponentes();
     }
