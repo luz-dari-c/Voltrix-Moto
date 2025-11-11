@@ -1,9 +1,6 @@
-
 package Model.Entities;
 
 public class Empleado {
-   
-    private Usuario usuario;
 
     private String idEmpleado;
     private String primerNombre;
@@ -14,9 +11,10 @@ public class Empleado {
     private String identificacion;
     private String correo;
     private String telefono;
-
-    public Empleado(Usuario usuario, String idEmpleado, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String edad, String identificacion, String correo, String telefono) {
-        this.usuario = usuario;
+    
+    public Empleado(String idEmpleado, String primerNombre, String segundoNombre,
+            String primerApellido, String segundoApellido, String edad,
+            String identificacion, String correo, String telefono) {
         this.idEmpleado = idEmpleado;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
@@ -28,13 +26,7 @@ public class Empleado {
         this.telefono = telefono;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+    
 
     public String getIdEmpleado() {
         return idEmpleado;
@@ -107,23 +99,21 @@ public class Empleado {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
-    
-@Override
-public String toString() {
-    return "Empleado{" +
-            "idEmpleado='" + idEmpleado + '\'' +
-            ", primerNombre='" + primerNombre + '\'' +
-            ", segundoNombre='" + segundoNombre + '\'' +
-            ", primerApellido='" + primerApellido + '\'' +
-            ", segundoApellido='" + segundoApellido + '\'' +
-            ", edad='" + edad + '\'' +
-            ", identificacion='" + identificacion + '\'' +
-            ", correo='" + correo + '\'' +
-            ", telefono='" + telefono + '\'' +
-            '}';
-}
 
     
-    
+
+    @Override
+    public String toString() {
+        return "Empleado{"
+                + "idEmpleado='" + idEmpleado + '\''
+                + ", primerNombre='" + primerNombre + '\''
+                + ", segundoNombre='" + segundoNombre + '\''
+                + ", primerApellido='" + primerApellido + '\''
+                + ", segundoApellido='" + segundoApellido + '\''
+                + ", edad='" + edad + '\''
+                + ", identificacion='" + identificacion + '\''
+                + ", correo='" + correo + '\''
+                + ", telefono='" + telefono + '\''
+                + '}';
+    }
 }

@@ -6,449 +6,90 @@
     "items": [
       {
         "vehiculo": {
-          "idMoto": 41,
-          "placa": "HWK-460",
-          "marca": "KTM",
-          "modelo": "890 Adventure",
-          "fechaIngreso": "2025-11-05",
-          "precio": 8.1E7,
-          "tipoMoto": "BOXER",
-          "tipoColorMoto": "ROJO",
-          "cilindraje": 890,
-          "tieneParrilla": true,
-          "tieneMaletero": false,
-          "partesMoto": {
-            "llantaDelantera": {
-              "idLlantaDelantera": "LLD-70797",
-              "ubicacion": "DELANTERA",
-              "marca": "Pirelli",
-              "modelo": "Scorpion",
-              "material": "CAUCHO"
-            },
-            "llantaTrasera": {
-              "idLlantaTrasera": "LLT-98017",
-              "ubicacion": "DELANTERA",
-              "marca": "Pirelli",
-              "modelo": "Scorpion",
-              "material": "CAUCHO"
-            },
-            "chasis": {
-              "idChasis": "CHS-18386",
-              "material": "ACERO",
-              "tipo": "MULTITUBULAR"
-            },
-            "motor": {
-              "idMotor": "MTR-82747",
-              "tipo": "CUATRO_TIEMPOS",
-              "cilindrada": 890,
-              "potencia": 105
-            },
-            "asiento": {
-              "idAsiento": "AST-19664",
-              "material": "CUERO",
-              "capacidad": "BIPLAZA"
-            },
-            "frenoDelantero": {
-              "idFrenoDelantero": "FRD-96453",
-              "ubicacion": "DELANTERO",
-              "marca": "ByBre",
-              "modelo": "FD-Adv",
-              "material": "ACERO"
-            },
-            "frenoTrasero": {
-              "idFrenoTrasero": "FRT-86108",
-              "ubicacion": "TRASERO",
-              "marca": "ByBre",
-              "modelo": "FT-Adv",
-              "material": "ACERO"
-            },
-            "transmision": {
-              "idTransmision": "TRS-62037",
-              "tipoTransmision": "MANUAL",
-              "velocidades": "SEIS"
-            }
-          },
-          "estado": "EN_CARRITO"
-        },
-        "id": "1",
-        "usuarioId": "1237440696",
-        "cantidad": 1,
-        "precioUnitario": 8.1E+7,
-        "subtotal": 8.1E+7
-      },
-      {
-        "vehiculo": {
-          "idMoto": 39,
-          "placa": "KBC-198",
-          "marca": "Kawasaki",
-          "modelo": "Ninja ZX-10R",
+          "idMoto": 34,
+          "placa": "QBF-884",
+          "marca": "BMW",
+          "modelo": "R1250RT",
           "fechaIngreso": "2025-11-03",
-          "precio": 1.25E8,
-          "tipoMoto": "SUPERSPORT",
-          "tipoColorMoto": "NEGRO",
-          "cilindraje": 998,
-          "tieneParrilla": false,
-          "tieneMaletero": false,
-          "partesMoto": {
-            "llantaDelantera": {
-              "idLlantaDelantera": "LLD-74766",
-              "medida": "R17_120_70",
-              "ubicacion": "DELANTERA",
-              "marca": "Bridgestone",
-              "modelo": "Battlax Racing",
-              "material": "CAUCHO"
-            },
-            "llantaTrasera": {
-              "idLlantaTrasera": "LLT-65457",
-              "medida": "R17_180_55",
-              "ubicacion": "DELANTERA",
-              "marca": "Bridgestone",
-              "modelo": "Battlax Racing",
-              "material": "CAUCHO"
-            },
-            "chasis": {
-              "idChasis": "CHS-82072",
-              "material": "ALUMINIO",
-              "tipo": "PERIMETRAL"
-            },
-            "motor": {
-              "idMotor": "MTR-29098",
-              "tipo": "CUATRO_TIEMPOS",
-              "cilindrada": 998,
-              "potencia": 203
-            },
-            "asiento": {
-              "idAsiento": "AST-81235",
-              "material": "CUERO",
-              "capacidad": "MONOPLAZA"
-            },
-            "frenoDelantero": {
-              "idFrenoDelantero": "FRD-63961",
-              "ubicacion": "DELANTERO",
-              "marca": "Brembo",
-              "modelo": "FD-SSport",
-              "material": "ACERO"
-            },
-            "frenoTrasero": {
-              "idFrenoTrasero": "FRT-53446",
-              "ubicacion": "TRASERO",
-              "marca": "Brembo",
-              "modelo": "FT-SSport",
-              "material": "ACERO"
-            },
-            "transmision": {
-              "idTransmision": "TRS-62497",
-              "tipoTransmision": "MANUAL",
-              "velocidades": "SEIS"
-            }
-          },
-          "estado": "EN_CARRITO"
-        },
-        "id": "2",
-        "usuarioId": "1237440696",
-        "cantidad": 1,
-        "precioUnitario": 1.25E+8,
-        "subtotal": 1.25E+8
-      },
-      {
-        "vehiculo": {
-          "idMoto": 40,
-          "placa": "LKV-900",
-          "marca": "Kawasaki",
-          "modelo": "Ninja ZX-10R",
-          "fechaIngreso": "2025-11-03",
-          "precio": 1.25E8,
-          "tipoMoto": "SUPERSPORT",
-          "tipoColorMoto": "VERDE",
-          "cilindraje": 998,
-          "tieneParrilla": false,
-          "tieneMaletero": false,
-          "partesMoto": {
-            "llantaDelantera": {
-              "idLlantaDelantera": "LLD-97656",
-              "medida": "R17_120_70",
-              "ubicacion": "DELANTERA",
-              "marca": "Bridgestone",
-              "modelo": "Battlax Racing",
-              "material": "CAUCHO"
-            },
-            "llantaTrasera": {
-              "idLlantaTrasera": "LLT-83337",
-              "medida": "R17_180_55",
-              "ubicacion": "DELANTERA",
-              "marca": "Bridgestone",
-              "modelo": "Battlax Racing",
-              "material": "CAUCHO"
-            },
-            "chasis": {
-              "idChasis": "CHS-67681",
-              "material": "ALUMINIO",
-              "tipo": "PERIMETRAL"
-            },
-            "motor": {
-              "idMotor": "MTR-86722",
-              "tipo": "CUATRO_TIEMPOS",
-              "cilindrada": 998,
-              "potencia": 203
-            },
-            "asiento": {
-              "idAsiento": "AST-74104",
-              "material": "CUERO",
-              "capacidad": "MONOPLAZA"
-            },
-            "frenoDelantero": {
-              "idFrenoDelantero": "FRD-75984",
-              "ubicacion": "DELANTERO",
-              "marca": "Brembo",
-              "modelo": "FD-SSport",
-              "material": "ACERO"
-            },
-            "frenoTrasero": {
-              "idFrenoTrasero": "FRT-33347",
-              "ubicacion": "TRASERO",
-              "marca": "Brembo",
-              "modelo": "FT-SSport",
-              "material": "ACERO"
-            },
-            "transmision": {
-              "idTransmision": "TRS-17260",
-              "tipoTransmision": "MANUAL",
-              "velocidades": "SEIS"
-            }
-          },
-          "estado": "EN_CARRITO"
-        },
-        "id": "3",
-        "usuarioId": "1237440696",
-        "cantidad": 1,
-        "precioUnitario": 1.25E+8,
-        "subtotal": 1.25E+8
-      },
-      {
-        "vehiculo": {
-          "idMoto": 38,
-          "placa": "MMQ-345",
-          "marca": "Kawasaki",
-          "modelo": "Ninja ZX-10R",
-          "fechaIngreso": "2025-11-03",
-          "precio": 1.25E8,
-          "tipoMoto": "SUPERSPORT",
+          "precio": 1.6E8,
+          "tipoMoto": "SEMIDEPORTIVA",
           "tipoColorMoto": "BLANCO",
-          "cilindraje": 998,
-          "tieneParrilla": false,
-          "tieneMaletero": false,
-          "partesMoto": {
-            "llantaDelantera": {
-              "idLlantaDelantera": "LLD-35090",
-              "medida": "R17_120_70",
-              "ubicacion": "DELANTERA",
-              "marca": "Bridgestone",
-              "modelo": "Battlax Racing",
-              "material": "CAUCHO"
-            },
-            "llantaTrasera": {
-              "idLlantaTrasera": "LLT-80825",
-              "medida": "R17_180_55",
-              "ubicacion": "DELANTERA",
-              "marca": "Bridgestone",
-              "modelo": "Battlax Racing",
-              "material": "CAUCHO"
-            },
-            "chasis": {
-              "idChasis": "CHS-60381",
-              "material": "ALUMINIO",
-              "tipo": "PERIMETRAL"
-            },
-            "motor": {
-              "idMotor": "MTR-96330",
-              "tipo": "CUATRO_TIEMPOS",
-              "cilindrada": 998,
-              "potencia": 203
-            },
-            "asiento": {
-              "idAsiento": "AST-69860",
-              "material": "CUERO",
-              "capacidad": "MONOPLAZA"
-            },
-            "frenoDelantero": {
-              "idFrenoDelantero": "FRD-44508",
-              "ubicacion": "DELANTERO",
-              "marca": "Brembo",
-              "modelo": "FD-SSport",
-              "material": "ACERO"
-            },
-            "frenoTrasero": {
-              "idFrenoTrasero": "FRT-86754",
-              "ubicacion": "TRASERO",
-              "marca": "Brembo",
-              "modelo": "FT-SSport",
-              "material": "ACERO"
-            },
-            "transmision": {
-              "idTransmision": "TRS-13933",
-              "tipoTransmision": "MANUAL",
-              "velocidades": "SEIS"
-            }
-          },
-          "estado": "EN_CARRITO"
-        },
-        "id": "4",
-        "usuarioId": "1237440696",
-        "cantidad": 1,
-        "precioUnitario": 1.25E+8,
-        "subtotal": 1.25E+8
-      },
-      {
-        "vehiculo": {
-          "idMoto": 37,
-          "placa": "JGB-144",
-          "marca": "Kawasaki",
-          "modelo": "Ninja ZX-10R",
-          "fechaIngreso": "2025-11-03",
-          "precio": 1.25E8,
-          "tipoMoto": "SUPERSPORT",
-          "tipoColorMoto": "ROJO",
-          "cilindraje": 998,
-          "tieneParrilla": false,
-          "tieneMaletero": false,
-          "partesMoto": {
-            "llantaDelantera": {
-              "idLlantaDelantera": "LLD-70635",
-              "medida": "R17_120_70",
-              "ubicacion": "DELANTERA",
-              "marca": "Bridgestone",
-              "modelo": "Battlax Racing",
-              "material": "CAUCHO"
-            },
-            "llantaTrasera": {
-              "idLlantaTrasera": "LLT-26133",
-              "medida": "R17_180_55",
-              "ubicacion": "DELANTERA",
-              "marca": "Bridgestone",
-              "modelo": "Battlax Racing",
-              "material": "CAUCHO"
-            },
-            "chasis": {
-              "idChasis": "CHS-58575",
-              "material": "ALUMINIO",
-              "tipo": "PERIMETRAL"
-            },
-            "motor": {
-              "idMotor": "MTR-43072",
-              "tipo": "CUATRO_TIEMPOS",
-              "cilindrada": 998,
-              "potencia": 203
-            },
-            "asiento": {
-              "idAsiento": "AST-75065",
-              "material": "CUERO",
-              "capacidad": "MONOPLAZA"
-            },
-            "frenoDelantero": {
-              "idFrenoDelantero": "FRD-45099",
-              "ubicacion": "DELANTERO",
-              "marca": "Brembo",
-              "modelo": "FD-SSport",
-              "material": "ACERO"
-            },
-            "frenoTrasero": {
-              "idFrenoTrasero": "FRT-64517",
-              "ubicacion": "TRASERO",
-              "marca": "Brembo",
-              "modelo": "FT-SSport",
-              "material": "ACERO"
-            },
-            "transmision": {
-              "idTransmision": "TRS-95519",
-              "tipoTransmision": "MANUAL",
-              "velocidades": "SEIS"
-            }
-          },
-          "estado": "EN_CARRITO"
-        },
-        "id": "5",
-        "usuarioId": "1237440696",
-        "cantidad": 1,
-        "precioUnitario": 1.25E+8,
-        "subtotal": 1.25E+8
-      },
-      {
-        "vehiculo": {
-          "idMoto": 17,
-          "placa": "NVD-103",
-          "marca": "Indian",
-          "modelo": "Chief",
-          "fechaIngreso": "2025-11-03",
-          "precio": 1.2E8,
-          "tipoMoto": "CHOPPER",
-          "tipoColorMoto": "ROJO",
-          "cilindraje": 1600,
+          "cilindraje": 1250,
           "tieneParrilla": true,
           "tieneMaletero": true,
           "partesMoto": {
             "llantaDelantera": {
-              "idLlantaDelantera": "LLD-45711",
+              "idLlantaDelantera": "LLD-13915",
+              "medida": "R17_120_70",
               "ubicacion": "DELANTERA",
-              "marca": "Dunlop",
-              "modelo": "Elite",
+              "marca": "Metzeler",
+              "modelo": "Tourance",
               "material": "CAUCHO"
             },
             "llantaTrasera": {
-              "idLlantaTrasera": "LLT-36121",
+              "idLlantaTrasera": "LLT-35336",
+              "medida": "R17_180_55",
               "ubicacion": "DELANTERA",
-              "marca": "Dunlop",
-              "modelo": "Elite",
+              "marca": "Metzeler",
+              "modelo": "Tourance",
               "material": "CAUCHO"
             },
             "chasis": {
-              "idChasis": "CHS-48583",
+              "idChasis": "CHS-81697",
               "material": "ACERO"
             },
             "motor": {
-              "idMotor": "MTR-21635",
+              "idMotor": "MTR-81937",
               "tipo": "CUATRO_TIEMPOS",
-              "cilindrada": 1600,
-              "potencia": 100
+              "cilindrada": 1250,
+              "potencia": 136
             },
             "asiento": {
-              "idAsiento": "AST-41325",
+              "idAsiento": "AST-60989",
               "material": "CUERO",
               "capacidad": "BIPLAZA"
             },
             "frenoDelantero": {
-              "idFrenoDelantero": "FRD-64119",
+              "idFrenoDelantero": "FRD-83337",
               "ubicacion": "DELANTERO",
-              "marca": "Indian",
-              "modelo": "FD-Chop",
+              "marca": "Brembo",
+              "modelo": "FD-Tour",
               "material": "ACERO"
             },
             "frenoTrasero": {
-              "idFrenoTrasero": "FRT-77505",
+              "idFrenoTrasero": "FRT-56046",
               "ubicacion": "TRASERO",
-              "marca": "Indian",
-              "modelo": "FT-Chop",
+              "marca": "Brembo",
+              "modelo": "FT-Tour",
               "material": "ACERO"
             },
             "transmision": {
-              "idTransmision": "TRS-54066",
+              "idTransmision": "TRS-83269",
               "tipoTransmision": "MANUAL",
               "velocidades": "SEIS"
             }
           },
           "estado": "DISPONIBLE"
         },
-        "id": "17",
+        "id": "34",
         "usuarioId": "1237440696",
         "cantidad": 1,
-        "precioUnitario": 1.2E+8,
-        "subtotal": 1.2E+8
+        "precioUnitario": 1.6E+8,
+        "subtotal": 1.6E+8
       }
     ],
-    "total": 701000000
+    "total": 160000000
   },
   {
     "id": "2",
     "idUsuario": "123456780",
+    "fechaCreacion": "2025-11-11",
+    "items": [],
+    "total": 0
+  },
+  {
+    "id": "3",
+    "idUsuario": "99999999",
     "fechaCreacion": "2025-11-11",
     "items": [],
     "total": 0

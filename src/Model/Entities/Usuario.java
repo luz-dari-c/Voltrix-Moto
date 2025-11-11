@@ -1,6 +1,7 @@
 package Model.Entities;
 
 public class Usuario {
+
     private String primerNombre;
     private String segundoNombre;
     private String primerApellido;
@@ -8,12 +9,14 @@ public class Usuario {
     private String cedula;
     private String email;
     private String password;
+    private boolean isAdmin; // Indica si el usuario es administrador
 
     public Usuario() {
+        this.isAdmin = false;
     }
 
     public Usuario(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
-                  String cedula, String email, String password) {
+            String cedula, String email, String password) {
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
@@ -21,21 +24,83 @@ public class Usuario {
         this.cedula = cedula;
         this.email = email;
         this.password = password;
+        this.isAdmin = false;
     }
 
-    
-    public String getPrimerNombre() { return primerNombre; }
-    public void setPrimerNombre(String primerNombre) { this.primerNombre = primerNombre; }
-    public String getSegundoNombre() { return segundoNombre; }
-    public void setSegundoNombre(String segundoNombre) { this.segundoNombre = segundoNombre; }
-    public String getPrimerApellido() { return primerApellido; }
-    public void setPrimerApellido(String primerApellido) { this.primerApellido = primerApellido; }
-    public String getSegundoApellido() { return segundoApellido; }
-    public void setSegundoApellido(String segundoApellido) { this.segundoApellido = segundoApellido; }
-    public String getCedula() { return cedula; }
-    public void setCedula(String cedula) { this.cedula = cedula; }
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    // Constructor completo (por si en algún momento necesitas crear un admin manualmente)
+    public Usuario(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
+            String cedula, String email, String password, boolean isAdmin) {
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+        this.cedula = cedula;
+        this.email = email;
+        this.password = password;
+        this.isAdmin = isAdmin;
+    }
+
+    public String getPrimerNombre() {
+        return primerNombre;
+    }
+
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = primerNombre;
+    }
+
+    public String getSegundoNombre() {
+        return segundoNombre;
+    }
+
+    public void setSegundoNombre(String segundoNombre) {
+        this.segundoNombre = segundoNombre;
+    }
+
+    public String getPrimerApellido() {
+        return primerApellido;
+    }
+
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
+    }
+
+    public String getSegundoApellido() {
+        return segundoApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 }

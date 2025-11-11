@@ -1,4 +1,16 @@
 [
-
+  {
+    "numeroTarjeta": "MTI5MC0zMjgzLTcyODktMjkyOQ\u003d\u003d",
+    "nombreTarjeta": "Luz Crespo",
+    "fechaExpiracion": "11/12",
+    "cvv": "Mjg4MA\u003d\u003d",
+    "tarjetaGuardada": true,
+    "primerNombre": "Luz",
+    "segundoNombre": "Dari",
+    "primerApellido": "Crespo",
+    "segundoApellido": "Gomez",
+    "cedula": "1237440696",
+    "email": "luzdaricrespo@gmail.com",
+    "password": "bHV6MTIz"
+  }
 ]
-   

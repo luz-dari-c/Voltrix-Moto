@@ -3,8 +3,10 @@ package View;
 import Controller.ItemCarritoController;
 import Controller.MotoController;
 import Controller.VentaController;
+import DAO.ClienteDAO;
 import DAO.FacturaDAO;
 import Model.Constants.EstadoMoto;
+import Model.Entities.Cliente;
 import Model.Entities.Factura;
 import Model.Entities.ItemCarrito;
 import java.text.DecimalFormat;
@@ -17,6 +19,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import Model.Entities.Cliente;
+import javax.swing.JPasswordField;
 
 public class Pago extends javax.swing.JFrame {
 
@@ -24,6 +28,7 @@ public class Pago extends javax.swing.JFrame {
     private Moto motoSeleccionada;
     private final MotoController motoController = new MotoController();
     private final VentaController ventaController = new VentaController();
+    
 
     public Pago() {
         initComponents();
@@ -183,6 +188,7 @@ public class Pago extends javax.swing.JFrame {
         txtCVV = new javax.swing.JTextField();
         FinalizarCompra = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        btnCargarTargeta = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         labelPrecio = new javax.swing.JLabel();
@@ -286,7 +292,7 @@ public class Pago extends javax.swing.JFrame {
                 FinalizarCompraActionPerformed(evt);
             }
         });
-        DatosPago.add(FinalizarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 140, 40));
+        DatosPago.add(FinalizarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 140, 40));
 
         jLabel5.setForeground(new java.awt.Color(102, 0, 0));
         jLabel5.setText("Cancelar");
@@ -296,9 +302,19 @@ public class Pago extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        DatosPago.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, -1));
+        DatosPago.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, 30));
 
-        PanelCompra.add(DatosPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 410, 310));
+        btnCargarTargeta.setBackground(new java.awt.Color(51, 102, 0));
+        btnCargarTargeta.setForeground(new java.awt.Color(255, 255, 255));
+        btnCargarTargeta.setText("Cargar targeta");
+        btnCargarTargeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarTargetaActionPerformed(evt);
+            }
+        });
+        DatosPago.add(btnCargarTargeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 140, -1));
+
+        PanelCompra.add(DatosPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 410, 340));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 153));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -337,126 +353,160 @@ public class Pago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
+     String nombre = txtNombre.getText().trim();
+    String numeroTarjeta = txtNumeroTarjeta.getText().trim();
+    String fecha = txtFecha.getText().trim();
+    String cvv = txtCVV.getText().trim();
 
-        String nombre = txtNombre.getText().trim();
-        String numeroTarjeta = txtNumeroTarjeta.getText().trim();
-        String fecha = txtFecha.getText().trim();
-        String cvv = txtCVV.getText().trim();
+    if (!validarDatosPago(nombre, numeroTarjeta, fecha, cvv)) {
+        return;
+    }
 
-        if (!validarDatosPago(nombre, numeroTarjeta, fecha, cvv)) {
+    Sesion sesion = Sesion.getInstancia();
+    Usuario usuarioActual = sesion.getUsuarioActual();
+
+    ClienteDAO clienteDAO = ClienteDAO.getInstance();
+    Cliente clienteExistente = clienteDAO.buscarPorCedula(usuarioActual.getCedula());
+
+    boolean guardarTarjeta = false;
+
+ 
+    if (clienteExistente != null && clienteExistente.isTarjetaGuardada()) {
+
+        boolean tarjetaDiferente =
+    !clienteExistente.getNumeroTarjeta().trim().equals(numeroTarjeta.trim()) ||
+    !clienteExistente.getNombreTarjeta().trim().equals(nombre.trim()) ||
+    !clienteExistente.getFechaExpiracion().trim().equals(fecha.trim()) ||
+    !clienteExistente.getCvv().trim().equals(cvv.trim());
+
+        if (tarjetaDiferente) {
+            int opcionActualizar = JOptionPane.showConfirmDialog(
+                    this,
+                    "Hemos detectado que los datos de la tarjeta son diferentes a los guardados.\n¿Desea actualizar su tarjeta con esta nueva información?",
+                    "Actualizar tarjeta",
+                    JOptionPane.YES_NO_OPTION
+            );
+
+            if (opcionActualizar == JOptionPane.YES_OPTION) {
+                JPasswordField passwordField = new JPasswordField();
+                int opcionContrasena = JOptionPane.showConfirmDialog(
+                        this,
+                        passwordField,
+                        "Ingrese su contraseña para confirmar",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE
+                );
+
+                if (opcionContrasena == JOptionPane.OK_OPTION) {
+                    String contrasenaIngresada = new String(passwordField.getPassword());
+                    if (contrasenaIngresada.equals(usuarioActual.getPassword())) {
+                        guardarTarjeta = true;
+                    } else {
+                        JOptionPane.showMessageDialog(
+                                this,
+                                "Contraseña incorrecta. No se actualizó la tarjeta.",
+                                "Error de seguridad",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                    }
+                }
+            }
+        }
+
+
+    } else {
+        int opcionGuardar = JOptionPane.showConfirmDialog(
+                this,
+                "¿Desea guardar los datos de su tarjeta para futuras compras?",
+                "Guardar tarjeta",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (opcionGuardar == JOptionPane.YES_OPTION) {
+            guardarTarjeta = true;
+        }
+    }
+
+    Cliente cliente = new Cliente(
+            usuarioActual.getPrimerNombre(),
+            usuarioActual.getSegundoNombre(),
+            usuarioActual.getPrimerApellido(),
+            usuarioActual.getSegundoApellido(),
+            usuarioActual.getCedula(),
+            usuarioActual.getEmail(),
+            usuarioActual.getPassword(),
+            numeroTarjeta,
+            nombre,
+            fecha,
+            cvv,
+            guardarTarjeta
+    );
+
+    if (clienteExistente == null) {
+        clienteDAO.registrarCliente(cliente);
+    } else if (guardarTarjeta) {
+        clienteDAO.actualizarTarjeta(cliente.getCedula(), numeroTarjeta, nombre, fecha, cvv);
+    }
+
+
+    boolean exitoVenta = false;
+    List<ItemCarrito> itemsVenta = null;
+
+    if (motoSeleccionada != null) {
+        ItemCarrito item = new ItemCarrito(
+                motoSeleccionada,
+                cliente.getCedula(),
+                null,
+                1,
+                new BigDecimal(motoSeleccionada.getPrecio()),
+                new BigDecimal(motoSeleccionada.getPrecio())
+        );
+        itemsVenta = List.of(item);
+        exitoVenta = ventaController.registrarVenta(cliente, itemsVenta);
+
+        if (exitoVenta) {
+            motoSeleccionada.setEstado(EstadoMoto.VENDIDO);
+            motoController.eliminarMoto(motoSeleccionada.getIdMoto());
+            motoController.guardarMoto(motoSeleccionada);
+        }
+
+    } else if (carrito != null) {
+        itemsVenta = new ArrayList<>(carrito.getItems());
+        if (itemsVenta.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El carrito está vacío.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Sesion sesion = Sesion.getInstancia();
-        Usuario usuario = sesion.getUsuarioActual();
-        boolean exitoVenta = false;
-        List<ItemCarrito> itemsVenta = null;
+        exitoVenta = ventaController.registrarVenta(cliente, itemsVenta);
 
-        if (motoSeleccionada != null) {
-            ItemCarrito item = new ItemCarrito(
-                    motoSeleccionada,
-                    usuario.getCedula(),
-                    null,
-                    1,
-                    new BigDecimal(motoSeleccionada.getPrecio()),
-                    new BigDecimal(motoSeleccionada.getPrecio())
-            );
-            itemsVenta = List.of(item);
-            exitoVenta = ventaController.registrarVenta(usuario, itemsVenta);
-
-            if (exitoVenta) {
-                motoSeleccionada.setEstado(EstadoMoto.VENDIDO);
-                motoController.eliminarMoto(motoSeleccionada.getIdMoto());
-                motoController.guardarMoto(motoSeleccionada);
+        if (exitoVenta) {
+            for (ItemCarrito item : itemsVenta) {
+                Moto moto = item.getVehiculo();
+                moto.setEstado(EstadoMoto.VENDIDO);
+                motoController.eliminarMoto(moto.getIdMoto());
+                motoController.guardarMoto(moto);
             }
 
-        } else if (carrito != null) {
-            itemsVenta = new ArrayList<>(carrito.getItems());
-
-            if (itemsVenta.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "El carrito está vacío.", "Aviso", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-
-            exitoVenta = ventaController.registrarVenta(usuario, itemsVenta);
-
-            if (exitoVenta) {
-                for (ItemCarrito item : itemsVenta) {
-                    Moto moto = item.getVehiculo();
-                    moto.setEstado(EstadoMoto.VENDIDO);
-                    motoController.eliminarMoto(moto.getIdMoto());
-                    motoController.guardarMoto(moto);
-                }
-
-                ItemCarritoController itemController = new ItemCarritoController();
-                boolean vaciado = itemController.limpiarCarritoPorUsuario(usuario.getCedula());
-
-                if (vaciado) {
-                    System.out.println("Carrito vaciado correctamente después de la compra.");
-                    carrito.getItems().clear();
-                } else {
-                    System.err.println("Error al vaciar el carrito después de la compra.");
-                    JOptionPane.showMessageDialog(this,
-                            "Compra realizada pero hubo un error al vaciar el carrito. "
-                            + "Por favor, contacte con soporte.",
-                            "Advertencia", JOptionPane.WARNING_MESSAGE);
-                }
-            }
+            ItemCarritoController itemController = new ItemCarritoController();
+            itemController.limpiarCarritoPorUsuario(cliente.getCedula());
+            carrito.getItems().clear();
         }
+    }
 
-        if (exitoVenta && itemsVenta != null) {
-            JOptionPane.showMessageDialog(this, "¡Compra realizada con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-            Venta ventaGenerada = ventaController.getUltimaVenta();
-            if (ventaGenerada != null) {
-                File carpetaFacturas = new File("src/Resources/Data/Facturas");
-                if (!carpetaFacturas.exists()) {
-                    carpetaFacturas.mkdirs();
-                }
-
-                String nombreArchivo = "Factura_" + ventaGenerada.getIdVenta() + ".pdf";
-                File archivoPDF = new File(carpetaFacturas, nombreArchivo);
-                String rutaPDF = archivoPDF.getAbsolutePath();
-
-                try {
-                    Utilidades.GeneradorFacturasPDF.generarFacturaPDF(ventaGenerada, itemsVenta, rutaPDF);
-                } catch (Exception e) {
-                    System.err.println("Error al generar PDF: " + e.getMessage());
-                    JOptionPane.showMessageDialog(this,
-                            "Compra exitosa pero error al generar factura PDF: " + e.getMessage(),
-                            "Advertencia", JOptionPane.WARNING_MESSAGE);
-                }
-
-                FacturaDAO facturaDAO = new FacturaDAO();
-                Factura factura = new Factura(
-                        facturaDAO.cargarTodas().size() + 1,
-                        usuario.getCedula(),
-                        0,
-                        nombreArchivo,
-                        rutaPDF,
-                        java.time.LocalDateTime.now()
-                );
-                facturaDAO.guardarFactura(factura);
-
-                JOptionPane.showMessageDialog(this,
-                        "Factura generada exitosamente.\nRuta: " + rutaPDF,
-                        "Factura PDF", JOptionPane.INFORMATION_MESSAGE);
-
-                try {
-                    java.awt.Desktop.getDesktop().open(archivoPDF);
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null,
-                            "No se pudo abrir el archivo PDF. Verifica que tengas un visor de PDF instalado.");
-                }
-            }
-
-            Store jv = new Store();
-            jv.setVisible(true);
-            this.dispose();
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al registrar la venta.", "Error", JOptionPane.ERROR_MESSAGE);
+ 
+    if (exitoVenta && itemsVenta != null) {
+        JOptionPane.showMessageDialog(this, "¡Compra realizada con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        Venta ventaGenerada = ventaController.getUltimaVenta();
+        if (ventaGenerada != null) {
+            ventaController.generarFacturaPDF(ventaGenerada, itemsVenta, cliente);
         }
+        new Store().setVisible(true);
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(this, "Error al registrar la venta.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+
 
     }//GEN-LAST:event_FinalizarCompraActionPerformed
 
@@ -500,6 +550,50 @@ public class Pago extends javax.swing.JFrame {
 
     }//GEN-LAST:event_labelRegresarMouseClicked
 
+    private void btnCargarTargetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarTargetaActionPerformed
+
+        
+    
+    Sesion sesion = Sesion.getInstancia();
+    Usuario usuarioActual = sesion.getUsuarioActual();
+
+    if (usuarioActual == null) {
+        JOptionPane.showMessageDialog(this, "Debe iniciar sesión primero.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    String password = JOptionPane.showInputDialog(this, "Ingrese su contraseña para continuar:");
+
+    if (password == null || password.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Debe ingresar la contraseña.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    if (!password.equals(usuarioActual.getPassword())) {
+        JOptionPane.showMessageDialog(this, "Contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    ClienteDAO clienteDAO = ClienteDAO.getInstance();
+    Cliente cliente = clienteDAO.buscarPorCedula(usuarioActual.getCedula());
+
+    if (cliente == null || !cliente.isTarjetaGuardada()) {
+        JOptionPane.showMessageDialog(this, "No hay tarjeta guardada para este usuario.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        return;
+    }
+
+    txtNombre.setText(cliente.getNombreTarjeta());
+    txtNumeroTarjeta.setText(cliente.getNumeroTarjeta());
+    txtFecha.setText(cliente.getFechaExpiracion());
+    txtCVV.setText(cliente.getCvv()); 
+
+    DatosPago.setVisible(true);
+    JOptionPane.showMessageDialog(this, "Datos de tarjeta cargados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        
+   
+
+    }//GEN-LAST:event_btnCargarTargetaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -540,6 +634,7 @@ public class Pago extends javax.swing.JFrame {
     private javax.swing.JPanel DatosPago;
     private javax.swing.JButton FinalizarCompra;
     private javax.swing.JPanel PanelCompra;
+    private javax.swing.JButton btnCargarTargeta;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

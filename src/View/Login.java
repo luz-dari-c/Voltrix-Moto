@@ -204,11 +204,9 @@ public class Login extends javax.swing.JFrame {
                 return;
             }
 
-            // Configurar la sesión (tu código existente)
             Sesion sesion = Sesion.getInstancia();
             sesion.setUsuarioActual(usuarioLogeado);
 
-            // Configurar el carrito (tu código existente)
             CarritoController carritoController = new CarritoController();
             List<Carrito> carritos = carritoController.listarCarritos();
 
@@ -253,9 +251,17 @@ public class Login extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(this, "¡Bienvenido, " + usuarioLogeado.getPrimerNombre() + "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
 
+            if (usuarioLogeado.isAdmin()) {
+            Administador adminFrame = new Administador();
+            adminFrame.setVisible(true);
+            this.dispose(); 
+        } else {
             Store st = new Store();
             st.setVisible(true);
-
+            this.dispose();
+        }
+            
+            
         } else {
             JOptionPane.showMessageDialog(this, resultadoLogin, "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
         }

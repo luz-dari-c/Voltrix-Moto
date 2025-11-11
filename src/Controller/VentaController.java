@@ -1,12 +1,16 @@
 
 package Controller;
 
+import DAO.FacturaDAO;
 import DAO.VentaDAO;
+import Model.Entities.Factura;
 import Model.Entities.Venta;
 import Model.Entities.ItemCarrito;
 import Model.Entities.Usuario;
+import java.io.File;
 import java.util.List;
 import java.math.BigDecimal;
+import javax.swing.JOptionPane;
 
 
 public class VentaController {
@@ -93,6 +97,35 @@ public class VentaController {
         }
         return ventas.get(ventas.size() - 1);
     }
+     
+     public void generarFacturaPDF(Venta ventaGenerada, List<ItemCarrito> itemsVenta, Usuario usuario) {
+    try {
+        File carpetaFacturas = new File("src/Resources/Data/Facturas");
+        if (!carpetaFacturas.exists()) carpetaFacturas.mkdirs();
+
+        String nombreArchivo = "Factura_" + ventaGenerada.getIdVenta() + ".pdf";
+        File archivoPDF = new File(carpetaFacturas, nombreArchivo);
+        String rutaPDF = archivoPDF.getAbsolutePath();
+
+        Utilidades.GeneradorFacturasPDF.generarFacturaPDF(ventaGenerada, itemsVenta, rutaPDF);
+
+        FacturaDAO facturaDAO = new FacturaDAO();
+        Factura factura = new Factura(
+                facturaDAO.cargarTodas().size() + 1,
+                usuario.getCedula(),
+                0,
+                nombreArchivo,
+                rutaPDF,
+                java.time.LocalDateTime.now()
+        );
+        facturaDAO.guardarFactura(factura);
+        java.awt.Desktop.getDesktop().open(archivoPDF);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al generar o abrir la factura: " + e.getMessage(),
+                "Advertencia", JOptionPane.WARNING_MESSAGE);
+    }
+}
+
     
     
 
