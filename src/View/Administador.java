@@ -22,7 +22,8 @@ public class Administador extends javax.swing.JFrame {
      */
     public Administador() {
         initComponents();
-        añadirEmpleado.setUI(null); 
+        añadirEmpleado.setUI(null);
+        this.setLocationRelativeTo(null);
 
         ModernTopMenu menuSuperior = new ModernTopMenu(ModificarInfoAdmin);
         // 2️⃣ Crear el menú superior moderno
@@ -135,6 +136,7 @@ public class Administador extends javax.swing.JFrame {
         jPanel16 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         visualizarEmpleados = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
         AñadirMoto = new javax.swing.JPanel();
         VisualizarMoto2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -153,19 +155,10 @@ public class Administador extends javax.swing.JFrame {
         tablaDeCarrito = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
         ModificarMoto = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        verInfo = new javax.swing.JPanel();
         VisualizarMoto1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        comboBoxTipoMoto1 = new javax.swing.JComboBox<>();
-        jPanel7 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
+        panelExtraSinuso = new javax.swing.JPanel();
+        modifcarEmpleado = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
@@ -556,9 +549,14 @@ public class Administador extends javax.swing.JFrame {
             visualizarEmpleados.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        jPanel16.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 1120, 610));
+        jPanel16.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 1120, 600));
 
-        VisualizarEmpleado.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 660));
+        jLabel5.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Lista de empleados que se han unido a voltrix car y han iniciado un mejor futuro.");
+        jPanel16.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
+
+        VisualizarEmpleado.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 710));
 
         ModificarInfoAdmin.addTab("tab4", VisualizarEmpleado);
 
@@ -707,103 +705,20 @@ public class Administador extends javax.swing.JFrame {
         ModificarMoto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         ModificarInfoAdmin.addTab("tab7", ModificarMoto);
 
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        ModificarInfoAdmin.addTab("tab9", jPanel2);
-
-        verInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        ModificarInfoAdmin.addTab("tab10", verInfo);
-
         VisualizarMoto1.setBackground(new java.awt.Color(255, 255, 255));
         VisualizarMoto1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("PARA AÑADIR UNA NUEVA MOTO INGRESE LOS DETALLES QUE SE LE PIDEN A CONTINUACIÓN:");
-        VisualizarMoto1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, -10, -1, 80));
-
-        jLabel7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Seleccione el color de la moto:");
-        VisualizarMoto1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, 20));
-
-        jLabel8.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Ingrese el tipo de moto:");
-        VisualizarMoto1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, 20));
-
-        comboBoxTipoMoto1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SemiAutomatica", "Boxer", "SemiDeportiva", "Deportiva", "Chopper", "Naked", "SuperSport", "Scooter" }));
-        VisualizarMoto1.add(comboBoxTipoMoto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 170, 30));
-
-        jPanel7.setBackground(new java.awt.Color(0, 204, 51));
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        VisualizarMoto1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 20, 20));
-
-        jPanel6.setBackground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        VisualizarMoto1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 20, 20));
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 18, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 18, Short.MAX_VALUE)
-        );
-
-        VisualizarMoto1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 20, 20));
-
-        jPanel4.setBackground(new java.awt.Color(51, 0, 0));
-        jPanel4.setForeground(new java.awt.Color(51, 0, 0));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        VisualizarMoto1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 20, 20));
-
-        jLabel5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Marca:");
-        VisualizarMoto1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
+        jLabel6.setText("LISTA DE MOTOS:");
+        VisualizarMoto1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, -1, 80));
 
         ModificarInfoAdmin.addTab("tab8", VisualizarMoto1);
 
-        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelExtraSinuso.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        ModificarInfoAdmin.addTab("tab9", panelExtraSinuso);
+
+        modifcarEmpleado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1018,11 +933,11 @@ public class Administador extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jPanel13.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 660));
+        modifcarEmpleado.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 660));
 
-        ModificarInfoAdmin.addTab("tab11", jPanel13);
+        ModificarInfoAdmin.addTab("tab11", modifcarEmpleado);
 
-        jPanel1.add(ModificarInfoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1140, 690));
+        jPanel1.add(ModificarInfoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 1140, 740));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1140, 710));
 
@@ -1066,7 +981,7 @@ public class Administador extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        ModificarInfoAdmin.setSelectedComponent(jPanel13);
+        ModificarInfoAdmin.setSelectedComponent(modifcarEmpleado);
     }//GEN-LAST:event_modificarActionPerformed
 
     private void Nombre1Field1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nombre1Field1ActionPerformed
@@ -1170,7 +1085,6 @@ public class Administador extends javax.swing.JFrame {
     private javax.swing.JTextField cedulaField3;
     private javax.swing.JTextField cedulaField4;
     private javax.swing.JTextField cedulaField5;
-    private javax.swing.JComboBox<String> comboBoxTipoMoto1;
     private javax.swing.JComboBox<String> comboBoxTipoMoto2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -1223,23 +1137,15 @@ public class Administador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPopupMenu jPopupMenu1;
@@ -1265,11 +1171,12 @@ public class Administador extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTable jTable1;
+    private javax.swing.JPanel modifcarEmpleado;
     private javax.swing.JMenuItem modificar;
+    private javax.swing.JPanel panelExtraSinuso;
     private javax.swing.JTable tablaDeCarrito;
     private javax.swing.JTable tablaModificación;
     private javax.swing.JScrollPane tablaMotos;
-    private javax.swing.JPanel verInfo;
     private javax.swing.JTable visualizarEmpleados;
     // End of variables declaration//GEN-END:variables
 }

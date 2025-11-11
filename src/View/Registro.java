@@ -349,7 +349,7 @@ public class Registro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Registro exitoso. ¡Bienvenido!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
 
-            Java loginFrame = new Java();
+            Login loginFrame = new Login();
             loginFrame.setVisible(true);
 
         } else {
@@ -383,7 +383,7 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_lblSesionMouseEntered
 
     private void lblSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSesionMouseClicked
-        new Java().setVisible(true);
+        new Login().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblSesionMouseClicked
 
@@ -393,7 +393,7 @@ public class Registro extends javax.swing.JFrame {
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* If Nimbus (introduced in Login SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {

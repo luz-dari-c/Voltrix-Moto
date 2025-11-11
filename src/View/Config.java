@@ -6,6 +6,7 @@ package View;
 
 import Controller.UsuarioController;
 import Model.Entities.Usuario;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,8 +23,12 @@ public class Config extends javax.swing.JFrame {
      */
     public Config() {
         initComponents();
+        this.setLocationRelativeTo(null);
         cargarDatosUsuario();
         cedulaField.setEnabled(false);
+        panelDesplegable.setVisible(false);
+        entrar.setVisible(true);
+        salir.setVisible(true);
     }
 
     private void cargarDatosUsuario() {
@@ -59,7 +64,9 @@ public class Config extends javax.swing.JFrame {
 
         } else {
             JOptionPane.showMessageDialog(this, "No hay usuario logeado. Por favor, inicie sesión primero.", "Error", JOptionPane.ERROR_MESSAGE);
+
             this.dispose();
+            return;
         }
     }
 
@@ -73,7 +80,10 @@ public class Config extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        paneMenu = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -102,6 +112,7 @@ public class Config extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jSeparator14 = new javax.swing.JSeparator();
+        jLabel32 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -127,6 +138,19 @@ public class Config extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         cedula = new javax.swing.JLabel();
         jSeparator13 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        panelDesplegable = new javax.swing.JPanel();
+        entrar = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -134,22 +158,43 @@ public class Config extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel7.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-log-out-32.png"))); // NOI18N
+        jLabel33.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel33MouseClicked(evt);
+            }
+        });
+        jPanel7.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 70, 30, -1));
+
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-house-32.png"))); // NOI18N
+        jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel34MouseClicked(evt);
+            }
+        });
+        jPanel7.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 70, 30, -1));
+
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, -20, 1000, 110));
+
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-user-circle-34.png"))); // NOI18N
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 40, 50));
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 40, 50));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Ingrese el primer nombre:");
-        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, 20));
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 20));
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 350, 20));
+        jPanel3.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 350, 20));
 
         txtPrimerNombre.setForeground(new java.awt.Color(0, 0, 0));
         txtPrimerNombre.setBorder(null);
@@ -158,15 +203,15 @@ public class Config extends javax.swing.JFrame {
                 txtPrimerNombreActionPerformed(evt);
             }
         });
-        jPanel3.add(txtPrimerNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 350, 30));
+        jPanel3.add(txtPrimerNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 350, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingrese el segundo nombre:");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, -1, 20));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 20));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-user-circle-34.png"))); // NOI18N
-        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 40, 50));
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 40, 50));
 
         txtSegundoNombre.setForeground(new java.awt.Color(0, 0, 0));
         txtSegundoNombre.setBorder(null);
@@ -175,18 +220,18 @@ public class Config extends javax.swing.JFrame {
                 txtSegundoNombreActionPerformed(evt);
             }
         });
-        jPanel3.add(txtSegundoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 350, 30));
+        jPanel3.add(txtSegundoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 350, 30));
 
         jSeparator9.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator9.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 350, 20));
+        jPanel3.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 350, 20));
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Ingrese el primer apellido:");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, 20));
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, 20));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-user-circle-34.png"))); // NOI18N
-        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 40, 50));
+        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 40, 50));
 
         txtPrimerApellido.setForeground(new java.awt.Color(0, 0, 0));
         txtPrimerApellido.setBorder(null);
@@ -195,18 +240,18 @@ public class Config extends javax.swing.JFrame {
                 txtPrimerApellidoActionPerformed(evt);
             }
         });
-        jPanel3.add(txtPrimerApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 350, 30));
+        jPanel3.add(txtPrimerApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 350, 30));
 
         jSeparator8.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 350, 20));
+        jPanel3.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 350, 20));
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Ingrese el segundo apellido:");
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, 20));
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, 20));
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-user-circle-34.png"))); // NOI18N
-        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 40, 50));
+        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 40, 50));
 
         txtSegundoApellido.setForeground(new java.awt.Color(0, 0, 0));
         txtSegundoApellido.setBorder(null);
@@ -215,18 +260,18 @@ public class Config extends javax.swing.JFrame {
                 txtSegundoApellidoActionPerformed(evt);
             }
         });
-        jPanel3.add(txtSegundoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 350, 30));
+        jPanel3.add(txtSegundoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 350, 30));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 340, 20));
+        jPanel3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 340, 20));
 
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Ingrese el correo:");
-        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, 20));
+        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 20));
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-email-34 (1).png"))); // NOI18N
-        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 40, 50));
+        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 40, 50));
 
         txtEmail.setForeground(new java.awt.Color(0, 0, 0));
         txtEmail.setBorder(null);
@@ -235,18 +280,18 @@ public class Config extends javax.swing.JFrame {
                 txtEmailActionPerformed(evt);
             }
         });
-        jPanel3.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 350, 30));
+        jPanel3.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 350, 30));
 
         jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 350, 20));
+        jPanel3.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 350, 20));
 
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Ingrese la cedula:");
-        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
+        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-id-42.png"))); // NOI18N
-        jPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 40, 50));
+        jPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 40, 50));
 
         cedulaField.setEditable(false);
         cedulaField.setForeground(new java.awt.Color(0, 0, 0));
@@ -256,27 +301,34 @@ public class Config extends javax.swing.JFrame {
                 cedulaFieldActionPerformed(evt);
             }
         });
-        jPanel3.add(cedulaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 350, 30));
+        jPanel3.add(cedulaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 350, 30));
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/unnamed-removebg-preview.png"))); // NOI18N
         jLabel28.setText("jLabel28");
-        jPanel3.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 440, 350));
+        jPanel3.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 440, 350));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Modificar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 450, -1, -1));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, 130, 40));
 
         jSeparator14.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator14.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 350, 20));
+        jPanel3.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 350, 20));
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 660));
+        jLabel32.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setText("Si no se modifica ningun campo se tomará como una cancelación de la modificación.");
+        jPanel3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
 
-        jTabbedPane1.addTab("tab1", jPanel2);
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1150, 660));
+
+        paneMenu.addTab("tab1", jPanel2);
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -285,8 +337,8 @@ public class Config extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Primer nombre:");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, 20));
+        jLabel3.setText("Segundo nombre:");
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, 20));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-user-circle-34.png"))); // NOI18N
         jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 40, 50));
@@ -352,11 +404,96 @@ public class Config extends javax.swing.JFrame {
         jSeparator13.setForeground(new java.awt.Color(0, 0, 0));
         jPanel5.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 350, 20));
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Primer nombre:");
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, 20));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pngtree-girl-ride-sport-bike-young-png-image_14929558-removebg-preview.png"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, 460, 560));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/unnamed-removebg-preview (1).png"))); // NOI18N
+        jLabel11.setText("jLabel11");
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 120, 100));
+
+        jLabel12.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel12.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("GRACIAS POR HACER PARTE DE LA FAMILIA VOLTRIX-MOTO");
+        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, 30));
+
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setText("Datos registrados:");
+        jPanel5.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
+
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 660));
 
-        jTabbedPane1.addTab("tab2", jPanel4);
+        paneMenu.addTab("tab2", jPanel4);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 690));
+        jPanel1.add(paneMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 1070, 640));
+
+        jPanel6.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, 1160, -1));
+
+        panelDesplegable.setBackground(new java.awt.Color(0, 0, 0));
+        panelDesplegable.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        entrar.setBackground(new java.awt.Color(255, 255, 255));
+        entrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-back-32.png"))); // NOI18N
+        entrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entrarActionPerformed(evt);
+            }
+        });
+        panelDesplegable.add(entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 40, 40));
+
+        jPanel8.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel8MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel8MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel8MouseExited(evt);
+            }
+        });
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Ver mi informción");
+        jPanel8.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 26, 110, 20));
+
+        panelDesplegable.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 150, 70));
+
+        jPanel9.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Modificar mi información");
+        jPanel9.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 140, 30));
+
+        panelDesplegable.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 150, 70));
+
+        jPanel1.add(panelDesplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 700));
+
+        salir.setBackground(new java.awt.Color(204, 204, 204));
+        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-menu-32.png"))); // NOI18N
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 700));
 
@@ -418,13 +555,56 @@ public class Config extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        panelDesplegable.setVisible(true);
+        salir.setVisible(false);
+        entrar.setVisible(true);
+
+    }//GEN-LAST:event_salirActionPerformed
+
+    private void entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarActionPerformed
+        panelDesplegable.setVisible(false);
+        entrar.setVisible(false);
+        salir.setVisible(true);
+    }//GEN-LAST:event_entrarActionPerformed
+
+    private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
+        paneMenu.setSelectedIndex(1);
+    }//GEN-LAST:event_jPanel8MouseClicked
+
+    private void jPanel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseEntered
+        jPanel8.setBackground(new Color(51, 51, 51));
+    }//GEN-LAST:event_jPanel8MouseEntered
+
+    private void jPanel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseExited
+        jPanel8.setBackground(new Color(0, 0, 0));
+    }//GEN-LAST:event_jPanel8MouseExited
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        paneMenu.setSelectedIndex(0);
+    }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
+        Login jv = new Login();
+        this.dispose();
+        jv.setVisible(true);
+
+
+    }//GEN-LAST:event_jLabel33MouseClicked
+
+    private void jLabel34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel34MouseClicked
+        Store st = new Store();
+        this.dispose();
+        st.setVisible(true);
+    }//GEN-LAST:event_jLabel34MouseClicked
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* If Nimbus (introduced in Login SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
@@ -457,8 +637,12 @@ public class Config extends javax.swing.JFrame {
     private javax.swing.JLabel cedula;
     private javax.swing.JTextField cedulaField;
     private javax.swing.JLabel correo;
+    private javax.swing.JButton entrar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -479,6 +663,13 @@ public class Config extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -487,6 +678,10 @@ public class Config extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
@@ -499,9 +694,11 @@ public class Config extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane paneMenu;
+    private javax.swing.JPanel panelDesplegable;
     private javax.swing.JLabel primerApellido;
     private javax.swing.JLabel primerNombre;
+    private javax.swing.JButton salir;
     private javax.swing.JLabel segundoApellido;
     private javax.swing.JLabel segundoNombre;
     private javax.swing.JTextField txtEmail;
