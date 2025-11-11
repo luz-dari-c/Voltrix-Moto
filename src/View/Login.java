@@ -9,17 +9,24 @@ import Model.Entities.ItemCarrito;
 import Model.Entities.Sesion;
 import Model.Entities.Usuario;
 import java.awt.Color;
+import View.Config;
+import java.awt.Insets;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-public class Java extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
 
-    private final UsuarioController usuarioController = new UsuarioController();
+    UsuarioController usuarioController = UsuarioController.getInstance();
 
-    public Java() {
+    @Override
+    public Insets getInsets() {
+        return super.getInsets(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
 
@@ -182,73 +189,82 @@ public class Java extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            String email = txtEmail.getText().trim();
-    String password = new String(jPasswordField1.getPassword()).trim();
+        String email = txtEmail.getText().trim();
+        String password = new String(jPasswordField1.getPassword()).trim();
 
-    String resultadoLogin = usuarioController.login(email, password);
+        
+        UsuarioController usuarioController = UsuarioController.getInstance();
+        String resultadoLogin = usuarioController.login(email, password);
 
-    if (resultadoLogin.equals("OK")) {
-        Usuario usuarioLogeado = usuarioController.getUsuarioLogeado(email, password);
+        if (resultadoLogin.equals("OK")) {
+            Usuario usuarioLogeado = usuarioController.getUsuarioLogeado();
 
-        Sesion sesion = Sesion.getInstancia();
-        sesion.setUsuarioActual(usuarioLogeado);
-
-        CarritoController carritoController = new CarritoController();
-        List<Carrito> carritos = carritoController.listarCarritos();
-
-        Carrito carritoUsuario = null;
-
-        for (Carrito c : carritos) {
-            if (c.getIdUsuario().equals(usuarioLogeado.getCedula())) {
-                carritoUsuario = c;
-                break;
+            if (usuarioLogeado == null) {
+                JOptionPane.showMessageDialog(this, "Error al obtener datos del usuario", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
-        }
-        if (carritoUsuario == null) {
-            carritoController.crearCarrito(usuarioLogeado.getCedula());
-            carritos = carritoController.listarCarritos();
+
+            // Configurar la sesión (tu código existente)
+            Sesion sesion = Sesion.getInstancia();
+            sesion.setUsuarioActual(usuarioLogeado);
+
+            // Configurar el carrito (tu código existente)
+            CarritoController carritoController = new CarritoController();
+            List<Carrito> carritos = carritoController.listarCarritos();
+
+            Carrito carritoUsuario = null;
             for (Carrito c : carritos) {
                 if (c.getIdUsuario().equals(usuarioLogeado.getCedula())) {
                     carritoUsuario = c;
                     break;
                 }
             }
-        }
-        sesion.setCarritoActual(carritoUsuario);
+            if (carritoUsuario == null) {
+                carritoController.crearCarrito(usuarioLogeado.getCedula());
+                carritos = carritoController.listarCarritos();
+                for (Carrito c : carritos) {
+                    if (c.getIdUsuario().equals(usuarioLogeado.getCedula())) {
+                        carritoUsuario = c;
+                        break;
+                    }
+                }
+            }
+            sesion.setCarritoActual(carritoUsuario);
 
-        if (carritoUsuario != null) {
-            CarritoController carritoControllerRecarga = new CarritoController();
-            Carrito carritoActualizado = carritoControllerRecarga.buscarCarritoPorId(carritoUsuario.getId());
+            if (carritoUsuario != null) {
+                CarritoController carritoControllerRecarga = new CarritoController();
+                Carrito carritoActualizado = carritoControllerRecarga.buscarCarritoPorId(carritoUsuario.getId());
 
-            if (carritoActualizado != null && carritoActualizado.getItems() != null) {
-                sesion.setCarritoActual(carritoActualizado);
+                if (carritoActualizado != null && carritoActualizado.getItems() != null) {
+                    sesion.setCarritoActual(carritoActualizado);
+                }
+
+                ItemCarritoController itemController = new ItemCarritoController();
+                List<ItemCarrito> itemsUsuario = itemController.obtenerItemsPorUsuario(usuarioLogeado.getCedula());
+
+                if (itemsUsuario != null && !itemsUsuario.isEmpty()) {
+                    carritoActualizado.setItems(itemsUsuario);
+                    sesion.setCarritoActual(carritoActualizado);
+                    System.out.println("Ítems del carrito cargados para el usuario: " + usuarioLogeado.getPrimerNombre() + " " + usuarioLogeado.getPrimerApellido());
+                } else {
+                    System.out.println("El usuario no tiene ítems en su carrito actualmente.");
+                }
             }
 
-            ItemCarritoController itemController = new ItemCarritoController();
-            List<ItemCarrito> itemsUsuario = itemController.obtenerItemsPorUsuario(usuarioLogeado.getCedula());
+            JOptionPane.showMessageDialog(this, "¡Bienvenido, " + usuarioLogeado.getPrimerNombre() + "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
 
-            if (itemsUsuario != null && !itemsUsuario.isEmpty()) {
-                carritoActualizado.setItems(itemsUsuario);
-                sesion.setCarritoActual(carritoActualizado);
-                System.out.println("Ítems del carrito cargados para el usuario: " + usuarioLogeado.getPrimerNombre() + " " + usuarioLogeado.getPrimerApellido());
-            } else {
-                System.out.println("El usuario no tiene ítems en su carrito actualmente.");
-            }
+            Store st = new Store();
+            st.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(this, resultadoLogin, "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
         }
+        
+        
 
-        JOptionPane.showMessageDialog(this, "¡Bienvenido, " + usuarioLogeado.getPrimerNombre() + "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
-        Store st = new Store();
-        st.setVisible(true);
-    } else {
-        JOptionPane.showMessageDialog(this, resultadoLogin, "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
-    }
-    
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
-    
-    
-    
+
     private void jLabel9AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel9AncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel9AncestorAdded
@@ -290,7 +306,7 @@ public class Java extends javax.swing.JFrame {
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* If Nimbus (introduced in Login SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
@@ -301,20 +317,21 @@ public class Java extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Java.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Java.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Java.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Java.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Java().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }

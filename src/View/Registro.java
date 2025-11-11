@@ -17,7 +17,7 @@ import VisualHelpers.textoSombra;
  */
 public class Registro extends javax.swing.JFrame {
 
-    private final UsuarioController usuarioController = new UsuarioController();
+    UsuarioController usuarioController = UsuarioController.getInstance();
 
     /**
      * Creates new form Registro
@@ -31,7 +31,7 @@ public class Registro extends javax.swing.JFrame {
         textoSombra nombre2 = new textoSombra("Segundo nombre. (Opcional)", Nombre2Field);
         textoSombra apellido = new textoSombra("Primer apellido.", Apellido1Field);
         textoSombra apellido2 = new textoSombra("Segundo apellido. ", Apellido2Field);
-        textoSombra cedula = new textoSombra ("Cedula", cedulaField);
+        textoSombra cedula = new textoSombra("Cedula", cedulaField);
     }
 
     private void mostrarMensaje(String mensaje) {
@@ -343,20 +343,17 @@ public class Registro extends javax.swing.JFrame {
                 cedula, email, password
         );
 
-       
         String resultadoRegistro = usuarioController.registrarUsuario(nuevoUsuario);
 
-        
         if (resultadoRegistro.equals("OK")) {
             JOptionPane.showMessageDialog(this, "Registro exitoso. ¡Bienvenido!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
 
-            
-            Java loginFrame = new Java();
+            Login loginFrame = new Login();
             loginFrame.setVisible(true);
-            
+
         } else {
-           
+
             JOptionPane.showMessageDialog(this, resultadoRegistro, "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -382,11 +379,11 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_cedulaFieldActionPerformed
 
     private void lblSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSesionMouseEntered
-      lblSesion.setBackground(new java.awt.Color(70, 130, 180));
+        lblSesion.setBackground(new java.awt.Color(70, 130, 180));
     }//GEN-LAST:event_lblSesionMouseEntered
 
     private void lblSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSesionMouseClicked
-        new Java().setVisible(true);
+        new Login().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblSesionMouseClicked
 
@@ -396,7 +393,7 @@ public class Registro extends javax.swing.JFrame {
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* If Nimbus (introduced in Login SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {

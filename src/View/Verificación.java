@@ -17,16 +17,15 @@ import javax.swing.Timer;
  */
 public class Verificación extends javax.swing.JFrame {
 
-    private final UsuarioController usuarioController;
+    UsuarioController usuarioController = UsuarioController.getInstance();
     private Timer timer;
     private int tiempoRestante;
-    private static final int TIEMPO_ESPERA = 120; // 2 minutos
-    private String codigoGenerado;
+    private static final int TIEMPO_ESPERA = 120;
+  
 
     public Verificación() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.usuarioController = new UsuarioController();
         this.tiempoRestante = 0;
         inicializarComponentes();
         en.setVisible(false);
@@ -35,18 +34,18 @@ public class Verificación extends javax.swing.JFrame {
     }
 
     private void inicializarComponentes() {
-        // Ocultar panel de nueva contraseña inicialmente
+       
         PanelNewPass.setVisible(false);
 
-        // Configurar campos de código para validación automática
+        
         configurarCamposCodigo();
 
-        // Inicializar contador
+        
         actualizarContador();
     }
 
     private void configurarCamposCodigo() {
-        // Agregar DocumentListener a cada campo de código para validación automática
+        
         javax.swing.event.DocumentListener documentListener = new javax.swing.event.DocumentListener() {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
@@ -356,14 +355,14 @@ public class Verificación extends javax.swing.JFrame {
                     "Contraseña actualizada exitosamente. Ahora puede iniciar sesión con su nueva contraseña.",
                     "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
-            // Limpiar campos y ocultar panel
+           
             nuevaContraseñaField.setText("");
             ConfirmarContraseñaField.setText("");
             PanelNewPass.setVisible(false);
             limpiarCamposCodigo();
 
-            // Regresar al login
-            new Java().setVisible(true);
+            
+            new Login().setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, resultado, "Error", JOptionPane.ERROR_MESSAGE);
@@ -396,7 +395,7 @@ public class Verificación extends javax.swing.JFrame {
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* If Nimbus (introduced in Login SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
