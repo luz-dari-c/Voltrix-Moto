@@ -21,6 +21,8 @@ public class EmpleadoDAO {
 
     private static final String RUTA_JSON = "src/Resources/Data/empleados.json";
     private final Gson gson;
+        private static EmpleadoDAO instancia;
+
 
     public EmpleadoDAO() {
         this.gson = new GsonBuilder()
@@ -29,6 +31,14 @@ public class EmpleadoDAO {
                 .create();
 
         crearDirectoriosSiNoExisten();
+    }
+    
+
+    public static synchronized EmpleadoDAO getInstance() {
+        if (instancia == null) {
+            instancia = new EmpleadoDAO();
+        }
+        return instancia;
     }
 
     public boolean registrarEmpleado(Empleado empleado) {
@@ -98,62 +108,70 @@ public class EmpleadoDAO {
     }
 
     public boolean actualizarEmpleado(
-            String identificacionOriginal,
-            String nuevoPrimerNombre,
-            String nuevoSegundoNombre,
-            String nuevoPrimerApellido,
-            String nuevoSegundoApellido,
-            String nuevaEdad,
-            String nuevoCorreo,
-            String nuevoTelefono) {
+        String identificacionOriginal,
+        String nuevaIdentificacion,
+        String nuevoPrimerNombre,
+        String nuevoSegundoNombre,
+        String nuevoPrimerApellido,
+        String nuevoSegundoApellido,
+        String nuevaEdad,
+        String nuevoCorreo,
+        String nuevoTelefono) {
 
-        List<Empleado> empleados = obtenerEmpleado();
-        boolean encontrado = false;
+    List<Empleado> empleados = obtenerEmpleado();
+    boolean encontrado = false;
 
-        for (Empleado empleado : empleados) {
-            if (empleado.getIdentificacion().equals(identificacionOriginal)) {
-                encontrado = true;
+    for (Empleado empleado : empleados) {
+        if (empleado.getIdentificacion().equals(identificacionOriginal)) {
+            encontrado = true;
 
-                if (nuevoPrimerNombre != null) {
-                    empleado.setPrimerNombre(nuevoPrimerNombre);
-                }
-
-                if (nuevoSegundoNombre != null) {
-                    empleado.setSegundoNombre(nuevoSegundoNombre);
-
-                }
-                if (nuevoPrimerApellido != null) {
-                    empleado.setPrimerApellido(nuevoPrimerApellido);
-
-                }
-                if (nuevoSegundoApellido != null) {
-                    empleado.setSegundoApellido(nuevoSegundoApellido);
-                }
-                if (nuevaEdad != null) {
-                    empleado.setEdad(nuevaEdad);
-                }
-                if (nuevoCorreo != null) {
-                    empleado.setCorreo(nuevoCorreo);
-
-                }
-                if (nuevoTelefono != null) {
-                    empleado.setTelefono(nuevoTelefono);
-                }
-
-                if (!encontrado) {
-                    JOptionPane.showMessageDialog(null,
-                            "Empleado no encontrado: " + identificacionOriginal,
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                    return false;
-                }
+            if (nuevaIdentificacion != null && !nuevaIdentificacion.trim().isEmpty()) {
+                empleado.setIdentificacion(nuevaIdentificacion.trim());
             }
 
+            if (nuevoPrimerNombre != null && !nuevoPrimerNombre.trim().isEmpty()) {
+                empleado.setPrimerNombre(nuevoPrimerNombre.trim());
+            }
+
+            if (nuevoSegundoNombre != null && !nuevoSegundoNombre.trim().isEmpty()) {
+                empleado.setSegundoNombre(nuevoSegundoNombre.trim());
+            }
+
+            if (nuevoPrimerApellido != null && !nuevoPrimerApellido.trim().isEmpty()) {
+                empleado.setPrimerApellido(nuevoPrimerApellido.trim());
+            }
+
+            if (nuevoSegundoApellido != null && !nuevoSegundoApellido.trim().isEmpty()) {
+                empleado.setSegundoApellido(nuevoSegundoApellido.trim());
+            }
+
+            if (nuevaEdad != null && !nuevaEdad.trim().isEmpty()) {
+                empleado.setEdad(nuevaEdad.trim());
+            }
+
+            if (nuevoCorreo != null && !nuevoCorreo.trim().isEmpty()) {
+                empleado.setCorreo(nuevoCorreo.trim());
+            }
+
+            if (nuevoTelefono != null && !nuevoTelefono.trim().isEmpty()) {
+                empleado.setTelefono(nuevoTelefono.trim());
+            }
+
+            break; 
         }
-
-        return guardarTodos(empleados);
-
     }
 
+    if (!encontrado) {
+        JOptionPane.showMessageDialog(null,
+                "Empleado no encontrado: " + identificacionOriginal,
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+
+    return guardarTodos(empleados);
+}
+
+    
     private boolean guardarTodos(List<Empleado> empleados) {
         try (Writer writer = new FileWriter(RUTA_JSON)) {
             gson.toJson(empleados, writer);
@@ -197,5 +215,19 @@ public class EmpleadoDAO {
         }
     }
 
-    
+    public Empleado obtenerEmpleadoPorCedula(String cedula) {
+    if (cedula == null || cedula.trim().isEmpty()) {
+        return null;
+    }
+
+    List<Empleado> empleados = cargarTodos(); 
+    for (Empleado empleado : empleados) {
+        if (empleado.getIdentificacion().equals(cedula.trim())) {
+            return empleado;
+        }
+    }
+
+    return null;
+}
+
 }
