@@ -3,8 +3,10 @@ package DAO;
 import Model.Constants.*;
 import Model.Entities.Asiento;
 import Model.Entities.Chasis;
+import Model.Entities.Freno;
 import Model.Entities.FrenoDelantero;
 import Model.Entities.FrenoTrasero;
+import Model.Entities.Llanta;
 import Model.Entities.LlantaDelantera;
 import Model.Entities.LlantaTrasera;
 import Model.Entities.Moto;
@@ -146,6 +148,17 @@ public class MotoDAO {
             }
         }
 
+        int idExistente = moto.getIdMoto();
+        boolean idDuplicado = motos.stream().anyMatch(m -> m.getIdMoto() == idExistente);
+
+        if (idDuplicado || idExistente == 0) {
+            int nuevoId = motos.stream()
+                    .mapToInt(Moto::getIdMoto)
+                    .max()
+                    .orElse(0) + 1;
+            moto.setIdMoto(nuevoId);
+        }
+
         motos.add(moto);
         guardarTodas(motos);
         return true;
@@ -169,121 +182,7 @@ public class MotoDAO {
         return true;
     }
 
-    /* 
-    public boolean actualizarMoto(
-            int idMoto,
-            String nuevaMarca,
-            String nuevoModelo,
-            LocalDate nuevaFechaIngreso,
-            Double nuevoPrecio,
-            Boolean nuevaParrilla,
-            Boolean nuevoMaletero,
-            TipoMotor nuevoTipoMotor,
-            Integer nuevaCilindrada,
-            Integer nuevaPotencia,
-            MaterialChasis nuevoMaterialChasis,
-            TipoChasis nuevoTipoChasis,
-            MaterialAsiento nuevoMaterialAsiento,
-            CapacidadAsiento nuevaCapacidadAsiento,
-            TipoTransmision nuevoTipoTransmision,
-            TipoVelocidades nuevasVelocidades,
-            EstadoMoto nuevoEstado
-    ) {
-        List<Moto> motos = cargarTodas();
-        boolean encontrado = false;
-
-        for (Moto moto : motos) {
-            if (moto.getIdMoto() == idMoto) {
-                encontrado = true;
-
-                if (nuevaMarca != null && !nuevaMarca.trim().isEmpty()) {
-                    moto.setMarca(nuevaMarca);
-                }
-
-                if (nuevoModelo != null && !nuevoModelo.trim().isEmpty()) {
-                    moto.setModelo(nuevoModelo);
-                }
-
-                if (nuevaFechaIngreso != null) {
-                    moto.setFechaIngreso(nuevaFechaIngreso);
-                }
-
-                if (nuevoPrecio != null && nuevoPrecio > 0) {
-                    moto.setPrecio(nuevoPrecio);
-                }
-
-                if (nuevaParrilla != null) {
-                    moto.setTieneParrilla(nuevaParrilla);
-                }
-
-                if (nuevoMaletero != null) {
-                    moto.setTieneMaletero(nuevoMaletero);
-                }
-                if (nuevoEstado != null) {
-                    moto.setEstado(nuevoEstado);
-                }
-
-                PartesMoto partes = moto.getPartesMoto();
-                if (partes != null) {
-
-                    if (partes.getMotor() != null) {
-                        if (nuevoTipoMotor != null) {
-                            partes.getMotor().setTipo(nuevoTipoMotor);
-                        }
-
-                        if (nuevaCilindrada != null && nuevaCilindrada > 0) {
-                            partes.getMotor().setCilindrada(nuevaCilindrada);
-                        }
-
-                        if (nuevaPotencia != null && nuevaPotencia > 0) {
-                            partes.getMotor().setPotencia(nuevaPotencia);
-                        }
-                    }
-
-                    if (partes.getChasis() != null) {
-                        if (nuevoMaterialChasis != null) {
-                            partes.getChasis().setMaterial(nuevoMaterialChasis);
-                        }
-
-                        if (nuevoTipoChasis != null) {
-                            partes.getChasis().setTipo(nuevoTipoChasis);
-                        }
-                    }
-
-                    if (partes.getAsiento() != null) {
-                        if (nuevoMaterialAsiento != null) {
-                            partes.getAsiento().setMaterial(nuevoMaterialAsiento);
-                        }
-
-                        if (nuevaCapacidadAsiento != null) {
-                            partes.getAsiento().setCapacidad(nuevaCapacidadAsiento);
-                        }
-                    }
-
-                    if (partes.getTransmision() != null) {
-                        if (nuevoTipoTransmision != null) {
-                            partes.getTransmision().setTipoTransmision(nuevoTipoTransmision);
-                        }
-
-                        if (nuevasVelocidades != null) {
-                            partes.getTransmision().setVelocidades(nuevasVelocidades);
-                        }
-                    }
-                }
-
-                break;
-            }
-        }
-
-        if (!encontrado) {
-            System.err.println("Moto con ID " + idMoto + " no encontrada.");
-            return false;
-        }
-
-        guardarTodas(motos);
-        return true;
-    }
-     */
+    /*
     public boolean actualizarPorPlacaBase(
             String placaBase,
             String nuevoModelo,
@@ -436,6 +335,273 @@ public class MotoDAO {
 
         guardarTodas(motos);
         return true;
+    }
+     */
+    public boolean actualizarPorPlacaBase(
+            String placaBase,
+            String nuevoModelo,
+            Boolean nuevaParrilla,
+            Boolean nuevoMaletero,
+            Integer nuevoCilindraje,
+            // Motor
+            TipoMotor nuevoTipoMotor,
+            Integer nuevaCilindradaMotor,
+            Integer nuevaPotenciaMotor,
+            // Chasis
+            MaterialChasis nuevoMaterialChasis,
+            TipoChasis nuevoTipoChasis,
+            // Asiento
+            MaterialAsiento nuevoMaterialAsiento,
+            CapacidadAsiento nuevaCapacidadAsiento,
+            // Transmisión
+            TipoTransmision nuevoTipoTransmision,
+            TipoVelocidades nuevasVelocidades,
+            // Llanta
+            String tipoLlantaSeleccionada,
+            MedidaLlanta nuevaMedidaLlanta,
+            String nuevaMarcaLlanta,
+            MaterialLlanta nuevoMaterialLlanta,
+            String nuevoModeloLlanta,
+            // Freno
+            String tipoFrenoSeleccionado,
+            String nuevaMarcaFreno,
+            MaterialFreno nuevoMaterialFreno,
+            String nuevoModeloFreno
+    ) {
+        List<Moto> motos = cargarTodas();
+        Moto motoBase = null;
+
+        for (Moto moto : motos) {
+            if (moto.getPlaca().equalsIgnoreCase(placaBase) && moto.getPlaca().startsWith("BSE-")) {
+                motoBase = moto;
+                break;
+            }
+        }
+
+        if (motoBase == null) {
+            System.err.println("No se encontró una moto base con placa: " + placaBase);
+            return false;
+        }
+
+        TipoMoto tipoMotoBase = motoBase.getTipoMoto();
+        boolean hayCambios = false;
+
+        if (nuevoModelo != null && !nuevoModelo.trim().isEmpty()) {
+            motoBase.setModelo(nuevoModelo);
+            hayCambios = true;
+        }
+        if (nuevaParrilla != null) {
+            motoBase.setTieneParrilla(nuevaParrilla);
+            hayCambios = true;
+        }
+        if (nuevoMaletero != null) {
+            motoBase.setTieneMaletero(nuevoMaletero);
+            hayCambios = true;
+        }
+        if (nuevoCilindraje != null && nuevoCilindraje > 0) {
+            motoBase.setCilindraje(nuevoCilindraje);
+            hayCambios = true;
+        }
+
+        PartesMoto partesBase = motoBase.getPartesMoto();
+        if (partesBase != null) {
+
+            if (partesBase.getMotor() != null) {
+                if (nuevoTipoMotor != null) {
+                    partesBase.getMotor().setTipo(nuevoTipoMotor);
+                    hayCambios = true;
+                }
+                if (nuevaCilindradaMotor != null) {
+                    partesBase.getMotor().setCilindrada(nuevaCilindradaMotor);
+                    hayCambios = true;
+                }
+                if (nuevaPotenciaMotor != null) {
+                    partesBase.getMotor().setPotencia(nuevaPotenciaMotor);
+                    hayCambios = true;
+                }
+            }
+
+            if (partesBase.getChasis() != null) {
+                if (nuevoMaterialChasis != null) {
+                    partesBase.getChasis().setMaterial(nuevoMaterialChasis);
+                    hayCambios = true;
+                }
+                if (nuevoTipoChasis != null) {
+                    partesBase.getChasis().setTipo(nuevoTipoChasis);
+                    hayCambios = true;
+                }
+            }
+
+            if (partesBase.getAsiento() != null) {
+                if (nuevoMaterialAsiento != null) {
+                    partesBase.getAsiento().setMaterial(nuevoMaterialAsiento);
+                    hayCambios = true;
+                }
+                if (nuevaCapacidadAsiento != null) {
+                    partesBase.getAsiento().setCapacidad(nuevaCapacidadAsiento);
+                    hayCambios = true;
+                }
+            }
+
+            if (partesBase.getTransmision() != null) {
+                if (nuevoTipoTransmision != null) {
+                    partesBase.getTransmision().setTipoTransmision(nuevoTipoTransmision);
+                    hayCambios = true;
+                }
+                if (nuevasVelocidades != null) {
+                    partesBase.getTransmision().setVelocidades(nuevasVelocidades);
+                    hayCambios = true;
+                }
+            }
+
+            if (tipoLlantaSeleccionada != null) {
+                switch (tipoLlantaSeleccionada) {
+                    case "Ambas":
+                        actualizarLlanta(partesBase.getLlantaDelantera(), nuevaMedidaLlanta, nuevaMarcaLlanta, nuevoMaterialLlanta, nuevoModeloLlanta);
+                        actualizarLlanta(partesBase.getLlantaTrasera(), nuevaMedidaLlanta, nuevaMarcaLlanta, nuevoMaterialLlanta, nuevoModeloLlanta);
+                        hayCambios = true;
+                        break;
+                    case "Llanta Delantera":
+                        actualizarLlanta(partesBase.getLlantaDelantera(), nuevaMedidaLlanta, nuevaMarcaLlanta, nuevoMaterialLlanta, nuevoModeloLlanta);
+                        hayCambios = true;
+                        break;
+                    case "Llanta Trasera":
+                        actualizarLlanta(partesBase.getLlantaTrasera(), nuevaMedidaLlanta, nuevaMarcaLlanta, nuevoMaterialLlanta, nuevoModeloLlanta);
+                        hayCambios = true;
+                        break;
+                }
+            }
+
+            if (tipoFrenoSeleccionado != null) {
+                switch (tipoFrenoSeleccionado) {
+                    case "Ambos":
+                        actualizarFreno(partesBase.getFrenoDelantero(), nuevaMarcaFreno, nuevoMaterialFreno, nuevoModeloFreno);
+                        actualizarFreno(partesBase.getFrenoTrasero(), nuevaMarcaFreno, nuevoMaterialFreno, nuevoModeloFreno);
+                        hayCambios = true;
+                        break;
+                    case "Freno Delantero":
+                        actualizarFreno(partesBase.getFrenoDelantero(), nuevaMarcaFreno, nuevoMaterialFreno, nuevoModeloFreno);
+                        hayCambios = true;
+                        break;
+                    case "Freno Trasero":
+                        actualizarFreno(partesBase.getFrenoTrasero(), nuevaMarcaFreno, nuevoMaterialFreno, nuevoModeloFreno);
+                        hayCambios = true;
+                        break;
+                }
+            }
+        }
+
+        if (!hayCambios) {
+            System.err.println("No se realizó ningún cambio (todos los campos vacíos)");
+            return false;
+        }
+
+        for (Moto moto : motos) {
+            if (moto.getTipoMoto() == tipoMotoBase
+                    && !moto.getPlaca().startsWith("BSE-")
+                    && moto.getEstado() == EstadoMoto.DISPONIBLE) {
+                copiarCambios(motoBase, moto);
+            }
+        }
+
+        guardarTodas(motos);
+        return true;
+    }
+
+    private void actualizarLlanta(Llanta llanta, MedidaLlanta medida, String marca, MaterialLlanta material, String modelo) {
+        if (llanta == null) {
+            return;
+        }
+        if (medida != null) {
+            llanta.setMedida(medida);
+        }
+        if (marca != null && !marca.isEmpty()) {
+            llanta.setMarca(marca);
+        }
+        if (material != null) {
+            llanta.setMaterial(material);
+        }
+        if (modelo != null && !modelo.isEmpty()) {
+            llanta.setModelo(modelo);
+        }
+    }
+
+    private void actualizarFreno(Freno freno, String marca, MaterialFreno material, String modelo) {
+        if (freno == null) {
+            return;
+        }
+        if (marca != null && !marca.isEmpty()) {
+            freno.setMarca(marca);
+        }
+        if (material != null) {
+            freno.setMaterial(material);
+        }
+        if (modelo != null && !modelo.isEmpty()) {
+            freno.setModelo(modelo);
+        }
+    }
+
+    private void copiarCambios(Moto origen, Moto destino) {
+        if (origen == null || destino == null) {
+            return;
+        }
+
+        destino.setModelo(origen.getModelo());
+        destino.setTieneParrilla(origen.isTieneParrilla());
+        destino.setTieneMaletero(origen.isTieneMaletero());
+        destino.setCilindraje(origen.getCilindraje());
+
+        PartesMoto partesOrigen = origen.getPartesMoto();
+        PartesMoto partesDestino = destino.getPartesMoto();
+
+        if (partesOrigen == null || partesDestino == null) {
+            return;
+        }
+
+        if (partesOrigen.getMotor() != null && partesDestino.getMotor() != null) {
+            partesDestino.getMotor().setTipo(partesOrigen.getMotor().getTipo());
+            partesDestino.getMotor().setCilindrada(partesOrigen.getMotor().getCilindrada());
+            partesDestino.getMotor().setPotencia(partesOrigen.getMotor().getPotencia());
+        }
+
+        if (partesOrigen.getChasis() != null && partesDestino.getChasis() != null) {
+            partesDestino.getChasis().setMaterial(partesOrigen.getChasis().getMaterial());
+            partesDestino.getChasis().setTipo(partesOrigen.getChasis().getTipo());
+        }
+
+        if (partesOrigen.getAsiento() != null && partesDestino.getAsiento() != null) {
+            partesDestino.getAsiento().setMaterial(partesOrigen.getAsiento().getMaterial());
+            partesDestino.getAsiento().setCapacidad(partesOrigen.getAsiento().getCapacidad());
+        }
+
+        if (partesOrigen.getTransmision() != null && partesDestino.getTransmision() != null) {
+            partesDestino.getTransmision().setTipoTransmision(partesOrigen.getTransmision().getTipoTransmision());
+            partesDestino.getTransmision().setVelocidades(partesOrigen.getTransmision().getVelocidades());
+        }
+
+        if (partesOrigen.getLlantaDelantera() != null && partesDestino.getLlantaDelantera() != null) {
+            partesDestino.getLlantaDelantera().setMedida(partesOrigen.getLlantaDelantera().getMedida());
+            partesDestino.getLlantaDelantera().setMarca(partesOrigen.getLlantaDelantera().getMarca());
+            partesDestino.getLlantaDelantera().setMaterial(partesOrigen.getLlantaDelantera().getMaterial());
+            partesDestino.getLlantaDelantera().setModelo(partesOrigen.getLlantaDelantera().getModelo());
+        }
+        if (partesOrigen.getLlantaTrasera() != null && partesDestino.getLlantaTrasera() != null) {
+            partesDestino.getLlantaTrasera().setMedida(partesOrigen.getLlantaTrasera().getMedida());
+            partesDestino.getLlantaTrasera().setMarca(partesOrigen.getLlantaTrasera().getMarca());
+            partesDestino.getLlantaTrasera().setMaterial(partesOrigen.getLlantaTrasera().getMaterial());
+            partesDestino.getLlantaTrasera().setModelo(partesOrigen.getLlantaTrasera().getModelo());
+        }
+
+        if (partesOrigen.getFrenoDelantero() != null && partesDestino.getFrenoDelantero() != null) {
+            partesDestino.getFrenoDelantero().setMarca(partesOrigen.getFrenoDelantero().getMarca());
+            partesDestino.getFrenoDelantero().setMaterial(partesOrigen.getFrenoDelantero().getMaterial());
+            partesDestino.getFrenoDelantero().setModelo(partesOrigen.getFrenoDelantero().getModelo());
+        }
+        if (partesOrigen.getFrenoTrasero() != null && partesDestino.getFrenoTrasero() != null) {
+            partesDestino.getFrenoTrasero().setMarca(partesOrigen.getFrenoTrasero().getMarca());
+            partesDestino.getFrenoTrasero().setMaterial(partesOrigen.getFrenoTrasero().getMaterial());
+            partesDestino.getFrenoTrasero().setModelo(partesOrigen.getFrenoTrasero().getModelo());
+        }
     }
 
     public boolean duplicarMotoPorTipo(
@@ -650,7 +816,7 @@ public class MotoDAO {
     }
 
     public Moto obtenerMotoBasePorTipo(TipoMoto tipo) {
-        List<Moto> motos = cargarTodas(); 
+        List<Moto> motos = cargarTodas();
         for (Moto moto : motos) {
             if (moto.getPlaca().startsWith("BSE-") && moto.getTipoMoto() == tipo) {
                 return moto;

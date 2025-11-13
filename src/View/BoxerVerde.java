@@ -144,9 +144,10 @@ public class BoxerVerde extends javax.swing.JFrame {
         };
 
         MotoFoto.setIcon(new ImageIcon(getClass().getResource(ruta)));
+        
 
         int cantidadColor = conteo.getOrDefault(colorSeleccionado, 0);
-        //  jLabel14.setText("Disponibles color " + colorSeleccionado + ": " + cantidadColor);
+        jLabel14.setText("Disponibles color " + colorSeleccionado + ": " + cantidadColor);
     }
 
     /**
@@ -185,6 +186,8 @@ public class BoxerVerde extends javax.swing.JFrame {
         BotonComprar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         Carrito = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -371,6 +374,16 @@ public class BoxerVerde extends javax.swing.JFrame {
         });
         jPanel2.add(Carrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 70, 40));
 
+        jLabel13.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel13.setFont(new java.awt.Font("Roboto", 1, 13)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Cantidad disponible en ese color:");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, -1, 20));
+
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Cantidad");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, -1, -1));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 1010, 200));
 
         jLabel11.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -512,6 +525,8 @@ public class BoxerVerde extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

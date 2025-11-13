@@ -8,13 +8,22 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 
 public class MotoController {
 
     private final MotoDAO motoDAO;
+    private static MotoController instancia;
 
     public MotoController() {
         this.motoDAO = MotoDAO.getInstancia();
+    }
+
+    public static MotoController getInstancia() {
+        if (instancia == null) {
+            instancia = new MotoController();
+        }
+        return instancia;
     }
 
     public boolean guardarMoto(Moto moto) {
@@ -33,51 +42,7 @@ public class MotoController {
         return motoDAO.eliminarMoto(idMoto);
     }
 
-    /*    public boolean actualizarMoto(
-            int idMoto,
-            String nuevaMarca,
-            String nuevoModelo,
-            LocalDate nuevaFechaIngreso,
-            Double nuevoPrecio,
-            Boolean nuevaParrilla,
-            Boolean nuevoMaletero,
-            TipoMotor nuevoTipoMotor,
-            Integer nuevaCilindrada,
-            Integer nuevaPotencia,
-            MaterialChasis nuevoMaterialChasis,
-            TipoChasis nuevoTipoChasis,
-            MaterialAsiento nuevoMaterialAsiento,
-            CapacidadAsiento nuevaCapacidadAsiento,
-            TipoTransmision nuevoTipoTransmision,
-            TipoVelocidades nuevasVelocidades,
-            EstadoMoto nuevoEstado
-    ) {
-        if (idMoto <= 0) {
-            System.err.println("ID inválido al actualizar moto.");
-            return false;
-        }
-
-        return motoDAO.actualizarMoto(
-                idMoto,
-                nuevaMarca,
-                nuevoModelo,
-                nuevaFechaIngreso,
-                nuevoPrecio,
-                nuevaParrilla,
-                nuevoMaletero,
-                nuevoTipoMotor,
-                nuevaCilindrada,
-                nuevaPotencia,
-                nuevoMaterialChasis,
-                nuevoTipoChasis,
-                nuevoMaterialAsiento,
-                nuevaCapacidadAsiento,
-                nuevoTipoTransmision,
-                nuevasVelocidades,
-                nuevoEstado
-        );
-    }
-     */
+    /*
     public boolean actualizarPorPlacaBase(
             String placaBase,
             String nuevoModelo,
@@ -121,6 +86,95 @@ public class MotoController {
                 nuevaCapacidadAsiento,
                 nuevoTipoTransmision,
                 nuevasVelocidades
+        );
+    }
+     */
+    public boolean actualizarPorPlacaBase(
+            String placaBaseSeleccionada,
+            String nuevoModelo,
+            Boolean nuevaParrilla,
+            Boolean nuevoMaletero,
+            Integer nuevoCilindraje,
+            // Motor
+            TipoMotor nuevoTipoMotor,
+            Integer nuevaCilindradaMotor,
+            Integer nuevaPotenciaMotor,
+            // Chasis
+            MaterialChasis nuevoMaterialChasis,
+            TipoChasis nuevoTipoChasis,
+            // Asiento
+            MaterialAsiento nuevoMaterialAsiento,
+            CapacidadAsiento nuevaCapacidadAsiento,
+            // Transmisión
+            TipoTransmision nuevoTipoTransmision,
+            TipoVelocidades nuevasVelocidades,
+            // Llanta
+            String tipoLlantaSeleccionada,
+            MedidaLlanta nuevaMedidaLlanta,
+            String nuevaMarcaLlanta,
+            MaterialLlanta nuevoMaterialLlanta,
+            String nuevoModeloLlanta,
+            // Freno
+            String tipoFrenoSeleccionado,
+            String nuevaMarcaFreno,
+            MaterialFreno nuevoMaterialFreno,
+            String nuevoModeloFreno
+    ) {
+        if (placaBaseSeleccionada == null || placaBaseSeleccionada.equals("Seleccionar")) {
+            System.err.println("Debes seleccionar una placa base válida.");
+            return false;
+        }
+
+        if (!placaBaseSeleccionada.startsWith("BSE-")) {
+            System.err.println("La placa seleccionada debe pertenecer a una moto base (BSE-...).");
+            return false;
+        }
+
+        boolean hayCambios
+                = (nuevoModelo != null && !nuevoModelo.isEmpty())
+                || nuevaParrilla != null || nuevoMaletero != null
+                || nuevoCilindraje != null
+                || nuevoTipoMotor != null || nuevaCilindradaMotor != null || nuevaPotenciaMotor != null
+                || nuevoMaterialChasis != null || nuevoTipoChasis != null
+                || nuevoMaterialAsiento != null || nuevaCapacidadAsiento != null
+                || nuevoTipoTransmision != null || nuevasVelocidades != null
+                || (tipoLlantaSeleccionada != null && !tipoLlantaSeleccionada.equals("Seleccionar"))
+                || (tipoFrenoSeleccionado != null && !tipoFrenoSeleccionado.equals("Seleccionar"));
+
+        if (!hayCambios) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "No se realizó ningún cambio. Todos los campos están vacíos o sin selección.",
+                    "Sin cambios",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return false;
+        }
+
+        return motoDAO.actualizarPorPlacaBase(
+                placaBaseSeleccionada,
+                nuevoModelo,
+                nuevaParrilla,
+                nuevoMaletero,
+                nuevoCilindraje,
+                nuevoTipoMotor,
+                nuevaCilindradaMotor,
+                nuevaPotenciaMotor,
+                nuevoMaterialChasis,
+                nuevoTipoChasis,
+                nuevoMaterialAsiento,
+                nuevaCapacidadAsiento,
+                nuevoTipoTransmision,
+                nuevasVelocidades,
+                tipoLlantaSeleccionada,
+                nuevaMedidaLlanta,
+                nuevaMarcaLlanta,
+                nuevoMaterialLlanta,
+                nuevoModeloLlanta,
+                tipoFrenoSeleccionado,
+                nuevaMarcaFreno,
+                nuevoMaterialFreno,
+                nuevoModeloFreno
         );
     }
 
@@ -169,6 +223,10 @@ public class MotoController {
         for (Moto moto : disponibles) {
             TipoColorMoto color = moto.getTipoColorMoto();
             conteo.put(color, conteo.getOrDefault(color, 0) + 1);
+        }
+
+        for (TipoColorMoto color : TipoColorMoto.values()) {
+            conteo.putIfAbsent(color, 0);
         }
 
         return conteo;
@@ -226,4 +284,5 @@ public class MotoController {
 
         return motoDAO.duplicarMotoPorTipo(tipoMoto, nuevoColor, nuevaMarca, cantidad);
     }
+
 }

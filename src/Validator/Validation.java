@@ -18,18 +18,18 @@ import java.awt.event.KeyEvent;
 import java.util.regex.Pattern;
 
 /**
- * Clase de utilidad para validaciones de campos de texto
- * Implementa buenas prácticas y patrones de diseño
+ * Clase de utilidad para validaciones de campos de texto Implementa buenas
+ * prácticas y patrones de diseño
  */
 public class Validation {
-    
+
     // Patrones de validación
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
-        "^[A-Za-z0-9+_.-]+@(gmail\\.com|hotmail\\.com|unicolombo\\.edu\\.co)$"
+            "^[A-Za-z0-9+_.-]+@(gmail\\.com|hotmail\\.com|unicolombo\\.edu\\.co)$"
     );
     private static final Pattern LETTERS_PATTERN = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$");
     private static final Pattern NUMBERS_PATTERN = Pattern.compile("^[0-9]+$");
-    
+
     // Colores para feedback visual
     private static final Color ERROR_COLOR = new Color(255, 200, 200);
     private static final Color SUCCESS_COLOR = new Color(200, 255, 200);
@@ -72,10 +72,12 @@ public class Validation {
         // DocumentFilter para restringir entrada
         ((PlainDocument) textField.getDocument()).setDocumentFilter(new javax.swing.text.DocumentFilter() {
             @Override
-            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) 
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)
                     throws BadLocationException {
-                if (string == null) return;
-                
+                if (string == null) {
+                    return;
+                }
+
                 String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + string;
                 if (LETTERS_PATTERN.matcher(newText).matches()) {
                     super.insertString(fb, offset, string, attr);
@@ -83,13 +85,15 @@ public class Validation {
             }
 
             @Override
-            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) 
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
                     throws BadLocationException {
-                if (text == null) return;
-                
+                if (text == null) {
+                    return;
+                }
+
                 String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
                 String newText = currentText.substring(0, offset) + text + currentText.substring(offset + length);
-                
+
                 if (LETTERS_PATTERN.matcher(newText).matches()) {
                     super.replace(fb, offset, length, text, attrs);
                 }
@@ -107,20 +111,24 @@ public class Validation {
         // DocumentFilter para restringir entrada
         ((PlainDocument) textField.getDocument()).setDocumentFilter(new javax.swing.text.DocumentFilter() {
             @Override
-            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) 
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)
                     throws BadLocationException {
-                if (string == null) return;
-                
+                if (string == null) {
+                    return;
+                }
+
                 if (string.matches("[0-9]*")) {
                     super.insertString(fb, offset, string, attr);
                 }
             }
 
             @Override
-            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) 
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
                     throws BadLocationException {
-                if (text == null) return;
-                
+                if (text == null) {
+                    return;
+                }
+
                 if (text.matches("[0-9]*")) {
                     super.replace(fb, offset, length, text, attrs);
                 }
@@ -140,13 +148,13 @@ public class Validation {
             @Override
             public void focusLost(FocusEvent e) {
                 String correo = textField.getText().trim();
-                
+
                 if (!correo.isEmpty() && !validarCorreo(correo)) {
                     textField.setBackground(ERROR_COLOR);
-                    JOptionPane.showMessageDialog(textField, 
-                        "Correo inválido. Debe terminar en: @gmail.com, @hotmail.com o @unicolombo.edu.co",
-                        "Error de Validación", 
-                        JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(textField,
+                            "Correo inválido. Debe terminar en: @gmail.com, @hotmail.com o @unicolombo.edu.co",
+                            "Error de Validación",
+                            JOptionPane.ERROR_MESSAGE);
                     textField.requestFocusInWindow();
                     textField.selectAll();
                 } else {
@@ -187,11 +195,19 @@ public class Validation {
             }
 
             @Override
-            public void insertUpdate(DocumentEvent e) { actualizarColor(); }
+            public void insertUpdate(DocumentEvent e) {
+                actualizarColor();
+            }
+
             @Override
-            public void removeUpdate(DocumentEvent e) { actualizarColor(); }
+            public void removeUpdate(DocumentEvent e) {
+                actualizarColor();
+            }
+
             @Override
-            public void changedUpdate(DocumentEvent e) { actualizarColor(); }
+            public void changedUpdate(DocumentEvent e) {
+                actualizarColor();
+            }
 
             private boolean validarCampo(JTextField field) {
                 if (field.getDocument() instanceof PlainDocument) {
@@ -230,11 +246,19 @@ public class Validation {
             }
 
             @Override
-            public void insertUpdate(DocumentEvent e) { actualizarColor(); }
+            public void insertUpdate(DocumentEvent e) {
+                actualizarColor();
+            }
+
             @Override
-            public void removeUpdate(DocumentEvent e) { actualizarColor(); }
+            public void removeUpdate(DocumentEvent e) {
+                actualizarColor();
+            }
+
             @Override
-            public void changedUpdate(DocumentEvent e) { actualizarColor(); }
+            public void changedUpdate(DocumentEvent e) {
+                actualizarColor();
+            }
         });
     }
 
@@ -245,10 +269,10 @@ public class Validation {
         for (JTextField campo : campos) {
             if (campo.getText().trim().isEmpty()) {
                 campo.setBackground(ERROR_COLOR);
-                JOptionPane.showMessageDialog(campo, 
-                    "Todos los campos son obligatorios", 
-                    "Validación", 
-                    JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(campo,
+                        "Todos los campos son obligatorios",
+                        "Validación",
+                        JOptionPane.WARNING_MESSAGE);
                 campo.requestFocusInWindow();
                 return false;
             }
@@ -266,4 +290,45 @@ public class Validation {
             campo.setToolTipText(null);
         }
     }
+
+    public static boolean validarSpinnerNumerico(JSpinner spinner, String mensaje) {
+        try {
+            Object valor = spinner.getValue();
+
+            if (valor instanceof Number) {
+                int numero = ((Number) valor).intValue();
+
+                if (numero <= 0) {
+                    spinner.getEditor().getComponent(0).setBackground(new Color(255, 200, 200));
+                    JOptionPane.showMessageDialog(null, mensaje, "Error de Validación", JOptionPane.ERROR_MESSAGE);
+                    spinner.requestFocusInWindow();
+                    return false;
+                } else {
+                    spinner.getEditor().getComponent(0).setBackground(new Color(200, 255, 200));
+                    return true;
+                }
+            } else {
+                spinner.getEditor().getComponent(0).setBackground(new Color(255, 200, 200));
+                JOptionPane.showMessageDialog(null,
+                        "El valor del spinner debe ser numérico.",
+                        "Error de Validación",
+                        JOptionPane.ERROR_MESSAGE);
+                spinner.requestFocusInWindow();
+                return false;
+            }
+        } catch (Exception e) {
+            spinner.getEditor().getComponent(0).setBackground(new Color(255, 200, 200));
+            JOptionPane.showMessageDialog(null,
+                    "Valor inválido en el spinner.",
+                    "Error de Validación",
+                    JOptionPane.ERROR_MESSAGE);
+            spinner.requestFocusInWindow();
+            return false;
+        }
+    }
+
+    public static boolean validarMarca(String marca) {
+        return marca != null && marca.matches("[A-Za-z0-9\\-\\.&\\s]+");
+    }
+
 }

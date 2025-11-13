@@ -1,19 +1,40 @@
 package View;
 
 import Controller.EmpleadoController;
+import Controller.MotoController;
 import DAO.EmpleadoDAO;
+import Model.Constants.CapacidadAsiento;
+import Model.Constants.MaterialAsiento;
+import Model.Constants.MaterialChasis;
+import Model.Constants.MaterialFreno;
+import Model.Constants.MaterialLlanta;
+import Model.Constants.MedidaLlanta;
+import Model.Constants.TipoChasis;
+import Model.Constants.TipoColorMoto;
+import Model.Constants.TipoMoto;
+import Model.Constants.TipoMotor;
+import Model.Constants.TipoTransmision;
+import Model.Constants.TipoVelocidades;
 import Model.Entities.Empleado;
+import Model.Entities.Moto;
+import Model.Entities.PartesMoto;
 import Utilidades.ModernTopMenu;
+import Validator.Validation;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,10 +42,13 @@ public class Administador extends javax.swing.JFrame {
 
     EmpleadoController empleadoController = EmpleadoController.getInstance();
     private Empleado empleadoSeleccionado;
+    MotoController motoController = MotoController.getInstancia();
 
     public Administador() {
         initComponents();
         visualizarEmpleados.setComponentPopupMenu(null);
+        TablaListarMotos.setComponentPopupMenu(jPopupMenu4);
+        TablaModificarMotos.setComponentPopupMenu(jPopupMenu5);
 
         añadirEmpleado.setUI(null);
         this.setLocationRelativeTo(null);
@@ -32,6 +56,9 @@ public class Administador extends javax.swing.JFrame {
         cargarEmpleadosEnEliminar();
         cargarEmpleadosEnModificar();
         validacionAñadirYModicicarEmpleado();
+        cargarMotosEnTabla();
+        cargarMotosEnTablaModificar();
+        cargarMotosEnTablaEliminar();
 
         tablaModificacion.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -120,7 +147,6 @@ public class Administador extends javax.swing.JFrame {
             }
         }
 
-        // 5️⃣ Reorganizar los componentes
         if (mainPanel != null) {
             getContentPane().remove(mainPanel);
             getContentPane().add(menuSuperior, BorderLayout.NORTH);
@@ -131,6 +157,224 @@ public class Administador extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
+
+        MotoEliminar.addActionListener(e -> {
+            JTable tabla = (JTable) jPopupMenu1.getInvoker();
+
+            JTable tablaReal = (JTable) tablaMotos.getViewport().getView();
+            if (tabla != tablaReal) {
+                return;
+            }
+
+            int filaSeleccionada = tabla.getSelectedRow();
+            if (filaSeleccionada == -1) {
+                JOptionPane.showMessageDialog(this, "Debes seleccionar una moto primero.");
+                return;
+            }
+
+            String estado = tabla.getValueAt(filaSeleccionada, 6).toString();
+            if (!estado.equalsIgnoreCase("DISPONIBLE")) {
+                JOptionPane.showMessageDialog(this, "Solo puedes eliminar motos con estado DISPONIBLE.", "Acción no permitida", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int opcion = JOptionPane.showConfirmDialog(
+                    this,
+                    "¿Estás seguro que deseas eliminar esta moto?",
+                    "Confirmar eliminación",
+                    JOptionPane.YES_NO_OPTION
+            );
+
+            if (opcion == JOptionPane.YES_OPTION) {
+                int idMoto = (int) tabla.getValueAt(filaSeleccionada, 0);
+                MotoController controller = new MotoController();
+
+                boolean eliminado = controller.eliminarMoto(idMoto);
+
+                if (eliminado) {
+                    JOptionPane.showMessageDialog(this, "Moto eliminada correctamente.");
+                    cargarMotosEnTabla();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar la moto.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        PartesMoto.addActionListener(e -> {
+            int filaSeleccionada = TablaListarMotos.getSelectedRow();
+            if (filaSeleccionada == -1) {
+                JOptionPane.showMessageDialog(this, "Selecciona una moto primero.");
+                return;
+            }
+
+            int idMoto = (int) TablaListarMotos.getValueAt(filaSeleccionada, 0);
+            Moto moto = motoController.buscarPorId(idMoto);
+
+            if (moto == null) {
+                JOptionPane.showMessageDialog(this, "No se encontró información para esta moto.");
+                return;
+            }
+
+            StringBuilder detalles = new StringBuilder();
+            detalles.append("ID de la moto: ").append(idMoto).append("\n\n");
+
+            PartesMoto partes = moto.getPartesMoto();
+            if (partes == null) {
+                JOptionPane.showMessageDialog(this, "Esta moto no tiene partes registradas aún.");
+                return;
+            }
+
+            if (partes.getMotor() != null) {
+                detalles.append("MOTOR\n");
+                detalles.append("  Tipo: ").append(partes.getMotor().getTipo()).append("\n");
+                detalles.append("  Cilindrada: ").append(partes.getMotor().getCilindrada()).append(" cc\n");
+                detalles.append("  Potencia: ").append(partes.getMotor().getPotencia()).append(" HP\n\n");
+            }
+
+            if (partes.getTransmision() != null) {
+                detalles.append("TRANSMISIÓN\n");
+                detalles.append("  Tipo: ").append(partes.getTransmision().getTipoTransmision()).append("\n");
+                detalles.append("  Velocidades: ").append(partes.getTransmision().getVelocidades()).append("\n\n");
+            }
+
+            if (partes.getChasis() != null) {
+                detalles.append("CHASIS\n");
+                detalles.append("  Material: ").append(partes.getChasis().getMaterial()).append("\n");
+                detalles.append("  Tipo: ").append(partes.getChasis().getTipo()).append("\n\n");
+            }
+
+            if (partes.getFrenoDelantero() != null) {
+                detalles.append("FRENO DELANTERO\n");
+                detalles.append("  Marca: ").append(partes.getFrenoDelantero().getMarca()).append("\n");
+                detalles.append("  Material: ").append(partes.getFrenoDelantero().getMaterial()).append("\n\n");
+            }
+
+            if (partes.getFrenoTrasero() != null) {
+                detalles.append("FRENO TRASERO\n");
+                detalles.append("  Marca: ").append(partes.getFrenoTrasero().getMarca()).append("\n");
+                detalles.append("  Material: ").append(partes.getFrenoTrasero().getMaterial()).append("\n\n");
+            }
+
+            if (partes.getLlantaDelantera() != null) {
+                detalles.append("LLANTA DELANTERA\n");
+                detalles.append("  Marca: ").append(partes.getLlantaDelantera().getMarca()).append("\n");
+                detalles.append("  Modelo: ").append(partes.getLlantaDelantera().getModelo()).append("\n");
+                detalles.append("  Medida: ").append(partes.getLlantaDelantera().getMedida()).append("\n\n");
+            }
+
+            if (partes.getLlantaTrasera() != null) {
+                detalles.append("LLANTA TRASERA\n");
+                detalles.append("  Marca: ").append(partes.getLlantaTrasera().getMarca()).append("\n");
+                detalles.append("  Modelo: ").append(partes.getLlantaTrasera().getModelo()).append("\n");
+                detalles.append("  Medida: ").append(partes.getLlantaTrasera().getMedida()).append("\n\n");
+            }
+
+            if (partes.getAsiento() != null) {
+                detalles.append("ASIENTO\n");
+                detalles.append("  Material: ").append(partes.getAsiento().getMaterial()).append("\n");
+                detalles.append("  Capacidad: ").append(partes.getAsiento().getCapacidad()).append("\n\n");
+            }
+
+            JTextArea areaTexto = new JTextArea(detalles.toString());
+            areaTexto.setEditable(false);
+            areaTexto.setFont(new Font("Monospaced", Font.PLAIN, 13));
+            areaTexto.setBackground(new Color(245, 245, 245));
+            areaTexto.setMargin(new Insets(10, 10, 10, 10));
+
+            JScrollPane scroll = new JScrollPane(areaTexto);
+            scroll.setPreferredSize(new Dimension(400, 350));
+
+            JOptionPane.showMessageDialog(this, scroll, "Detalles de la Moto", JOptionPane.PLAIN_MESSAGE);
+
+        });
+
+        PartesMoto2.addActionListener(e -> {
+            int filaSeleccionada = TablaModificarMotos.getSelectedRow();
+            if (filaSeleccionada == -1) {
+                JOptionPane.showMessageDialog(this, "Selecciona una moto primero.");
+                return;
+            }
+
+            int idMoto = (int) TablaModificarMotos.getValueAt(filaSeleccionada, 0);
+            Moto moto = motoController.buscarPorId(idMoto);
+
+            if (moto == null) {
+                JOptionPane.showMessageDialog(this, "No se encontró información para esta moto.");
+                return;
+            }
+
+            StringBuilder detalles = new StringBuilder();
+            detalles.append("ID de la moto: ").append(idMoto).append("\n\n");
+
+            PartesMoto partes = moto.getPartesMoto();
+            if (partes == null) {
+                JOptionPane.showMessageDialog(this, "Esta moto no tiene partes registradas aún.");
+                return;
+            }
+
+            if (partes.getMotor() != null) {
+                detalles.append("MOTOR\n");
+                detalles.append("  Tipo: ").append(partes.getMotor().getTipo()).append("\n");
+                detalles.append("  Cilindrada: ").append(partes.getMotor().getCilindrada()).append(" cc\n");
+                detalles.append("  Potencia: ").append(partes.getMotor().getPotencia()).append(" HP\n\n");
+            }
+
+            if (partes.getTransmision() != null) {
+                detalles.append("TRANSMISIÓN\n");
+                detalles.append("  Tipo: ").append(partes.getTransmision().getTipoTransmision()).append("\n");
+                detalles.append("  Velocidades: ").append(partes.getTransmision().getVelocidades()).append("\n\n");
+            }
+
+            if (partes.getChasis() != null) {
+                detalles.append("CHASIS\n");
+                detalles.append("  Material: ").append(partes.getChasis().getMaterial()).append("\n");
+                detalles.append("  Tipo: ").append(partes.getChasis().getTipo()).append("\n\n");
+            }
+
+            if (partes.getFrenoDelantero() != null) {
+                detalles.append("FRENO DELANTERO\n");
+                detalles.append("  Marca: ").append(partes.getFrenoDelantero().getMarca()).append("\n");
+                detalles.append("  Material: ").append(partes.getFrenoDelantero().getMaterial()).append("\n\n");
+            }
+
+            if (partes.getFrenoTrasero() != null) {
+                detalles.append("FRENO TRASERO\n");
+                detalles.append("  Marca: ").append(partes.getFrenoTrasero().getMarca()).append("\n");
+                detalles.append("  Material: ").append(partes.getFrenoTrasero().getMaterial()).append("\n\n");
+            }
+
+            if (partes.getLlantaDelantera() != null) {
+                detalles.append("LLANTA DELANTERA\n");
+                detalles.append("  Marca: ").append(partes.getLlantaDelantera().getMarca()).append("\n");
+                detalles.append("  Modelo: ").append(partes.getLlantaDelantera().getModelo()).append("\n");
+                detalles.append("  Medida: ").append(partes.getLlantaDelantera().getMedida()).append("\n\n");
+            }
+
+            if (partes.getLlantaTrasera() != null) {
+                detalles.append("LLANTA TRASERA\n");
+                detalles.append("  Marca: ").append(partes.getLlantaTrasera().getMarca()).append("\n");
+                detalles.append("  Modelo: ").append(partes.getLlantaTrasera().getModelo()).append("\n");
+                detalles.append("  Medida: ").append(partes.getLlantaTrasera().getMedida()).append("\n\n");
+            }
+
+            if (partes.getAsiento() != null) {
+                detalles.append("ASIENTO\n");
+                detalles.append("  Material: ").append(partes.getAsiento().getMaterial()).append("\n");
+                detalles.append("  Capacidad: ").append(partes.getAsiento().getCapacidad()).append("\n\n");
+            }
+
+            JTextArea areaTexto = new JTextArea(detalles.toString());
+            areaTexto.setEditable(false);
+            areaTexto.setFont(new Font("Monospaced", Font.PLAIN, 13));
+            areaTexto.setBackground(new Color(245, 245, 245));
+            areaTexto.setMargin(new Insets(10, 10, 10, 10));
+
+            JScrollPane scroll = new JScrollPane(areaTexto);
+            scroll.setPreferredSize(new Dimension(400, 350));
+
+            JOptionPane.showMessageDialog(this, scroll, "Detalles de la Moto", JOptionPane.PLAIN_MESSAGE);
+
+        });
 
     }
 
@@ -218,6 +462,84 @@ public class Administador extends javax.swing.JFrame {
         empleadoSeleccionado = emp;
     }
 
+    private void cargarMotosEnTablaEliminar() {
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.listarMotos();
+
+        JTable tabla = (JTable) tablaMotos.getViewport().getView();
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+
+        model.setRowCount(0);
+
+        for (Moto m : motos) {
+            if (m.getPlaca() != null && m.getPlaca().startsWith("BSE-")) {
+                continue;
+            }
+
+            model.addRow(new Object[]{
+                m.getIdMoto(),
+                m.getModelo(),
+                m.getMarca(),
+                m.getTipoMoto(),
+                m.getCilindraje(),
+                m.getPrecio(),
+                m.getEstado()
+            });
+        }
+    }
+
+    private void cargarMotosEnTabla() {
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.listarMotos();
+
+        DefaultTableModel model = (DefaultTableModel) TablaListarMotos.getModel();
+
+        model.setRowCount(0);
+
+        for (Moto m : motos) {
+            model.addRow(new Object[]{
+                m.getIdMoto(),
+                m.getTipoMoto(),
+                m.getMarca(),
+                m.getModelo(),
+                m.getTipoColorMoto(),
+                m.getCilindraje(),
+                m.getPrecio(),
+                m.getFechaIngreso(),
+                m.isTieneParrilla() ? "Sí" : "No",
+                m.isTieneMaletero() ? "Sí" : "No",
+                m.getPlaca(),
+                m.getEstado()
+            });
+        }
+    }
+
+    private void cargarMotosEnTablaModificar() {
+        MotoController controller = new MotoController();
+        List<Moto> motos = controller.listarMotos();
+
+        DefaultTableModel model = (DefaultTableModel) TablaModificarMotos.getModel();
+
+        model.setRowCount(0);
+
+        for (Moto m : motos) {
+            model.addRow(new Object[]{
+                m.getIdMoto(),
+                m.getTipoMoto(),
+                m.getMarca(),
+                m.getModelo(),
+                m.getTipoColorMoto(),
+                m.getCilindraje(),
+                m.getPrecio(),
+                m.getFechaIngreso(),
+                m.isTieneParrilla() ? "Sí" : "No",
+                m.isTieneMaletero() ? "Sí" : "No",
+                m.getPlaca(),
+                m.getEstado()
+            });
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -228,6 +550,11 @@ public class Administador extends javax.swing.JFrame {
         Despedir = new javax.swing.JMenuItem();
         jPopupMenu3 = new javax.swing.JPopupMenu();
         modificar = new javax.swing.JMenuItem();
+        jPopupMenu4 = new javax.swing.JPopupMenu();
+        PartesMoto = new javax.swing.JMenuItem();
+        jPopupMenu5 = new javax.swing.JPopupMenu();
+        PartesMoto2 = new javax.swing.JMenuItem();
+        ModificarMotoItem = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         ModificarInfoAdmin = new javax.swing.JTabbedPane();
         añadirEmpleado = new javax.swing.JPanel();
@@ -289,21 +616,25 @@ public class Administador extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        comboBoxTipoMoto2 = new javax.swing.JComboBox<>();
+        comboBoxColorMoto = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
         MarcaMotos = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        SpinnerCantidadMotos = new javax.swing.JSpinner();
+        jLabel51 = new javax.swing.JLabel();
+        comboBoxTipoMoto3 = new javax.swing.JComboBox<>();
         EliminarMoto = new javax.swing.JPanel();
         tablaMotos = new javax.swing.JScrollPane();
         tablaDeCarrito = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
         ModificarMoto = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        TablaModificarMotos = new javax.swing.JTable();
+        jLabel52 = new javax.swing.JLabel();
         VisualizarMoto1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TablaListarMotos = new javax.swing.JTable();
         panelExtraSinuso = new javax.swing.JPanel();
         modifcarEmpleado = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -344,8 +675,89 @@ public class Administador extends javax.swing.JFrame {
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         btnModificarEmpleado = new javax.swing.JButton();
+        PanelParaModificarMoto = new javax.swing.JPanel();
+        jLabel53 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        txtIdMotoModificar = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
+        txtNuevaMarcaMoto = new javax.swing.JTextField();
+        jSeparator19 = new javax.swing.JSeparator();
+        comboBoxTipoFreno = new javax.swing.JComboBox<>();
+        jLabel55 = new javax.swing.JLabel();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        comboBoxNuevoColorMoto1 = new javax.swing.JComboBox<>();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        jLabel68 = new javax.swing.JLabel();
+        jLabel69 = new javax.swing.JLabel();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        jLabel72 = new javax.swing.JLabel();
+        jLabel75 = new javax.swing.JLabel();
+        jLabel76 = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
+        jLabel77 = new javax.swing.JLabel();
+        jLabel78 = new javax.swing.JLabel();
+        jLabel79 = new javax.swing.JLabel();
+        jLabel74 = new javax.swing.JLabel();
+        jLabel81 = new javax.swing.JLabel();
+        jLabel82 = new javax.swing.JLabel();
+        jLabel83 = new javax.swing.JLabel();
+        comboBoxMotoBasePlaca = new javax.swing.JComboBox<>();
+        comboBoxTipoLlanta = new javax.swing.JComboBox<>();
+        jLabel80 = new javax.swing.JLabel();
+        jLabel84 = new javax.swing.JLabel();
+        jLabel85 = new javax.swing.JLabel();
+        jLabel86 = new javax.swing.JLabel();
+        jLabel87 = new javax.swing.JLabel();
+        jLabel88 = new javax.swing.JLabel();
+        NuevaMedidaLlantaCombo = new javax.swing.JComboBox<>();
+        txtNuevaMarcaLlanta = new javax.swing.JTextField();
+        jSeparator20 = new javax.swing.JSeparator();
+        NuevoMaterialLlantaCombo = new javax.swing.JComboBox<>();
+        txtNuevoModeloLlanta = new javax.swing.JTextField();
+        jSeparator21 = new javax.swing.JSeparator();
+        txtNuevoModeloMoto = new javax.swing.JTextField();
+        jSeparator22 = new javax.swing.JSeparator();
+        NuevoCilindrajeMoto = new javax.swing.JTextField();
+        jSeparator23 = new javax.swing.JSeparator();
+        TieneMaleteroNueva = new javax.swing.JComboBox<>();
+        TieneParrillaNueva = new javax.swing.JComboBox<>();
+        txtNuevaMarcaFreno = new javax.swing.JTextField();
+        jSeparator24 = new javax.swing.JSeparator();
+        txtNuevoModeloFreno = new javax.swing.JTextField();
+        jSeparator25 = new javax.swing.JSeparator();
+        NuevoMaterialChasis = new javax.swing.JComboBox<>();
+        NuevoTipoMotor = new javax.swing.JComboBox<>();
+        NuevoTipoChasis = new javax.swing.JComboBox<>();
+        NuevaCilindradaMotor = new javax.swing.JTextField();
+        jSeparator26 = new javax.swing.JSeparator();
+        NuevaPotenciaMotor = new javax.swing.JTextField();
+        jSeparator27 = new javax.swing.JSeparator();
+        NuevoMaterialFreno = new javax.swing.JComboBox<>();
+        NuevoTipoTransmision = new javax.swing.JComboBox<>();
+        NuevaCapacidadAsiento = new javax.swing.JComboBox<>();
+        NuevoMaterialAsiento = new javax.swing.JComboBox<>();
+        BotonModificarMotoBase = new javax.swing.JButton();
+        BotonModificarMotoIndividual1 = new javax.swing.JButton();
+        NuevaVelocidadesTransmision = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
 
         MotoEliminar.setText("Eliminar esta moto");
+        MotoEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MotoEliminarActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(MotoEliminar);
 
         Despedir.setText("DespedirEmpleado");
@@ -358,6 +770,30 @@ public class Administador extends javax.swing.JFrame {
             }
         });
         jPopupMenu3.add(modificar);
+
+        PartesMoto.setText("Ver partes");
+        PartesMoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PartesMotoActionPerformed(evt);
+            }
+        });
+        jPopupMenu4.add(PartesMoto);
+
+        PartesMoto2.setText("Ver partes");
+        PartesMoto2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PartesMoto2ActionPerformed(evt);
+            }
+        });
+        jPopupMenu5.add(PartesMoto2);
+
+        ModificarMotoItem.setText("Modificar");
+        ModificarMotoItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarMotoItemActionPerformed(evt);
+            }
+        });
+        jPopupMenu5.add(ModificarMotoItem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -724,7 +1160,7 @@ public class Administador extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("PARA AÑADIR UNA NUEVA MOTO INGRESE LOS DETALLES QUE SE LE PIDEN A CONTINUACIÓN:");
-        VisualizarMoto2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, 80));
+        VisualizarMoto2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, -1, 80));
 
         jLabel10.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
@@ -736,82 +1172,39 @@ public class Administador extends javax.swing.JFrame {
         jLabel11.setText("Ingrese el tipo de moto:");
         VisualizarMoto2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, 30));
 
-        comboBoxTipoMoto2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SemiAutomatica", "Boxer", "SemiDeportiva", "Deportiva", "Chopper", "Naked", "SuperSport", "Scooter" }));
-        VisualizarMoto2.add(comboBoxTipoMoto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 170, 30));
+        comboBoxColorMoto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Verde", "Rojo", "Negro", "Blanco" }));
+        VisualizarMoto2.add(comboBoxColorMoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 170, 30));
 
         jLabel12.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Marca:");
-        VisualizarMoto2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 70, -1));
+        jLabel12.setText("Cantidad de motos a añadir:");
+        VisualizarMoto2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 240, -1));
 
-        jPanel8.setBackground(new java.awt.Color(0, 204, 51));
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-
-        VisualizarMoto2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 30, 30));
-
-        jPanel9.setBackground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-
-        VisualizarMoto2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 30, 30));
-
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 28, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 28, Short.MAX_VALUE)
-        );
-
-        VisualizarMoto2.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 30, 30));
-
-        jPanel11.setBackground(new java.awt.Color(204, 0, 0));
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-
-        VisualizarMoto2.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 30, 30));
-
-        MarcaMotos.setText("Matca");
+        MarcaMotos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MarcaMotosActionPerformed(evt);
+            }
+        });
         VisualizarMoto2.add(MarcaMotos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 176, 140, 30));
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Añadir");
-        VisualizarMoto2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        VisualizarMoto2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
+        VisualizarMoto2.add(SpinnerCantidadMotos, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 90, -1));
+
+        jLabel51.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel51.setText("Marca:");
+        VisualizarMoto2.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 70, -1));
+
+        comboBoxTipoMoto3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "SemiAutomatica", "Boxer", "SemiDeportiva", "Deportiva", "Chopper", "Naked", "SuperSport", "Scooter" }));
+        VisualizarMoto2.add(comboBoxTipoMoto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 170, 30));
 
         AñadirMoto.add(VisualizarMoto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 660));
 
@@ -832,7 +1225,7 @@ public class Administador extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Modelo", "Marca", "Tipo motor", "Cilindraje", "Precio", "Estado"
+                "Id", "Modelo", "Marca", "Tipo moto", "Cilindraje", "Precio", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -858,7 +1251,51 @@ public class Administador extends javax.swing.JFrame {
 
         ModificarInfoAdmin.addTab("tab6", EliminarMoto);
 
+        ModificarMoto.setBackground(new java.awt.Color(255, 255, 255));
         ModificarMoto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        TablaModificarMotos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Tipo moto", "Marca", "Modelo", "Color", "Cilindraje", "Precio", "Fecha ingreso", "Tiene parrilla", "Tiene maletero", "Placa", "Estado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(TablaModificarMotos);
+        if (TablaModificarMotos.getColumnModel().getColumnCount() > 0) {
+            TablaModificarMotos.getColumnModel().getColumn(0).setResizable(false);
+            TablaModificarMotos.getColumnModel().getColumn(1).setResizable(false);
+            TablaModificarMotos.getColumnModel().getColumn(2).setResizable(false);
+            TablaModificarMotos.getColumnModel().getColumn(3).setResizable(false);
+            TablaModificarMotos.getColumnModel().getColumn(4).setResizable(false);
+            TablaModificarMotos.getColumnModel().getColumn(5).setResizable(false);
+            TablaModificarMotos.getColumnModel().getColumn(6).setResizable(false);
+            TablaModificarMotos.getColumnModel().getColumn(7).setResizable(false);
+            TablaModificarMotos.getColumnModel().getColumn(8).setResizable(false);
+            TablaModificarMotos.getColumnModel().getColumn(9).setResizable(false);
+            TablaModificarMotos.getColumnModel().getColumn(10).setResizable(false);
+            TablaModificarMotos.getColumnModel().getColumn(11).setResizable(false);
+        }
+
+        ModificarMoto.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 1100, 510));
+
+        jLabel52.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jLabel52.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel52.setText("Seleccione la moto que desea modificar ");
+        ModificarMoto.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, 50));
+
         ModificarInfoAdmin.addTab("tab7", ModificarMoto);
 
         VisualizarMoto1.setBackground(new java.awt.Color(255, 255, 255));
@@ -867,7 +1304,44 @@ public class Administador extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("LISTA DE MOTOS:");
-        VisualizarMoto1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, -1, 80));
+        VisualizarMoto1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, 80));
+
+        TablaListarMotos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Tipo moto", "Marca", "Modelo", "Color", "Cilindraje", "Precio", "Fecha ingreso", "Tiene parrilla", "Tiene maletero", "Placa", "Estado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(TablaListarMotos);
+        if (TablaListarMotos.getColumnModel().getColumnCount() > 0) {
+            TablaListarMotos.getColumnModel().getColumn(0).setResizable(false);
+            TablaListarMotos.getColumnModel().getColumn(1).setResizable(false);
+            TablaListarMotos.getColumnModel().getColumn(2).setResizable(false);
+            TablaListarMotos.getColumnModel().getColumn(3).setResizable(false);
+            TablaListarMotos.getColumnModel().getColumn(4).setResizable(false);
+            TablaListarMotos.getColumnModel().getColumn(5).setResizable(false);
+            TablaListarMotos.getColumnModel().getColumn(6).setResizable(false);
+            TablaListarMotos.getColumnModel().getColumn(7).setResizable(false);
+            TablaListarMotos.getColumnModel().getColumn(8).setResizable(false);
+            TablaListarMotos.getColumnModel().getColumn(9).setResizable(false);
+            TablaListarMotos.getColumnModel().getColumn(10).setResizable(false);
+            TablaListarMotos.getColumnModel().getColumn(11).setResizable(false);
+        }
+
+        VisualizarMoto1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 1100, 510));
 
         ModificarInfoAdmin.addTab("tab8", VisualizarMoto1);
 
@@ -1093,6 +1567,379 @@ public class Administador extends javax.swing.JFrame {
 
         ModificarInfoAdmin.addTab("tab11", modifcarEmpleado);
 
+        PanelParaModificarMoto.setBackground(new java.awt.Color(255, 255, 255));
+        PanelParaModificarMoto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel53.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel53.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel53.setText("Llanta:");
+        PanelParaModificarMoto.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, -1));
+
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.add(txtIdMotoModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 190, 20));
+
+        jLabel56.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel56.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel56.setText("Id de la moto seleccionada:");
+        jPanel4.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+
+        PanelParaModificarMoto.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 360, 40));
+
+        jLabel54.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel54.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel54.setText("Nuevo color:");
+        PanelParaModificarMoto.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, 20));
+
+        jLabel57.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel57.setForeground(new java.awt.Color(0, 0, 0));
+        PanelParaModificarMoto.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, -1, 20));
+
+        txtNuevaMarcaMoto.setForeground(new java.awt.Color(0, 0, 0));
+        txtNuevaMarcaMoto.setBorder(null);
+        txtNuevaMarcaMoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevaMarcaMotoActionPerformed(evt);
+            }
+        });
+        PanelParaModificarMoto.add(txtNuevaMarcaMoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 280, 30));
+
+        jSeparator19.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator19.setForeground(new java.awt.Color(0, 0, 0));
+        PanelParaModificarMoto.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 280, 20));
+
+        comboBoxTipoFreno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Freno Delantero", "Freno Trasero", "Ambos" }));
+        PanelParaModificarMoto.add(comboBoxTipoFreno, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 180, 160, 20));
+
+        jLabel55.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel55.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel55.setText("LOS CAMPOS QUE PERMANEZCAN IGUAL NO SERÁN MODIFICADOS.");
+        PanelParaModificarMoto.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
+
+        jLabel58.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel58.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel58.setText("Los cambios aplicados se reflejarán en todas las unidades disponibles del mismo tipo de moto.");
+        PanelParaModificarMoto.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, -1, 20));
+
+        jLabel59.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel59.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel59.setText("Modificar moto individual");
+        PanelParaModificarMoto.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
+
+        jLabel60.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel60.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel60.setText("Actualiza la información de una sola moto seleccionada (marca o color).");
+        PanelParaModificarMoto.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 20));
+
+        jLabel61.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel61.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel61.setText("Nueva marca:");
+        PanelParaModificarMoto.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, 20));
+
+        comboBoxNuevoColorMoto1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Verde", "Rojo", "Negro", "Blanco" }));
+        PanelParaModificarMoto.add(comboBoxNuevoColorMoto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 280, 30));
+
+        jLabel62.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel62.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel62.setText("Placa de la moto base*:");
+        PanelParaModificarMoto.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, -1, 20));
+
+        jLabel63.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel63.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel63.setText("Nuevo modelo:");
+        PanelParaModificarMoto.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, -1, 20));
+
+        jLabel64.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel64.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel64.setText("Tiene parrilla:");
+        PanelParaModificarMoto.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, -1, 20));
+
+        jLabel65.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel65.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel65.setText("Tiene maletero:");
+        PanelParaModificarMoto.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, -1, 20));
+
+        jLabel66.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel66.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel66.setText("Nuevo modelo:");
+        PanelParaModificarMoto.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, -1, 20));
+
+        jLabel67.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel67.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel67.setText("Nuevo cilindraje:");
+        PanelParaModificarMoto.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, -1, 20));
+
+        jLabel68.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel68.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel68.setText("Nueva Medida llanta:");
+        PanelParaModificarMoto.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, -1, 20));
+
+        jLabel69.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel69.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel69.setText("Actualizar moto base y unidades del mismo tipo");
+        PanelParaModificarMoto.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, -1, -1));
+
+        jLabel70.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel70.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel70.setText("Nueva marca:");
+        PanelParaModificarMoto.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, -1, 20));
+
+        jLabel71.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel71.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel71.setText("Nuevo material:");
+        PanelParaModificarMoto.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 400, -1, 20));
+
+        jLabel72.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel72.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel72.setText("Chasis:");
+        PanelParaModificarMoto.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 470, -1, -1));
+
+        jLabel75.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel75.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel75.setText("Nuevo material:");
+        PanelParaModificarMoto.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 500, -1, 20));
+
+        jLabel76.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel76.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel76.setText("Nuevo tipo:");
+        PanelParaModificarMoto.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 530, -1, 20));
+
+        jLabel73.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel73.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel73.setText("Motor:");
+        PanelParaModificarMoto.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 570, -1, -1));
+
+        jLabel77.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel77.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel77.setText("nueva potencia:");
+        PanelParaModificarMoto.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 660, -1, 20));
+
+        jLabel78.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel78.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel78.setText("Nuevo tipo:");
+        PanelParaModificarMoto.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 630, -1, 20));
+
+        jLabel79.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel79.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel79.setText("nueva cilindrada:");
+        PanelParaModificarMoto.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 600, -1, 20));
+
+        jLabel74.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel74.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel74.setText("Freno:");
+        PanelParaModificarMoto.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 180, -1, -1));
+
+        jLabel81.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel81.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel81.setText("Nueva marca:");
+        PanelParaModificarMoto.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 210, -1, 20));
+
+        jLabel82.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel82.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel82.setText("Nuevo material:");
+        PanelParaModificarMoto.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 240, -1, 20));
+
+        jLabel83.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel83.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel83.setText("Nuevo modelo:");
+        PanelParaModificarMoto.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 270, -1, 20));
+
+        comboBoxMotoBasePlaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "BSE-DEPORTIVA", "BSE-NAKED", "BSE-SEMIAUTOMATICA", "BSE-SEMIDEPORTIVA", "BSE-BOXER", "BSE-CHOPPER", "BSE-SUPERSPORT", "BSE-SCOOTER" }));
+        PanelParaModificarMoto.add(comboBoxMotoBasePlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, 280, 30));
+
+        comboBoxTipoLlanta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Llanta Delantera", "Llanta Trasera", "Ambas" }));
+        PanelParaModificarMoto.add(comboBoxTipoLlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, 180, 20));
+
+        jLabel80.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel80.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel80.setText("Asiento:");
+        PanelParaModificarMoto.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 320, -1, -1));
+
+        jLabel84.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel84.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel84.setText("Nueva capacidad:");
+        PanelParaModificarMoto.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 350, -1, 20));
+
+        jLabel85.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel85.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel85.setText("Nuevo material:");
+        PanelParaModificarMoto.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 380, -1, 20));
+
+        jLabel86.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel86.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel86.setText("Transmision:");
+        PanelParaModificarMoto.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 430, -1, -1));
+
+        jLabel87.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel87.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel87.setText("Nuevo tipo:");
+        PanelParaModificarMoto.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 460, -1, 20));
+
+        jLabel88.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel88.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel88.setText("Velocidades:");
+        PanelParaModificarMoto.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 490, -1, 20));
+
+        NuevaMedidaLlantaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "R17_120_70", "R17_180_55", "R16_100_80" }));
+        PanelParaModificarMoto.add(NuevaMedidaLlantaCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 160, -1));
+
+        txtNuevaMarcaLlanta.setForeground(new java.awt.Color(0, 0, 0));
+        txtNuevaMarcaLlanta.setBorder(null);
+        txtNuevaMarcaLlanta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevaMarcaLlantaActionPerformed(evt);
+            }
+        });
+        PanelParaModificarMoto.add(txtNuevaMarcaLlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 370, 190, 20));
+
+        jSeparator20.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator20.setForeground(new java.awt.Color(0, 0, 0));
+        PanelParaModificarMoto.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 390, 190, 20));
+
+        NuevoMaterialLlantaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "CAUCHO", "ALEACION", "COMPUESTO", "ACERO" }));
+        PanelParaModificarMoto.add(NuevoMaterialLlantaCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 400, 190, -1));
+
+        txtNuevoModeloLlanta.setForeground(new java.awt.Color(0, 0, 0));
+        txtNuevoModeloLlanta.setBorder(null);
+        txtNuevoModeloLlanta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoModeloLlantaActionPerformed(evt);
+            }
+        });
+        PanelParaModificarMoto.add(txtNuevoModeloLlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, 190, 20));
+
+        jSeparator21.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator21.setForeground(new java.awt.Color(0, 0, 0));
+        PanelParaModificarMoto.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, 190, 20));
+
+        txtNuevoModeloMoto.setForeground(new java.awt.Color(0, 0, 0));
+        txtNuevoModeloMoto.setBorder(null);
+        txtNuevoModeloMoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoModeloMotoActionPerformed(evt);
+            }
+        });
+        PanelParaModificarMoto.add(txtNuevoModeloMoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 180, 180, 20));
+
+        jSeparator22.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator22.setForeground(new java.awt.Color(0, 0, 0));
+        PanelParaModificarMoto.add(jSeparator22, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, 180, 20));
+
+        NuevoCilindrajeMoto.setForeground(new java.awt.Color(0, 0, 0));
+        NuevoCilindrajeMoto.setBorder(null);
+        NuevoCilindrajeMoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevoCilindrajeMotoActionPerformed(evt);
+            }
+        });
+        PanelParaModificarMoto.add(NuevoCilindrajeMoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 180, 20));
+
+        jSeparator23.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator23.setForeground(new java.awt.Color(0, 0, 0));
+        PanelParaModificarMoto.add(jSeparator23, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 180, 20));
+
+        TieneMaleteroNueva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Si", "No" }));
+        PanelParaModificarMoto.add(TieneMaleteroNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, 180, -1));
+
+        TieneParrillaNueva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Si", "No" }));
+        PanelParaModificarMoto.add(TieneParrillaNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, 180, -1));
+
+        txtNuevaMarcaFreno.setForeground(new java.awt.Color(0, 0, 0));
+        txtNuevaMarcaFreno.setBorder(null);
+        txtNuevaMarcaFreno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevaMarcaFrenoActionPerformed(evt);
+            }
+        });
+        PanelParaModificarMoto.add(txtNuevaMarcaFreno, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 210, 190, 20));
+
+        jSeparator24.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator24.setForeground(new java.awt.Color(0, 0, 0));
+        PanelParaModificarMoto.add(jSeparator24, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, 190, 20));
+
+        txtNuevoModeloFreno.setForeground(new java.awt.Color(0, 0, 0));
+        txtNuevoModeloFreno.setBorder(null);
+        txtNuevoModeloFreno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoModeloFrenoActionPerformed(evt);
+            }
+        });
+        PanelParaModificarMoto.add(txtNuevoModeloFreno, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 270, 190, 20));
+
+        jSeparator25.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator25.setForeground(new java.awt.Color(0, 0, 0));
+        PanelParaModificarMoto.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 290, 190, 20));
+
+        NuevoMaterialChasis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "ACERO", "ALUMINIO", "FIBRA_CARBONO" }));
+        PanelParaModificarMoto.add(NuevoMaterialChasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, 180, -1));
+
+        NuevoTipoMotor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "DOS_TIEMPOS", "CUATRO_TIEMPOS" }));
+        PanelParaModificarMoto.add(NuevoTipoMotor, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 630, 180, -1));
+
+        NuevoTipoChasis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "TUBULAR", "PERIMETRAL", "MULTITUBULAR" }));
+        PanelParaModificarMoto.add(NuevoTipoChasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 530, 180, -1));
+
+        NuevaCilindradaMotor.setForeground(new java.awt.Color(0, 0, 0));
+        NuevaCilindradaMotor.setBorder(null);
+        NuevaCilindradaMotor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevaCilindradaMotorActionPerformed(evt);
+            }
+        });
+        PanelParaModificarMoto.add(NuevaCilindradaMotor, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 600, 180, 20));
+
+        jSeparator26.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator26.setForeground(new java.awt.Color(0, 0, 0));
+        PanelParaModificarMoto.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 620, 180, 20));
+
+        NuevaPotenciaMotor.setForeground(new java.awt.Color(0, 0, 0));
+        NuevaPotenciaMotor.setBorder(null);
+        NuevaPotenciaMotor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevaPotenciaMotorActionPerformed(evt);
+            }
+        });
+        PanelParaModificarMoto.add(NuevaPotenciaMotor, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 660, 180, 20));
+
+        jSeparator27.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator27.setForeground(new java.awt.Color(0, 0, 0));
+        PanelParaModificarMoto.add(jSeparator27, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 680, 180, 20));
+
+        NuevoMaterialFreno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "ACERO", "CARBONO", "CERAMICO", "COMPUESTO", "FUNDICION" }));
+        PanelParaModificarMoto.add(NuevoMaterialFreno, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 240, 190, -1));
+
+        NuevoTipoTransmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "MANUAL", "AUTOMATICA" }));
+        PanelParaModificarMoto.add(NuevoTipoTransmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 460, 170, -1));
+
+        NuevaCapacidadAsiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "MONOPLAZA", "BIPLAZA" }));
+        PanelParaModificarMoto.add(NuevaCapacidadAsiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 350, 170, -1));
+
+        NuevoMaterialAsiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "CUERO", "SINTETICO", "TELA" }));
+        PanelParaModificarMoto.add(NuevoMaterialAsiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 380, 170, -1));
+
+        BotonModificarMotoBase.setText("Modificar Moto");
+        BotonModificarMotoBase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonModificarMotoBaseActionPerformed(evt);
+            }
+        });
+        PanelParaModificarMoto.add(BotonModificarMotoBase, new org.netbeans.lib.awtextra.AbsoluteConstraints(943, 550, 140, 30));
+
+        BotonModificarMotoIndividual1.setText("Modificar Moto individual");
+        BotonModificarMotoIndividual1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonModificarMotoIndividual1ActionPerformed(evt);
+            }
+        });
+        PanelParaModificarMoto.add(BotonModificarMotoIndividual1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 303, -1, 30));
+
+        NuevaVelocidadesTransmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "UNA", "DOS", "TRES", "CUATRO", "CINCO", "SEIS" }));
+        PanelParaModificarMoto.add(NuevaVelocidadesTransmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 490, 170, -1));
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PanelParaModificarMoto.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 10, 620));
+
+        ModificarInfoAdmin.addTab("tab12", PanelParaModificarMoto);
+
         jPanel1.add(ModificarInfoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 1140, 740));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1140, 710));
@@ -1200,9 +2047,7 @@ public class Administador extends javax.swing.JFrame {
         String nuevoCorreo = txtNuevoCorreo.getText().trim().isEmpty() ? empleadoSeleccionado.getCorreo() : txtNuevoCorreo.getText().trim();
         String nuevoTelefono = txtNuevoTelefono.getText().trim().isEmpty() ? empleadoSeleccionado.getTelefono() : txtNuevoTelefono.getText().trim();
         String nuevaCedula = txtNuevaCedula.getText().trim().isEmpty() ? empleadoSeleccionado.getIdentificacion() : txtNuevaCedula.getText().trim();
-        
-        
-        
+
         if (nuevoPrimerNombre.equals(empleadoSeleccionado.getPrimerNombre())
                 && nuevoSegundoNombre.equals(empleadoSeleccionado.getSegundoNombre())
                 && nuevoPrimerApellido.equals(empleadoSeleccionado.getPrimerApellido())
@@ -1210,8 +2055,7 @@ public class Administador extends javax.swing.JFrame {
                 && nuevaEdad.equals(empleadoSeleccionado.getEdad())
                 && nuevoCorreo.equals(empleadoSeleccionado.getCorreo())
                 && nuevoTelefono.equals(empleadoSeleccionado.getTelefono())
-                && nuevaCedula.equals(empleadoSeleccionado.getIdentificacion())
-                ) {
+                && nuevaCedula.equals(empleadoSeleccionado.getIdentificacion())) {
 
             JOptionPane.showMessageDialog(this, "No se modificó ningún dato del empleado");
             limpiarCamposModificacion();
@@ -1220,9 +2064,9 @@ public class Administador extends javax.swing.JFrame {
         }
 
         List<String> errores = empleadoController.actualizarEmpleado(
-                empleadoSeleccionado.getIdentificacion(),             
+                empleadoSeleccionado.getIdentificacion(),
                 nuevaCedula,
-               nuevoPrimerNombre,
+                nuevoPrimerNombre,
                 nuevoSegundoNombre,
                 nuevoPrimerApellido,
                 nuevoSegundoApellido,
@@ -1300,8 +2144,7 @@ public class Administador extends javax.swing.JFrame {
             telefono.requestFocus();
             return;
         }
-        
-        
+
         String idEmpleado = empleadoController.generarIdEmpleado();
         String primerNombr = primerNombre.getText().trim();
         String segundoNombr = segundoNombre.getText().trim();
@@ -1311,12 +2154,12 @@ public class Administador extends javax.swing.JFrame {
         String cedulaI = cedula.getText().trim();
         String edadA = edad.getText().trim();
         String celular = telefono.getText().trim();
-        
+
         if (empleadoController.existeEmpleadoPorCedula(cedulaI)) {
-        JOptionPane.showMessageDialog(this, "Ya existe un empleado registrado con esta cédula", "Error", JOptionPane.ERROR_MESSAGE);
-        cedula.requestFocus();
-        return;
-    }
+            JOptionPane.showMessageDialog(this, "Ya existe un empleado registrado con esta cédula", "Error", JOptionPane.ERROR_MESSAGE);
+            cedula.requestFocus();
+            return;
+        }
 
         Empleado empleado = new Empleado(idEmpleado, primerNombr, segundoNombr,
                 primerApell, segundoApell, edadA,
@@ -1329,7 +2172,7 @@ public class Administador extends javax.swing.JFrame {
             cargarEmpleados();
             cargarEmpleadosEnEliminar();
             cargarEmpleadosEnModificar();
-           checkBoxTerminosYConcidiones.setSelected(false);
+            checkBoxTerminosYConcidiones.setSelected(false);
             limpiarCampos();
         } else {
             JOptionPane.showMessageDialog(this, "Error al registrar empleado", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1337,6 +2180,452 @@ public class Administador extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnAñadirEmpleadoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            String tipoSeleccionado = comboBoxTipoMoto3.getSelectedItem() != null
+                    ? comboBoxTipoMoto3.getSelectedItem().toString().trim()
+                    : "";
+            String colorSeleccionado = comboBoxColorMoto.getSelectedItem() != null
+                    ? comboBoxColorMoto.getSelectedItem().toString().trim()
+                    : "";
+            String marcaSeleccionada = MarcaMotos.getText().trim();
+
+            if (tipoSeleccionado.equalsIgnoreCase("Seleccionar")
+                    || colorSeleccionado.equalsIgnoreCase("Seleccionar")
+                    || marcaSeleccionada.isEmpty()) {
+
+                JOptionPane.showMessageDialog(this,
+                        "Debes completar todos los campos antes de continuar.",
+                        "Campos incompletos",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (!Validation.validarMarca(marcaSeleccionada)) {
+                MarcaMotos.setBackground(new Color(255, 200, 200));
+                JOptionPane.showMessageDialog(this,
+                        "La marca solo puede contener letras, números, espacios, guiones, puntos y &.",
+                        "Error en marca",
+                        JOptionPane.ERROR_MESSAGE);
+                MarcaMotos.requestFocusInWindow();
+                return;
+            } else {
+                MarcaMotos.setBackground(new Color(200, 255, 200));
+            }
+
+            if (!Validation.validarSpinnerNumerico(SpinnerCantidadMotos,
+                    "La cantidad debe ser numérica y mayor que cero.")) {
+                return;
+            }
+
+            int cantidad = (int) SpinnerCantidadMotos.getValue();
+            TipoMoto tipoMoto = TipoMoto.valueOf(tipoSeleccionado.toUpperCase());
+            TipoColorMoto tipoColorMoto = TipoColorMoto.valueOf(colorSeleccionado.toUpperCase());
+
+            boolean exito = motoController.duplicarMotoPorTipo(tipoMoto, tipoColorMoto, marcaSeleccionada, cantidad);
+
+            if (exito) {
+                JOptionPane.showMessageDialog(this,
+                        "Motos añadidas correctamente.",
+                        "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
+                limpiarCamposMoto();
+                cargarMotosEnTabla();
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Error al añadir las motos.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this,
+                    "El tipo o color seleccionado no existe en los enumeradores.",
+                    "Error de datos",
+                    JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+
+        }    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void MarcaMotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarcaMotosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MarcaMotosActionPerformed
+
+    private void PartesMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PartesMotoActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PartesMotoActionPerformed
+
+    private void MotoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MotoEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MotoEliminarActionPerformed
+
+    private void PartesMoto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PartesMoto2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PartesMoto2ActionPerformed
+
+    private void ModificarMotoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarMotoItemActionPerformed
+        JTable tabla = (JTable) jPopupMenu5.getInvoker();
+        if (tabla != TablaModificarMotos) {
+            return;
+        }
+
+        int filaSeleccionada = tabla.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Debes seleccionar una moto primero.");
+            return;
+        }
+
+        int idMoto = (int) tabla.getValueAt(filaSeleccionada, 0);
+        Moto moto = motoController.buscarPorId(idMoto);
+
+        if (moto == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró información para esta moto.");
+            return;
+        }
+
+        ModificarInfoAdmin.setSelectedIndex(10);
+
+        txtIdMotoModificar.setText(String.valueOf(moto.getIdMoto()));        // TODO add your handling code here:
+    }//GEN-LAST:event_ModificarMotoItemActionPerformed
+
+    private void txtNuevaMarcaMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevaMarcaMotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNuevaMarcaMotoActionPerformed
+
+    private void txtNuevaMarcaLlantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevaMarcaLlantaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNuevaMarcaLlantaActionPerformed
+
+    private void txtNuevoModeloLlantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoModeloLlantaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNuevoModeloLlantaActionPerformed
+
+    private void txtNuevoModeloMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoModeloMotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNuevoModeloMotoActionPerformed
+
+    private void NuevoCilindrajeMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoCilindrajeMotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NuevoCilindrajeMotoActionPerformed
+
+    private void txtNuevaMarcaFrenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevaMarcaFrenoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNuevaMarcaFrenoActionPerformed
+
+    private void txtNuevoModeloFrenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoModeloFrenoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNuevoModeloFrenoActionPerformed
+
+    private void NuevaCilindradaMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaCilindradaMotorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NuevaCilindradaMotorActionPerformed
+
+    private void NuevaPotenciaMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaPotenciaMotorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NuevaPotenciaMotorActionPerformed
+
+    private void BotonModificarMotoBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMotoBaseActionPerformed
+        String placaBase = comboBoxMotoBasePlaca.getSelectedItem().toString();
+        if (comboBoxMotoBasePlaca.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Debes seleccionar una placa base válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String nuevoModelo = txtNuevoModeloMoto.getText().trim();
+
+        Boolean nuevaParrilla = null;
+        String seleccionParrilla = (String) TieneParrillaNueva.getSelectedItem();
+        if (seleccionParrilla != null && !seleccionParrilla.equalsIgnoreCase("Seleccionar")) {
+            nuevaParrilla = seleccionParrilla.equalsIgnoreCase("Si");
+        }
+
+        Boolean nuevoMaletero = null;
+        String seleccionMaletero = (String) TieneMaleteroNueva.getSelectedItem();
+        if (seleccionMaletero != null && !seleccionMaletero.equalsIgnoreCase("Seleccionar")) {
+            nuevoMaletero = seleccionMaletero.equalsIgnoreCase("Si");
+        }
+
+        Integer nuevoCilindraje = null;
+        if (!NuevoCilindrajeMoto.getText().trim().isEmpty()) {
+            try {
+                nuevoCilindraje = Integer.parseInt(NuevoCilindrajeMoto.getText().trim());
+                if (nuevoCilindraje <= 0) {
+                    JOptionPane.showMessageDialog(this, "El cilindraje debe ser un número positivo.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (nuevoCilindraje < 50 || nuevoCilindraje > 2000) {
+                    JOptionPane.showMessageDialog(this, "El cilindraje debe estar entre 50 y 2000 cc.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "El cilindraje debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        // --- Motor ---
+        TipoMotor nuevoTipoMotor = NuevoTipoMotor.getSelectedIndex() > 0
+                ? TipoMotor.valueOf(NuevoTipoMotor.getSelectedItem().toString().toUpperCase())
+                : null;
+
+        Integer nuevaPotenciaMotor = null;
+        if (!NuevaPotenciaMotor.getText().trim().isEmpty()) {
+            try {
+                nuevaPotenciaMotor = Integer.parseInt(NuevaPotenciaMotor.getText().trim());
+                if (nuevaPotenciaMotor <= 0) {
+                    JOptionPane.showMessageDialog(this, "La potencia debe ser un número positivo.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (nuevaPotenciaMotor < 1 || nuevaPotenciaMotor > 300) {
+                    JOptionPane.showMessageDialog(this, "La potencia debe estar entre 1 y 300 HP.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "La potencia debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        // --- Cilindrara motor ---
+        Integer nuevaCilindrada = null;
+        if (!NuevaCilindradaMotor.getText().trim().isEmpty()) {
+            try {
+                nuevaCilindrada = Integer.parseInt(NuevaCilindradaMotor.getText().trim());
+                if (nuevaCilindrada <= 0) {
+                    JOptionPane.showMessageDialog(this, "La cilindrada debe ser un número positivo.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (nuevaCilindrada < 50 || nuevaCilindrada > 2000) {
+                    JOptionPane.showMessageDialog(this, "La cilindrada debe estar entre 50 y 2000 cc.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "La cilindrada debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
+        // --- Llanta ---
+        String tipoLlanta = comboBoxTipoLlanta.getSelectedIndex() > 0
+                ? comboBoxTipoLlanta.getSelectedItem().toString()
+                : null;
+        MedidaLlanta nuevaMedidaLlanta = NuevaMedidaLlantaCombo.getSelectedIndex() > 0
+                ? MedidaLlanta.valueOf(NuevaMedidaLlantaCombo.getSelectedItem().toString().toUpperCase())
+                : null;
+        String nuevaMarcaLlanta = txtNuevaMarcaLlanta.getText().trim().isEmpty() ? null : txtNuevaMarcaLlanta.getText().trim();
+        MaterialLlanta nuevoMaterialLlanta = NuevoMaterialLlantaCombo.getSelectedIndex() > 0
+                ? MaterialLlanta.valueOf(NuevoMaterialLlantaCombo.getSelectedItem().toString().toUpperCase())
+                : null;
+        String nuevoModeloLlanta = txtNuevoModeloLlanta.getText().trim().isEmpty() ? null : txtNuevoModeloLlanta.getText().trim();
+
+        // --- Chasis ---
+        MaterialChasis nuevoMaterialChasis = NuevoMaterialChasis.getSelectedIndex() > 0
+                ? MaterialChasis.valueOf(NuevoMaterialChasis.getSelectedItem().toString().toUpperCase())
+                : null;
+        TipoChasis nuevoTipoChasis = NuevoTipoChasis.getSelectedIndex() > 0
+                ? TipoChasis.valueOf(NuevoTipoChasis.getSelectedItem().toString().toUpperCase())
+                : null;
+
+        // --- Freno ---
+        String tipoFreno = comboBoxTipoFreno.getSelectedIndex() > 0
+                ? comboBoxTipoFreno.getSelectedItem().toString()
+                : null;
+        String nuevaMarcaFreno = txtNuevaMarcaFreno.getText().trim().isEmpty() ? null : txtNuevaMarcaFreno.getText().trim();
+        MaterialFreno nuevoMaterialFreno = NuevoMaterialFreno.getSelectedIndex() > 0
+                ? MaterialFreno.valueOf(NuevoMaterialFreno.getSelectedItem().toString().toUpperCase())
+                : null;
+        String nuevoModeloFreno = txtNuevoModeloFreno.getText().trim().isEmpty() ? null : txtNuevoModeloFreno.getText().trim();
+
+        // --- Asiento ---
+        CapacidadAsiento nuevaCapacidadAsiento = NuevaCapacidadAsiento.getSelectedIndex() > 0
+                ? CapacidadAsiento.valueOf(NuevaCapacidadAsiento.getSelectedItem().toString().toUpperCase())
+                : null;
+        MaterialAsiento nuevoMaterialAsiento = NuevoMaterialAsiento.getSelectedIndex() > 0
+                ? MaterialAsiento.valueOf(NuevoMaterialAsiento.getSelectedItem().toString().toUpperCase())
+                : null;
+
+        // --- Transmisión ---
+        TipoTransmision nuevoTipoTransmision = NuevoTipoTransmision.getSelectedIndex() > 0
+                ? TipoTransmision.valueOf(NuevoTipoTransmision.getSelectedItem().toString().toUpperCase())
+                : null;
+        TipoVelocidades nuevasVelocidades = NuevaVelocidadesTransmision.getSelectedIndex() > 0
+                ? TipoVelocidades.valueOf(NuevaVelocidadesTransmision.getSelectedItem().toString().toUpperCase())
+                : null;
+
+        if (nuevaMarcaLlanta != null) {
+            if (!Validation.validarMarca(nuevaMarcaLlanta)) {
+                txtNuevaMarcaLlanta.setBackground(new Color(255, 200, 200));
+                JOptionPane.showMessageDialog(this,
+                        "La marca de la llanta solo puede contener letras, números, espacios, guiones (-), puntos (.), slash (/) y &.",
+                        "Error en marca de llanta",
+                        JOptionPane.ERROR_MESSAGE);
+                txtNuevaMarcaLlanta.requestFocusInWindow();
+                return;
+            } else {
+                txtNuevaMarcaLlanta.setBackground(new Color(200, 255, 200));
+            }
+        }
+
+        if (nuevaMarcaFreno != null) {
+            if (!Validation.validarMarca(nuevaMarcaFreno)) {
+                txtNuevaMarcaFreno.setBackground(new Color(255, 200, 200));
+                JOptionPane.showMessageDialog(this,
+                        "La marca del freno solo puede contener letras, números, espacios, guiones (-), puntos (.), slash (/) y &.",
+                        "Error en marca de freno",
+                        JOptionPane.ERROR_MESSAGE);
+                txtNuevaMarcaFreno.requestFocusInWindow();
+                return;
+            } else {
+                txtNuevaMarcaFreno.setBackground(new Color(200, 255, 200));
+            }
+        }
+
+        boolean exito = motoController.actualizarPorPlacaBase(
+                placaBase,
+                nuevoModelo,
+                nuevaParrilla,
+                nuevoMaletero,
+                nuevoCilindraje,
+                nuevoTipoMotor,
+                nuevaCilindrada,
+                nuevaPotenciaMotor,
+                nuevoMaterialChasis,
+                nuevoTipoChasis,
+                nuevoMaterialAsiento,
+                nuevaCapacidadAsiento,
+                nuevoTipoTransmision,
+                nuevasVelocidades,
+                tipoLlanta,
+                nuevaMedidaLlanta,
+                nuevaMarcaLlanta,
+                nuevoMaterialLlanta,
+                nuevoModeloLlanta,
+                tipoFreno,
+                nuevaMarcaFreno,
+                nuevoMaterialFreno,
+                nuevoModeloFreno
+        );
+
+        if (exito) {
+            JOptionPane.showMessageDialog(this, "Moto base y unidades del mismo tipo actualizadas correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            cargarMotosEnTablaModificar();
+            cargarMotosEnTabla();
+            limpiarCamposMotoBase();
+
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonModificarMotoBaseActionPerformed
+
+    private void BotonModificarMotoIndividual1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMotoIndividual1ActionPerformed
+        if (txtIdMotoModificar.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debes ingresar el ID de la moto a modificar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int idMoto;
+        try {
+            idMoto = Integer.parseInt(txtIdMotoModificar.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String nuevaMarca = txtNuevaMarcaMoto.getText().trim().isEmpty() ? null : txtNuevaMarcaMoto.getText().trim();
+        if (nuevaMarca != null) {
+            if (!Validation.validarMarca(nuevaMarca)) {
+                txtNuevaMarcaMoto.setBackground(new Color(255, 200, 200));
+                JOptionPane.showMessageDialog(this,
+                        "La marca solo puede contener letras, números, espacios, guiones (-), puntos (.), slash (/) y &.",
+                        "Error en marca",
+                        JOptionPane.ERROR_MESSAGE);
+                txtNuevaMarcaMoto.requestFocusInWindow();
+                return;
+            } else {
+                txtNuevaMarcaMoto.setBackground(new Color(200, 255, 200));
+            }
+        }
+
+        TipoColorMoto nuevoColor = null;
+        if (comboBoxNuevoColorMoto1.getSelectedIndex() > 0) {
+            try {
+                nuevoColor = TipoColorMoto.valueOf(comboBoxNuevoColorMoto1.getSelectedItem().toString().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(this, "El color seleccionado no es válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
+        if (nuevaMarca == null && nuevoColor == null) {
+            JOptionPane.showMessageDialog(this, "Debes ingresar al menos una modificación (marca o color).", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        boolean exito = motoController.actualizarMotoIndividual(idMoto, nuevaMarca, nuevoColor);
+
+        if (exito) {
+            JOptionPane.showMessageDialog(this, "Moto modificada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            cargarMotosEnTablaModificar();
+            cargarMotosEnTabla();
+            limpiarCamposMotoIndividual();
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar la moto. Verifica los datos ingresados.", "Error", JOptionPane.ERROR_MESSAGE);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonModificarMotoIndividual1ActionPerformed
+
+    private void limpiarCamposMotoBase() {
+        comboBoxMotoBasePlaca.setSelectedIndex(0);
+        txtNuevoModeloMoto.setText("");
+        TieneParrillaNueva.setSelectedIndex(0);
+        TieneMaleteroNueva.setSelectedIndex(0);
+        NuevoCilindrajeMoto.setText("");
+
+        // Motor
+        NuevoTipoMotor.setSelectedIndex(0);
+        NuevaPotenciaMotor.setText("");
+        NuevaCilindradaMotor.setText("");
+
+        // Llanta
+        comboBoxTipoLlanta.setSelectedIndex(0);
+        NuevaMedidaLlantaCombo.setSelectedIndex(0);
+        txtNuevaMarcaLlanta.setText("");
+        NuevoMaterialLlantaCombo.setSelectedIndex(0);
+        txtNuevoModeloLlanta.setText("");
+
+        // Chasis
+        NuevoMaterialChasis.setSelectedIndex(0);
+        NuevoTipoChasis.setSelectedIndex(0);
+
+        // Freno
+        comboBoxTipoFreno.setSelectedIndex(0);
+        txtNuevaMarcaFreno.setText("");
+        NuevoMaterialFreno.setSelectedIndex(0);
+        txtNuevoModeloFreno.setText("");
+
+        // Asiento
+        NuevaCapacidadAsiento.setSelectedIndex(0);
+        NuevoMaterialAsiento.setSelectedIndex(0);
+
+        // Transmisión
+        NuevoTipoTransmision.setSelectedIndex(0);
+        NuevaVelocidadesTransmision.setSelectedIndex(0);
+    }
+
+    private void limpiarCamposMotoIndividual() {
+        txtIdMotoModificar.setText("");
+        txtNuevaMarcaMoto.setText("");
+        comboBoxNuevoColorMoto1.setSelectedIndex(0);
+    }
+
+    private void limpiarCamposMoto() {
+        comboBoxTipoMoto3.setSelectedIndex(0);
+        comboBoxColorMoto.setSelectedIndex(0);
+        MarcaMotos.setText("");
+        SpinnerCantidadMotos.setValue(1);
+    }
 
     private void limpiarCampos() {
         primerNombre.setText("");
@@ -1430,6 +2719,8 @@ public class Administador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Apellido1Field1;
     private javax.swing.JPanel AñadirMoto;
+    private javax.swing.JButton BotonModificarMotoBase;
+    private javax.swing.JButton BotonModificarMotoIndividual1;
     private javax.swing.JMenuItem Despedir;
     private javax.swing.JPanel EliminarEmpleado;
     private javax.swing.JPanel EliminarMoto;
@@ -1437,8 +2728,30 @@ public class Administador extends javax.swing.JFrame {
     private javax.swing.JPanel ModificarEmpleado;
     private javax.swing.JTabbedPane ModificarInfoAdmin;
     private javax.swing.JPanel ModificarMoto;
+    private javax.swing.JMenuItem ModificarMotoItem;
     private javax.swing.JMenuItem MotoEliminar;
     private javax.swing.JTextField Nombre2Field1;
+    private javax.swing.JComboBox<String> NuevaCapacidadAsiento;
+    private javax.swing.JTextField NuevaCilindradaMotor;
+    private javax.swing.JComboBox<String> NuevaMedidaLlantaCombo;
+    private javax.swing.JTextField NuevaPotenciaMotor;
+    private javax.swing.JComboBox<String> NuevaVelocidadesTransmision;
+    private javax.swing.JTextField NuevoCilindrajeMoto;
+    private javax.swing.JComboBox<String> NuevoMaterialAsiento;
+    private javax.swing.JComboBox<String> NuevoMaterialChasis;
+    private javax.swing.JComboBox<String> NuevoMaterialFreno;
+    private javax.swing.JComboBox<String> NuevoMaterialLlantaCombo;
+    private javax.swing.JComboBox<String> NuevoTipoChasis;
+    private javax.swing.JComboBox<String> NuevoTipoMotor;
+    private javax.swing.JComboBox<String> NuevoTipoTransmision;
+    private javax.swing.JPanel PanelParaModificarMoto;
+    private javax.swing.JMenuItem PartesMoto;
+    private javax.swing.JMenuItem PartesMoto2;
+    private javax.swing.JSpinner SpinnerCantidadMotos;
+    private javax.swing.JTable TablaListarMotos;
+    private javax.swing.JTable TablaModificarMotos;
+    private javax.swing.JComboBox<String> TieneMaleteroNueva;
+    private javax.swing.JComboBox<String> TieneParrillaNueva;
     private javax.swing.JPanel VisualizarEmpleado;
     private javax.swing.JPanel VisualizarMoto1;
     private javax.swing.JPanel VisualizarMoto2;
@@ -1447,7 +2760,12 @@ public class Administador extends javax.swing.JFrame {
     private javax.swing.JButton btnModificarEmpleado;
     private javax.swing.JTextField cedula;
     private javax.swing.JCheckBox checkBoxTerminosYConcidiones;
-    private javax.swing.JComboBox<String> comboBoxTipoMoto2;
+    private javax.swing.JComboBox<String> comboBoxColorMoto;
+    private javax.swing.JComboBox<String> comboBoxMotoBasePlaca;
+    private javax.swing.JComboBox<String> comboBoxNuevoColorMoto1;
+    private javax.swing.JComboBox<String> comboBoxTipoFreno;
+    private javax.swing.JComboBox<String> comboBoxTipoLlanta;
+    private javax.swing.JComboBox<String> comboBoxTipoMoto3;
     private javax.swing.JTextField correo;
     private javax.swing.JTextField edad;
     private javax.swing.JButton jButton1;
@@ -1497,24 +2815,64 @@ public class Administador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
+    private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
+    private javax.swing.JPopupMenu jPopupMenu4;
+    private javax.swing.JPopupMenu jPopupMenu5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
@@ -1524,6 +2882,15 @@ public class Administador extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator18;
+    private javax.swing.JSeparator jSeparator19;
+    private javax.swing.JSeparator jSeparator20;
+    private javax.swing.JSeparator jSeparator21;
+    private javax.swing.JSeparator jSeparator22;
+    private javax.swing.JSeparator jSeparator23;
+    private javax.swing.JSeparator jSeparator24;
+    private javax.swing.JSeparator jSeparator25;
+    private javax.swing.JSeparator jSeparator26;
+    private javax.swing.JSeparator jSeparator27;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
@@ -1543,9 +2910,16 @@ public class Administador extends javax.swing.JFrame {
     private javax.swing.JTable tablaModificacion;
     private javax.swing.JScrollPane tablaMotos;
     private javax.swing.JTextField telefono;
+    private javax.swing.JLabel txtIdMotoModificar;
     private javax.swing.JTextField txtNuevaCedula;
     private javax.swing.JTextField txtNuevaEdad;
+    private javax.swing.JTextField txtNuevaMarcaFreno;
+    private javax.swing.JTextField txtNuevaMarcaLlanta;
+    private javax.swing.JTextField txtNuevaMarcaMoto;
     private javax.swing.JTextField txtNuevoCorreo;
+    private javax.swing.JTextField txtNuevoModeloFreno;
+    private javax.swing.JTextField txtNuevoModeloLlanta;
+    private javax.swing.JTextField txtNuevoModeloMoto;
     private javax.swing.JTextField txtNuevoPrimerNombre;
     private javax.swing.JTextField txtNuevoSegundoApellido;
     private javax.swing.JTextField txtNuevoTelefono;
