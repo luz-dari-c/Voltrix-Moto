@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package View;
 
 import Controller.CarritoController;
@@ -25,17 +22,12 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author gameV
- */
+
 public class LittleNegra extends javax.swing.JFrame {
 
     private Moto motoActual;
 
-    /**
-     * Creates new form LittleNegra
-     */
+   
     public LittleNegra() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -429,9 +421,9 @@ public class LittleNegra extends javax.swing.JFrame {
         Sesion sesion = Sesion.getInstancia();
         Usuario usuario = sesion.getUsuarioActual();
         Model.Entities.Carrito carrito = sesion.getCarritoActual();
-        CarritoController carritoController = new CarritoController();
-        ItemCarritoController itemController = new ItemCarritoController();
-        MotoController motoController = new MotoController();
+        CarritoController carritoController = CarritoController.getInstancia();
+        ItemCarritoController itemController = ItemCarritoController.getInstancia();
+        MotoController motoController = MotoController.getInstancia();
 
         if (usuario == null) {
             JOptionPane.showMessageDialog(this, "Debe iniciar sesión para agregar al carrito.", "Error", JOptionPane.ERROR_MESSAGE);

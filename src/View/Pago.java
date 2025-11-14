@@ -2,6 +2,7 @@ package View;
 
 import Controller.ItemCarritoController;
 import Controller.MotoController;
+import Controller.PagoController;
 import Controller.VentaController;
 import DAO.ClienteDAO;
 import DAO.FacturaDAO;
@@ -26,9 +27,8 @@ public class Pago extends javax.swing.JFrame {
 
     private Model.Entities.Carrito carrito;
     private Moto motoSeleccionada;
-    private final MotoController motoController = new MotoController();
-    private final VentaController ventaController = new VentaController();
-    
+    private final PagoController pagoController = PagoController.getInstancia();
+
 
     public Pago() {
         initComponents();
@@ -134,35 +134,42 @@ public class Pago extends javax.swing.JFrame {
             }
         });
 
-    }
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent e) {
+                String texto = txtNombre.getText();
 
-    private boolean validarDatosPago(String nombre, String numeroTarjeta, String fecha, String cvv) {
-        Sesion sesion = Sesion.getInstancia();
-        Usuario usuario = sesion.getUsuarioActual();
-        String nombreCompleto = usuario.getPrimerNombre() + " " + usuario.getPrimerApellido();
-        if (!nombre.equalsIgnoreCase(nombreCompleto)) {
-            JOptionPane.showMessageDialog(this, "El nombre no coincide con el registrado.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
+                texto = texto.replaceAll("[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]", "");
 
-        String numeroTarjetaSoloDigitos = numeroTarjeta.replaceAll("\\D", "");
+                if (texto.startsWith(" ")) {
+                    texto = texto.trim();
+                }
 
-        if (!numeroTarjetaSoloDigitos.matches("\\d{16}")) {
-            JOptionPane.showMessageDialog(this, "Número de tarjeta inválido (debe tener 16 dígitos).", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
+                texto = texto.replaceAll(" {2,}", " ");
 
-        if (!fecha.matches("(0[1-9]|1[0-2])/\\d{2}")) {
-            JOptionPane.showMessageDialog(this, "Formato de fecha inválido. Use MM/yy.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
+                if (!texto.equals(txtNombre.getText())) {
+                    txtNombre.setText(texto);
+                }
+            }
+        });
 
-        if (!cvv.matches("\\d{3,4}")) {
-            JOptionPane.showMessageDialog(this, "CVV inválido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
+        txtNombre.setDocument(new javax.swing.text.PlainDocument() {
+            @Override
+            public void insertString(int offs, String str, javax.swing.text.AttributeSet a)
+                    throws javax.swing.text.BadLocationException {
 
-        return true;
+                if (str == null) {
+                    return;
+                }
+
+                String limpio = str.replaceAll("[^a-zA-ZÁÉÍÓÚáéíóúÑñ ]", "");
+
+                if (!limpio.isEmpty()) {
+                    super.insertString(offs, limpio, a);
+                }
+            }
+        });
+
     }
 
     @SuppressWarnings("unchecked")
@@ -353,159 +360,24 @@ public class Pago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
-     String nombre = txtNombre.getText().trim();
-    String numeroTarjeta = txtNumeroTarjeta.getText().trim();
-    String fecha = txtFecha.getText().trim();
-    String cvv = txtCVV.getText().trim();
 
-    if (!validarDatosPago(nombre, numeroTarjeta, fecha, cvv)) {
-        return;
-    }
-
-    Sesion sesion = Sesion.getInstancia();
-    Usuario usuarioActual = sesion.getUsuarioActual();
-
-    ClienteDAO clienteDAO = ClienteDAO.getInstance();
-    Cliente clienteExistente = clienteDAO.buscarPorCedula(usuarioActual.getCedula());
-
-    boolean guardarTarjeta = false;
-
- 
-    if (clienteExistente != null && clienteExistente.isTarjetaGuardada()) {
-
-        boolean tarjetaDiferente =
-    !clienteExistente.getNumeroTarjeta().trim().equals(numeroTarjeta.trim()) ||
-    !clienteExistente.getNombreTarjeta().trim().equals(nombre.trim()) ||
-    !clienteExistente.getFechaExpiracion().trim().equals(fecha.trim()) ||
-    !clienteExistente.getCvv().trim().equals(cvv.trim());
-
-        if (tarjetaDiferente) {
-            int opcionActualizar = JOptionPane.showConfirmDialog(
-                    this,
-                    "Hemos detectado que los datos de la tarjeta son diferentes a los guardados.\n¿Desea actualizar su tarjeta con esta nueva información?",
-                    "Actualizar tarjeta",
-                    JOptionPane.YES_NO_OPTION
-            );
-
-            if (opcionActualizar == JOptionPane.YES_OPTION) {
-                JPasswordField passwordField = new JPasswordField();
-                int opcionContrasena = JOptionPane.showConfirmDialog(
-                        this,
-                        passwordField,
-                        "Ingrese su contraseña para confirmar",
-                        JOptionPane.OK_CANCEL_OPTION,
-                        JOptionPane.PLAIN_MESSAGE
-                );
-
-                if (opcionContrasena == JOptionPane.OK_OPTION) {
-                    String contrasenaIngresada = new String(passwordField.getPassword());
-                    if (contrasenaIngresada.equals(usuarioActual.getPassword())) {
-                        guardarTarjeta = true;
-                    } else {
-                        JOptionPane.showMessageDialog(
-                                this,
-                                "Contraseña incorrecta. No se actualizó la tarjeta.",
-                                "Error de seguridad",
-                                JOptionPane.ERROR_MESSAGE
-                        );
-                    }
-                }
-            }
-        }
-
-
-    } else {
-        int opcionGuardar = JOptionPane.showConfirmDialog(
-                this,
-                "¿Desea guardar los datos de su tarjeta para futuras compras?",
-                "Guardar tarjeta",
-                JOptionPane.YES_NO_OPTION
-        );
-
-        if (opcionGuardar == JOptionPane.YES_OPTION) {
-            guardarTarjeta = true;
-        }
-    }
-
-    Cliente cliente = new Cliente(
-            usuarioActual.getPrimerNombre(),
-            usuarioActual.getSegundoNombre(),
-            usuarioActual.getPrimerApellido(),
-            usuarioActual.getSegundoApellido(),
-            usuarioActual.getCedula(),
-            usuarioActual.getEmail(),
-            usuarioActual.getPassword(),
-            numeroTarjeta,
-            nombre,
-            fecha,
-            cvv,
-            guardarTarjeta
-    );
-
-    if (clienteExistente == null) {
-        clienteDAO.registrarCliente(cliente);
-    } else if (guardarTarjeta) {
-        clienteDAO.actualizarTarjeta(cliente.getCedula(), numeroTarjeta, nombre, fecha, cvv);
-    }
-
-
-    boolean exitoVenta = false;
-    List<ItemCarrito> itemsVenta = null;
-
-    if (motoSeleccionada != null) {
-        ItemCarrito item = new ItemCarrito(
+        boolean exito = pagoController.procesarPago(
+                Sesion.getInstancia().getUsuarioActual(),
+                txtNombre.getText().trim(),
+                txtNumeroTarjeta.getText().trim(),
+                txtFecha.getText().trim(),
+                txtCVV.getText().trim(),
                 motoSeleccionada,
-                cliente.getCedula(),
-                null,
-                1,
-                new BigDecimal(motoSeleccionada.getPrecio()),
-                new BigDecimal(motoSeleccionada.getPrecio())
+                carrito
         );
-        itemsVenta = List.of(item);
-        exitoVenta = ventaController.registrarVenta(cliente, itemsVenta);
 
-        if (exitoVenta) {
-            motoSeleccionada.setEstado(EstadoMoto.VENDIDO);
-            motoController.eliminarMoto(motoSeleccionada.getIdMoto());
-            motoController.guardarMoto(motoSeleccionada);
+        if (exito) {
+            JOptionPane.showMessageDialog(this, "¡Compra realizada con éxito!");
+            new Store().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al procesar el pago.");
         }
-
-    } else if (carrito != null) {
-        itemsVenta = new ArrayList<>(carrito.getItems());
-        if (itemsVenta.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "El carrito está vacío.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        exitoVenta = ventaController.registrarVenta(cliente, itemsVenta);
-
-        if (exitoVenta) {
-            for (ItemCarrito item : itemsVenta) {
-                Moto moto = item.getVehiculo();
-                moto.setEstado(EstadoMoto.VENDIDO);
-                motoController.eliminarMoto(moto.getIdMoto());
-                motoController.guardarMoto(moto);
-            }
-
-            ItemCarritoController itemController = new ItemCarritoController();
-            itemController.limpiarCarritoPorUsuario(cliente.getCedula());
-            carrito.getItems().clear();
-        }
-    }
-
- 
-    if (exitoVenta && itemsVenta != null) {
-        JOptionPane.showMessageDialog(this, "¡Compra realizada con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        Venta ventaGenerada = ventaController.getUltimaVenta();
-        if (ventaGenerada != null) {
-            ventaController.generarFacturaPDF(ventaGenerada, itemsVenta, cliente);
-        }
-        new Store().setVisible(true);
-        this.dispose();
-    } else {
-        JOptionPane.showMessageDialog(this, "Error al registrar la venta.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    
 
 
     }//GEN-LAST:event_FinalizarCompraActionPerformed
@@ -551,46 +423,18 @@ public class Pago extends javax.swing.JFrame {
     }//GEN-LAST:event_labelRegresarMouseClicked
 
     private void btnCargarTargetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarTargetaActionPerformed
+        boolean ok = pagoController.cargarDatosTarjeta(
+                this,
+                txtNombre,
+                txtNumeroTarjeta,
+                txtFecha,
+                txtCVV
+        );
 
-        
-    
-    Sesion sesion = Sesion.getInstancia();
-    Usuario usuarioActual = sesion.getUsuarioActual();
+        if (ok) {
+            DatosPago.setVisible(true);
+        }
 
-    if (usuarioActual == null) {
-        JOptionPane.showMessageDialog(this, "Debe iniciar sesión primero.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    String password = JOptionPane.showInputDialog(this, "Ingrese su contraseña para continuar:");
-
-    if (password == null || password.trim().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Debe ingresar la contraseña.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-
-    if (!password.equals(usuarioActual.getPassword())) {
-        JOptionPane.showMessageDialog(this, "Contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    ClienteDAO clienteDAO = ClienteDAO.getInstance();
-    Cliente cliente = clienteDAO.buscarPorCedula(usuarioActual.getCedula());
-
-    if (cliente == null || !cliente.isTarjetaGuardada()) {
-        JOptionPane.showMessageDialog(this, "No hay tarjeta guardada para este usuario.", "Información", JOptionPane.INFORMATION_MESSAGE);
-        return;
-    }
-
-    txtNombre.setText(cliente.getNombreTarjeta());
-    txtNumeroTarjeta.setText(cliente.getNumeroTarjeta());
-    txtFecha.setText(cliente.getFechaExpiracion());
-    txtCVV.setText(cliente.getCvv()); 
-
-    DatosPago.setVisible(true);
-    JOptionPane.showMessageDialog(this, "Datos de tarjeta cargados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        
-   
 
     }//GEN-LAST:event_btnCargarTargetaActionPerformed
 

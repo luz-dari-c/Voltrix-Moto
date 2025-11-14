@@ -29,12 +29,16 @@ public class ClienteDAO {
     }
 
     private String encriptar(String texto) {
-        if (texto == null) return null;
+        if (texto == null) {
+            return null;
+        }
         return Base64.getEncoder().encodeToString(texto.getBytes());
     }
 
     private String desencriptar(String texto) {
-        if (texto == null) return null;
+        if (texto == null) {
+            return null;
+        }
         try {
             byte[] decodedBytes = Base64.getDecoder().decode(texto);
             return new String(decodedBytes);
@@ -49,9 +53,12 @@ public class ClienteDAO {
 
         if (archivo.exists() && archivo.length() > 0) {
             try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
-                Type listType = new TypeToken<List<Cliente>>() {}.getType();
+                Type listType = new TypeToken<List<Cliente>>() {
+                }.getType();
                 lista = gson.fromJson(reader, listType);
-                if (lista == null) lista = new ArrayList<>();
+                if (lista == null) {
+                    lista = new ArrayList<>();
+                }
             } catch (IOException e) {
                 System.err.println("Error al cargar clientes: " + e.getMessage());
             }
@@ -70,84 +77,84 @@ public class ClienteDAO {
         }
     }
 
- public synchronized boolean registrarCliente(Cliente cliente) {
-    if (buscarPorCedula(cliente.getCedula()) != null) {
-        return false;
-    }
+    public synchronized boolean registrarCliente(Cliente cliente) {
+        if (buscarPorCedula(cliente.getCedula()) != null) {
+            return false;
+        }
 
-    cliente.setNumeroTarjeta(encriptar(cliente.getNumeroTarjeta()));
-    cliente.setCvv(encriptar(cliente.getCvv()));
-    cliente.setPassword(encriptar(cliente.getPassword())); 
+        cliente.setNumeroTarjeta(encriptar(cliente.getNumeroTarjeta()));
+        cliente.setCvv(encriptar(cliente.getCvv()));
+        cliente.setPassword(encriptar(cliente.getPassword()));
 
-    clientes.add(cliente);
-    guardarClientes();
-    return true;
-    
-}
-
-
-    
-  public synchronized boolean actualizarTarjeta(String cedula, String numero, String nombre, String fecha, String cvv) {
-    Cliente cliente = buscarPorCedula(cedula);
-    if (cliente != null) {
-        if (!esBase64(numero)) numero = encriptar(numero);
-        if (!esBase64(cvv)) cvv = encriptar(cvv);
-
-        cliente.setNumeroTarjeta(numero);
-        cliente.setNombreTarjeta(nombre);
-        cliente.setFechaExpiracion(fecha);
-        cliente.setCvv(cvv);
-        cliente.setTarjetaGuardada(true);
-
+        clientes.add(cliente);
         guardarClientes();
         return true;
-    }
-    return false;
-}
 
-
-public Cliente buscarPorCedula(String cedula) {
-    Cliente clienteOriginal = clientes.stream()
-            .filter(c -> c.getCedula().equals(cedula))
-            .findFirst()
-            .orElse(null);
-
-    if (clienteOriginal == null) {
-        return null;
     }
 
-   
-    Cliente copia = new Cliente(
-            clienteOriginal.getPrimerNombre(),
-            clienteOriginal.getSegundoNombre(),
-            clienteOriginal.getPrimerApellido(),
-            clienteOriginal.getSegundoApellido(),
-            clienteOriginal.getCedula(),
-            clienteOriginal.getEmail(),
-            desencriptar(clienteOriginal.getPassword()),
-            desencriptar(clienteOriginal.getNumeroTarjeta()),
-            clienteOriginal.getNombreTarjeta(),
-            clienteOriginal.getFechaExpiracion(),
-            desencriptar(clienteOriginal.getCvv()),
-            clienteOriginal.isTarjetaGuardada()
-    );
+    public synchronized boolean actualizarTarjeta(String cedula, String numero, String nombre, String fecha, String cvv) {
+        Cliente cliente = clientes.stream()
+                .filter(c -> c.getCedula().equals(cedula))
+                .findFirst()
+                .orElse(null);
 
-    return copia;
-}
+        if (cliente != null) {
+            cliente.setNumeroTarjeta(encriptar(numero));
+            cliente.setNombreTarjeta(nombre);
+            cliente.setFechaExpiracion(fecha);
+            cliente.setCvv(encriptar(cvv));
+            cliente.setTarjetaGuardada(true);
 
-  
-  private boolean esBase64(String texto) {
-    if (texto == null) return false;
-    try {
-        Base64.getDecoder().decode(texto);
-        return true;
-    } catch (IllegalArgumentException e) {
+            guardarClientes();
+            return true;
+        }
         return false;
     }
-}
 
+    public Cliente buscarPorCedula(String cedula) {
+        Cliente clienteEnMemoria = clientes.stream()
+                .filter(c -> c.getCedula().equals(cedula))
+                .findFirst()
+                .orElse(null);
 
+        if (clienteEnMemoria == null) {
+            return null;
+        }
 
+        Cliente copia = new Cliente(
+                clienteEnMemoria.getPrimerNombre(),
+                clienteEnMemoria.getSegundoNombre(),
+                clienteEnMemoria.getPrimerApellido(),
+                clienteEnMemoria.getSegundoApellido(),
+                clienteEnMemoria.getCedula(),
+                clienteEnMemoria.getEmail(),
+                desencriptar(clienteEnMemoria.getPassword()),
+                desencriptar(clienteEnMemoria.getNumeroTarjeta()),
+                clienteEnMemoria.getNombreTarjeta(),
+                clienteEnMemoria.getFechaExpiracion(),
+                desencriptar(clienteEnMemoria.getCvv()),
+                clienteEnMemoria.isTarjetaGuardada()
+        );
+
+        return copia;
+    }
+
+    private boolean esBase64(String texto) {
+        if (texto == null) {
+            return false;
+        }
+        try {
+            Base64.getDecoder().decode(texto);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    public synchronized void recargarClientes() {
+        clientes.clear();
+        clientes.addAll(cargarClientes());
+    }
 
     public List<Cliente> obtenerTodos() {
         return new ArrayList<>(clientes);

@@ -19,13 +19,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class Carrito extends javax.swing.JFrame {
 
+    ItemCarritoController itemController = ItemCarritoController.getInstancia();
+
     public Carrito() {
         initComponents();
     }
     private Model.Entities.Carrito carrito;
 
-    
-    
     public Carrito(Model.Entities.Carrito carrito) {
         initComponents();
         this.carrito = carrito;
@@ -36,148 +36,139 @@ public class Carrito extends javax.swing.JFrame {
         configurarItemMenu();
 
     }
-    
-    private void configurarItemMenu(){  
+
+    private void configurarItemMenu() {
         JMenuItem comprar = new JMenuItem("Comprar esta moto");
         JMenuItem eliminar = new JMenuItem("Eliminar del carrito");
-        
+
         popMenuComprarOEliminar.add(comprar);
         popMenuComprarOEliminar.add(eliminar);
-     
+
         tablaDeCarrito.setComponentPopupMenu(popMenuComprarOEliminar);
-      
-        
-        comprar.addActionListener(new ActionListener(){
-          @Override
-          public void actionPerformed(ActionEvent e){
-              comprarMotoSeleccionada();
-                  
-              
-          }        
-        });
-        
-           eliminar.addActionListener(new ActionListener(){
-          @Override
-          public void actionPerformed(ActionEvent e){
-          eliminarMotoSeleccionada();
-              
-          }        
-        });
-        
-        
-    }
-    
-private void comprarMotoSeleccionada() {
-    int filaSeleccionada = tablaDeCarrito.getSelectedRow();
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Por favor, selecciona una moto de la tabla.", "Aviso", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
 
-    ItemCarrito itemSeleccionado = carrito.getItems().get(filaSeleccionada);
-    Moto motoSeleccionada = itemSeleccionado.getVehiculo();
+        comprar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                comprarMotoSeleccionada();
 
-    if (motoSeleccionada.getEstado() != EstadoMoto.EN_CARRITO) {
-        JOptionPane.showMessageDialog(this, "Esta moto no está disponible para compra.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    int confirmacion = JOptionPane.showConfirmDialog(this,
-            "¿Estás seguro de que quieres comprar " + motoSeleccionada.getModelo() + "?",
-            "Confirmar compra individual",
-            JOptionPane.YES_NO_OPTION);
-
-    if (confirmacion == JOptionPane.YES_OPTION) {
-        try {
-            ItemCarritoController itemController = new ItemCarritoController();
-            boolean eliminado = itemController.eliminarItem(itemSeleccionado.getId());
-            
-            if (eliminado) {
-                carrito.getItems().remove(filaSeleccionada);
-                
-                Sesion sesion = Sesion.getInstancia();
-                sesion.setCarritoActual(carrito);
-                
-                cargarCarritoEnTabla();
-                
-                Pago pago = new Pago(motoSeleccionada);
-                this.dispose();
-                pago.setVisible(true);
-                
-            } else {
-                JOptionPane.showMessageDialog(this, 
-                    "Error al preparar la moto para compra.", 
-                    "Error", 
-                    JOptionPane.ERROR_MESSAGE);
             }
-            
-        } catch (Exception e) {
-            System.err.println("Error al procesar compra individual: " + e.getMessage());
-            JOptionPane.showMessageDialog(this, 
-                "Error al procesar la compra: " + e.getMessage(), 
-                "Error", 
-                JOptionPane.ERROR_MESSAGE);
+        });
+
+        eliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                eliminarMotoSeleccionada();
+
+            }
+        });
+
+    }
+
+    private void comprarMotoSeleccionada() {
+        int filaSeleccionada = tablaDeCarrito.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una moto de la tabla.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        ItemCarrito itemSeleccionado = carrito.getItems().get(filaSeleccionada);
+        Moto motoSeleccionada = itemSeleccionado.getVehiculo();
+
+        if (motoSeleccionada.getEstado() != EstadoMoto.EN_CARRITO) {
+            JOptionPane.showMessageDialog(this, "Esta moto no está disponible para compra.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int confirmacion = JOptionPane.showConfirmDialog(this,
+                "¿Estás seguro de que quieres comprar " + motoSeleccionada.getModelo() + "?",
+                "Confirmar compra individual",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            try {
+                boolean eliminado = itemController.eliminarItem(itemSeleccionado.getId());
+
+                if (eliminado) {
+                    carrito.getItems().remove(filaSeleccionada);
+
+                    Sesion sesion = Sesion.getInstancia();
+                    sesion.setCarritoActual(carrito);
+
+                    cargarCarritoEnTabla();
+
+                    Pago pago = new Pago(motoSeleccionada);
+                    this.dispose();
+                    pago.setVisible(true);
+
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Error al preparar la moto para compra.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (Exception e) {
+                System.err.println("Error al procesar compra individual: " + e.getMessage());
+                JOptionPane.showMessageDialog(this,
+                        "Error al procesar la compra: " + e.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
-}
 
-    
     private void eliminarMotoSeleccionada() {
-    int filaSeleccionada = tablaDeCarrito.getSelectedRow();
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Por favor, selecciona una moto de la tabla.", "Aviso", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        int filaSeleccionada = tablaDeCarrito.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una moto de la tabla.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-    ItemCarrito itemSeleccionado = carrito.getItems().get(filaSeleccionada);
-    Moto motoSeleccionada = itemSeleccionado.getVehiculo();
+        ItemCarrito itemSeleccionado = carrito.getItems().get(filaSeleccionada);
+        Moto motoSeleccionada = itemSeleccionado.getVehiculo();
 
-    int confirmacion = JOptionPane.showConfirmDialog(this,
-            "¿Estás seguro de que quieres eliminar la moto " + motoSeleccionada.getModelo() + " del carrito?",
-            "Confirmar eliminación",
-            JOptionPane.YES_NO_OPTION);
+        int confirmacion = JOptionPane.showConfirmDialog(this,
+                "¿Estás seguro de que quieres eliminar la moto " + motoSeleccionada.getModelo() + " del carrito?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION);
 
-    if (confirmacion == JOptionPane.YES_OPTION) {
-        try {
-            motoSeleccionada.setEstado(EstadoMoto.DISPONIBLE);
-            
-            MotoController motoController = new MotoController();
-            motoController.actualizarMoto(motoSeleccionada);
-            
-            ItemCarritoController itemController = new ItemCarritoController();
-            boolean eliminado = itemController.eliminarItem(itemSeleccionado.getId());
-            
-            if (eliminado) {
-                carrito.getItems().remove(filaSeleccionada);
-                
-                Sesion sesion = Sesion.getInstancia();
-                sesion.setCarritoActual(carrito);
-                
-                cargarCarritoEnTabla();
-                
-                JOptionPane.showMessageDialog(this, 
-                    "Moto eliminada del carrito correctamente.", 
-                    "Éxito", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, 
-                    "Error al eliminar la moto del carrito.", 
-                    "Error", 
-                    JOptionPane.ERROR_MESSAGE);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            try {
+                motoSeleccionada.setEstado(EstadoMoto.DISPONIBLE);
+
+                MotoController motoController = new MotoController();
+                motoController.actualizarMoto(motoSeleccionada);
+
+                boolean eliminado = itemController.eliminarItem(itemSeleccionado.getId());
+
+                if (eliminado) {
+                    carrito.getItems().remove(filaSeleccionada);
+
+                    Sesion sesion = Sesion.getInstancia();
+                    sesion.setCarritoActual(carrito);
+
+                    cargarCarritoEnTabla();
+
+                    JOptionPane.showMessageDialog(this,
+                            "Moto eliminada del carrito correctamente.",
+                            "Éxito",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Error al eliminar la moto del carrito.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (Exception e) {
+                System.err.println("Error al eliminar item del carrito: " + e.getMessage());
+                JOptionPane.showMessageDialog(this,
+                        "Error al eliminar la moto del carrito: " + e.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
-            
-        } catch (Exception e) {
-            System.err.println("Error al eliminar item del carrito: " + e.getMessage());
-            JOptionPane.showMessageDialog(this, 
-                "Error al eliminar la moto del carrito: " + e.getMessage(), 
-                "Error", 
-                JOptionPane.ERROR_MESSAGE);
         }
     }
-    }
-    
-    
-    
 
     private void cargarCarritoEnTabla() {
         DefaultTableModel modelo = (DefaultTableModel) tablaDeCarrito.getModel();
@@ -224,7 +215,6 @@ private void comprarMotoSeleccionada() {
             }
 
             String idUsuario = sesion.getUsuarioActual().getCedula();
-            ItemCarritoController itemController = new ItemCarritoController();
             List<ItemCarrito> items = itemController.obtenerItemsPorUsuario(idUsuario);
 
             for (ItemCarrito item : items) {
@@ -342,15 +332,15 @@ private void comprarMotoSeleccionada() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-   Model.Entities.Carrito carritoDisponible = carrito.ontenerSoloEnCarrito();
-      
+
+        Model.Entities.Carrito carritoDisponible = carrito.ontenerSoloEnCarrito();
+
         if (carritoDisponible == null || carritoDisponible.getItems().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El carrito está vacío o contiene motos no disponibles.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Pago pago = new Pago(carritoDisponible); 
+        Pago pago = new Pago(carritoDisponible);
         this.dispose();
         pago.setVisible(true);
 

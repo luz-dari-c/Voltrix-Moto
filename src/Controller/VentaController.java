@@ -12,15 +12,25 @@ import java.util.List;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 
-
 public class VentaController {
 
+    private static VentaController instancia;
     private final VentaDAO ventaDAO;
 
-    public VentaController() {
+    private VentaController() {
         this.ventaDAO = VentaDAO.getInstancia();
     }
 
+    public static synchronized VentaController getInstancia() {
+        if (instancia == null) {
+            instancia = new VentaController();
+        }
+        return instancia;
+    }
+
+    public static void resetInstancia() {
+        instancia = null;
+    }
  
     public boolean registrarVenta(Usuario usuario, List<ItemCarrito> itemsVendidos) {
         if (usuario == null) {

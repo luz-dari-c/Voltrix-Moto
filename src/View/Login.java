@@ -20,6 +20,8 @@ import javax.swing.UIManager;
 public class Login extends javax.swing.JFrame {
 
     UsuarioController usuarioController = UsuarioController.getInstance();
+    CarritoController carritoController = CarritoController.getInstancia();
+    ItemCarritoController itemController = ItemCarritoController.getInstancia();
 
     @Override
     public Insets getInsets() {
@@ -192,8 +194,6 @@ public class Login extends javax.swing.JFrame {
         String email = txtEmail.getText().trim();
         String password = new String(jPasswordField1.getPassword()).trim();
 
-        
-        UsuarioController usuarioController = UsuarioController.getInstance();
         String resultadoLogin = usuarioController.login(email, password);
 
         if (resultadoLogin.equals("OK")) {
@@ -207,66 +207,24 @@ public class Login extends javax.swing.JFrame {
             Sesion sesion = Sesion.getInstancia();
             sesion.setUsuarioActual(usuarioLogeado);
 
-            CarritoController carritoController = new CarritoController();
-            List<Carrito> carritos = carritoController.listarCarritos();
-
-            Carrito carritoUsuario = null;
-            for (Carrito c : carritos) {
-                if (c.getIdUsuario().equals(usuarioLogeado.getCedula())) {
-                    carritoUsuario = c;
-                    break;
-                }
-            }
-            if (carritoUsuario == null) {
-                carritoController.crearCarrito(usuarioLogeado.getCedula());
-                carritos = carritoController.listarCarritos();
-                for (Carrito c : carritos) {
-                    if (c.getIdUsuario().equals(usuarioLogeado.getCedula())) {
-                        carritoUsuario = c;
-                        break;
-                    }
-                }
-            }
-            sesion.setCarritoActual(carritoUsuario);
-
-            if (carritoUsuario != null) {
-                CarritoController carritoControllerRecarga = new CarritoController();
-                Carrito carritoActualizado = carritoControllerRecarga.buscarCarritoPorId(carritoUsuario.getId());
-
-                if (carritoActualizado != null && carritoActualizado.getItems() != null) {
-                    sesion.setCarritoActual(carritoActualizado);
-                }
-
-                ItemCarritoController itemController = new ItemCarritoController();
-                List<ItemCarrito> itemsUsuario = itemController.obtenerItemsPorUsuario(usuarioLogeado.getCedula());
-
-                if (itemsUsuario != null && !itemsUsuario.isEmpty()) {
-                    carritoActualizado.setItems(itemsUsuario);
-                    sesion.setCarritoActual(carritoActualizado);
-                    System.out.println("Ítems del carrito cargados para el usuario: " + usuarioLogeado.getPrimerNombre() + " " + usuarioLogeado.getPrimerApellido());
-                } else {
-                    System.out.println("El usuario no tiene ítems en su carrito actualmente.");
-                }
-            }
+            carritoController.cargarCarritoDeUsuario(usuarioLogeado.getCedula());
 
             JOptionPane.showMessageDialog(this, "¡Bienvenido, " + usuarioLogeado.getPrimerNombre() + "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
 
             if (usuarioLogeado.isAdmin()) {
-            Administador adminFrame = new Administador();
-            adminFrame.setVisible(true);
-            this.dispose(); 
-        } else {
-            Store st = new Store();
-            st.setVisible(true);
-            this.dispose();
-        }
-            
-            
+                Administador adminFrame = new Administador();
+                adminFrame.setVisible(true);
+                this.dispose();
+            } else {
+                Store st = new Store();
+                st.setVisible(true);
+                this.dispose();
+            }
+
         } else {
             JOptionPane.showMessageDialog(this, resultadoLogin, "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

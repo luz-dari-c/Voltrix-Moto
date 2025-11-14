@@ -444,8 +444,8 @@ public class KawasakiVerde extends javax.swing.JFrame {
         Sesion sesion = Sesion.getInstancia();
         Usuario usuario = sesion.getUsuarioActual();
         Model.Entities.Carrito carrito = sesion.getCarritoActual();
-        CarritoController carritoController = new CarritoController();
-        ItemCarritoController itemController = new ItemCarritoController();
+        CarritoController carritoController = CarritoController.getInstancia();
+        ItemCarritoController itemController = ItemCarritoController.getInstancia();
         MotoController motoController = new MotoController();
 
         if (usuario == null) {

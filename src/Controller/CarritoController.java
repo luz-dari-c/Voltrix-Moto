@@ -3,15 +3,27 @@ package Controller;
 import DAO.CarritoDAO;
 import Model.Entities.Carrito;
 import Model.Entities.ItemCarrito;
+import Model.Entities.Sesion;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarritoController {
 
+    private static CarritoController instancia;
+
     private final CarritoDAO carritoDAO;
 
-    public CarritoController() {
+    private CarritoController() {
         this.carritoDAO = CarritoDAO.getInstancia();
+    }
+
+    public static CarritoController getInstancia() {
+        if (instancia == null) {
+            instancia = new CarritoController();
+        }
+        return instancia;
     }
 
     public boolean crearCarrito(String idUsuario) {
@@ -85,4 +97,57 @@ public class CarritoController {
         carrito.recalcularTotal();
         return carritoDAO.actualizarCarrito(carrito);
     }
+    
+    
+    
+public Carrito cargarCarritoDeUsuario(String idUsuario) {
+    if (idUsuario == null || idUsuario.isEmpty()) {
+        System.err.println("ID de usuario inválido");
+        return null;
+    }
+
+    List<Carrito> carritos = carritoDAO.cargarTodos();
+
+    Carrito carritoUsuario = null;
+
+    for (Carrito c : carritos) {
+        if (idUsuario.equals(c.getIdUsuario())) {
+            carritoUsuario = c;
+            break;
+        }
+    }
+
+    if (carritoUsuario == null) {
+        Carrito nuevo = new Carrito();
+        nuevo.setIdUsuario(idUsuario);
+        nuevo.setFechaCreacion(LocalDate.now());
+
+        boolean guardado = carritoDAO.guardarCarrito(nuevo);
+
+        if (!guardado) {
+            System.err.println("Error al crear carrito para usuario " + idUsuario);
+            return null;
+        }
+
+        carritos = carritoDAO.cargarTodos();
+        for (Carrito c : carritos) {
+            if (idUsuario.equals(c.getIdUsuario())) {
+                carritoUsuario = c;
+                break;
+            }
+        }
+    }
+
+    ItemCarritoController itemController = ItemCarritoController.getInstancia();
+    List<ItemCarrito> items = itemController.obtenerItemsPorUsuario(idUsuario);
+
+    carritoUsuario.setItems(items != null ? items : new ArrayList<>());
+
+    Sesion sesion = Sesion.getInstancia();
+    sesion.setCarritoActual(carritoUsuario);
+
+    return carritoUsuario;
+}
+
+
 }

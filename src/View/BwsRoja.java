@@ -423,9 +423,10 @@ public class BwsRoja extends javax.swing.JFrame {
         Sesion sesion = Sesion.getInstancia();
         Usuario usuario = sesion.getUsuarioActual();
         Model.Entities.Carrito carrito = sesion.getCarritoActual();
-        CarritoController carritoController = new CarritoController();
-        ItemCarritoController itemController = new ItemCarritoController();
-        MotoController motoController = new MotoController();
+        CarritoController carritoController =CarritoController.getInstancia();
+        ItemCarritoController itemController = ItemCarritoController.getInstancia();
+        MotoController motoController = MotoController.getInstancia();
+        
 
         if (usuario == null) {
             JOptionPane.showMessageDialog(this, "Debe iniciar sesión para agregar al carrito.", "Error", JOptionPane.ERROR_MESSAGE);

@@ -11,10 +11,20 @@ import java.util.List;
 
 public class ItemCarritoController {
 
+ 
+    private static ItemCarritoController instancia;
+
     private final ItemCarritoDAO itemCarritoDAO;
 
-    public ItemCarritoController() {
+    private ItemCarritoController() {
         this.itemCarritoDAO = ItemCarritoDAO.getInstancia();
+    }
+
+    public static ItemCarritoController getInstancia() {
+        if (instancia == null) {
+            instancia = new ItemCarritoController();
+        }
+        return instancia;
     }
 
     public boolean agregarItem(Moto vehiculo, int cantidad, BigDecimal precioUnitario) {
@@ -105,29 +115,27 @@ public class ItemCarritoController {
         MotoController motoController = new MotoController();
         return motoController.buscarPorId(idMoto);
     }
-    
-    
-    
-    public boolean limpiarCarritoPorUsuario(String idUsuario) {
-    if (idUsuario == null || idUsuario.isEmpty()) {
-        System.err.println("ID de usuario inválido al limpiar carrito.");
-        return false;
-    }
-    
-    List<ItemCarrito> itemsUsuario = obtenerItemsPorUsuario(idUsuario);
-    System.out.println("Eliminando " + itemsUsuario.size() + " items del usuario: " + idUsuario);
-    
-    boolean todosEliminados = true;
-    for (ItemCarrito item : itemsUsuario) {
-        boolean eliminado = itemCarritoDAO.eliminarItem(item.getId());
-        if (!eliminado) {
-            System.err.println("Error al eliminar item: " + item.getId());
-            todosEliminados = false;
-        }
-    }
-    
-    System.out.println("Resultado limpieza carrito: " + todosEliminados);
-    return todosEliminados;
-}
 
+    public boolean limpiarCarritoPorUsuario(String idUsuario) {
+        if (idUsuario == null || idUsuario.isEmpty()) {
+            System.err.println("ID de usuario inválido al limpiar carrito.");
+            return false;
+        }
+
+        List<ItemCarrito> itemsUsuario = obtenerItemsPorUsuario(idUsuario);
+        System.out.println("Eliminando " + itemsUsuario.size() + " items del usuario: " + idUsuario);
+
+        boolean todosEliminados = true;
+
+        for (ItemCarrito item : itemsUsuario) {
+            boolean eliminado = itemCarritoDAO.eliminarItem(item.getId());
+            if (!eliminado) {
+                System.err.println("Error al eliminar item: " + item.getId());
+                todosEliminados = false;
+            }
+        }
+
+        System.out.println("Resultado limpieza carrito: " + todosEliminados);
+        return todosEliminados;
+    }
 }

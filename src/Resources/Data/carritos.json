@@ -6,79 +6,154 @@
     "items": [
       {
         "vehiculo": {
-          "idMoto": 34,
-          "placa": "QBF-884",
-          "marca": "BMW",
-          "modelo": "R1250RT",
-          "fechaIngreso": "2025-11-03",
-          "precio": 1.6E8,
-          "tipoMoto": "SEMIDEPORTIVA",
-          "tipoColorMoto": "BLANCO",
-          "cilindraje": 1250,
-          "tieneParrilla": true,
+          "idMoto": 121,
+          "placa": "MSX-058",
+          "marca": "Norton",
+          "modelo": "NMAX 155",
+          "fechaIngreso": "2025-11-13",
+          "precio": 1.45E7,
+          "tipoMoto": "SCOOTER",
+          "tipoColorMoto": "VERDE",
+          "cilindraje": 155,
+          "tieneParrilla": false,
           "tieneMaletero": true,
           "partesMoto": {
             "llantaDelantera": {
-              "idLlantaDelantera": "LLD-13915",
-              "medida": "R17_120_70",
+              "idLlantaDelantera": "LLD-28471",
+              "medida": "R16_100_80",
               "ubicacion": "DELANTERA",
-              "marca": "Metzeler",
-              "modelo": "Tourance",
+              "marca": "IRC",
+              "modelo": "Tires",
               "material": "CAUCHO"
             },
             "llantaTrasera": {
-              "idLlantaTrasera": "LLT-35336",
-              "medida": "R17_180_55",
+              "idLlantaTrasera": "LLT-15772",
+              "medida": "R16_100_80",
               "ubicacion": "DELANTERA",
-              "marca": "Metzeler",
-              "modelo": "Tourance",
+              "marca": "IRC",
+              "modelo": "Tires",
               "material": "CAUCHO"
             },
             "chasis": {
-              "idChasis": "CHS-81697",
-              "material": "ACERO"
+              "idChasis": "CHS-36006",
+              "material": "ACERO",
+              "tipo": "TUBULAR"
             },
             "motor": {
-              "idMotor": "MTR-81937",
+              "idMotor": "MTR-13805",
               "tipo": "CUATRO_TIEMPOS",
-              "cilindrada": 1250,
-              "potencia": 136
+              "cilindrada": 155,
+              "potencia": 15
             },
             "asiento": {
-              "idAsiento": "AST-60989",
+              "idAsiento": "AST-45247",
               "material": "CUERO",
               "capacidad": "BIPLAZA"
             },
             "frenoDelantero": {
-              "idFrenoDelantero": "FRD-83337",
+              "idFrenoDelantero": "FRD-40845",
               "ubicacion": "DELANTERO",
-              "marca": "Brembo",
-              "modelo": "FD-Tour",
+              "marca": "Yamaha",
+              "modelo": "FD-Scoot",
               "material": "ACERO"
             },
             "frenoTrasero": {
-              "idFrenoTrasero": "FRT-56046",
+              "idFrenoTrasero": "FRT-59893",
               "ubicacion": "TRASERO",
-              "marca": "Brembo",
-              "modelo": "FT-Tour",
+              "marca": "Yamaha",
+              "modelo": "FT-Scoot",
               "material": "ACERO"
             },
             "transmision": {
-              "idTransmision": "TRS-83269",
+              "idTransmision": "TRS-86048",
+              "tipoTransmision": "AUTOMATICA",
+              "velocidades": "UNA"
+            }
+          },
+          "estado": "EN_CARRITO"
+        },
+        "id": "1",
+        "usuarioId": "1237440696",
+        "cantidad": 1,
+        "precioUnitario": 1.45E+7,
+        "subtotal": 1.45E+7
+      },
+      {
+        "vehiculo": {
+          "idMoto": 9,
+          "placa": "DFC-856",
+          "marca": "Honda",
+          "modelo": "Low Rider",
+          "fechaIngreso": "2025-11-13",
+          "precio": 1.49E8,
+          "tipoMoto": "SEMIAUTOMATICA",
+          "tipoColorMoto": "VERDE",
+          "cilindraje": 1200,
+          "tieneParrilla": true,
+          "tieneMaletero": true,
+          "partesMoto": {
+            "llantaDelantera": {
+              "idLlantaDelantera": "LLD-41648",
+              "medida": "R17_120_70",
+              "ubicacion": "DELANTERA",
+              "marca": "Dunlop",
+              "modelo": "Cruise",
+              "material": "CAUCHO"
+            },
+            "llantaTrasera": {
+              "idLlantaTrasera": "LLT-40914",
+              "medida": "R17_120_70",
+              "ubicacion": "DELANTERA",
+              "marca": "Dunlop",
+              "modelo": "Cruise",
+              "material": "CAUCHO"
+            },
+            "chasis": {
+              "idChasis": "CHS-10688",
+              "material": "ACERO",
+              "tipo": "TUBULAR"
+            },
+            "motor": {
+              "idMotor": "MTR-30533",
+              "tipo": "DOS_TIEMPOS",
+              "cilindrada": 1200,
+              "potencia": 90
+            },
+            "asiento": {
+              "idAsiento": "AST-68206",
+              "material": "CUERO",
+              "capacidad": "BIPLAZA"
+            },
+            "frenoDelantero": {
+              "idFrenoDelantero": "FRD-78746",
+              "ubicacion": "DELANTERO",
+              "marca": "Harley",
+              "modelo": "FD-Cruise",
+              "material": "ACERO"
+            },
+            "frenoTrasero": {
+              "idFrenoTrasero": "FRT-31199",
+              "ubicacion": "TRASERO",
+              "marca": "Harley",
+              "modelo": "FT-Cruise",
+              "material": "ACERO"
+            },
+            "transmision": {
+              "idTransmision": "TRS-31912",
               "tipoTransmision": "MANUAL",
-              "velocidades": "SEIS"
+              "velocidades": "CINCO"
             }
           },
           "estado": "DISPONIBLE"
         },
-        "id": "34",
+        "id": "9",
         "usuarioId": "1237440696",
         "cantidad": 1,
-        "precioUnitario": 1.6E+8,
-        "subtotal": 1.6E+8
+        "precioUnitario": 1.49E+8,
+        "subtotal": 1.49E+8
       }
     ],
-    "total": 160000000
+    "total": 163500000
   },
   {
     "id": "2",

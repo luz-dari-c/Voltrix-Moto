@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package View;
 
 import Controller.CarritoController;
@@ -428,9 +425,9 @@ public class y1Roja extends javax.swing.JFrame {
         Sesion sesion = Sesion.getInstancia();
         Usuario usuario = sesion.getUsuarioActual();
         Model.Entities.Carrito carrito = sesion.getCarritoActual();
-        CarritoController carritoController = new CarritoController();
-        ItemCarritoController itemController = new ItemCarritoController();
-        MotoController motoController = new MotoController();
+        CarritoController carritoController = CarritoController.getInstancia();
+        ItemCarritoController itemController = ItemCarritoController.getInstancia();
+        MotoController motoController = MotoController.getInstancia();
                 
 
         if (usuario == null) {
