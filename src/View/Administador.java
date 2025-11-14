@@ -3,23 +3,10 @@ package View;
 import Controller.EmpleadoController;
 import Controller.MotoController;
 import DAO.EmpleadoDAO;
-import Model.Constants.CapacidadAsiento;
-import Model.Constants.MaterialAsiento;
-import Model.Constants.MaterialChasis;
-import Model.Constants.MaterialFreno;
-import Model.Constants.MaterialLlanta;
-import Model.Constants.MedidaLlanta;
-import Model.Constants.TipoChasis;
-import Model.Constants.TipoColorMoto;
-import Model.Constants.TipoMoto;
-import Model.Constants.TipoMotor;
-import Model.Constants.TipoTransmision;
-import Model.Constants.TipoVelocidades;
 import Model.Entities.Empleado;
 import Model.Entities.Moto;
 import Model.Entities.PartesMoto;
 import Utilidades.ModernTopMenu;
-import Validator.Validation;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -32,7 +19,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -2183,67 +2169,26 @@ public class Administador extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            String tipoSeleccionado = comboBoxTipoMoto3.getSelectedItem() != null
-                    ? comboBoxTipoMoto3.getSelectedItem().toString().trim()
-                    : "";
-            String colorSeleccionado = comboBoxColorMoto.getSelectedItem() != null
-                    ? comboBoxColorMoto.getSelectedItem().toString().trim()
-                    : "";
+            String tipoSeleccionado = (String) comboBoxTipoMoto3.getSelectedItem();
+            String colorSeleccionado = (String) comboBoxColorMoto.getSelectedItem();
             String marcaSeleccionada = MarcaMotos.getText().trim();
-
-            if (tipoSeleccionado.equalsIgnoreCase("Seleccionar")
-                    || colorSeleccionado.equalsIgnoreCase("Seleccionar")
-                    || marcaSeleccionada.isEmpty()) {
-
-                JOptionPane.showMessageDialog(this,
-                        "Debes completar todos los campos antes de continuar.",
-                        "Campos incompletos",
-                        JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-
-            if (!Validation.validarMarca(marcaSeleccionada)) {
-                MarcaMotos.setBackground(new Color(255, 200, 200));
-                JOptionPane.showMessageDialog(this,
-                        "La marca solo puede contener letras, números, espacios, guiones, puntos y &.",
-                        "Error en marca",
-                        JOptionPane.ERROR_MESSAGE);
-                MarcaMotos.requestFocusInWindow();
-                return;
-            } else {
-                MarcaMotos.setBackground(new Color(200, 255, 200));
-            }
-
-            if (!Validation.validarSpinnerNumerico(SpinnerCantidadMotos,
-                    "La cantidad debe ser numérica y mayor que cero.")) {
-                return;
-            }
-
             int cantidad = (int) SpinnerCantidadMotos.getValue();
-            TipoMoto tipoMoto = TipoMoto.valueOf(tipoSeleccionado.toUpperCase());
-            TipoColorMoto tipoColorMoto = TipoColorMoto.valueOf(colorSeleccionado.toUpperCase());
 
-            boolean exito = motoController.duplicarMotoPorTipo(tipoMoto, tipoColorMoto, marcaSeleccionada, cantidad);
+            boolean exito = MotoController.getInstancia().agregarMotosDesdeUI(
+                    tipoSeleccionado,
+                    colorSeleccionado,
+                    marcaSeleccionada,
+                    cantidad,
+                    MarcaMotos,
+                    SpinnerCantidadMotos,
+                    this
+            );
 
             if (exito) {
-                JOptionPane.showMessageDialog(this,
-                        "Motos añadidas correctamente.",
-                        "Éxito",
-                        JOptionPane.INFORMATION_MESSAGE);
                 limpiarCamposMoto();
                 cargarMotosEnTabla();
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        "Error al añadir las motos.",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
             }
 
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(this,
-                    "El tipo o color seleccionado no existe en los enumeradores.",
-                    "Error de datos",
-                    JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
                     "Error inesperado: " + e.getMessage(),
@@ -2331,249 +2276,74 @@ public class Administador extends javax.swing.JFrame {
     }//GEN-LAST:event_NuevaPotenciaMotorActionPerformed
 
     private void BotonModificarMotoBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMotoBaseActionPerformed
-        String placaBase = comboBoxMotoBasePlaca.getSelectedItem().toString();
-        if (comboBoxMotoBasePlaca.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Debes seleccionar una placa base válida.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        try {
+            boolean exito = motoController.modificarMotoBaseDesdeUI(
+                    this,
+                    comboBoxMotoBasePlaca,
+                    txtNuevoModeloMoto,
+                    TieneParrillaNueva,
+                    TieneMaleteroNueva,
+                    NuevoCilindrajeMoto,
+                    // motor
+                    NuevoTipoMotor,
+                    NuevaPotenciaMotor,
+                    NuevaCilindradaMotor,
+                    // llanta
+                    comboBoxTipoLlanta,
+                    NuevaMedidaLlantaCombo,
+                    txtNuevaMarcaLlanta,
+                    NuevoMaterialLlantaCombo,
+                    txtNuevoModeloLlanta,
+                    // chasis
+                    NuevoMaterialChasis,
+                    NuevoTipoChasis,
+                    // freno
+                    comboBoxTipoFreno,
+                    txtNuevaMarcaFreno,
+                    NuevoMaterialFreno,
+                    txtNuevoModeloFreno,
+                    // asiento
+                    NuevaCapacidadAsiento,
+                    NuevoMaterialAsiento,
+                    // transmisión
+                    NuevoTipoTransmision,
+                    NuevaVelocidadesTransmision
+            );
 
-        String nuevoModelo = txtNuevoModeloMoto.getText().trim();
-
-        Boolean nuevaParrilla = null;
-        String seleccionParrilla = (String) TieneParrillaNueva.getSelectedItem();
-        if (seleccionParrilla != null && !seleccionParrilla.equalsIgnoreCase("Seleccionar")) {
-            nuevaParrilla = seleccionParrilla.equalsIgnoreCase("Si");
-        }
-
-        Boolean nuevoMaletero = null;
-        String seleccionMaletero = (String) TieneMaleteroNueva.getSelectedItem();
-        if (seleccionMaletero != null && !seleccionMaletero.equalsIgnoreCase("Seleccionar")) {
-            nuevoMaletero = seleccionMaletero.equalsIgnoreCase("Si");
-        }
-
-        Integer nuevoCilindraje = null;
-        if (!NuevoCilindrajeMoto.getText().trim().isEmpty()) {
-            try {
-                nuevoCilindraje = Integer.parseInt(NuevoCilindrajeMoto.getText().trim());
-                if (nuevoCilindraje <= 0) {
-                    JOptionPane.showMessageDialog(this, "El cilindraje debe ser un número positivo.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (nuevoCilindraje < 50 || nuevoCilindraje > 2000) {
-                    JOptionPane.showMessageDialog(this, "El cilindraje debe estar entre 50 y 2000 cc.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "El cilindraje debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+            if (exito) {
+                cargarMotosEnTablaModificar();
+                cargarMotosEnTabla();
+                limpiarCamposMotoBase();
             }
-        }
-        // --- Motor ---
-        TipoMotor nuevoTipoMotor = NuevoTipoMotor.getSelectedIndex() > 0
-                ? TipoMotor.valueOf(NuevoTipoMotor.getSelectedItem().toString().toUpperCase())
-                : null;
 
-        Integer nuevaPotenciaMotor = null;
-        if (!NuevaPotenciaMotor.getText().trim().isEmpty()) {
-            try {
-                nuevaPotenciaMotor = Integer.parseInt(NuevaPotenciaMotor.getText().trim());
-                if (nuevaPotenciaMotor <= 0) {
-                    JOptionPane.showMessageDialog(this, "La potencia debe ser un número positivo.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (nuevaPotenciaMotor < 1 || nuevaPotenciaMotor > 300) {
-                    JOptionPane.showMessageDialog(this, "La potencia debe estar entre 1 y 300 HP.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "La potencia debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        }
-        // --- Cilindrara motor ---
-        Integer nuevaCilindrada = null;
-        if (!NuevaCilindradaMotor.getText().trim().isEmpty()) {
-            try {
-                nuevaCilindrada = Integer.parseInt(NuevaCilindradaMotor.getText().trim());
-                if (nuevaCilindrada <= 0) {
-                    JOptionPane.showMessageDialog(this, "La cilindrada debe ser un número positivo.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (nuevaCilindrada < 50 || nuevaCilindrada > 2000) {
-                    JOptionPane.showMessageDialog(this, "La cilindrada debe estar entre 50 y 2000 cc.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "La cilindrada debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        }
-
-        // --- Llanta ---
-        String tipoLlanta = comboBoxTipoLlanta.getSelectedIndex() > 0
-                ? comboBoxTipoLlanta.getSelectedItem().toString()
-                : null;
-        MedidaLlanta nuevaMedidaLlanta = NuevaMedidaLlantaCombo.getSelectedIndex() > 0
-                ? MedidaLlanta.valueOf(NuevaMedidaLlantaCombo.getSelectedItem().toString().toUpperCase())
-                : null;
-        String nuevaMarcaLlanta = txtNuevaMarcaLlanta.getText().trim().isEmpty() ? null : txtNuevaMarcaLlanta.getText().trim();
-        MaterialLlanta nuevoMaterialLlanta = NuevoMaterialLlantaCombo.getSelectedIndex() > 0
-                ? MaterialLlanta.valueOf(NuevoMaterialLlantaCombo.getSelectedItem().toString().toUpperCase())
-                : null;
-        String nuevoModeloLlanta = txtNuevoModeloLlanta.getText().trim().isEmpty() ? null : txtNuevoModeloLlanta.getText().trim();
-
-        // --- Chasis ---
-        MaterialChasis nuevoMaterialChasis = NuevoMaterialChasis.getSelectedIndex() > 0
-                ? MaterialChasis.valueOf(NuevoMaterialChasis.getSelectedItem().toString().toUpperCase())
-                : null;
-        TipoChasis nuevoTipoChasis = NuevoTipoChasis.getSelectedIndex() > 0
-                ? TipoChasis.valueOf(NuevoTipoChasis.getSelectedItem().toString().toUpperCase())
-                : null;
-
-        // --- Freno ---
-        String tipoFreno = comboBoxTipoFreno.getSelectedIndex() > 0
-                ? comboBoxTipoFreno.getSelectedItem().toString()
-                : null;
-        String nuevaMarcaFreno = txtNuevaMarcaFreno.getText().trim().isEmpty() ? null : txtNuevaMarcaFreno.getText().trim();
-        MaterialFreno nuevoMaterialFreno = NuevoMaterialFreno.getSelectedIndex() > 0
-                ? MaterialFreno.valueOf(NuevoMaterialFreno.getSelectedItem().toString().toUpperCase())
-                : null;
-        String nuevoModeloFreno = txtNuevoModeloFreno.getText().trim().isEmpty() ? null : txtNuevoModeloFreno.getText().trim();
-
-        // --- Asiento ---
-        CapacidadAsiento nuevaCapacidadAsiento = NuevaCapacidadAsiento.getSelectedIndex() > 0
-                ? CapacidadAsiento.valueOf(NuevaCapacidadAsiento.getSelectedItem().toString().toUpperCase())
-                : null;
-        MaterialAsiento nuevoMaterialAsiento = NuevoMaterialAsiento.getSelectedIndex() > 0
-                ? MaterialAsiento.valueOf(NuevoMaterialAsiento.getSelectedItem().toString().toUpperCase())
-                : null;
-
-        // --- Transmisión ---
-        TipoTransmision nuevoTipoTransmision = NuevoTipoTransmision.getSelectedIndex() > 0
-                ? TipoTransmision.valueOf(NuevoTipoTransmision.getSelectedItem().toString().toUpperCase())
-                : null;
-        TipoVelocidades nuevasVelocidades = NuevaVelocidadesTransmision.getSelectedIndex() > 0
-                ? TipoVelocidades.valueOf(NuevaVelocidadesTransmision.getSelectedItem().toString().toUpperCase())
-                : null;
-
-        if (nuevaMarcaLlanta != null) {
-            if (!Validation.validarMarca(nuevaMarcaLlanta)) {
-                txtNuevaMarcaLlanta.setBackground(new Color(255, 200, 200));
-                JOptionPane.showMessageDialog(this,
-                        "La marca de la llanta solo puede contener letras, números, espacios, guiones (-), puntos (.), slash (/) y &.",
-                        "Error en marca de llanta",
-                        JOptionPane.ERROR_MESSAGE);
-                txtNuevaMarcaLlanta.requestFocusInWindow();
-                return;
-            } else {
-                txtNuevaMarcaLlanta.setBackground(new Color(200, 255, 200));
-            }
-        }
-
-        if (nuevaMarcaFreno != null) {
-            if (!Validation.validarMarca(nuevaMarcaFreno)) {
-                txtNuevaMarcaFreno.setBackground(new Color(255, 200, 200));
-                JOptionPane.showMessageDialog(this,
-                        "La marca del freno solo puede contener letras, números, espacios, guiones (-), puntos (.), slash (/) y &.",
-                        "Error en marca de freno",
-                        JOptionPane.ERROR_MESSAGE);
-                txtNuevaMarcaFreno.requestFocusInWindow();
-                return;
-            } else {
-                txtNuevaMarcaFreno.setBackground(new Color(200, 255, 200));
-            }
-        }
-
-        boolean exito = motoController.actualizarPorPlacaBase(
-                placaBase,
-                nuevoModelo,
-                nuevaParrilla,
-                nuevoMaletero,
-                nuevoCilindraje,
-                nuevoTipoMotor,
-                nuevaCilindrada,
-                nuevaPotenciaMotor,
-                nuevoMaterialChasis,
-                nuevoTipoChasis,
-                nuevoMaterialAsiento,
-                nuevaCapacidadAsiento,
-                nuevoTipoTransmision,
-                nuevasVelocidades,
-                tipoLlanta,
-                nuevaMedidaLlanta,
-                nuevaMarcaLlanta,
-                nuevoMaterialLlanta,
-                nuevoModeloLlanta,
-                tipoFreno,
-                nuevaMarcaFreno,
-                nuevoMaterialFreno,
-                nuevoModeloFreno
-        );
-
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "Moto base y unidades del mismo tipo actualizadas correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-            cargarMotosEnTablaModificar();
-            cargarMotosEnTabla();
-            limpiarCamposMotoBase();
-
-        }        // TODO add your handling code here:
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }     // TODO add your handling code here:
     }//GEN-LAST:event_BotonModificarMotoBaseActionPerformed
 
     private void BotonModificarMotoIndividual1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMotoIndividual1ActionPerformed
-        if (txtIdMotoModificar.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debes ingresar el ID de la moto a modificar.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        int idMoto;
         try {
-            idMoto = Integer.parseInt(txtIdMotoModificar.getText().trim());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+            boolean exito = motoController.modificarMotoIndividualDesdeUI(
+                    this,
+                    txtIdMotoModificar,
+                    txtNuevaMarcaMoto,
+                    comboBoxNuevoColorMoto1
+            );
 
-        String nuevaMarca = txtNuevaMarcaMoto.getText().trim().isEmpty() ? null : txtNuevaMarcaMoto.getText().trim();
-        if (nuevaMarca != null) {
-            if (!Validation.validarMarca(nuevaMarca)) {
-                txtNuevaMarcaMoto.setBackground(new Color(255, 200, 200));
-                JOptionPane.showMessageDialog(this,
-                        "La marca solo puede contener letras, números, espacios, guiones (-), puntos (.), slash (/) y &.",
-                        "Error en marca",
-                        JOptionPane.ERROR_MESSAGE);
-                txtNuevaMarcaMoto.requestFocusInWindow();
-                return;
-            } else {
-                txtNuevaMarcaMoto.setBackground(new Color(200, 255, 200));
+            if (exito) {
+                cargarMotosEnTablaModificar();
+                cargarMotosEnTabla();
+                limpiarCamposMotoIndividual();
             }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        TipoColorMoto nuevoColor = null;
-        if (comboBoxNuevoColorMoto1.getSelectedIndex() > 0) {
-            try {
-                nuevoColor = TipoColorMoto.valueOf(comboBoxNuevoColorMoto1.getSelectedItem().toString().toUpperCase());
-            } catch (IllegalArgumentException e) {
-                JOptionPane.showMessageDialog(this, "El color seleccionado no es válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        }
-
-        if (nuevaMarca == null && nuevoColor == null) {
-            JOptionPane.showMessageDialog(this, "Debes ingresar al menos una modificación (marca o color).", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        boolean exito = motoController.actualizarMotoIndividual(idMoto, nuevaMarca, nuevoColor);
-
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "Moto modificada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            cargarMotosEnTablaModificar();
-            cargarMotosEnTabla();
-            limpiarCamposMotoIndividual();
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo actualizar la moto. Verifica los datos ingresados.", "Error", JOptionPane.ERROR_MESSAGE);
-        }        // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_BotonModificarMotoIndividual1ActionPerformed
 
     private void limpiarCamposMotoBase() {

@@ -1,4 +1,3 @@
-
 package View;
 
 import Controller.MotoController;
@@ -22,10 +21,9 @@ import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 public class Store extends javax.swing.JFrame {
 
-    private MotoController controller;
+    MotoController motoController = MotoController.getInstancia();
     private UsuarioController usuarioController;
     Config configFrame = new Config();
 
@@ -35,7 +33,6 @@ public class Store extends javax.swing.JFrame {
         this.usuarioController = usuarioController;
 
         this.setLocationRelativeTo(null);
-        this.controller = new MotoController();
         mostrarMotoSemiautomatica();
         mostrarMotoBoxer();
         mostrarMotoScooter();
@@ -65,13 +62,13 @@ public class Store extends javax.swing.JFrame {
     }
 
     private void mostrarMotoSemiautomatica() {
-        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SEMIAUTOMATICA);
+        List<Moto> motos = motoController.obtenerMotosDisponiblesPorTipo(TipoMoto.SEMIAUTOMATICA);
         Moto moto = null;
 
         if (!motos.isEmpty()) {
             moto = motos.get(0);
         } else {
-            moto = controller.obtenerMotoBasePorTipo(TipoMoto.SEMIAUTOMATICA);
+            moto = motoController.obtenerMotoBasePorTipo(TipoMoto.SEMIAUTOMATICA);
         }
 
         if (moto != null) {
@@ -86,13 +83,13 @@ public class Store extends javax.swing.JFrame {
     }
 
     private void mostrarMotoBoxer() {
-        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.BOXER);
+        List<Moto> motos = motoController.obtenerMotosDisponiblesPorTipo(TipoMoto.BOXER);
         Moto moto = null;
 
         if (!motos.isEmpty()) {
             moto = motos.get(0);
         } else {
-            moto = controller.obtenerMotoBasePorTipo(TipoMoto.BOXER);
+            moto = motoController.obtenerMotoBasePorTipo(TipoMoto.BOXER);
         }
 
         if (moto != null) {
@@ -107,13 +104,13 @@ public class Store extends javax.swing.JFrame {
     }
 
     private void mostrarMotoScooter() {
-        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SCOOTER);
+        List<Moto> motos = motoController.obtenerMotosDisponiblesPorTipo(TipoMoto.SCOOTER);
         Moto moto = null;
 
         if (!motos.isEmpty()) {
             moto = motos.get(0);
         } else {
-            moto = controller.obtenerMotoBasePorTipo(TipoMoto.SCOOTER);
+            moto = motoController.obtenerMotoBasePorTipo(TipoMoto.SCOOTER);
         }
 
         if (moto != null) {
@@ -128,13 +125,13 @@ public class Store extends javax.swing.JFrame {
     }
 
     private void mostrarMotoSemideportiva() {
-        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SEMIDEPORTIVA);
+        List<Moto> motos = motoController.obtenerMotosDisponiblesPorTipo(TipoMoto.SEMIDEPORTIVA);
         Moto moto = null;
 
         if (!motos.isEmpty()) {
             moto = motos.get(0);
         } else {
-            moto = controller.obtenerMotoBasePorTipo(TipoMoto.SEMIDEPORTIVA);
+            moto = motoController.obtenerMotoBasePorTipo(TipoMoto.SEMIDEPORTIVA);
         }
 
         if (moto != null) {
@@ -149,13 +146,13 @@ public class Store extends javax.swing.JFrame {
     }
 
     private void mostrarMotoDeportiva() {
-        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.DEPORTIVA);
+        List<Moto> motos = motoController.obtenerMotosDisponiblesPorTipo(TipoMoto.DEPORTIVA);
         Moto moto = null;
 
         if (!motos.isEmpty()) {
             moto = motos.get(0);
         } else {
-            moto = controller.obtenerMotoBasePorTipo(TipoMoto.DEPORTIVA);
+            moto = motoController.obtenerMotoBasePorTipo(TipoMoto.DEPORTIVA);
         }
 
         if (moto != null) {
@@ -170,13 +167,13 @@ public class Store extends javax.swing.JFrame {
     }
 
     private void mostrarMotoSupersport() {
-        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.SUPERSPORT);
+        List<Moto> motos = motoController.obtenerMotosDisponiblesPorTipo(TipoMoto.SUPERSPORT);
         Moto moto = null;
 
         if (!motos.isEmpty()) {
             moto = motos.get(0);
         } else {
-            moto = controller.obtenerMotoBasePorTipo(TipoMoto.SUPERSPORT);
+            moto = motoController.obtenerMotoBasePorTipo(TipoMoto.SUPERSPORT);
         }
 
         if (moto != null) {
@@ -191,13 +188,13 @@ public class Store extends javax.swing.JFrame {
     }
 
     private void mostrarMotoChopper() {
-        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.CHOPPER);
+        List<Moto> motos = motoController.obtenerMotosDisponiblesPorTipo(TipoMoto.CHOPPER);
         Moto moto = null;
 
         if (!motos.isEmpty()) {
             moto = motos.get(0);
         } else {
-            moto = controller.obtenerMotoBasePorTipo(TipoMoto.CHOPPER);
+            moto = motoController.obtenerMotoBasePorTipo(TipoMoto.CHOPPER);
         }
 
         if (moto != null) {
@@ -212,13 +209,13 @@ public class Store extends javax.swing.JFrame {
     }
 
     private void mostrarMotoNaked() {
-        List<Moto> motos = controller.obtenerMotosDisponiblesPorTipo(TipoMoto.NAKED);
+        List<Moto> motos = motoController.obtenerMotosDisponiblesPorTipo(TipoMoto.NAKED);
         Moto moto = null;
 
         if (!motos.isEmpty()) {
             moto = motos.get(0);
         } else {
-            moto = controller.obtenerMotoBasePorTipo(TipoMoto.NAKED);
+            moto = motoController.obtenerMotoBasePorTipo(TipoMoto.NAKED);
         }
 
         if (moto != null) {
@@ -1101,43 +1098,43 @@ public class Store extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No hay usuario logeado", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    
+
     }//GEN-LAST:event_jLabel17MouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Login SE 6) is not available, stay with the default look and feel.
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Login SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Store.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Store.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Store.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Store.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(Store.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(Store.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(Store.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(Store.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
+        //</editor-fold>
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            new Store().setVisible(true);
-        }
-    });
-}
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Store().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AñoPut;

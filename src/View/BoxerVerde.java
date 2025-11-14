@@ -72,7 +72,7 @@ public class BoxerVerde extends javax.swing.JFrame {
             MotoFoto.setIcon(new ImageIcon(getClass().getResource(ruta)));
 
             int cantidadColor = conteo.getOrDefault(color, 0);
-            // jLabel14.setText("Disponibles color " + color + ": " + cantidadColor);
+            jLabel14.setText("Disponibles color " + color + ": " + cantidadColor);
         } else {
             txtModelo.setText("No hay motos disponibles de ese tipo.");
         }

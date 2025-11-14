@@ -9,8 +9,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "NEGRO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-BSE1",
@@ -3225,8 +3225,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "VERDE",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-42565",
@@ -3292,8 +3292,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "VERDE",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-41896",
@@ -3359,8 +3359,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "VERDE",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-29552",
@@ -3426,8 +3426,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "ROJO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-95824",
@@ -3493,8 +3493,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "ROJO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-59982",
@@ -3560,8 +3560,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "ROJO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-64946",
@@ -3627,8 +3627,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "ROJO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-94116",
@@ -3694,8 +3694,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "NEGRO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-63424",
@@ -3761,8 +3761,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "NEGRO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-53653",
@@ -3828,8 +3828,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "NEGRO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-14449",
@@ -3895,8 +3895,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "NEGRO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-91254",
@@ -3962,8 +3962,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "BLANCO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-86744",
@@ -4029,8 +4029,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "BLANCO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-84077",
@@ -4096,8 +4096,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "BLANCO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-44843",
@@ -4163,8 +4163,8 @@
     "tipoMoto": "DEPORTIVA",
     "tipoColorMoto": "BLANCO",
     "cilindraje": 200,
-    "tieneParrilla": false,
-    "tieneMaletero": false,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
     "partesMoto": {
       "llantaDelantera": {
         "idLlantaDelantera": "LLD-92188",
@@ -9110,5 +9110,72 @@
       }
     },
     "estado": "VENDIDO"
+  },
+  {
+    "idMoto": 137,
+    "placa": "IOF-542",
+    "marca": "Honda",
+    "modelo": "Low Rider",
+    "fechaIngreso": "2025-11-14",
+    "precio": 1.49E8,
+    "tipoMoto": "SEMIAUTOMATICA",
+    "tipoColorMoto": "VERDE",
+    "cilindraje": 1200,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-23434",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Cruise",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-73910",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Cruise",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-12984",
+        "material": "ACERO",
+        "tipo": "TUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-39882",
+        "tipo": "DOS_TIEMPOS",
+        "cilindrada": 1200,
+        "potencia": 90
+      },
+      "asiento": {
+        "idAsiento": "AST-65881",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-45722",
+        "ubicacion": "DELANTERO",
+        "marca": "Harley",
+        "modelo": "FD-Cruise",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-69530",
+        "ubicacion": "TRASERO",
+        "marca": "Harley",
+        "modelo": "FT-Cruise",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-85519",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
+      }
+    },
+    "estado": "DISPONIBLE"
   }
 ]
