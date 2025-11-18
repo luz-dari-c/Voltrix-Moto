@@ -52,7 +52,7 @@ public class KawasakiVerde extends javax.swing.JFrame {
             txtModelo.setText(moto.getModelo());
             marcatxt.setText(moto.getMarca());
             tipoTxt.setText(moto.getTipoMoto().toString());
-            precioTxt.setText("$" + moto.getPrecio());
+            precioTxt.setText("$" + moto.getPrecioNormal());
             estadotxt.setText(moto.getEstado().toString());
             CilindrajeTxt1.setText(moto.getPartesMoto().getMotor().getCilindrada() + " cc");
             Motortxt.setText(moto.getPartesMoto().getMotor().getTipo().toString());
@@ -127,7 +127,7 @@ public class KawasakiVerde extends javax.swing.JFrame {
         txtModelo.setText(moto.getModelo());
         marcatxt.setText(moto.getMarca());
         tipoTxt.setText(moto.getTipoMoto().toString());
-        precioTxt.setText("$" + moto.getPrecio());
+        precioTxt.setText("$" + moto.getPrecioNormal());
         estadotxt.setText(moto.getEstado().toString());
         CilindrajeTxt1.setText(moto.getPartesMoto().getMotor().getCilindrada() + " cc");
         Motortxt.setText(moto.getPartesMoto().getMotor().getTipo().toString());

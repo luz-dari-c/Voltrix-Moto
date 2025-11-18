@@ -9177,5 +9177,72 @@
       }
     },
     "estado": "DISPONIBLE"
+  },
+  {
+    "idMoto": 138,
+    "placa": "AMB-535",
+    "marca": "Honda",
+    "modelo": "Low Rider",
+    "fechaIngreso": "2025-11-18",
+    "precio": 1.49E8,
+    "tipoMoto": "SEMIAUTOMATICA",
+    "tipoColorMoto": "VERDE",
+    "cilindraje": 1200,
+    "tieneParrilla": true,
+    "tieneMaletero": true,
+    "partesMoto": {
+      "llantaDelantera": {
+        "idLlantaDelantera": "LLD-19284",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Cruise",
+        "material": "CAUCHO"
+      },
+      "llantaTrasera": {
+        "idLlantaTrasera": "LLT-15730",
+        "medida": "R17_120_70",
+        "ubicacion": "DELANTERA",
+        "marca": "Dunlop",
+        "modelo": "Cruise",
+        "material": "CAUCHO"
+      },
+      "chasis": {
+        "idChasis": "CHS-93888",
+        "material": "ACERO",
+        "tipo": "TUBULAR"
+      },
+      "motor": {
+        "idMotor": "MTR-88805",
+        "tipo": "DOS_TIEMPOS",
+        "cilindrada": 1200,
+        "potencia": 90
+      },
+      "asiento": {
+        "idAsiento": "AST-60022",
+        "material": "CUERO",
+        "capacidad": "BIPLAZA"
+      },
+      "frenoDelantero": {
+        "idFrenoDelantero": "FRD-99502",
+        "ubicacion": "DELANTERO",
+        "marca": "Harley",
+        "modelo": "FD-Cruise",
+        "material": "ACERO"
+      },
+      "frenoTrasero": {
+        "idFrenoTrasero": "FRT-78550",
+        "ubicacion": "TRASERO",
+        "marca": "Harley",
+        "modelo": "FT-Cruise",
+        "material": "ACERO"
+      },
+      "transmision": {
+        "idTransmision": "TRS-77402",
+        "tipoTransmision": "MANUAL",
+        "velocidades": "CINCO"
+      }
+    },
+    "estado": "DISPONIBLE"
   }
 ]

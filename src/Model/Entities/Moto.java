@@ -89,6 +89,10 @@ public class Moto {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+    
+      public String getPrecioNormal() {
+        return String.format("%.0f", precio);
+    }
 
     public TipoMoto getTipoMoto() {
         return tipoMoto;

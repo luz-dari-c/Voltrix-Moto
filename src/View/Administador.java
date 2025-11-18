@@ -468,7 +468,7 @@ public class Administador extends javax.swing.JFrame {
                 m.getMarca(),
                 m.getTipoMoto(),
                 m.getCilindraje(),
-                m.getPrecio(),
+                m.getPrecioNormal(),
                 m.getEstado()
             });
         }
@@ -490,7 +490,7 @@ public class Administador extends javax.swing.JFrame {
                 m.getModelo(),
                 m.getTipoColorMoto(),
                 m.getCilindraje(),
-                m.getPrecio(),
+                m.getPrecioNormal(),
                 m.getFechaIngreso(),
                 m.isTieneParrilla() ? "Sí" : "No",
                 m.isTieneMaletero() ? "Sí" : "No",
@@ -516,7 +516,7 @@ public class Administador extends javax.swing.JFrame {
                 m.getModelo(),
                 m.getTipoColorMoto(),
                 m.getCilindraje(),
-                m.getPrecio(),
+                m.getPrecioNormal(),
                 m.getFechaIngreso(),
                 m.isTieneParrilla() ? "Sí" : "No",
                 m.isTieneMaletero() ? "Sí" : "No",

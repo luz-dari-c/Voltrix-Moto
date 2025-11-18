@@ -74,7 +74,7 @@ public class Store extends javax.swing.JFrame {
         if (moto != null) {
             tipoPut.setText(moto.getTipoMoto().toString());
             AñoPut.setText(String.valueOf(moto.getFechaIngreso().getYear()));
-            PrecioPut.setText(String.valueOf(moto.getPrecio()));
+            PrecioPut.setText(String.valueOf(moto.getPrecioNormal()));
         } else {
             tipoPut.setText("No disponible");
             AñoPut.setText("No disponible");
@@ -95,7 +95,7 @@ public class Store extends javax.swing.JFrame {
         if (moto != null) {
             tipoPut1.setText(moto.getTipoMoto().toString());
             AñoPut1.setText(String.valueOf(moto.getFechaIngreso().getYear()));
-            PrecioPut1.setText(String.valueOf(moto.getPrecio()));
+            PrecioPut1.setText(String.valueOf(moto.getPrecioNormal()));
         } else {
             tipoPut1.setText("No disponible");
             AñoPut1.setText("No disponible");
@@ -116,7 +116,7 @@ public class Store extends javax.swing.JFrame {
         if (moto != null) {
             tipoPut2.setText(moto.getTipoMoto().toString());
             AñoPut2.setText(String.valueOf(moto.getFechaIngreso().getYear()));
-            PrecioPut2.setText(String.valueOf(moto.getPrecio()));
+            PrecioPut2.setText(String.valueOf(moto.getPrecioNormal()));
         } else {
             tipoPut2.setText("No disponible");
             AñoPut2.setText("No disponible");
@@ -137,7 +137,7 @@ public class Store extends javax.swing.JFrame {
         if (moto != null) {
             tipoPut3.setText(moto.getTipoMoto().toString());
             AñoPut3.setText(String.valueOf(moto.getFechaIngreso().getYear()));
-            PrecioPut3.setText(String.valueOf(moto.getPrecio()));
+            PrecioPut3.setText(String.valueOf(moto.getPrecioNormal()));
         } else {
             tipoPut3.setText("No disponible");
             AñoPut3.setText("No disponible");
@@ -158,7 +158,7 @@ public class Store extends javax.swing.JFrame {
         if (moto != null) {
             tipoPut4.setText(moto.getTipoMoto().toString());
             AñoPut4.setText(String.valueOf(moto.getFechaIngreso().getYear()));
-            PrecioPut4.setText(String.valueOf(moto.getPrecio()));
+            PrecioPut4.setText(String.valueOf(moto.getPrecioNormal()));
         } else {
             tipoPut4.setText("No disponible");
             AñoPut4.setText("No disponible");
@@ -179,7 +179,7 @@ public class Store extends javax.swing.JFrame {
         if (moto != null) {
             tipoPut5.setText(moto.getTipoMoto().toString());
             AñoPut5.setText(String.valueOf(moto.getFechaIngreso().getYear()));
-            PrecioPut5.setText(String.valueOf(moto.getPrecio()));
+            PrecioPut5.setText(String.valueOf(moto.getPrecioNormal()));
         } else {
             tipoPut5.setText("No disponible");
             AñoPut5.setText("No disponible");
@@ -200,7 +200,7 @@ public class Store extends javax.swing.JFrame {
         if (moto != null) {
             tipoPut6.setText(moto.getTipoMoto().toString());
             AñoPut6.setText(String.valueOf(moto.getFechaIngreso().getYear()));
-            PrecioPut6.setText(String.valueOf(moto.getPrecio()));
+            PrecioPut6.setText(String.valueOf(moto.getPrecioNormal()));
         } else {
             tipoPut6.setText("No disponible");
             AñoPut6.setText("No disponible");
@@ -221,7 +221,7 @@ public class Store extends javax.swing.JFrame {
         if (moto != null) {
             tipoPut7.setText(moto.getTipoMoto().toString());
             AñoPut7.setText(String.valueOf(moto.getFechaIngreso().getYear()));
-            PrecioPut7.setText(String.valueOf(moto.getPrecio()));
+            PrecioPut7.setText(String.valueOf(moto.getPrecioNormal()));
         } else {
             tipoPut7.setText("No disponible");
             AñoPut7.setText("No disponible");
