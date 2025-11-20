@@ -180,6 +180,8 @@ public class Administador extends javax.swing.JFrame {
                 if (eliminado) {
                     JOptionPane.showMessageDialog(this, "Moto eliminada correctamente.");
                     cargarMotosEnTabla();
+                    cargarMotosEnTablaModificar();
+                    cargarMotosEnTablaEliminar();
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo eliminar la moto.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -2187,6 +2189,8 @@ public class Administador extends javax.swing.JFrame {
             if (exito) {
                 limpiarCamposMoto();
                 cargarMotosEnTabla();
+                cargarMotosEnTablaModificar();
+                cargarMotosEnTablaEliminar();
             }
 
         } catch (Exception e) {

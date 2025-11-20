@@ -3320,11 +3320,6 @@
   {
     "idVenta": "32",
     "usuario": {
-      "numeroTarjeta": "2838-3922-9923-2938",
-      "nombreTarjeta": "Christopher Morgan",
-      "fechaExpiracion": "09/08",
-      "cvv": "939",
-      "tarjetaGuardada": true,
       "primerNombre": "Luz",
       "segundoNombre": "Dari",
       "primerApellido": "Crespo",
@@ -3411,6 +3406,342 @@
       }
     ],
     "total": 125000000,
+    "estado": "COMPLETADA"
+  },
+  {
+    "idVenta": "33",
+    "usuario": {
+      "primerNombre": "Luz",
+      "segundoNombre": "Dari",
+      "primerApellido": "Crespo",
+      "segundoApellido": "Gomez",
+      "cedula": "1237440696",
+      "email": "luzdaricrespo@gmail.com",
+      "password": "luz123",
+      "isAdmin": false
+    },
+    "fechaVenta": "2025-11-20",
+    "itemsVendidos": [
+      {
+        "vehiculo": {
+          "idMoto": 125,
+          "placa": "GXV-739",
+          "marca": "BSA",
+          "modelo": "NMAX 155",
+          "fechaIngreso": "2025-11-13",
+          "precio": 1.45E7,
+          "tipoMoto": "SCOOTER",
+          "tipoColorMoto": "ROJO",
+          "cilindraje": 155,
+          "tieneParrilla": false,
+          "tieneMaletero": true,
+          "partesMoto": {
+            "llantaDelantera": {
+              "idLlantaDelantera": "LLD-57356",
+              "medida": "R16_100_80",
+              "ubicacion": "DELANTERA",
+              "marca": "IRC",
+              "modelo": "Tires",
+              "material": "CAUCHO"
+            },
+            "llantaTrasera": {
+              "idLlantaTrasera": "LLT-10909",
+              "medida": "R16_100_80",
+              "ubicacion": "DELANTERA",
+              "marca": "IRC",
+              "modelo": "Tires",
+              "material": "CAUCHO"
+            },
+            "chasis": {
+              "idChasis": "CHS-76310",
+              "material": "ACERO",
+              "tipo": "TUBULAR"
+            },
+            "motor": {
+              "idMotor": "MTR-26062",
+              "tipo": "CUATRO_TIEMPOS",
+              "cilindrada": 155,
+              "potencia": 15
+            },
+            "asiento": {
+              "idAsiento": "AST-54382",
+              "material": "CUERO",
+              "capacidad": "BIPLAZA"
+            },
+            "frenoDelantero": {
+              "idFrenoDelantero": "FRD-14356",
+              "ubicacion": "DELANTERO",
+              "marca": "Yamaha",
+              "modelo": "FD-Scoot",
+              "material": "ACERO"
+            },
+            "frenoTrasero": {
+              "idFrenoTrasero": "FRT-77762",
+              "ubicacion": "TRASERO",
+              "marca": "Yamaha",
+              "modelo": "FT-Scoot",
+              "material": "ACERO"
+            },
+            "transmision": {
+              "idTransmision": "TRS-24915",
+              "tipoTransmision": "AUTOMATICA",
+              "velocidades": "UNA"
+            }
+          },
+          "estado": "DISPONIBLE"
+        },
+        "usuarioId": "1237440696",
+        "cantidad": 1,
+        "precioUnitario": 14500000,
+        "subtotal": 14500000
+      }
+    ],
+    "total": 14500000,
+    "estado": "COMPLETADA"
+  },
+  {
+    "idVenta": "34",
+    "usuario": {
+      "numeroTarjeta": "2838-3922-9923-2938",
+      "nombreTarjeta": "Christopher Morgan",
+      "fechaExpiracion": "09/08",
+      "cvv": "939",
+      "tarjetaGuardada": true,
+      "primerNombre": "Luz",
+      "segundoNombre": "Dari",
+      "primerApellido": "Crespo",
+      "segundoApellido": "Gomez",
+      "cedula": "1237440696",
+      "email": "luzdaricrespo@gmail.com",
+      "password": "luz123",
+      "isAdmin": false
+    },
+    "fechaVenta": "2025-11-20",
+    "itemsVendidos": [
+      {
+        "vehiculo": {
+          "idMoto": 44,
+          "placa": "GGQ-344",
+          "marca": "Benelli",
+          "modelo": "R1250RT",
+          "fechaIngreso": "2025-11-13",
+          "precio": 1.6E8,
+          "tipoMoto": "SEMIDEPORTIVA",
+          "tipoColorMoto": "VERDE",
+          "cilindraje": 1250,
+          "tieneParrilla": true,
+          "tieneMaletero": true,
+          "partesMoto": {
+            "llantaDelantera": {
+              "idLlantaDelantera": "LLD-14296",
+              "medida": "R17_120_70",
+              "ubicacion": "DELANTERA",
+              "marca": "Metzeler",
+              "modelo": "Tourance",
+              "material": "CAUCHO"
+            },
+            "llantaTrasera": {
+              "idLlantaTrasera": "LLT-79722",
+              "medida": "R17_180_55",
+              "ubicacion": "DELANTERA",
+              "marca": "Metzeler",
+              "modelo": "Tourance",
+              "material": "CAUCHO"
+            },
+            "chasis": {
+              "idChasis": "CHS-41300",
+              "material": "ACERO",
+              "tipo": "MULTITUBULAR"
+            },
+            "motor": {
+              "idMotor": "MTR-78070",
+              "tipo": "CUATRO_TIEMPOS",
+              "cilindrada": 1250,
+              "potencia": 136
+            },
+            "asiento": {
+              "idAsiento": "AST-42216",
+              "material": "CUERO",
+              "capacidad": "BIPLAZA"
+            },
+            "frenoDelantero": {
+              "idFrenoDelantero": "FRD-46225",
+              "ubicacion": "DELANTERO",
+              "marca": "Brembo",
+              "modelo": "FD-Tour",
+              "material": "ACERO"
+            },
+            "frenoTrasero": {
+              "idFrenoTrasero": "FRT-43916",
+              "ubicacion": "TRASERO",
+              "marca": "Brembo",
+              "modelo": "FT-Tour",
+              "material": "ACERO"
+            },
+            "transmision": {
+              "idTransmision": "TRS-20862",
+              "tipoTransmision": "MANUAL",
+              "velocidades": "SEIS"
+            }
+          },
+          "estado": "EN_CARRITO"
+        },
+        "id": "1",
+        "usuarioId": "1237440696",
+        "cantidad": 1,
+        "precioUnitario": 1.6E+8,
+        "subtotal": 1.6E+8
+      },
+      {
+        "vehiculo": {
+          "idMoto": 58,
+          "placa": "XTK-954",
+          "marca": "Triumph",
+          "modelo": "R6 Sport",
+          "fechaIngreso": "2025-11-13",
+          "precio": 1.9E7,
+          "tipoMoto": "DEPORTIVA",
+          "tipoColorMoto": "VERDE",
+          "cilindraje": 200,
+          "tieneParrilla": true,
+          "tieneMaletero": true,
+          "partesMoto": {
+            "llantaDelantera": {
+              "idLlantaDelantera": "LLD-42565",
+              "medida": "R16_100_80",
+              "ubicacion": "DELANTERA",
+              "marca": "Michelin",
+              "modelo": "Pilot",
+              "material": "CAUCHO"
+            },
+            "llantaTrasera": {
+              "idLlantaTrasera": "LLT-27170",
+              "medida": "R16_100_80",
+              "ubicacion": "DELANTERA",
+              "marca": "Michelin",
+              "modelo": "Pilot",
+              "material": "CAUCHO"
+            },
+            "chasis": {
+              "idChasis": "CHS-85592",
+              "material": "ALUMINIO",
+              "tipo": "PERIMETRAL"
+            },
+            "motor": {
+              "idMotor": "MTR-69091",
+              "tipo": "DOS_TIEMPOS",
+              "cilindrada": 200,
+              "potencia": 18
+            },
+            "asiento": {
+              "idAsiento": "AST-12097",
+              "material": "CUERO",
+              "capacidad": "MONOPLAZA"
+            },
+            "frenoDelantero": {
+              "idFrenoDelantero": "FRD-10960",
+              "ubicacion": "DELANTERO",
+              "marca": "Brembo",
+              "modelo": "FD-Race",
+              "material": "ACERO"
+            },
+            "frenoTrasero": {
+              "idFrenoTrasero": "FRT-74339",
+              "ubicacion": "TRASERO",
+              "marca": "Brembo",
+              "modelo": "FT-Race",
+              "material": "ACERO"
+            },
+            "transmision": {
+              "idTransmision": "TRS-67467",
+              "tipoTransmision": "MANUAL",
+              "velocidades": "SEIS"
+            }
+          },
+          "estado": "EN_CARRITO"
+        },
+        "id": "2",
+        "usuarioId": "1237440696",
+        "cantidad": 1,
+        "precioUnitario": 1.9E+7,
+        "subtotal": 1.9E+7
+      },
+      {
+        "vehiculo": {
+          "idMoto": 27,
+          "placa": "HOH-440",
+          "marca": "Ducati",
+          "modelo": "890 Adventure",
+          "fechaIngreso": "2025-11-13",
+          "precio": 8.1E7,
+          "tipoMoto": "BOXER",
+          "tipoColorMoto": "VERDE",
+          "cilindraje": 800,
+          "tieneParrilla": false,
+          "tieneMaletero": false,
+          "partesMoto": {
+            "llantaDelantera": {
+              "idLlantaDelantera": "LLD-97734",
+              "medida": "R17_180_55",
+              "ubicacion": "DELANTERA",
+              "marca": "Pirelli",
+              "modelo": "Scorpion",
+              "material": "CAUCHO"
+            },
+            "llantaTrasera": {
+              "idLlantaTrasera": "LLT-28458",
+              "medida": "R17_180_55",
+              "ubicacion": "DELANTERA",
+              "marca": "Pirelli",
+              "modelo": "Scorpion",
+              "material": "CAUCHO"
+            },
+            "chasis": {
+              "idChasis": "CHS-60050",
+              "material": "ACERO",
+              "tipo": "MULTITUBULAR"
+            },
+            "motor": {
+              "idMotor": "MTR-89793",
+              "tipo": "DOS_TIEMPOS",
+              "cilindrada": 100,
+              "potencia": 105
+            },
+            "asiento": {
+              "idAsiento": "AST-81979",
+              "material": "CUERO",
+              "capacidad": "BIPLAZA"
+            },
+            "frenoDelantero": {
+              "idFrenoDelantero": "FRD-24225",
+              "ubicacion": "DELANTERO",
+              "marca": "ByBre",
+              "modelo": "FD-Adv",
+              "material": "ACERO"
+            },
+            "frenoTrasero": {
+              "idFrenoTrasero": "FRT-50979",
+              "ubicacion": "TRASERO",
+              "marca": "ByBre",
+              "modelo": "FT-Adv",
+              "material": "ACERO"
+            },
+            "transmision": {
+              "idTransmision": "TRS-42822",
+              "tipoTransmision": "MANUAL",
+              "velocidades": "SEIS"
+            }
+          },
+          "estado": "EN_CARRITO"
+        },
+        "id": "3",
+        "usuarioId": "1237440696",
+        "cantidad": 1,
+        "precioUnitario": 8.1E+7,
+        "subtotal": 8.1E+7
+      }
+    ],
+    "total": 260000000,
     "estado": "COMPLETADA"
   }
 ]

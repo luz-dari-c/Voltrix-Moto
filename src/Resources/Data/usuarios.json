@@ -36,7 +36,7 @@
     "segundoApellido": "Gomez",
     "cedula": "1237440696",
     "email": "luzdaricrespo@gmail.com",
-    "password": "bHV6MTIz",
+    "password": "bHV6ZGExMjM\u003d",
     "isAdmin": false
   },
   {
@@ -46,7 +46,17 @@
     "segundoApellido": "Voltrix",
     "cedula": "99999999",
     "email": "admin@gmail.com",
-    "password": "YWRtaW4xMjM\u003d", 
-    "isAdmin": true
+    "password": "YWRtaW4xMjM\u003d",
+    "isAdmin": false
+  },
+  {
+    "primerNombre": "  lolo",
+    "segundoNombre": "    ",
+    "primerApellido": "lopdoe",
+    "segundoApellido": "deded",
+    "cedula": "12129999",
+    "email": "papa@gmail.com",
+    "password": "bG9sb2xv",
+    "isAdmin": false
   }
 ]

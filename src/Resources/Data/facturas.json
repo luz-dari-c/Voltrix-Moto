@@ -254,5 +254,21 @@
     "nombreArchivoPDF": "Factura_32.pdf",
     "rutaPDF": "C:\\Users\\ASUS\\OneDrive\\Documentos\\NetBeansProjects\\VoltrixMoto\\src\\Resources\\Data\\Facturas\\Factura_32.pdf",
     "fechaFactura": "2025-11-14T13:42:42.2665786"
+  },
+  {
+    "idFactura": 33,
+    "idUsuario": "1237440696",
+    "idMoto": 0,
+    "nombreArchivoPDF": "Factura_33.pdf",
+    "rutaPDF": "C:\\Users\\ASUS\\OneDrive\\Documentos\\NetBeansProjects\\VoltrixMoto\\src\\Resources\\Data\\Facturas\\Factura_33.pdf",
+    "fechaFactura": "2025-11-20T15:33:32.7382108"
+  },
+  {
+    "idFactura": 34,
+    "idUsuario": "1237440696",
+    "idMoto": 0,
+    "nombreArchivoPDF": "Factura_34.pdf",
+    "rutaPDF": "C:\\Users\\ASUS\\OneDrive\\Documentos\\NetBeansProjects\\VoltrixMoto\\src\\Resources\\Data\\Facturas\\Factura_34.pdf",
+    "fechaFactura": "2025-11-20T15:35:05.2870305"
   }
 ]

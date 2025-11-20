@@ -30,7 +30,7 @@ public class UsuarioDAO {
         return instancia;
     }
 
-    // Métodos de encriptación básica
+    
     private String encriptar(String texto) {
         if (texto == null) return null;
         return Base64.getEncoder().encodeToString(texto.getBytes());
@@ -42,7 +42,7 @@ public class UsuarioDAO {
             byte[] decodedBytes = Base64.getDecoder().decode(textoEncriptado);
             return new String(decodedBytes);
         } catch (IllegalArgumentException e) {
-            // Si falla la desencriptación, asumimos que es texto plano (para migración)
+           
             return textoEncriptado;
         }
     }
@@ -59,7 +59,7 @@ public class UsuarioDAO {
                     usuariosCargados = new ArrayList<>();
                 }
                 
-                // Desencriptar contraseñas al cargar
+              
                 for (Usuario usuario : usuariosCargados) {
                     usuario.setPassword(desencriptar(usuario.getPassword()));
                 }
@@ -75,7 +75,7 @@ public class UsuarioDAO {
         File archivo = new File(RUTA_PERSISTENCIA);
         archivo.getParentFile().mkdirs();
         
-        // Encriptar contraseñas antes de guardar
+        
         List<Usuario> usuariosParaGuardar = new ArrayList<>();
         for (Usuario usuario : usuarios) {
             Usuario usuarioCopia = new Usuario(
@@ -85,7 +85,7 @@ public class UsuarioDAO {
                 usuario.getSegundoApellido(),
                 usuario.getCedula(),
                 usuario.getEmail(),
-                encriptar(usuario.getPassword()) // Encriptar para guardar
+                encriptar(usuario.getPassword()) 
             );
             usuariosParaGuardar.add(usuarioCopia);
         }

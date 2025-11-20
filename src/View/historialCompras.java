@@ -213,7 +213,15 @@ public class historialCompras extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablaFactura.setGridColor(new java.awt.Color(102, 102, 102));
         tablaFactura.setShowGrid(false);
         jScrollPane1.setViewportView(tablaFactura);

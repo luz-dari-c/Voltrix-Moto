@@ -9,7 +9,7 @@ public class Usuario {
     private String cedula;
     private String email;
     private String password;
-    private boolean isAdmin; // Indica si el usuario es administrador
+    private boolean isAdmin; 
 
     public Usuario() {
         this.isAdmin = false;
@@ -27,7 +27,7 @@ public class Usuario {
         this.isAdmin = false;
     }
 
-    // Constructor completo (por si en algún momento necesitas crear un admin manualmente)
+    
     public Usuario(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
             String cedula, String email, String password, boolean isAdmin) {
         this.primerNombre = primerNombre;

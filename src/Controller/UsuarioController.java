@@ -15,26 +15,22 @@ import javax.swing.JTextField;
 
 public class UsuarioController {
 
-    // Singleton instance
     private static UsuarioController instancia;
     private final UsuarioDAO usuarioDAO;
     private String codigoRecuperacion;
     private String emailRecuperacion;
     private Usuario usuarioLogeado;
 
-    // Patrones de validación
     private static final Pattern PATRON_SOLO_LETRAS = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$");
     private static final Pattern PATRON_SOLO_NUMEROS = Pattern.compile("^[0-9]+$");
     private static final Pattern PATRON_EMAIL = Pattern.compile("^[A-Za-z0-9+_.-]+@(gmail\\.com|hotmail\\.com|outlook\\.com|unicolombo\\.edu\\.co)$");
     private static final Pattern PATRON_CONTRASENA = Pattern.compile("^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{6,}$");
 
-    // Constructor privado para Singleton
     private UsuarioController() {
-        this.usuarioDAO = UsuarioDAO.getInstance(); // Inicializar el DAO aquí
+        this.usuarioDAO = UsuarioDAO.getInstance();
         this.usuarioLogeado = null;
     }
 
-    // Método Singleton
     public static synchronized UsuarioController getInstance() {
         if (instancia == null) {
             instancia = new UsuarioController();
@@ -42,30 +38,25 @@ public class UsuarioController {
         return instancia;
     }
 
-    // Método para limpiar la instancia (útil para logout)
     public static void resetInstance() {
         instancia = null;
     }
 
     public String registrarUsuario(Usuario usuario) {
-        // Validar campos obligatorios
         List<String> errores = validarCamposRegistro(usuario);
 
         if (!errores.isEmpty()) {
             return construirMensajeError(errores);
         }
 
-        // Validar email duplicado
         if (usuarioDAO.existeEmail(usuario.getEmail())) {
             return "El correo electrónico ya está registrado.";
         }
 
-        // Validar cédula duplicada
         if (usuarioDAO.existeCedula(usuario.getCedula())) {
             return "La cédula ya está registrada.";
         }
 
-        // Registrar usuario
         if (usuarioDAO.registrarUsuario(usuario)) {
             return "OK";
         } else {
@@ -76,7 +67,6 @@ public class UsuarioController {
     private List<String> validarCamposRegistro(Usuario usuario) {
         List<String> errores = new ArrayList<>();
 
-        // Validar primer nombre
         if (usuario.getPrimerNombre() == null || usuario.getPrimerNombre().trim().isEmpty()) {
             errores.add("Primer nombre: Campo obligatorio");
         } else if (!PATRON_SOLO_LETRAS.matcher(usuario.getPrimerNombre().trim()).matches()) {
@@ -85,7 +75,6 @@ public class UsuarioController {
             errores.add("Primer nombre: Debe tener al menos 2 caracteres");
         }
 
-        // Validar segundo nombre (opcional)
         if (usuario.getSegundoNombre() != null && !usuario.getSegundoNombre().trim().isEmpty()) {
             if (!PATRON_SOLO_LETRAS.matcher(usuario.getSegundoNombre().trim()).matches()) {
                 errores.add("Segundo nombre: Solo se permiten letras y espacios");
@@ -94,7 +83,6 @@ public class UsuarioController {
             }
         }
 
-        // Validar primer apellido
         if (usuario.getPrimerApellido() == null || usuario.getPrimerApellido().trim().isEmpty()) {
             errores.add("Primer apellido: Campo obligatorio");
         } else if (!PATRON_SOLO_LETRAS.matcher(usuario.getPrimerApellido().trim()).matches()) {
@@ -103,7 +91,6 @@ public class UsuarioController {
             errores.add("Primer apellido: Debe tener al menos 2 caracteres");
         }
 
-        // Validar segundo apellido
         if (usuario.getSegundoApellido() == null || usuario.getSegundoApellido().trim().isEmpty()) {
             errores.add("Segundo apellido: Campo obligatorio");
         } else if (!PATRON_SOLO_LETRAS.matcher(usuario.getSegundoApellido().trim()).matches()) {
@@ -112,23 +99,20 @@ public class UsuarioController {
             errores.add("Segundo apellido: Debe tener al menos 2 caracteres");
         }
 
-        // Validar cédula
         if (usuario.getCedula() == null || usuario.getCedula().trim().isEmpty()) {
             errores.add("Cédula: Campo obligatorio");
         } else if (!PATRON_SOLO_NUMEROS.matcher(usuario.getCedula().trim()).matches()) {
             errores.add("Cédula: Solo se permiten números");
-        } else if (usuario.getCedula().trim().length() < 6 || usuario.getCedula().trim().length() > 15) {
-            errores.add("Cédula: Debe tener entre 6 y 15 dígitos");
+        } else if (usuario.getCedula().trim().length() < 8 || usuario.getCedula().trim().length() > 10) {
+            errores.add("Cédula: Debe tener entre 8 y 10 dígitos");
         }
 
-        // Validar email
         if (usuario.getEmail() == null || usuario.getEmail().trim().isEmpty()) {
             errores.add("Correo electrónico: Campo obligatorio");
         } else if (!PATRON_EMAIL.matcher(usuario.getEmail().trim()).matches()) {
             errores.add("Correo electrónico: Formato de email inválido");
         }
 
-        // Validar contraseña
         if (usuario.getPassword() == null || usuario.getPassword().trim().isEmpty()) {
             errores.add("Contraseña: Campo obligatorio");
         } else if (!PATRON_CONTRASENA.matcher(usuario.getPassword().trim()).matches()) {
@@ -163,24 +147,21 @@ public class UsuarioController {
     }
 
     public String login(String email, String password) {
-        // Validar campos vacíos
         if (email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty()) {
             return "Por favor, ingrese email y contraseña.";
         }
 
-        // Validar formato de email
         if (!PATRON_EMAIL.matcher(email.trim()).matches()) {
             return "Formato de email inválido.";
         }
 
-        // Validar longitud de contraseña
         if (password.trim().length() < 6) {
             return "La contraseña debe tener al menos 6 caracteres.";
         }
 
         Usuario usuario = usuarioDAO.login(email, password);
         if (usuario != null) {
-            this.usuarioLogeado = usuario; // Guardar usuario logeado
+            this.usuarioLogeado = usuario;
             return "OK";
         } else {
             return "Credenciales incorrectas. Verifique su email y contraseña.";
@@ -191,12 +172,10 @@ public class UsuarioController {
         return this.usuarioLogeado;
     }
 
-    // Método para forzar un usuario logeado (útil para testing)
     public void setUsuarioLogeado(Usuario usuario) {
         this.usuarioLogeado = usuario;
     }
 
-    // Método para logout
     public void logout() {
         this.usuarioLogeado = null;
         this.codigoRecuperacion = null;
@@ -211,10 +190,8 @@ public class UsuarioController {
             return "No hay usuario logeado.";
         }
 
-        // Validar campos obligatorios
         List<String> errores = new ArrayList<>();
 
-        // Validar primer nombre
         if (primerNombre == null || primerNombre.trim().isEmpty()) {
             errores.add("Primer nombre: Campo obligatorio");
         } else if (!PATRON_SOLO_LETRAS.matcher(primerNombre.trim()).matches()) {
@@ -223,7 +200,6 @@ public class UsuarioController {
             errores.add("Primer nombre: Debe tener al menos 2 caracteres");
         }
 
-        // Validar segundo nombre (opcional)
         if (segundoNombre != null && !segundoNombre.trim().isEmpty()) {
             if (!PATRON_SOLO_LETRAS.matcher(segundoNombre.trim()).matches()) {
                 errores.add("Segundo nombre: Solo se permiten letras y espacios");
@@ -232,7 +208,6 @@ public class UsuarioController {
             }
         }
 
-        // Validar primer apellido
         if (primerApellido == null || primerApellido.trim().isEmpty()) {
             errores.add("Primer apellido: Campo obligatorio");
         } else if (!PATRON_SOLO_LETRAS.matcher(primerApellido.trim()).matches()) {
@@ -241,7 +216,6 @@ public class UsuarioController {
             errores.add("Primer apellido: Debe tener al menos 2 caracteres");
         }
 
-        // Validar segundo apellido
         if (segundoApellido == null || segundoApellido.trim().isEmpty()) {
             errores.add("Segundo apellido: Campo obligatorio");
         } else if (!PATRON_SOLO_LETRAS.matcher(segundoApellido.trim()).matches()) {
@@ -250,14 +224,12 @@ public class UsuarioController {
             errores.add("Segundo apellido: Debe tener al menos 2 caracteres");
         }
 
-        // Validar email
         if (email == null || email.trim().isEmpty()) {
             errores.add("Correo electrónico: Campo obligatorio");
         } else if (!PATRON_EMAIL.matcher(email.trim()).matches()) {
             errores.add("Correo electrónico: Formato inválido. Use @gmail.com, @hotmail.com, @outlook.com o @unicolombo.edu.co");
         }
 
-        // Validar email duplicado (solo si cambió el email)
         if (!email.trim().equalsIgnoreCase(usuarioLogeado.getEmail())
                 && usuarioDAO.existeEmail(email)) {
             errores.add("El correo electrónico ya está registrado por otro usuario");
@@ -271,7 +243,6 @@ public class UsuarioController {
             return mensaje.toString();
         }
 
-        // Actualizar en la base de datos
         if (usuarioDAO.actualizarInformacionUsuario(
                 usuarioLogeado.getCedula(),
                 primerNombre.trim(),
@@ -280,7 +251,6 @@ public class UsuarioController {
                 segundoApellido.trim(),
                 email.trim())) {
 
-            // Actualizar el usuario logeado en memoria
             usuarioLogeado.setPrimerNombre(primerNombre.trim());
             usuarioLogeado.setSegundoNombre(segundoNombre != null ? segundoNombre.trim() : "");
             usuarioLogeado.setPrimerApellido(primerApellido.trim());
@@ -293,7 +263,6 @@ public class UsuarioController {
         }
     }
 
-    // Mantener todos los demás métodos existentes...
     public String validarCampoTexto(String texto, String nombreCampo) {
         if (texto == null || texto.trim().isEmpty()) {
             return null;
