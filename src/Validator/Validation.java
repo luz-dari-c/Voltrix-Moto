@@ -331,4 +331,22 @@ public class Validation {
         return marca != null && marca.matches("[A-Za-z0-9\\-\\.&\\s]+");
     }
 
+        public static boolean validarMinimoLetras(String marca) {
+        if (marca == null || marca.trim().isEmpty()) {
+            return false;
+        }
+
+        String texto = marca.trim();
+
+        if (!texto.matches("[A-Za-z0-9\\-\\.&\\s]+")) {
+            return false;
+        }
+
+        long letras = texto.chars()
+                .filter(Character::isLetter)
+                .count();
+
+        return letras >= 3;
+    }
+
 }

@@ -3,6 +3,7 @@ package View;
 import Controller.EmpleadoController;
 import Controller.MotoController;
 import DAO.EmpleadoDAO;
+import Model.Constants.EstadoMoto;
 import Model.Entities.Empleado;
 import Model.Entities.Moto;
 import Model.Entities.PartesMoto;
@@ -511,6 +512,10 @@ public class Administador extends javax.swing.JFrame {
         model.setRowCount(0);
 
         for (Moto m : motos) {
+            if (m.getEstado() != EstadoMoto.DISPONIBLE) {
+                continue; 
+            }
+
             model.addRow(new Object[]{
                 m.getIdMoto(),
                 m.getTipoMoto(),
@@ -700,7 +705,6 @@ public class Administador extends javax.swing.JFrame {
         jLabel81 = new javax.swing.JLabel();
         jLabel82 = new javax.swing.JLabel();
         jLabel83 = new javax.swing.JLabel();
-        comboBoxMotoBasePlaca = new javax.swing.JComboBox<>();
         comboBoxTipoLlanta = new javax.swing.JComboBox<>();
         jLabel80 = new javax.swing.JLabel();
         jLabel84 = new javax.swing.JLabel();
@@ -739,6 +743,7 @@ public class Administador extends javax.swing.JFrame {
         BotonModificarMotoIndividual1 = new javax.swing.JButton();
         NuevaVelocidadesTransmision = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
+        MotoBasePlaca = new javax.swing.JLabel();
 
         MotoEliminar.setText("Eliminar esta moto");
         MotoEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -1628,7 +1633,7 @@ public class Administador extends javax.swing.JFrame {
 
         jLabel62.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel62.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel62.setText("Placa de la moto base*:");
+        jLabel62.setText("Placa de la moto base:");
         PanelParaModificarMoto.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, -1, 20));
 
         jLabel63.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -1730,9 +1735,6 @@ public class Administador extends javax.swing.JFrame {
         jLabel83.setForeground(new java.awt.Color(0, 0, 0));
         jLabel83.setText("Nuevo modelo:");
         PanelParaModificarMoto.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 270, -1, 20));
-
-        comboBoxMotoBasePlaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "BSE-DEPORTIVA", "BSE-NAKED", "BSE-SEMIAUTOMATICA", "BSE-SEMIDEPORTIVA", "BSE-BOXER", "BSE-CHOPPER", "BSE-SUPERSPORT", "BSE-SCOOTER" }));
-        PanelParaModificarMoto.add(comboBoxMotoBasePlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, 280, 30));
 
         comboBoxTipoLlanta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Llanta Delantera", "Llanta Trasera", "Ambas" }));
         PanelParaModificarMoto.add(comboBoxTipoLlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, 180, 20));
@@ -1904,14 +1906,18 @@ public class Administador extends javax.swing.JFrame {
         NuevoMaterialAsiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "CUERO", "SINTETICO", "TELA" }));
         PanelParaModificarMoto.add(NuevoMaterialAsiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 380, 170, -1));
 
-        BotonModificarMotoBase.setText("Modificar Moto");
+        BotonModificarMotoBase.setBackground(new java.awt.Color(49, 55, 69));
+        BotonModificarMotoBase.setForeground(new java.awt.Color(255, 255, 255));
+        BotonModificarMotoBase.setText("Modificar todas");
         BotonModificarMotoBase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonModificarMotoBaseActionPerformed(evt);
             }
         });
-        PanelParaModificarMoto.add(BotonModificarMotoBase, new org.netbeans.lib.awtextra.AbsoluteConstraints(943, 550, 140, 30));
+        PanelParaModificarMoto.add(BotonModificarMotoBase, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 590, 160, 30));
 
+        BotonModificarMotoIndividual1.setBackground(new java.awt.Color(49, 55, 69));
+        BotonModificarMotoIndividual1.setForeground(new java.awt.Color(255, 255, 255));
         BotonModificarMotoIndividual1.setText("Modificar Moto individual");
         BotonModificarMotoIndividual1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1925,6 +1931,7 @@ public class Administador extends javax.swing.JFrame {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         PanelParaModificarMoto.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 10, 620));
+        PanelParaModificarMoto.add(MotoBasePlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, 230, 40));
 
         ModificarInfoAdmin.addTab("tab12", PanelParaModificarMoto);
 
@@ -2240,7 +2247,42 @@ public class Administador extends javax.swing.JFrame {
 
         ModificarInfoAdmin.setSelectedIndex(10);
 
-        txtIdMotoModificar.setText(String.valueOf(moto.getIdMoto()));        // TODO add your handling code here:
+        txtIdMotoModificar.setText(String.valueOf(moto.getIdMoto()));
+
+        String base;
+
+        switch (moto.getTipoMoto()) {
+            case SEMIAUTOMATICA:
+                base = "BSE-SEMIAUTOMATICA";
+                break;
+            case BOXER:
+                base = "BSE-BOXER";
+                break;
+            case SEMIDEPORTIVA:
+                base = "BSE-SEMIDEPORTIVA";
+                break;
+            case DEPORTIVA:
+                base = "BSE-DEPORTIVA";
+                break;
+            case CHOPPER:
+                base = "BSE-CHOPPER";
+                break;
+            case NAKED:
+                base = "BSE-NAKED";
+                break;
+            case SUPERSPORT:
+                base = "BSE-SUPERSPORT";
+                break;
+            case SCOOTER:
+                base = "BSE-SCOOTER";
+                break;
+            default:
+                base = "BSE-DESCONOCIDO";
+                break;
+        }
+
+        MotoBasePlaca.setText(base);
+        // TODO add your handling code here:
     }//GEN-LAST:event_ModificarMotoItemActionPerformed
 
     private void txtNuevaMarcaMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevaMarcaMotoActionPerformed
@@ -2281,9 +2323,8 @@ public class Administador extends javax.swing.JFrame {
 
     private void BotonModificarMotoBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMotoBaseActionPerformed
         try {
-            boolean exito = motoController.modificarMotoBaseDesdeUI(
-                    this,
-                    comboBoxMotoBasePlaca,
+            boolean exito = motoController.modificarMotoBaseDesdeUI(this,
+                    MotoBasePlaca,
                     txtNuevoModeloMoto,
                     TieneParrillaNueva,
                     TieneMaleteroNueva,
@@ -2351,7 +2392,7 @@ public class Administador extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonModificarMotoIndividual1ActionPerformed
 
     private void limpiarCamposMotoBase() {
-        comboBoxMotoBasePlaca.setSelectedIndex(0);
+        MotoBasePlaca.setText("");
         txtNuevoModeloMoto.setText("");
         TieneParrillaNueva.setSelectedIndex(0);
         TieneMaleteroNueva.setSelectedIndex(0);
@@ -2503,6 +2544,7 @@ public class Administador extends javax.swing.JFrame {
     private javax.swing.JTabbedPane ModificarInfoAdmin;
     private javax.swing.JPanel ModificarMoto;
     private javax.swing.JMenuItem ModificarMotoItem;
+    private javax.swing.JLabel MotoBasePlaca;
     private javax.swing.JMenuItem MotoEliminar;
     private javax.swing.JTextField Nombre2Field1;
     private javax.swing.JComboBox<String> NuevaCapacidadAsiento;
@@ -2535,7 +2577,6 @@ public class Administador extends javax.swing.JFrame {
     private javax.swing.JTextField cedula;
     private javax.swing.JCheckBox checkBoxTerminosYConcidiones;
     private javax.swing.JComboBox<String> comboBoxColorMoto;
-    private javax.swing.JComboBox<String> comboBoxMotoBasePlaca;
     private javax.swing.JComboBox<String> comboBoxNuevoColorMoto1;
     private javax.swing.JComboBox<String> comboBoxTipoFreno;
     private javax.swing.JComboBox<String> comboBoxTipoLlanta;
