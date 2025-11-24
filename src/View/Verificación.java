@@ -209,6 +209,8 @@ public class Verificación extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         correoField = new javax.swing.JTextField();
         enviarCodigo = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -255,7 +257,12 @@ public class Verificación extends javax.swing.JFrame {
         digitoo1.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 18)); // NOI18N
         digitoo1.setForeground(new java.awt.Color(0, 0, 0));
         digitoo1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel1.add(digitoo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 136, 100, 80));
+        digitoo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                digitoo1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(digitoo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 100, 80));
 
         digitoo2.setBackground(new java.awt.Color(255, 255, 255));
         digitoo2.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 18)); // NOI18N
@@ -333,6 +340,18 @@ public class Verificación extends javax.swing.JFrame {
         });
         jPanel1.add(enviarCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, -1));
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-return-37.png"))); // NOI18N
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-back-30.png"))); // NOI18N
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 20, 40, 40));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 520));
 
         pack();
@@ -389,6 +408,16 @@ public class Verificación extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_enviarCodigoActionPerformed
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        Store st = new Store();
+        st.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void digitoo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_digitoo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_digitoo1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -437,8 +466,10 @@ public class Verificación extends javax.swing.JFrame {
     private javax.swing.JLabel en;
     private javax.swing.JButton enviarCodigo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

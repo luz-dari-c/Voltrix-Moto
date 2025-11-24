@@ -513,7 +513,7 @@ public class Administador extends javax.swing.JFrame {
 
         for (Moto m : motos) {
             if (m.getEstado() != EstadoMoto.DISPONIBLE) {
-                continue; 
+                continue;
             }
 
             model.addRow(new Object[]{
@@ -589,6 +589,7 @@ public class Administador extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         checkBoxTerminosYConcidiones = new javax.swing.JCheckBox();
         btnAñadirEmpleado = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         EliminarEmpleado = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaEliminar = new javax.swing.JTable();
@@ -998,6 +999,14 @@ public class Administador extends javax.swing.JFrame {
         jPanel3.add(btnAñadirEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 577, 120, 40));
 
         añadirEmpleado.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 660));
+
+        jButton2.setText("Cerrar sesión");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        añadirEmpleado.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 660, -1, 30));
 
         ModificarInfoAdmin.addTab("tab10", añadirEmpleado);
 
@@ -2391,6 +2400,22 @@ public class Administador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonModificarMotoIndividual1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int respuesta = JOptionPane.showConfirmDialog(
+                null,
+                "¿Está seguro que desea cerrar sesión?",
+                "Confirmar cierre de sesión",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            Login jv = new Login();
+            this.dispose();
+            jv.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void limpiarCamposMotoBase() {
         MotoBasePlaca.setText("");
         txtNuevoModeloMoto.setText("");
@@ -2584,6 +2609,7 @@ public class Administador extends javax.swing.JFrame {
     private javax.swing.JTextField correo;
     private javax.swing.JTextField edad;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

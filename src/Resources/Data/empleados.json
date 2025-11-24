@@ -7,7 +7,7 @@
     "segundoApellido": "López",
     "edad": "29",
     "identificacion": "1002345678",
-    "correo": "carlos.gomez@example.com",
+    "correo": "carlos.gomez@gmail.com",
     "telefono": "3105678234"
   },
   {
@@ -18,7 +18,7 @@
     "segundoApellido": "Pérez",
     "edad": "41",
     "identificacion": "1002345691",
-    "correo": "jorge.martinez@example.com",
+    "correo": "jorge.martinez@hotmail.com",
     "telefono": "3124567890"
   },
   {
@@ -29,7 +29,7 @@
     "segundoApellido": "Mejía",
     "edad": "27",
     "identificacion": "1002345702",
-    "correo": "diana.rojas@example.com",
+    "correo": "diana.rojas@yahoo.com",
     "telefono": "3004567123"
   },
   {
@@ -40,7 +40,7 @@
     "segundoApellido": "Morales",
     "edad": "32",
     "identificacion": "1002345713",
-    "correo": "fernando.perez@example.com",
+    "correo": "fernando.perez@outlook.com",
     "telefono": "012283929"
   },
   {
@@ -51,7 +51,7 @@
     "segundoApellido": "Rincón",
     "edad": "30",
     "identificacion": "1002345735",
-    "correo": "santiago.castano@example.com",
+    "correo": "santiago.castano@gmail.com",
     "telefono": "3201234567"
   },
   {
@@ -62,7 +62,7 @@
     "segundoApellido": "García",
     "edad": "25",
     "identificacion": "1002345746",
-    "correo": "laura.torres@example.com",
+    "correo": "laura.torres@hotmail.com",
     "telefono": "3212345678"
   },
   {
@@ -73,7 +73,7 @@
     "segundoApellido": "Bautista",
     "edad": "28",
     "identificacion": "1002345757",
-    "correo": "andres.rodriguez@example.com",
+    "correo": "andres.rodriguez@yahoo.com",
     "telefono": "3223456789"
   },
   {
@@ -84,7 +84,7 @@
     "segundoApellido": "Vargas",
     "edad": "31",
     "identificacion": "1002345768",
-    "correo": "natalia.gonzalez@example.com",
+    "correo": "natalia.gonzalez@gmail.com",
     "telefono": "3234567890"
   },
   {
@@ -95,7 +95,7 @@
     "segundoApellido": "Ruiz",
     "edad": "34",
     "identificacion": "1002345779",
-    "correo": "camilo.moreno@example.com",
+    "correo": "camilo.moreno@hotmail.com",
     "telefono": "3245678901"
   },
   {
@@ -106,7 +106,7 @@
     "segundoApellido": "Ortiz",
     "edad": "26",
     "identificacion": "1002345780",
-    "correo": "valentina.cardenas@example.com",
+    "correo": "valentina.cardenas@outlook.com",
     "telefono": "3256789012"
   },
   {
@@ -117,7 +117,7 @@
     "segundoApellido": "López",
     "edad": "29",
     "identificacion": "1002345791",
-    "correo": "sebastian.ruiz@example.com",
+    "correo": "sebastian.ruiz@gmail.com",
     "telefono": "3267890123"
   },
   {
@@ -128,7 +128,7 @@
     "segundoApellido": "Ramírez",
     "edad": "33",
     "identificacion": "1002345802",
-    "correo": "tatiana.mendoza@example.com",
+    "correo": "tatiana.mendoza@yahoo.com",
     "telefono": "3278901234"
   },
   {
@@ -139,7 +139,7 @@
     "segundoApellido": "Gómez",
     "edad": "36",
     "identificacion": "1002345813",
-    "correo": "felipe.restrepo@example.com",
+    "correo": "felipe.restrepo@hotmail.com",
     "telefono": "3289012345"
   },
   {
@@ -150,7 +150,7 @@
     "segundoApellido": "Lozano",
     "edad": "24",
     "identificacion": "1002345824",
-    "correo": "sara.quintero@example.com",
+    "correo": "sara.quintero@gmail.com",
     "telefono": "3290123456"
   },
   {
@@ -161,7 +161,7 @@
     "segundoApellido": "Beltrán",
     "edad": "37",
     "identificacion": "1002345835",
-    "correo": "mauricio.cruz@example.com",
+    "correo": "mauricio.cruz@outlook.com",
     "telefono": "3301234567"
   },
   {
@@ -172,7 +172,7 @@
     "segundoApellido": "Mora",
     "edad": "26",
     "identificacion": "1002345846",
-    "correo": "daniela.villalba@example.com",
+    "correo": "daniela.villalba@yahoo.com",
     "telefono": "3312345678"
   },
   {
@@ -183,7 +183,7 @@
     "segundoApellido": "Hernández",
     "edad": "42",
     "identificacion": "1002345857",
-    "correo": "oscar.cordoba@example.com",
+    "correo": "oscar.cordoba@gmail.com",
     "telefono": "3323456789"
   },
   {
@@ -194,7 +194,7 @@
     "segundoApellido": "Cano",
     "edad": "30",
     "identificacion": "1002345868",
-    "correo": "paola.salazar@example.com",
+    "correo": "paola.salazar@hotmail.com",
     "telefono": "3334567890"
   },
   {
@@ -205,7 +205,7 @@
     "segundoApellido": "Ramírez",
     "edad": "38",
     "identificacion": "1002345879",
-    "correo": "luis.vega@example.com",
+    "correo": "luis.vega@gmail.com",
     "telefono": "3345678901"
   },
   {
@@ -216,7 +216,7 @@
     "segundoApellido": "Peña",
     "edad": "28",
     "identificacion": "1002345880",
-    "correo": "camila.guerrero@example.com",
+    "correo": "camila.guerrero@yahoo.com",
     "telefono": "3356789012"
   },
   {
@@ -227,7 +227,7 @@
     "segundoApellido": "Núñez",
     "edad": "32",
     "identificacion": "1002345891",
-    "correo": "david.leon@example.com",
+    "correo": "david.leon@outlook.com",
     "telefono": "3367890123"
   },
   {
@@ -238,7 +238,7 @@
     "segundoApellido": "Restrepo",
     "edad": "25",
     "identificacion": "1002345902",
-    "correo": "angie.montoya@example.com",
+    "correo": "angie.montoya@gmail.com",
     "telefono": "3378901234"
   },
   {
@@ -249,12 +249,12 @@
     "segundoApellido": "Álvarez",
     "edad": "40",
     "identificacion": "1002345913",
-    "correo": "henry.rincon@example.com",
+    "correo": "henry.rincon@hotmail.com",
     "telefono": "3389012345"
   },
   {
     "idEmpleado": "EMP027",
-    "primerNombre": "Wuadalajara",
+    "primerNombre": "Marta",
     "segundoNombre": "Crespo",
     "primerApellido": "Tomioka",
     "segundoApellido": "Gomez",
@@ -265,10 +265,10 @@
   },
   {
     "idEmpleado": "EMP028",
-    "primerNombre": "Himmel",
-    "segundoNombre": "De",
-    "primerApellido": "Frieren",
-    "segundoApellido": "PorSiempre",
+    "primerNombre": "Hermenzon",
+    "segundoNombre": "Pablo",
+    "primerApellido": "Pinzon",
+    "segundoApellido": "Vargaz",
     "edad": "18",
     "identificacion": "128383782",
     "correo": "himmel@gmail.com",
@@ -276,24 +276,13 @@
   },
   {
     "idEmpleado": "EMP029",
-    "primerNombre": "Souso",
-    "segundoNombre": "No",
-    "primerApellido": "Frieren",
-    "segundoApellido": "Peak",
+    "primerNombre": "Samantha",
+    "segundoNombre": "Noreya",
+    "primerApellido": "Cruz",
+    "segundoApellido": "Perez",
     "edad": "30",
     "identificacion": "1010191921",
     "correo": "frieren@gmail.com",
     "telefono": "1091231231"
-  },
-  {
-    "idEmpleado": "EMP030",
-    "primerNombre": "Luz",
-    "segundoNombre": "Dari",
-    "primerApellido": "Crespo",
-    "segundoApellido": "Gomez",
-    "edad": "19",
-    "identificacion": "123712371",
-    "correo": "luz@gmail.com",
-    "telefono": "1234567891"
   }
 ]

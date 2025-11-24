@@ -1079,9 +1079,20 @@ public class Store extends javax.swing.JFrame {
     }//GEN-LAST:event_VerMas8ActionPerformed
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        Login jv = new Login();
-        this.dispose();
-        jv.setVisible(true);
+
+        int respuesta = JOptionPane.showConfirmDialog(
+                null,
+                "¿Está seguro que desea cerrar sesión?",
+                "Confirmar cierre de sesión",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            Login jv = new Login();
+            this.dispose();
+            jv.setVisible(true);
+        }
     }//GEN-LAST:event_jLabel15MouseClicked
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked

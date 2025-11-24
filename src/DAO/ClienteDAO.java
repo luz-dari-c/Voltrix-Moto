@@ -139,17 +139,6 @@ public class ClienteDAO {
         return copia;
     }
 
-    private boolean esBase64(String texto) {
-        if (texto == null) {
-            return false;
-        }
-        try {
-            Base64.getDecoder().decode(texto);
-            return true;
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-    }
 
     public synchronized void recargarClientes() {
         clientes.clear();
